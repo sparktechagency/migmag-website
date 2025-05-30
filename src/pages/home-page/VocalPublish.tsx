@@ -31,7 +31,7 @@ const VocalPublish: React.FC = () => {
   return (
     <>
       <div style={{ fontFamily: 'Favorit' }} className=' max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  ' >
-        <h1 className=' text-center text-[#000000] lg:text-lg   ' >OUR VOCALS WHERE PUBLISHED BY</h1>
+        <h1 className=' text-center text-[#000000] lg:text-lg   ' >TuneM Vocals Featured In </h1>
         <div className=' flex flex-col lg:flex-row md:flex-row justify-between mx-auto ' >
           {
             vocalData.map((item, i) => {
@@ -57,10 +57,10 @@ const VocalPublish: React.FC = () => {
         {/* right section  */}
         <div className=' lg:-mt-1 mt-4   ' >
           <div className=' max-w-[441px] ' >
-            <h1 className=' text-2xl lg:text-[35px] font-bold leading-9 ' >Discover vocal that match your tastes</h1>
+            <h1 className=' text-2xl lg:text-[35px] font-bold leading-9 ' >Use Our Vocals in Your Official Releases</h1>
           </div>
           <div className=' maw-w-[450px] lg:mt-8 mt-3 ' >
-            <h1 className=' lg:text-lg leading-6 ' >Your DICE feed is as unique as your taste in music. Connect your Spotify or Apple Music, and we’ll show you relevant events based on your favourite artists.</h1>
+            <h1 className=' lg:text-lg leading-6 ' >Connect your Spotify or Apple Music, and we’ll show you relevant events based on your favourite artists - Whether you're uploading to Spotify, Apple Music, Beatport, or YouTube all vocals from TuneM are fully royalty-free and release-ready.</h1>
           </div>
           <div>
 
@@ -75,10 +75,10 @@ const VocalPublish: React.FC = () => {
               </span>
               <div className='  ' >
                 <p className=' mt-3 lg:mt-7 text-[#000000] font-bold text-lg leading-6 ' >
-                  Only the best Vocals
+                  Choose Your Vocal
                 </p>
                 <div className=' max-w-[691px] ' >
-                  <h1 className=' mt-3 lg:mt-5 font-thin text-lg text-[#000000] leading-6 text-justify lg:text-start ' >We make sure that you get only the best premium quality vocals by only working with the industry’s finest artists. This makes us the #1 vocal provider.</h1>
+                  <h1 className=' mt-3 lg:mt-5 font-thin text-lg text-[#000000] leading-6 text-justify lg:text-start ' >Browse a wide range of professional, royalty-free vocals filtered by genre, mood, and vocal type. Find the sound that fits your vision.</h1>
                 </div>
               </div>
             </div>
@@ -101,10 +101,10 @@ const VocalPublish: React.FC = () => {
               </span>
               <div className='  ' >
                 <p className=' mt-3 lg:mt-7 text-[#818080] font-bold text-lg leading-6 ' >
-                  Not Overused
+                  Download and Produce
                 </p>
                 <div className=' max-w-[691px] ' >
-                  <h1 className=' lg:mt-5 font-thin mt-2 lg:text-lg text-[#818080] leading-6 text-justify lg:text-start ' >You find our vocals only on Vocalfy and nowhere else. We delete our Non-Exclusive vocals regularly to make sure you’ll get a rare vocal.</h1>
+                  <h1 className=' lg:mt-5 font-thin mt-2 lg:text-lg text-[#818080] leading-6 text-justify lg:text-start ' >Use the vocal in your track, edit freely, and build your release. All vocals come as high-quality WAV files, including dry and wet versions.</h1>
                 </div>
               </div>
             </div>
@@ -125,10 +125,10 @@ const VocalPublish: React.FC = () => {
               </span>
               <div className='  ' >
                 <p className=' lg:mt-8 mt-3 text-[#818080] font-bold text-lg leading-6 ' >
-                  Not Overused
+                  Release With Confidence
                 </p>
                 <div className=' max-w-[691px] ' >
-                  <h1 className=' lg:mt-5 mt-2 font-thin text-lg text-[#818080] leading-6 text-justify lg:text-start ' >You find our vocals only on Vocalfy and nowhere else. We delete our Non-Exclusive vocals regularly to make sure you’ll get a rare vocal.</h1>
+                  <h1 className=' lg:mt-5 mt-2 font-thin text-lg text-[#818080] leading-6 text-justify lg:text-start ' >Release your song on Spotify, Apple Music, YouTube, or any other platform. Our vocals come with full rights 100% royalty free, no clearance issues, no limits ! </h1>
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@ const VocalPublish: React.FC = () => {
         </div>
       </div>
 
-      
+
       <div style={{ fontFamily: 'Bayon' }} className='max-w-[1539px] mx-auto px-4 ' >
         <div className=' maw-w-[1116px]  ' >
           <h1 className=' lg:text-[90px] md:text-4xl text-2xl font-thin lg:mt-32 md:20 mt-7 ' >“LOVE TUNEM - GREAT CHOICE AND  EVEN BETTER SERVICE” </h1>

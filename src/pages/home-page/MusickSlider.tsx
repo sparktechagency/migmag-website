@@ -117,8 +117,8 @@ export default function MusicSlider() {
 
     return (
         <main className="lg:mt-32 mt-8">
-            <h1 className="text-[#000000] lg:text-lg max-w-[1519px] mx-auto px-4">
-                LATEST TRENDING
+            <h1 style={{ fontFamily: 'Favorit' }} className="text-[#000000] lg:text-lg max-w-[1519px] mx-auto px-4">
+                Latest Trending Vocals 
             </h1>
 
             <div ref={sliderRef} className="keen-slider relative w-full lg:mt-9 mt-4">
@@ -146,13 +146,12 @@ export default function MusicSlider() {
             <div style={{ fontFamily: 'Favorit' }} className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
                 <div className="max-w-[600px] lg:mt-[68px] mt-5">
                     <h1 className="text-[#000000] text-lg leading-6 px-4">
-                        Check out some of the most latest trending vocals coming up in network, great for club nights and gigs to
-                        artist signings.
+                        Updated every Friday with new royalty-free vocals curated for music producers looking to elevate their sound and stand out.
                     </h1>
                 </div>
                 <div className="mt-4 md:mt-12">
-                    <Link href="/all-vocal">
-                        <button className="bg-[#000000] w-[194px] text-white py-2 rounded-2xl lg:text-lg">
+                    <Link href="/browse-vocal">
+                        <button className="bg-[#000000] cursor-pointer w-[194px] text-white py-2 rounded-2xl lg:text-lg">
                             BROWSE VOCALS
                         </button>
                     </Link>

@@ -50,6 +50,12 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Bayon';
+  src: url('/fonts/Bayon-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   background: var(--background);

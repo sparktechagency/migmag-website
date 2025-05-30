@@ -157,12 +157,9 @@ const TopTenVocal: React.FC = () => {
                     <p className='text-[#000000] text-lg ' >OUR TOP 10 VOCALS</p>
                 </div>
                 <div className=' flex flex-row  xl:gap-13 justify-between      ' >
-                    <div className="xl:block hidden mt-[10.5%]  w-[2%]  ">
+                    <div className="xl:block hidden mt-[5.5%]  w-[2%]  ">
                         <p className="-rotate-90 text-[#000000] text-lg  whitespace-nowrap">
-                            OUR
-                            TOP
-                            10
-                            VOCALS
+                            Top 10 Vocals
                         </p>
                     </div>
 

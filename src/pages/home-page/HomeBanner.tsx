@@ -7,20 +7,20 @@ const HomeBanner: React.FC = () => {
             <div className="lg:mt-[75px] mt-10  flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
                 {/* Left Side */}
                 <div className="max-w-[658px] lg:mt-68  text-center lg:text-left">
-                    <h1 className="text-[36px] md:text-[46px] lg:text-[90px] text-[#000000] leading-[1.2] uppercase font-bold">
-                        Royalty-free vocals with the pitch love
+                    <h1 className="text-[36px] md:text-[46px] lg:text-[90px] text-[#000000] leading-[1.2] uppercase ">
+                        Royalty-Free Vocals, Ready for Release
                     </h1>
                     <p  style={{ fontFamily: 'Favorit' }} className="text-[#000000] text-base md:text-lg mt-4 md:mt-8 leading-6">
-                        A modern library for musicians and producers.
+                        Used by producers. Trusted by labels. Vocals that fit your sound and fuel your success.
                     </p>
-                    <div  style={{ fontFamily: 'Favorit' }} className="max-w-[478px] mx-auto lg:mx-0">
+                    {/* <div  style={{ fontFamily: 'Favorit' }} className="max-w-[478px] mx-auto lg:mx-0">
                         <span className="text-[#504E4E] text-sm md:text-base leading-6 mt-1 block">
                             Discover our vocal library where you may find everything you need to use for your music and videos.
                         </span>
-                    </div>
+                    </div> */}
                     <div style={{ fontFamily: 'Favorit' }} className="mt-8 md:mt-12">
-                        <Link href="/" passHref>
-                            <button className="bg-[#000000] w-[194px] text-white py-2 rounded-2xl text-lg">
+                        <Link href="/browse-vocal" passHref>
+                            <button className="bg-[#000000] w-[194px] text-white py-2 cursor-pointer rounded-2xl text-lg">
                                 BROWSE VOCALS
                             </button>
                         </Link>

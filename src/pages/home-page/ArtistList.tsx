@@ -78,7 +78,7 @@ const ArtistList: React.FC = () => {
     return (
         <div style={{ fontFamily: 'Favorit' }} className="bg-[url('/images/home-page/artist/artistBgImg.png')] bg-no-repeat bg-cover bg-center px-4  w-full">
             <div className=' max-w-[1539px]   mx-auto  ' >
-                <h1 className="text-white lg:text-lg lg:pt-9 pt-3 mx-auto ">POPULAR ARTISTS</h1>
+                <h1 className="text-white lg:text-lg lg:pt-9 pt-3 mx-auto ">Top Artists</h1>
                 <div className=' lg:my-10 my-4 grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     ' >
                     {
                         singerData.slice(0, visibleData).map((item, i) => {
