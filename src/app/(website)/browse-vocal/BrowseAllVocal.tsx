@@ -1205,12 +1205,12 @@ const BrowseAllVocal = () => {
                     <div>
                         <div className=' max-w-[411px] ' >
                             <h1 className=' text-2xl lg:text-[35px] font-bold text-[#ffffff] leading-9 ' >
-                                We’ve got you <br /> covered
+                                Vocals from the Industry’s Best
                             </h1>
                         </div>
 
                         <div className=' max-w-[478px] lg:mt-8 mt-3 ' >
-                            <h1 className=' lg:text-lg text-[#ffffff] leading-6 font-thin ' >Browse and purchase acapellas created by top singers from around the world. Use them to create original music that you can release and profit from.</h1>
+                            <h1 className=' lg:text-lg text-[#ffffff] leading-6 font-thin ' >Get access to top featured artists and rising voices, professionally recorded in studio environments. All vocals come from credited singers behind major releases — trusted by producers and labels worldwide.</h1>
                         </div>
 
 
@@ -1221,9 +1221,9 @@ const BrowseAllVocal = () => {
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#ffffff] font-bold lg:text-xl mb-4">Premium-Quality Vocals</p>
+                                    <p className="text-[#ffffff] font-bold lg:text-xl mb-4">100% Royalty-Free</p>
                                     <p className="text-[#ffffff] font-light mt-4 lg:text-lg leading-7">
-                                        Perfectly edited by our industry-leading vocal editors to make your music the best it can be. 3 Vocal Takes and edited vocals are always included.
+                                        All vocals on TuneM are cleared for commercial use. You can release your music on any platform and keep 100% of the royalties — no licenses, no revenue splits, no restrictions.
                                     </p>
                                 </div>
                             </div>
@@ -1233,9 +1233,9 @@ const BrowseAllVocal = () => {
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#ffffff] font-bold lg:text-xl mb-4">World-class Artists</p>
+                                    <p className="text-[#ffffff] font-bold lg:text-xl mb-4">Lifetime Use</p>
                                     <p className="text-[#ffffff] font-light mt-4 lg:text-lg leading-7">
-                                        All singers are fully verified and must meet our high quality standards regarding skill, lyrics and recording quality. Message and hire our artists for your projects.
+                                        Receive your dry vocal stems, invoice, and confirmation by email after purchase. MIDI files sold separately if required.
                                     </p>
                                 </div>
                             </div>
@@ -1245,9 +1245,9 @@ const BrowseAllVocal = () => {
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#ffffff] font-bold lg:text-xl mb-4">Release Worldwide</p>
+                                    <p className="text-[#ffffff] font-bold lg:text-xl mb-4">Trusted Agreements</p>
                                     <p className="text-[#ffffff] font-light mt-4 lg:text-lg leading-7">
-                                        Publish your new song on all streaming platforms, record labels, use commercially and never worry about royalties, they belong to you – 100%. Go beyond with Vocalfy.
+                                        Clear, professional, and built to protect you. Every vocal comes with a downloadable license — no hidden terms, no obstacles, release your music with no limits. 
                                     </p>
                                 </div>
                             </div>
@@ -1262,31 +1262,26 @@ const BrowseAllVocal = () => {
 
 
                 <div
-                    className=" bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
+                    className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
                 >
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
-                    <div className="relative z-10">
-                        <h1 className="text-center text-[#E7F056] font-bold lg:text-lg">
-                            TUNEM FOR ARTISTS
+                    <div className="relative z-10 mt-20 ">
+                        <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-lg">
+                            Become a TuneM Artist.
                         </h1>
-                        <div className="mx-auto mt-5 lg:mt-16">
-                            <h1 style={{ fontFamily: 'Bayon' }} className="text-center lg:text-7xl text-3xl text-white font-thin">
-                                GROW YOUR <br />
-                                REACH & AUDIENCE
-                            </h1>
-                        </div>
-                        <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+
+                        <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                             <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                                Whether you want to promote your own song, increase revenue or reach a
-                                wider audience, artists always benefit from our artists-first approach.
-                            </p>
+                                We work with talented singers and songwriters ready to take their voice further. Expand your audience, get discovered, and join our global music network.                        </p>
                         </div>
                         <div>
-                            <button className="text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
-                                <Link href={""}>GET STARTED</Link>
-                            </button>
+                            <Link href={"/tune-m-artist"}>
+                                <button style={{ fontFamily: 'Favorit' }} className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                    GET STARTED
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
