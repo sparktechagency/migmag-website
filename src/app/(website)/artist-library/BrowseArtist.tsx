@@ -563,8 +563,8 @@ const BrowseArtist = () => {
                 type: 'exclusive',
                 image: "/images/artist-library/artist/artist-8.png",
             },
-            
-            
+
+
         ]);
     }, []);
 
@@ -607,7 +607,7 @@ const BrowseArtist = () => {
     }, [openBPM]);
 
     return (
-        <div style={{ fontFamily: 'Favorit' }}  className=" max-w-[1551px] mt-16 mx-auto px-4   ">
+        <div style={{ fontFamily: 'Favorit' }} className=" max-w-[1551px] mt-16 mx-auto px-4   ">
             <div className=' mt-12 mb-6 ' >
                 <div className=' border border-white ' ></div>
             </div>
@@ -1278,29 +1278,26 @@ const BrowseArtist = () => {
 
 
             <div
-                className=" my-16 bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
+                className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
             >
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
-                <div className="relative z-10">
-                    <h1 className="text-center text-[#E7F056] font-bold lg:text-lg">
-                        TUNEM FOR ARTISTS
+                <div className="relative z-10 mt-20 ">
+                    <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-lg">
+                        Become a TuneM Artist.
                     </h1>
-                    <div className="mx-auto mt-5 lg:mt-16">
-                        <h1 style={{ fontFamily: 'Bayon' }} className="text-center lg:leading-24 uppercase lg:text-7xl text-3xl text-white font-thin">
-                            do you want to <br /> apply as a vocalist?
-                        </h1>
-                    </div>
-                    <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+
+                    <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                         <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            We are very selective with who we work with as we value quality the most.Apply today and start earning money from your vocals.
-                        </p>
+                            We work with talented singers and songwriters ready to take their voice further. Expand your audience, get discovered, and join our global music network.                        </p>
                     </div>
                     <div>
-                        <button className="text-[#E7F056] lg:text-lg w-[194px] py-2 border border-[#E7F056] rounded-2xl block mx-auto mt-4 lg:mt-13">
-                            <Link href={""}>GET STARTED</Link>
-                        </button>
+                        <Link href={"/tune-m-artist"}>
+                            <button style={{ fontFamily: 'Favorit' }} className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                GET STARTED
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
