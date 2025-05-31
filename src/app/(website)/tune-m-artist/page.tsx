@@ -192,8 +192,8 @@ const Page: React.FC = () => {
             <ApplayTune></ApplayTune>
             <ApplayVocalistFrom></ApplayVocalistFrom>
             <CoreValue></CoreValue>
-            <ManageTune  ></ManageTune>
-            <Faq></Faq>
+            {/* <ManageTune  ></ManageTune> */}
+            {/* <Faq></Faq> */}
 
 
 

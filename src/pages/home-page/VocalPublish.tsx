@@ -100,11 +100,11 @@ const VocalPublish: React.FC = () => {
 
               </span>
               <div className='  ' >
-                <p className=' mt-3 lg:mt-7 text-[#818080] font-bold text-lg leading-6 ' >
+                <p className=' mt-3 lg:mt-7 text-[#000000] font-bold text-lg leading-6 ' >
                   Download and Produce
                 </p>
                 <div className=' max-w-[691px] ' >
-                  <h1 className=' lg:mt-5 font-thin mt-2 lg:text-lg text-[#818080] leading-6 text-justify lg:text-start ' >Use the vocal in your track, edit freely, and build your release. All vocals come as high-quality WAV files, including dry and wet versions.</h1>
+                  <h1 className=' lg:mt-5 font-thin mt-2 lg:text-lg text-[#000000] leading-6 text-justify lg:text-start ' >Use the vocal in your track, edit freely, and build your release. All vocals come as high-quality WAV files, including dry and wet versions.</h1>
                 </div>
               </div>
             </div>
@@ -124,11 +124,11 @@ const VocalPublish: React.FC = () => {
 
               </span>
               <div className='  ' >
-                <p className=' lg:mt-8 mt-3 text-[#818080] font-bold text-lg leading-6 ' >
+                <p className=' lg:mt-8 mt-3 text-[#000000] font-bold text-lg leading-6 ' >
                   Release With Confidence
                 </p>
                 <div className=' max-w-[691px] ' >
-                  <h1 className=' lg:mt-5 mt-2 font-thin text-lg text-[#818080] leading-6 text-justify lg:text-start ' >Release your song on Spotify, Apple Music, YouTube, or any other platform. Our vocals come with full rights 100% royalty free, no clearance issues, no limits ! </h1>
+                  <h1 className=' lg:mt-5 mt-2 font-thin text-lg text-[#000000] leading-6 text-justify lg:text-start ' >Release your song on Spotify, Apple Music, YouTube, or any other platform. Our vocals come with full rights 100% royalty free, no clearance issues, no limits ! </h1>
                 </div>
               </div>
             </div>

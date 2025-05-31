@@ -65,7 +65,7 @@ const Coverd : React.FC = () => {
 
                 <div className="relative z-10">
                     <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-lg">
-                        TUNEM FOR ARTISTS
+                        Become a TuneM Artist.
                     </h1>
                     <div className="mx-auto mt-5 lg:mt-16">
                         <h1 style={{ fontFamily: 'Bayon' }} className="text-center lg:text-7xl text-3xl text-white font-thin">
@@ -75,8 +75,7 @@ const Coverd : React.FC = () => {
                     </div>
                     <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                         <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            Whether you want to promote your own song, increase revenue or reach a
-                            wider audience, artists always benefit from our artists-first approach.
+                            We work with talented singers and songwriters ready to take their voice further. Expand your audience, get discovered, and join our global music network
                         </p>
                     </div>
                     <div>

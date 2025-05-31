@@ -103,7 +103,7 @@ const ArtistList: React.FC = () => {
                                         <h1 className=' text-[15px] leading-6 text-[#504E4E] my-0.5 ' >
                                             Singer - {item.singer}
                                         </h1>
-                                        
+
                                     </div>
                                     <div>
                                         <Link href={"/artist-library"} className=' text-[#000000] leading-6 text-sm flex items-center gap-1 font-thin  ' >VIEW  <span><FaArrowRight /></span> </Link>
@@ -118,27 +118,21 @@ const ArtistList: React.FC = () => {
                         <h1 className=' text-white font-thin text-lg leading-6 mb-6 lg:mb-[69px] mx-auto ' >Check out some of the most popular artists coming up in your city, from club nights and gigs to artist signings.</h1>
                     </div>
                     <div>
-                        {singerData.length > 6 && (
-                            <div className="flex flex-col items-center space-y-4 mb-10">
-                                {visibleData < singerData.length && (
-                                    <button
-                                        onClick={() => setVisibleData(prev => prev + 6)}
-                                        className="border border-white font-thin w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
-                                    >
-                                        SEE ALL
-                                    </button>
-                                )}
 
-                                {visibleData > 6 && (
-                                    <button
-                                        onClick={() => setVisibleData(6)}
-                                        className="border border-white font-thin w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
-                                    >
-                                        SEE LESS
-                                    </button>
-                                )}
-                            </div>
-                        )}
+                        <div className="flex flex-col items-center space-y-4 mb-10">
+
+                            <Link href={"/artist-library"}>
+                                <button
+                                    className="border border-white font-thin w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
+                                >
+                                    SEE ALL
+                                </button>
+                            </Link>
+
+
+
+                        </div>
+
                     </div>
                 </div>
             </div>

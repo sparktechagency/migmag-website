@@ -27,10 +27,13 @@ const Footer: React.FC = () => {
                 {/* Newsletter and Description */}
                 <div className="mt-12 flex flex-col lg:flex-row justify-between gap-10">
                     <div>
-                        <h1 className="font-bold text-3xl lg:text-[35px] leading-9 text-[#000000]">Sign-up to our newsletter</h1>
+                        <h1 className="font-bold text-3xl lg:text-[35px] leading-9 text-[#000000]">Sign Up for the TuneM Newsletter</h1>
                         <div className="max-w-[478px] mt-4">
                             <p className="text-lg leading-6 text-[#000000]">
-                                Our newsletter is published every month and contains lots of inspiration and updates from music life at TUNEM.
+                                Stay Tuned and be the first to hear about new vocal releases, special offers, and exclusive updates from inside the world of TuneM. No spam — just real value for music creators.
+                            </p>
+                            <p className="text-lg leading-6 text-[#000000] mt-5 " >
+                                Vocalfy boosts your career with the best vocals. We have unique and special singers, top song-writers, producers and professional recording studios to ensure you get the vocal you’ve been looking for. -
                             </p>
                         </div>
                         <div className="mt-6">
@@ -43,13 +46,16 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className="  ">
-                        <div className="max-w-[478px]">
+                        <div>
+                            <h1 className="font-bold text-3xl lg:text-[35px] leading-9 text-[#000000]">TuneM helps you create the best vocals in the industry.</h1>
+                        </div>
+                        <div className="max-w-[478px] absolute right-[10%] mt-4 ">
                             <p className="text-[#000000] text-end text-lg leading-6">
-                                Vocalfy boosts your career with the best vocals. We have unique and special singers, top song-writers, producers and professional recording studios to ensure you get the vocal you’ve been looking for.
+                                We work with unique, handpicked trusted singers, top-tier songwriters, and professional engineers. All vocals are recorded in high-quality studio setups to ensure every take is clean, original, and ready for your next release.
                             </p>
                         </div>
                         <div className="mt-12 lg:mt-24 flex justify-end">
-                            <h1 className="text-[#000000] text-lg font-bold leading-9">FOLLOW US</h1>
+                            <h1 className="text-[#000000] text-lg font-bold leading-9 mt-6 ">FOLLOW US</h1>
                         </div>
                         <div className="flex gap-x-5 justify-end mt-7">
                             <div className="w-[31px] h-[31px] bg-black rounded-full"></div>
@@ -91,6 +97,7 @@ const Footer: React.FC = () => {
                                 <li><Link className="text-lg text-[#000000] leading-9" href="#">Help Centre</Link></li>
                                 <li><Link className="text-lg text-[#000000] leading-9" href="/contact">Support</Link></li>
                                 <li><Link className="text-lg text-[#000000] leading-9" href="#">Refund Policy</Link></li>
+                                <li><Link className="text-lg text-[#000000] leading-9" href="/faq">FAQ</Link></li>
                             </ul>
                         </div>
 
