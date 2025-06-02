@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import HireVocal from './HireVocal'
-import  Footer  from '@/components/footer/Footer';
+import Footer from '@/components/footer/Footer';
 
 
 const Page: React.FC = () => {
@@ -36,7 +36,7 @@ const Page: React.FC = () => {
       <div
         className="bg-gradient-to-r from-black/10 to-transparent  bg-[url('/images/hire/bannerImg/hire-banner-img.jpg')] bg-cover object-cover bg-center w-full pb-28 "
       >
-        <div style={{ fontFamily: 'Favorit' }}  className=" max-w-[1539px] mx-auto   bg-opacity-90 ">
+        <div style={{ fontFamily: 'Favorit' }} className=" max-w-[1539px] mx-auto   bg-opacity-90 ">
           <div className='flex items-center justify-between h-16 max-w-[1549px] pt-12 mx-auto px-4'>
             {/* Logo */}
             <Link href="/">
@@ -71,6 +71,14 @@ const Page: React.FC = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex flex-row items-center gap-x-12">
               <ul className="flex items-center gap-x-8 text-lg">
+                <li>
+                  <Link
+                    href="/ai-data-sets"
+                    className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
+                  >
+                    Ai Data Sets
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/browse-vocal"
@@ -143,6 +151,14 @@ const Page: React.FC = () => {
             <ul className="flex flex-col p-4 gap-4">
               <li>
                 <Link
+                  href="/ai-data-sets"
+                  className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
+                >
+                  Ai Data Sets
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/browse-vocal"
                   className={` ${pathname === "/browse-vocal" ? "text-[#E7F056]  " : "text-white"}`}
                 >
@@ -169,11 +185,11 @@ const Page: React.FC = () => {
             <h1 className=' lg:text-8xl text-4xl lg:leading-20 text-[#fff] ' >Hire singers .</h1>
             <h1 className=' lg:text-8xl text-4xl lg:leading-20 mt-6 text-[#E7F056]  ' >Royalty Free</h1>
           </div>
-          <div style={{ fontFamily: 'Favorit' }}  className=' text-white font-bold text-lg ml-2 mt-10 lg:mt-20 leading-6 ' >
+          <div style={{ fontFamily: 'Favorit' }} className=' text-white font-bold text-lg ml-2 mt-10 lg:mt-20 leading-6 ' >
             <p>Get the world’s best singers to record on your song.</p>
             <p>Transparent pricing. No hidden fees. Excellent vocalists.</p>
           </div>
-          <div style={{ fontFamily: 'Favorit' }}  className='mt-16' >
+          <div style={{ fontFamily: 'Favorit' }} className='mt-16' >
             <Link className=' border border-[#FFFFFF] rounded-[17px] p-4 text-white text-lg  ' href={"/artist-library"}>BROWSE OUR SINGERS</Link>
           </div>
         </div>

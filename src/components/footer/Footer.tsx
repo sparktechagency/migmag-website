@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { FaCcApplePay, FaInstagramSquare } from "react-icons/fa";
@@ -144,7 +143,8 @@ const Footer: React.FC = () => {
                                 <li><Link className="text-lg text-[#000000] leading-9" href="/contact">Contact Us</Link></li>
                                 <li><Link className="text-lg text-[#000000] leading-9" href="/refund-policy">Refund Policy</Link></li>
                                 <li><Link className="text-lg text-[#000000] leading-9" href="/faq">FAQ</Link></li>
-                                <li><Link className="text-lg text-[#000000] leading-9" href="term&condiction">Term & Condiction</Link></li>
+                                <li><Link className="text-lg text-[#000000] leading-9" href="/term&condiction">Term & Condiction</Link></li>
+                                <li><Link className="text-lg text-[#000000] leading-9" href="/privacy-policy">Privacy Policy</Link></li>
                             </ul>
                         </div>
 
