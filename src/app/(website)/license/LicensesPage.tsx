@@ -1,58 +1,47 @@
 "use client"
 
 import React, { useState } from 'react';
-import NonExclusiveLicense from './NonExclusiveLicense';
-import PrimeLicense from './PrimeLicense';
+import LimitedLicense from './LimitedLicense';
+import PremiumLicense from './PremiumLicense';
+import ExclusiveLicense from './ExclusiveLicense';
 
-const tabs = ['Non-Exclusive', 'Prime', 'Exclusive', 'Free', 'Subscription'];
+const tabs = ['Limited Vocal License', 'PremiumLicense', 'TuneM Exclusive Vocal License',];
 
 const LicensesPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('Non-Exclusive');
+  const [activeTab, setActiveTab] = useState('Limited Vocal License');
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'Non-Exclusive':
+      case 'Limited Vocal License':
         return (
           <div>
-              <NonExclusiveLicense></NonExclusiveLicense>
+            <LimitedLicense></LimitedLicense>
           </div>
         );
-      case 'Prime':
+      case 'PremiumLicense':
         return (
           <>
-          <PrimeLicense/>
+            <PremiumLicense></PremiumLicense>
           </>
         );
-      case 'Exclusive':
+      case 'TuneM Exclusive Vocal License':
         return (
           <div>
-
+              <ExclusiveLicense></ExclusiveLicense>
           </div>
         );
-      case 'Free':
-        return (
-          <div>
-
-          </div>
-        );
-      case 'Subscription':
-        return (
-          <div>
-
-          </div>
-        );
+      
+      
       default:
         return null;
     }
   };
 
   return (
-    <div style={{ fontFamily: "Favorit" }}  className="px-6 lg:px-20 py-10 ">
+    <div style={{ fontFamily: "Favorit" }} className="px-4 max-w-[1539px] mx-auto ">
       <h1 className="lg:text-4xl text-2xl font-bold mb-2">Licenses</h1>
       <p className="lg:text-lg text-sm text-black mb-6">
-        Read our licenses for our <strong>vocals</strong> which are made to help you succeed.
-        After you purchase a vocal, you can download the license with your name and the
-        purchased vocal on it to prove ownership.
+        All TuneM vocals come with a personalized, royalty-free license. You're cleared to release and monetize your music worldwide. Licenses and invoices are delivered instantly after purchase.
       </p>
 
       {/* Tabs */}
