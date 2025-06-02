@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import NonExclusiveLicense from './NonExclusiveLicense';
+import PrimeLicense from './PrimeLicense';
 
 const tabs = ['Non-Exclusive', 'Prime', 'Exclusive', 'Free', 'Subscription'];
 
@@ -18,7 +19,9 @@ const LicensesPage: React.FC = () => {
         );
       case 'Prime':
         return (
-          <></>
+          <>
+          <PrimeLicense/>
+          </>
         );
       case 'Exclusive':
         return (
