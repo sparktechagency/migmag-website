@@ -1138,8 +1138,8 @@ const BrowseArtist = () => {
 
                 <div className='  mt-14 mb-20 grid lg:grid-cols-2 items-center lg:space-y-0 space-y-4  ' >
                     <div>
-                        <h1 className=' text-[#818080] text-sm lg:text-lg ' >*New Vocals Added Monthly</h1>
-                        <h1 className=' lg:text-3xl text-xl text-[#E7F056] leading-9 font-thin ' >Notify me</h1>
+                        {/* <h1 className=' text-[#818080] text-sm lg:text-lg ' >*New Vocals Added Monthly</h1>
+                        <h1 className=' lg:text-3xl text-xl text-[#E7F056] leading-9 font-thin ' >Notify me</h1> */}
                     </div>
 
                     {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)} className=' w-[40%] rounded-2xl border border-white text-white lg:px-6 px-3 py-2 lg:py-3 text-sm lg:text-lg cursor-pointer   ' >LOAD MORE ARTISTS</button>)}

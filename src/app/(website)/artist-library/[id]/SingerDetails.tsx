@@ -375,7 +375,7 @@ const SingerDetails: React.FC = () => {
                                 </span>
                                 <h1 className=' text-[#818080] text-[16px] ' >WIDE VOCAL RANGE</h1>
                             </div>
-                            <div className=' flex items-center gap-x-7 mt-2.5  ' >
+                            {/* <div className=' flex items-center gap-x-7 mt-2.5  ' >
                                 <span>
                                     <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9 13.5251H5.2343C3.38637 13.5251 1.82742 14.9006 1.59737 16.7342V16.7342C1.29651 19.1322 3.39419 21.1548 5.78688 20.8142V20.8142C7.61642 20.5538 9 18.9838 9 17.1359V5.45094C9 3.86645 9 3.07421 9.45958 2.51921C9.91916 1.96421 10.6975 1.8165 12.2542 1.52108L14.7024 1.05648C14.8368 1.03096 14.9041 1.01821 14.9416 1.05679C14.9791 1.09538 14.9644 1.1622 14.935 1.29586L14.0272 5.43063C14.014 5.49085 14.0074 5.52097 13.9869 5.54159C13.9665 5.56221 13.9364 5.56905 13.8763 5.58274L9 6.69321" stroke="#818080" strokeWidth="2" />
@@ -384,7 +384,7 @@ const SingerDetails: React.FC = () => {
 
                                 </span>
                                 <h1 className=' text-[#818080] text-[16px] ' >06 VOCALS</h1>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -401,20 +401,8 @@ const SingerDetails: React.FC = () => {
                             </svg>
                             </span>FOLLOW
                         </button>
-                        <Link href={"/contact"}>
-                            <button className=' flex cursor-pointer  items-center gap-x-2.5 lg:gap-x-5 text-sm lg:text-2xl lg:px-7 px-3.5 py-1 lg:py-1.5 border border-black rounded-2xl  ' >
-                                <span>
-                                    <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M18.7759 7.29163H15.2915C11.5203 7.29163 9.63465 7.29163 8.46308 8.4632C7.2915 9.63477 7.2915 11.5204 7.2915 15.2916V25.7083C7.2915 26.6511 7.2915 27.1225 7.5844 27.4154C7.87729 27.7083 8.34869 27.7083 9.2915 27.7083H19.7082C23.4794 27.7083 25.365 27.7083 26.5366 26.5367C27.7082 25.3651 27.7082 23.4795 27.7082 19.7083V16.2239" stroke="#222222" />
-                                        <path d="M13.125 14.5834L21.875 14.5834" stroke="#222222" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M13.125 20.4166H17.5" stroke="#222222" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M27.7085 11.6666L27.7085 2.91663M23.3335 7.29163H32.0835" stroke="#222222" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-
-                                </span>MESSAGE
-                            </button>
-                        </Link>
-                        <Link href={"/contact"}>
+                        
+                        <Link href={"/hire"}>
                             <button className=' flex cursor-pointer  items-center gap-x-2.5 lg:gap-x-5 text-sm lg:text-2xl lg:px-7 px-3.5 py-1 lg:py-1.5 border border-black rounded-2xl  ' >
                                 <span>
                                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">

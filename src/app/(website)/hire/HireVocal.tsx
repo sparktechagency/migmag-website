@@ -29,7 +29,7 @@ const HireVocal: React.FC = () => {
 
     ]
     return (
-        <div style={{ fontFamily: 'Favorit' }}  className=' px-4' >
+        <div style={{ fontFamily: 'Favorit' }} className=' px-4' >
             <h1 className=' text-center lg:mt-14 md:mt-7 mt-4 text-[#000000] md:text-lg  ' >HERE OUR VOCALS ON</h1>
             <div className=' flex justify-between max-w-[1315px] mx-auto lg:mt-14 md:mt-7 mt-2 ' >
                 {
@@ -42,6 +42,7 @@ const HireVocal: React.FC = () => {
                     })
                 }
             </div>
+            <div className = " flex justify-center my-6  " ><Link href={"/hire-from"}><button className=' cursor-pointer  block mx-auto lg:text-lg text-[#000000] border border-[#000000] rounded-2xl px-3 md:px-6 py-1.5 md:py-2.5  ' >Hire Now</button></Link></div>
             <div className=' max-w-[1449px] mx-auto my-1 ' >
                 <div className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-40 ' >
                     <div>
@@ -122,10 +123,10 @@ const HireVocal: React.FC = () => {
 
 
 
-                
+
 
                 <div className="">
-                    
+
 
                     {/* Card Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
