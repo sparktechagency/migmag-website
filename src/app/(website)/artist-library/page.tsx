@@ -74,6 +74,14 @@ const Page: React.FC = () => {
               <ul className="flex items-center gap-x-8 text-lg">
                 <li>
                   <Link
+                    href="/ai-data-sets"
+                    className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
+                  >
+                    Ai Data Sets
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/browse-vocal"
                     className={` ${pathname === "/browse-vocal" ? "text-[#E7F056]  " : "text-white"}`}
                   >
@@ -142,6 +150,14 @@ const Page: React.FC = () => {
               </button>
             </div>
             <ul className="flex flex-col p-4 gap-4">
+              <li>
+                <Link
+                  href="/ai-data-sets"
+                  className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
+                >
+                  Ai Data Sets
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/browse-vocal"
@@ -305,6 +321,9 @@ const Page: React.FC = () => {
                     <li><Link className="text-lg text-white leading-9" href="/contact">Contact Us</Link></li>
                     <li><Link className="text-lg text-white leading-9" href="/refund-policy">Refund Policy</Link></li>
                     <li><Link className="text-lg text-white leading-9" href="/faq">FAQ</Link></li>
+
+                    <li><Link className="text-lg text-[#ffffff] leading-9" href="/term&condiction">Term & Condiction</Link></li>
+                    <li><Link className="text-lg text-[#ffffff] leading-9" href="/privacy-policy">Privacy Policy</Link></li>
                   </ul>
                 </div>
 
@@ -318,11 +337,6 @@ const Page: React.FC = () => {
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
     </div>
   )

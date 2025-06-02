@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-            <div style={{ fontFamily: 'Favorit' }}  className='flex items-center justify-between h-16 max-w-[1549px] pt-12 mx-auto px-4 '>
+            <div style={{ fontFamily: 'Favorit' }} className='flex items-center justify-between h-16 max-w-[1549px] pt-12 mx-auto px-4 '>
                 {/* Logo */}
                 <Link href="/">
                     <svg width="174" height="22" viewBox="0 0 174 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,6 +62,7 @@ const Navbar: React.FC = () => {
                 {/* Desktop Navigation */}
                 <nav className="hidden lg:flex flex-row items-center gap-x-12">
                     <ul className="flex items-center gap-x-8 text-lg">
+                        <li><Link className='text-black' href="/ai-data-sets">Ai Data Sets</Link></li>
                         <li><Link className='text-black' href="/browse-vocal">Browse Vocals</Link></li>
                         <li><Link className='text-black' href="/artist-library">Artist Library</Link></li>
                         <li><Link className='text-black' href="/hire">Hire</Link></li>
@@ -100,7 +101,7 @@ const Navbar: React.FC = () => {
             )}
 
             {/* Mobile Drawer */}
-            <div className={`fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div  className={`fixed top-0 right-0 h-full w-64 bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="p-4 flex justify-between items-center border-b">
                     <span className="text-lg font-bold">
                         <Link href="/">
@@ -128,7 +129,8 @@ const Navbar: React.FC = () => {
                         <FiX size={24} />
                     </button>
                 </div>
-                <ul className="flex flex-col p-4 gap-4">
+                <ul style={{fontFamily:"Favorit"}} className="flex flex-col p-4 gap-4">
+                    <li><Link className='text-black' href="/ai-data-sets">Ai Data Sets</Link></li>
                     <li><Link href="/browse-vocal">Browse Vocals</Link></li>
                     <li><Link href="/artist-library">Artist Library</Link></li>
                     <li><Link href="/hire">Hire</Link></li>

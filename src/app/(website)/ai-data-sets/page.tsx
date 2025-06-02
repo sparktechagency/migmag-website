@@ -83,7 +83,6 @@ const Page: React.FC = () => {
                                     </Link>
                                 </li>
                                 <li>
-
                                     <Link
                                         href="/browse-vocal"
                                         className={` ${pathname === "/browse-vocal" ? "text-[#E7F056]  " : "text-white"}`}
@@ -348,8 +347,8 @@ const Page: React.FC = () => {
                                     <li><Link className="text-lg text-white leading-9" href="/refund-policy">Refund Policy</Link></li>
                                     <li><Link className="text-lg text-white leading-9" href="/faq">FAQ</Link></li>
 
-                                    <li><Link className="text-lg text-white leading-9" href="/term&condiction">Term & Condiction</Link></li>
-                                    <li><Link className="text-lg text-white leading-9" href="/privacy-policy">Privacy Policy</Link></li>
+                                    <li><Link className="text-lg text-[#ffffff] leading-9" href="term&condiction">Term & Condiction</Link></li>
+                                    <li><Link className="text-lg text-[#ffffff] leading-9" href="/privacy-policy">Privacy Policy</Link></li>
                                 </ul>
                             </div>
 
