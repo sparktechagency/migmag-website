@@ -56,7 +56,7 @@ const HireVocal: React.FC = () => {
                     <div>
                         <div className=' max-w-[411px] ' >
                             <h1 className=' text-2xl lg:text-[35px] font-bold text-[#000000] leading-9 ' >
-                                How it works?
+                                How It Works?
                             </h1>
                         </div>
 
@@ -74,7 +74,7 @@ const HireVocal: React.FC = () => {
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#000000] font-bold lg:text-xl mb-4">Select a singer</p>
+                                    <p className="text-[#000000] font-bold lg:text-xl mb-4">Choose A Singer</p>
                                     <p className="text-[#000000] font-light mt-4 lg:text-lg leading-7">
                                         We make sure that you get only the best premium quality vocals by only working with the industry’s finest artists. This makes us the #1 vocal provider.
                                     </p>
@@ -86,8 +86,8 @@ const HireVocal: React.FC = () => {
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#818080] font-bold lg:text-xl mb-4">Describe your project</p>
-                                    <p className="text-[#818080] font-light mt-4 lg:text-lg leading-7">
+                                    <p className="text-[#000000] font-bold lg:text-xl mb-4">Share your idea</p>
+                                    <p className="text-[#000000] font-light mt-4 lg:text-lg leading-7">
                                         You find our vocals only on Vocalfy and nowhere else. We delete our Non-Exclusive vocals regularly to make sure you’ll get a rare vocal.
                                     </p>
                                 </div>
@@ -98,8 +98,8 @@ const HireVocal: React.FC = () => {
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#818080] font-bold lg:text-xl mb-4">A few days later: Done</p>
-                                    <p className="text-[#818080] font-light mt-4 lg:text-lg leading-7">
+                                    <p className="text-[#000000] font-bold lg:text-xl mb-4">We Deliver the Vocal</p>
+                                    <p className="text-[#000000] font-light mt-4 lg:text-lg leading-7">
                                         Our contracts are easy to understand without any sketchy clauses. Download your license for each of your vocals. Pick a vocal and start without obstacles..
                                     </p>
                                 </div>
@@ -132,28 +132,29 @@ const HireVocal: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
                         <div className=" p-5 lg:pt-44 pb-14 rounded-md text-[#000000] border border-black shadow ">
                             <h1 className="text-xl lg:text-3xl leading-9 font-bold">
-                                Vetted by us
+                                Work with Trusted Talent
                             </h1>
                             <div className="mt-6 lg:text-lg leading-6">
-                                <p>Work with singers - vetted by us for skill and quality.</p>
+                                <p>Our singers are hand-selected for their vocal ability, professionalism, and track record.</p>
                             </div>
                         </div>
                         <div className=" p-5 lg:pt-44 pb-14 rounded-md text-[#000000] border border-black shadow ">
                             <h1 className="text-xl lg:text-3xl leading-9 font-bold">
-                                Bulletproof contracts
+                                Secure and Verified
                             </h1>
                             <div className="mt-6 lg:text-lg leading-6">
                                 <p>
-                                    Our downloadable contracts are signed electronically at the time of purchase and give you full flexibility with your new vocals.
+                                   TuneM is built for trust with protected payments, verified artists, and real customer feedback.
+
                                 </p>
                             </div>
                         </div>
                         <div className=" p-5 lg:pt-44 pb-14 rounded-md text-[#000000] border border-black shadow ">
                             <h1 className="text-xl lg:text-3xl leading-9 font-bold">
-                                Delivered in 3 - 10 days
+                                Delivered Within 3–10 Days
                             </h1>
                             <div className="mt-6 lg:text-lg leading-6">
-                                <p>Our vocalists will deliver the recording within 10 days.</p>
+                                <p>Our vocalists deliver your custom vocals within 3–10 days, often sooner.</p>
                             </div>
                         </div>
                     </div>
