@@ -42,7 +42,39 @@ const HireVocal: React.FC = () => {
                     })
                 }
             </div>
-            <div className = " flex justify-center my-6  " ><Link href={"/hire-from"}><button className=' cursor-pointer  block mx-auto lg:text-lg text-[#000000] border border-[#000000] rounded-2xl px-3 md:px-6 py-1.5 md:py-2.5  ' >Hire Now</button></Link></div>
+            <div className='bg-white p-6 rounded-3xl max-w-4xl mx-auto my-20 ' >
+                <form className = "space-y-3" style={{ fontFamily: 'Degular' }}   >
+                    <div className=' flex flex-col ' >
+                        <label className=' text-[#121212] text-[16px] font-semibold  ' htmlFor="email">Email</label>
+                        <input type='email' id='email' className=' bg-[#F5F5F5] rounded-xl p-3 mt-2 border-none hover:border-none focus:outline-0 placeholder:text-[#3A3A3A] ' placeholder='Enter your email...' />
+                    </div>
+                    <div className=' flex flex-col ' >
+                        <label className=' text-[#121212] text-[16px] font-semibold    ' htmlFor="title">Title</label>
+                        <input id={"title"} type='text' className=' bg-[#F5F5F5] rounded-xl p-3 mt-2 border-none hover:border-none focus:outline-0 placeholder:text-[#3A3A3A] ' placeholder='Enter title...' />
+                    </div>
+                    <div className='flex flex-col'>
+                        <label className='text-[#121212] text-[16px] font-semibold' htmlFor="type">
+                            Type
+                        </label>
+                        <select
+                            id="type"
+                            className='bg-[#F5F5F5] rounded-xl p-3 mt-2 border-none hover:border-none focus:outline-0 text-[#3A3A3A]'
+                        >
+                            <option value="">Select a type...</option>
+                            <option value="support">Support</option>
+                            <option selected value="Hire artists">Hire Artists</option>
+                            <option value="Applay for refund">Applay for refund</option>
+                        </select>
+                    </div>
+                    <div className=' flex flex-col mt-2 ' >
+                        <label className=' text-[#121212] text-[16px] font-semibold  ' htmlFor="description">Description</label>
+                        <textarea id='description' rows={7} className=' bg-[#F5F5F5] rounded-xl p-3 mt-2 border-none hover:border-none focus:outline-0 placeholder:text-[#3A3A3A] ' placeholder='Description' />
+                    </div>
+                    <div className='mt-16' >
+                        <button className=' bg-[#E7F056] shadow w-full text-xl text-[#3A3A3A] font-semibold py-2 rounded-xl cursor-pointer   ' >Hire now</button>
+                    </div>
+                </form>
+            </div>
             <div className=' max-w-[1449px] mx-auto my-1 ' >
                 <div className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-40 ' >
                     <div>
@@ -114,7 +146,7 @@ const HireVocal: React.FC = () => {
 
                 </div>
                 <div className=' lg:mt-14 md:mt-8 mt-5 ' >
-                    <Link href={"/hire"}><button className=' cursor-pointer  block mx-auto lg:text-lg text-[#000000] border border-[#000000] rounded-2xl px-3 md:px-6 py-1.5 md:py-2.5  ' >GET STARTED</button></Link>
+                    <Link href={"/artist-library"}><button className=' cursor-pointer  block mx-auto lg:text-lg text-[#000000] border border-[#000000] rounded-2xl px-3 md:px-6 py-1.5 md:py-2.5  ' >GET STARTED</button></Link>
                 </div>
 
 
@@ -144,7 +176,7 @@ const HireVocal: React.FC = () => {
                             </h1>
                             <div className="mt-6 lg:text-lg leading-6">
                                 <p>
-                                   TuneM is built for trust with protected payments, verified artists, and real customer feedback.
+                                    TuneM is built for trust with protected payments, verified artists, and real customer feedback.
 
                                 </p>
                             </div>

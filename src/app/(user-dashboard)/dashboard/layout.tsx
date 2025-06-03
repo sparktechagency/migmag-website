@@ -65,6 +65,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         {/* Desktop Navigation */}
                         <nav className="hidden lg:flex flex-row items-center gap-x-12">
                             <ul className="flex items-center gap-x-8 text-lg">
+                                <li><Link className='text-white' href="/ai-data-sets">Ai Data Sets</Link></li>
                                 <li><Link className='text-white' href="/browse-vocal">Browse Vocals</Link></li>
                                 <li><Link className='text-white' href="/artist-library">Artist Library</Link></li>
                                 <li><Link className='text-white' href="/hire">Hire</Link></li>
@@ -138,6 +139,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                             </button>
                         </div>
                         <ul className="flex flex-col p-4 gap-4">
+                            <li><Link className='text-white' href="/ai-data-sets">Ai Data Sets</Link></li>
                             <li><Link href="/browse-vocal">Browse Vocals</Link></li>
                             <li><Link href="/artist-library">Artist Library</Link></li>
                             <li><Link href="/hire">Hire</Link></li>

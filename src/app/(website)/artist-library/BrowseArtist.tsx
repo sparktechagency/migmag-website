@@ -577,15 +577,15 @@ const BrowseArtist = () => {
         setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
-    const filteredData = data.filter((item) =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (filter.genre ? item.genre === filter.genre : true) &&
-        (filter.bpm ? item.bpm === filter.bpm : true) &&
-        (filter.key ? item.key === filter.key : true) &&
-        (filter.gender ? item.gender === filter.gender : true) &&
-        (filter.license ? item.license === filter.license : true) &&
-        (filter.type ? item.type === filter.type : true)
-    );
+    // const filteredData = data.filter((item) =>
+    //     item.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    //     (filter.genre ? item.genre === filter.genre : true) &&
+    //     (filter.bpm ? item.bpm === filter.bpm : true) &&
+    //     (filter.key ? item.key === filter.key : true) &&
+    //     (filter.gender ? item.gender === filter.gender : true) &&
+    //     (filter.license ? item.license === filter.license : true) &&
+    //     (filter.type ? item.type === filter.type : true)
+    // );
 
     const clearSearch = () => {
         setFilter("")
@@ -1176,7 +1176,7 @@ const BrowseArtist = () => {
                 <div className="flex-1 flex flex-col justify-between">
                     <div>
                         <h1 className="text-2xl lg:text-[35px] font-bold text-[#FFFFFF] leading-9">
-                            Want to hire our singers?
+                            Discover Unique Voices.
                         </h1>
 
                         <div className="max-w-[698px] lg:mt-8 mt-3">
