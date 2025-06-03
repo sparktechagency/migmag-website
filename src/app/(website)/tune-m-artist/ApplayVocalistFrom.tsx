@@ -84,11 +84,11 @@ const ApplayVocalistFrom: React.FC = () => {
                                 <input id='email' className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium ' type="email" />
                             </div>
 
-                            {/* Stage Name (optional) */}
+                            {/* Social link(optional) */}
 
                             <div className=' flex flex-col mt-5  ' >
-                                <label className=' text-white text-lg font-bold leading-6  ' htmlFor="stageName">Stage Name (optional)</label>
-                                <input id='stageName' className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium ' type="text" />
+                                <label className=' text-white text-lg font-bold leading-6  ' htmlFor="stageName">Social link (optional)</label>
+                                <input id='stageName' placeholder={"Tiktok"} className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium ' type="text" />
                             </div>
 
 

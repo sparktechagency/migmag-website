@@ -73,7 +73,7 @@ export default function MusickPlayer({
             wavesurferRef.current.playPause();
             setIsPlaying(wavesurferRef.current.isPlaying());
         }
-    };
+    }
 
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60);

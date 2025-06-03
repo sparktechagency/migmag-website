@@ -18,10 +18,27 @@ const BrowseVocalBanner = () => {
           </div>
           <div className=' flex gap-3.5 lg:gap-12 items-center mb-6 lg:mt-10 ' >
             {/* 1st circle */}
-            <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full bg-[#D9D9D9] ' ></div>
-            <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full bg-[#D9D9D9] ' ></div>
-            <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full bg-[#D9D9D9] ' ></div>
-            <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full bg-[#D9D9D9] ' ></div>
+            <div className=' flex gap-3.5 lg:gap-12 items-center mb-6 lg:mt-10 '>
+              {/* 1st circle */}
+              <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
+                <Image src={"/images/ai-data-set/broadcast.png"} alt={"Broadcast"} width={100} height={100}
+                       className={`object-cover  `}/>
+              </div>
+              <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
+                <Image src={"/images/ai-data-set/music.png"} alt={"Broadcast"} width={100} height={100}
+                       className={`object-cover  `}/>
+              </div>
+              <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
+                <Image src={"/images/ai-data-set/sound.png"} alt={"Broadcast"} width={100} height={100}
+                       className={`object-cover  `}/>
+
+              </div>
+              <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
+                <Image src={"/images/ai-data-set/voice-chat.png"} alt={"Broadcast"} width={100} height={100}
+                       className={`object-cover  `}/>
+
+              </div>
+            </div>
           </div>
         </div>
         {/* right side  */}

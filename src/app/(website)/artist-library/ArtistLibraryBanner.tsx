@@ -10,11 +10,14 @@ const ArtistLibraryBanner = () => {
                     {/* left side  */}
                     <div className=' max-w-2xl text-white ' >
                         <div style={{ fontFamily: 'Bayon' }} className=' max-w-[633px] lg:text-[90px] text-4xl lg:leading-24 ' >
-                            TALENTED ARTISTS AVAILABLE FOR  <span className=' text-[#E7F056] ' > YOUR TRACKS</span>
+                            <h1>Discover Unique Voices</h1>
                         </div>
                         <div style={{ fontFamily: 'Favorit' }} className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 font-bold ' >
                             <p>
-                                Looking for someone with that something special? Contact us and leet us know what you’re after, and we’ll search the world for you!
+                                Browse our roster of top vocalists, explore their work, and connect directly to hire or request custom vocals.
+                            </p>
+                            <p>Whether you’re just starting out or already experienced, TuneM brings the work to you — no need to keep searching for vocal gigs.
+                                No fees. No confusion. Just consistent income on a trusted, professional platform.
                             </p>
                         </div>
                         
