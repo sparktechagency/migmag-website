@@ -176,18 +176,23 @@ const Page: React.FC = () => {
             </ul>
           </div>
         </div>
+ 
+
 
         {/* website content  */}
 
         <div className=' max-w-[1539px] mx-auto px-4 mt-16 lg:mt-32
          ' >
           <div style={{ fontFamily: 'Bayon' }} className=' max-w-[631px] ' >
-            <h1 className=' lg:text-8xl text-4xl lg:leading-20 text-[#fff] ' >Hire singers .</h1>
-            <h1 className=' lg:text-8xl text-4xl lg:leading-20 mt-6 text-[#E7F056]  ' >Royalty Free</h1>
+            <h1 className=' lg:text-8xl text-4xl lg:leading-20 text-[#fff] ' >Custom Vocals,</h1>
+            <h1 className=' lg:text-8xl text-4xl lg:leading-20 mt-6 text-[#E7F056]  ' >Made for You</h1>
           </div>
-          <div style={{ fontFamily: 'Favorit' }} className=' text-white font-bold text-lg ml-2 mt-10 lg:mt-20 leading-6 ' >
-            <p>Get the world’s best singers to record on your song.</p>
-            <p>Transparent pricing. No hidden fees. Excellent vocalists.</p>
+          <div style={{ fontFamily: 'Favorit' }} className=' text-white font-bold text-lg ml-2 mt-10 lg:mt-20 leading-6 max-w-[600px] ' >
+            <p>
+              Choose from a diverse roster of professional singers across multiple languages and styles.
+Select your vocalist, share your idea, and receive a custom-recorded vocal tailored to your track delivered with high-quality stems
+
+            </p>
           </div>
           <div style={{ fontFamily: 'Favorit' }} className='mt-16' >
             <Link className=' border border-[#FFFFFF] rounded-[17px] p-4 text-white text-lg  ' href={"/artist-library"}>BROWSE OUR SINGERS</Link>
