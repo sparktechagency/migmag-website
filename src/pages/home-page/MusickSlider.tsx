@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, } from 'react';
+import React, {useState,} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import 'keen-slider/keen-slider.min.css';
-import { useKeenSlider } from 'keen-slider/react';
-import { FiPause, FiPlay } from 'react-icons/fi';
+import {useKeenSlider} from 'keen-slider/react';
+import {FiPause, FiPlay} from 'react-icons/fi';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 
 interface AudioItem {
@@ -79,16 +79,16 @@ export default function MusicSlider() {
         },
         breakpoints: {
             '(max-width: 340px)': {
-                slides: { perView: 1, spacing: 29 },
+                slides: {perView: 1, spacing: 29},
             },
             '(min-width: 340px)': {
-                slides: { perView: 2, spacing: 0 },
+                slides: {perView: 2, spacing: 0},
             },
             '(min-width: 640px)': {
-                slides: { perView: 3, spacing: 15 },
+                slides: {perView: 3, spacing: 15},
             },
             '(min-width: 1024px)': {
-                slides: { perView: 6, spacing: 20 },
+                slides: {perView: 6, spacing: 20},
             },
         },
     });
@@ -117,41 +117,46 @@ export default function MusicSlider() {
 
     return (
         <main className="lg:mt-32 mt-8">
-            <h1 style={{ fontFamily: 'Favorit' }} className="text-[#000000] lg:text-lg max-w-[1519px] mx-auto px-4">
-                Latest Trending Vocals 
+            <h1 style={{fontFamily: 'Favorit'}}
+                className="text-[#000000] text-2xl lg:text-4xl font-semibold  max-w-[1519px]  mx-auto px-4">
+                Latest Trending Vocals
             </h1>
 
             <div ref={sliderRef} className="keen-slider relative w-full lg:mt-9 mt-4">
                 {audioData.map((item, index) => (
                     <div key={item.id} className="keen-slider__slide w-full px-4 lg:px-0">
-                        <div className="relative w-full h-[260px] rounded-xl overflow-hidden">
-                            <Image src={item.img} fill alt={item.title} className="object-cover" />
+                        <div className="relative w-full h-[260px] overflow-hidden">
+                            <Image src={item.img} fill alt={item.title} className="object-cover"/>
+
                             <button
                                 onClick={() => handleOpenModal(index)}
-                                className="w-[50px] h-[50px] rounded-full bg-[#000000] flex justify-center items-center absolute inset-0 m-auto z-10"
+                                className="w-[50px] h-[50px] rounded-full bg-[#000000] flex justify-center items-center absolute bottom-4 right-4 z-10"
                             >
-                                {
-                                    showModal ? <><FiPause className="text-[#E7F056]" size={24} /></> : <><FiPlay className="text-[#E7F056]" size={24} /></>
-                                }
+                                <FiPlay className="text-[#E7F056]" size={24}/>
                             </button>
                         </div>
 
-                        <h3 style={{ fontFamily: 'Favorit' }} className="lg:text-lg font-bold mt-3">{item.title}</h3>
-                        <p style={{ fontFamily: 'Favorit' }} className="text-[#504E4E] lg:text-lg font-bold">{item.name}</p>
-                        <p style={{ fontFamily: 'Favorit' }} className="text-[#504E4E] lg:text-lg font-bold">{item.price}</p>
+                        <h3 style={{fontFamily: 'Favorit'}} className="lg:text-lg font-bold mt-3">{item.title}</h3>
+                        <p style={{fontFamily: 'Favorit'}}
+                           className="text-[#504E4E] lg:text-lg font-bold">{item.name}</p>
+                        <p style={{fontFamily: 'Favorit'}}
+                           className="text-[#504E4E] lg:text-lg font-bold">{item.price}</p>
                     </div>
                 ))}
             </div>
 
-            <div style={{ fontFamily: 'Favorit' }} className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
-                <div className="max-w-[600px] lg:mt-[68px] mt-5">
-                    <h1 className="text-[#000000] text-lg leading-6 px-4">
-                        Updated every Friday with new royalty-free vocals curated for music producers looking to elevate their sound and stand out.
+            <div style={{fontFamily: 'Favorit'}}
+                 className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
+                <div className="max-w-[700px] lg:mt-[68px] mt-5">
+                    <h1 className="text-[#000000] text-2xl lg:text-4xl font-semibold   px-4">
+                        Updated every Friday with new royalty-free vocals curated for music producers looking to elevate
+                        their sound and stand out.
                     </h1>
                 </div>
                 <div className="mt-4 md:mt-12">
                     <Link href="/browse-vocal">
-                        <button className="bg-[#000000] cursor-pointer w-[194px] text-white py-2 rounded-2xl lg:text-lg">
+                        <button
+                            className="bg-[#000000] cursor-pointer w-[194px] text-white py-2 rounded-2xl lg:text-lg">
                             BROWSE VOCALS
                         </button>
                     </Link>

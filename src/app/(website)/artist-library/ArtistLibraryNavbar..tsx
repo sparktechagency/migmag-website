@@ -6,7 +6,7 @@ import {FiMenu, FiX} from 'react-icons/fi'
 import {usePathname} from 'next/navigation'
 import {FaCartArrowDown} from "react-icons/fa";
 
-const Navbar: React.FC = () => {
+const ArtistLibraryNavbar: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const pathname = usePathname()
 
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
                     {/* Mobile Menu Button */}
                     <div className="lg:hidden">
                         <button onClick={toggleDrawer}>
-                            <FiMenu size={23} className={`text-black`}/>
+                            <FiMenu size={23} className={`text-black`} />
                         </button>
                     </div>
 
@@ -83,28 +83,15 @@ const Navbar: React.FC = () => {
                     <nav className="hidden lg:flex flex-row items-center gap-x-12">
                         <ul className="flex items-center gap-x-8 text-lg">
                             <li className="relative group">
-                                {/* parent link */}
                                 <Link
                                     href="/browse-vocal"
-                                    className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : "text-black"}`}
+                                    className={`${pathname === "/browse-vocal" ? "text-[#E7F056] " : "text-black"}`}
                                 >
                                     Browse Vocals
                                 </Link>
-
-                                {/* ▼ smooth dropdown */}
-                                <ul
-                                    className="
-      absolute left-0 top-full w-52 rounded-lg bg-white shadow-lg border border-gray-300 z-50
-      overflow-hidden                        /* keeps content clipped during scale */
-      opacity-0 translate-y-2 pointer-events-none
-      group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
-      transition-all duration-300 ease-out
-    "
-                                >
-                                    <li className="px-4 py-3 hover:bg-gray-100">
-                                        <Link className="text-black" href="/ai-data-sets">
-                                            AI Data Sets
-                                        </Link>
+                                <ul className="absolute left-0 border border-gray-300 top-full mt-0 hidden w-52 rounded-lg bg-white shadow-lg z-50 group-hover:block transition-all ">
+                                    <li className="p-4">
+                                        <Link className="text-black" href="/ai-data-sets">AI Data Sets</Link>
                                     </li>
                                 </ul>
                             </li>
@@ -207,4 +194,4 @@ const Navbar: React.FC = () => {
     )
 }
 
-export default Navbar
+export default ArtistLibraryNavbar;

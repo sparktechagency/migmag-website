@@ -3,11 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 const HomeBanner: React.FC = () => {
     return (
-        <div style={{ fontFamily: 'Bayon' }}  className=' max-w-[1519px] mx-auto ' >
-            <div className="lg:mt-[75px] mt-10  flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
+        <div style={{ fontFamily: 'Bayon' }}  className=' max-w-[1519px] mx-auto mt-16 lg:mt-24  ' >
+            <div className="flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
                 {/* Left Side */}
-                <div className="max-w-[658px] lg:mt-68  text-center lg:text-left">
-                    <h1 className="text-[36px] md:text-[46px] lg:text-[90px] text-[#000000] leading-[1.2] uppercase ">
+                <div className="max-w-[658px]   text-center lg:text-left">
+                    <h1 style={{ fontFamily: 'Bayon' }} className="text-[36px] md:text-[46px] font-thin lg:text-[90px] text-[#000000] leading-[1.2] uppercase ">
                         Royalty-Free Vocals, Ready for Release
                     </h1>
                     <p  style={{ fontFamily: 'Favorit' }} className="text-[#000000] text-base md:text-lg mt-4 md:mt-8 leading-6">
