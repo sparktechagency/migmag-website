@@ -7,6 +7,7 @@ import ArtistList from './ArtistList'
 import Footer from '@/components/footer/Footer'
 import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
+import CookieConsent from '@/components/cookie/cookie-consent'
 
 const HomePage : React.FC = () => {
     return (
@@ -30,6 +31,7 @@ const HomePage : React.FC = () => {
                     <Coverd></Coverd>
                 </div>
                 <Footer></Footer>
+                <CookieConsent/>
             </div>
         </div>
     )
