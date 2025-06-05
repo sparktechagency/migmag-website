@@ -75,12 +75,7 @@ const Page: React.FC = () => {
                         <nav className="hidden lg:flex flex-row items-center gap-x-12">
                             <ul className="flex items-center gap-x-8 text-lg">
                                 <li>
-                                    <Link
-                                        href="/ai-data-sets"
-                                        className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
-                                    >
-                                        Ai Data Sets
-                                    </Link>
+
                                 </li>
                                 <li>
                                     <Link

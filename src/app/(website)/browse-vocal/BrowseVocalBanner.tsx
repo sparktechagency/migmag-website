@@ -3,11 +3,11 @@ import React from 'react'
 
 const BrowseVocalBanner = () => {
   return (
-    <div className=' ' >
-      <div className=' lg:mt-14 mt-6 flex flex-col lg:flex-row justify-between ' >
+    <div className=' pt-1 ' >
+      <div className=' lg:mt-14  flex flex-col lg:flex-row justify-between ' >
         {/* left side  */}
         <div className=' max-w-2xl text-white ' >
-          <div style={{ fontFamily: 'Bayon' }} className=' max-w-[668px] lg:text-[80px] text-5xl lg:leading-20 ' >
+          <div style={{ fontFamily: 'Bayon' }} className=' lg:max-w-[668px] lg:text-[80px] text-4xl lg:leading-20 ' >
             Get Studio Quality Acapellas
           </div>
           <div style={{ fontFamily: 'Favorit' }} className=' max-w-[561px] mt-3 lg:mt-6 text-lg leading-6 font-bold ' >

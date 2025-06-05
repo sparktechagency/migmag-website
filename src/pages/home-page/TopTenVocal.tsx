@@ -153,12 +153,10 @@ const TopTenVocal: React.FC = () => {
                 <div className="mt-7">
 
                 </div>
-                <div className=' xl:hidden block ' >
-                    <p className='text-[#000000] text-lg ' >OUR TOP 10 VOCALS</p>
-                </div>
-                <div className=' flex flex-row  xl:gap-13 justify-between      ' >
-                    <div className="xl:block hidden mt-[5.5%]  w-[2%]  ">
-                        <p className="-rotate-90 text-[#000000] text-lg  whitespace-nowrap">
+
+                <div className=' ' >
+                    <div className=" ">
+                        <p className="  text-[#000000] text-2xl lg:text-4xl font-semibold   whitespace-nowrap">
                             Top 10 Vocals
                         </p>
                     </div>
@@ -215,7 +213,7 @@ const TopTenVocal: React.FC = () => {
 
                 <div className=' flex lg:flex-row flex-col mx-auto justify-between items-center mt-5 ' >
                     <div className=' max-w-[562px] ' >
-                        <h1 className=' text-black font-thin text-lg leading-6 mb-6 lg:mb-[69px] mx-auto ' >Our bi-weekly top-10 list features the popular artists coming up in our network, great for club nights and gigs to artist signings.</h1>
+                        {/*<h1 className=' text-black font-thin text-lg leading-6 mb-6 lg:mb-[69px] mx-auto ' >Our bi-weekly top-10 list features the popular artists coming up in our network, great for club nights and gigs to artist signings.</h1>*/}
                     </div>
                     <div>
 

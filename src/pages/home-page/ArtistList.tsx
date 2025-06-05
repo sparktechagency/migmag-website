@@ -1,17 +1,19 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react'
-import { FaArrowRight } from 'react-icons/fa';
+import React, {useState} from 'react'
+import {FaArrowRight} from 'react-icons/fa';
 
 const ArtistList: React.FC = () => {
     const [visibleData, setVisibleData] = useState<number>(6)
+
     interface SingerInterface {
         image: string;
         name: string;
         singer: string;
         genre: string
     }
+
     const singerData: SingerInterface[] = [
         {
             image: "/images/home-page/artist/singer-3.png",
@@ -76,10 +78,12 @@ const ArtistList: React.FC = () => {
         }
     ]
     return (
-        <div style={{ fontFamily: 'Favorit' }} className="bg-[url('/images/home-page/artist/artistBgImg.png')] bg-no-repeat bg-cover bg-center px-4  w-full">
-            <div className=' max-w-[1539px]   mx-auto  ' >
-                <h1 className="text-white lg:text-lg lg:pt-9 pt-3 mx-auto ">Top Artists</h1>
-                <div className=' lg:my-10 my-4 grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     ' >
+        <div style={{fontFamily: 'Favorit'}}
+             className="bg-[url('/images/home-page/artist/artistBgImg.png')] bg-no-repeat bg-cover bg-center px-4  w-full">
+            <div className=' max-w-[1539px]  pb-2  mx-auto  '>
+                <h1 className="text-white text-2xl lg:text-4xl font-semibold lg:pt-9 pt-3 mx-auto ">Top Artists</h1>
+                <div
+                    className=' lg:my-10 my-4 grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     '>
                     {
                         singerData.slice(0, visibleData).map((item, i) => {
                             return (
@@ -87,52 +91,42 @@ const ArtistList: React.FC = () => {
                                     key={i}
                                     className={`bg-[#c5c1bf] p-2 rounded-lg   `}
                                 >
-                                    <Image
-                                        src={item.image}
-                                        width={213}
-                                        height={163}
-                                        alt={item.name}
-                                        className="object-cover mx-auto w-full "
-                                    />
-                                    <div className='mt-2' >
-                                        <h1 className=' lg:text-xl leading-6 text-[#000000] ' >
-                                            {
-                                                item.name
-                                            }
-                                        </h1>
-                                        <h1 className=' text-[15px] leading-6 text-[#504E4E] my-0.5 ' >
-                                            Singer - {item.singer}
-                                        </h1>
+                                    <Link href={"/artist-library"}>
 
-                                    </div>
-                                    <div>
-                                        <Link href={"/artist-library"} className=' text-[#000000] leading-6 text-sm flex items-center gap-1 font-thin  ' >VIEW  <span><FaArrowRight /></span> </Link>
-                                    </div>
+                                        <Image
+                                            src={item.image}
+                                            width={213}
+                                            height={163}
+                                            alt={item.name}
+                                            className="object-cover mx-auto w-full "
+                                        />
+                                        <div className='mt-2'>
+                                            <h1 className=' lg:text-xl leading-6 text-[#000000] '>
+                                                {
+                                                    item.name
+                                                }
+                                            </h1>
+                                            <h1 className=' text-[15px] leading-6 text-[#504E4E] my-0.5 '>
+                                                Singer - {item.singer}
+                                            </h1>
+
+                                        </div>
+                                    </Link>
+
                                 </div>
                             );
                         })
                     }
                 </div>
-                <div style={{ fontFamily: 'Favorit' }} className=' flex lg:flex-row flex-col mx-auto justify-between items-center ' >
-                    <div className=' max-w-[562px] ' >
-                        <h1 className=' text-white font-thin text-lg leading-6 mb-6 lg:mb-[69px] mx-auto ' >Check out some of the most popular artists coming up in your city, from club nights and gigs to artist signings.</h1>
-                    </div>
-                    <div>
-
-                        <div className="flex flex-col items-center space-y-4 mb-10">
-
-                            <Link href={"/artist-library"}>
-                                <button
-                                    className="border border-white font-thin w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
-                                >
-                                    SEE ALL
-                                </button>
-                            </Link>
-
-
-
-                        </div>
-
+                <div style={{fontFamily: 'Favorit'}} className='  '>
+                    <div className="flex flex-row justify-center items-center space-y-4 mb-10">
+                        <Link href={"/artist-library"}>
+                            <button
+                                className="border border-white font-thin mt-3 w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
+                            >
+                                SEE ALL
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
