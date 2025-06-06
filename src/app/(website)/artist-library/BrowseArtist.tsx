@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Search } from 'lucide-react';
-import { motion, AnimatePresence } from "framer-motion";
-import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import {useState, useEffect, useRef} from 'react';
+import {ArrowRight, Search} from 'lucide-react';
+import {motion, AnimatePresence} from "framer-motion";
+import {HiChevronDown, HiChevronUp} from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -31,7 +31,6 @@ type FilterType = {
     type: string;
     latest: string
 };
-
 
 
 type Singer = {
@@ -182,13 +181,7 @@ const BrowseArtist = () => {
     }, []);
 
 
-
-
-
-
     // BPM  start
-
-
 
 
     const bpm: number[] | string[] = [60, 80, 100, 120, 140, 16];
@@ -198,19 +191,13 @@ const BrowseArtist = () => {
     const [openBPM, setOpenBPM] = useState<boolean>(false);
 
 
-
-
-
-
-
-
-
     useEffect(() => {
         function handleClickOutside(event: MouseEvent): void {
             if (bpmRef.current && !bpmRef.current.contains(event.target as Node)) {
                 setOpenBPM(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
@@ -267,13 +254,12 @@ const BrowseArtist = () => {
                 setOpenKey(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     // Key end
-
-
 
 
     // Gender  start
@@ -291,7 +277,6 @@ const BrowseArtist = () => {
         );
 
 
-
         setSelectedGender(newGender);
         setOpenGender(false); // Close dropdown
 
@@ -303,11 +288,10 @@ const BrowseArtist = () => {
                 setOpenGender(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-
-
 
 
     // Gender end
@@ -342,22 +326,13 @@ const BrowseArtist = () => {
                 setOpenLicense(false);
             }
         }
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
 
-
-
-
-
     // License end
-
-
-
-
-
-
 
 
     // Type  start
@@ -397,15 +372,13 @@ const BrowseArtist = () => {
                 setOpenType(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
 
-
     // Type end
-
-
 
 
     // Latest  start
@@ -435,14 +408,12 @@ const BrowseArtist = () => {
                 setOpenLatest(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     // Latest end
-
-
-
 
 
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -574,7 +545,7 @@ const BrowseArtist = () => {
 
     const handleFilterChange = (key: keyof FilterType, value: number | string) => {
         // setOpenBPM(false)
-        setFilter((prev) => ({ ...prev, [key]: value }));
+        setFilter((prev) => ({...prev, [key]: value}));
     };
 
     // const filteredData = data.filter((item) =>
@@ -595,9 +566,9 @@ const BrowseArtist = () => {
 
     useEffect(() => {
         if (openBPM) {
-            document.body.style.overflow = "hidden"; // 🔒 disable scroll
+            document.body.style.overflow = "hidden";
         } else {
-            document.body.style.overflow = "auto"; // 🔓 enable scroll
+            document.body.style.overflow = "auto";
         }
 
         // Cleanup just in case
@@ -607,33 +578,39 @@ const BrowseArtist = () => {
     }, [openBPM]);
 
     return (
-        <div style={{ fontFamily: 'Favorit' }} className=" max-w-[1551px] mt-16 mx-auto px-4   ">
-            <div className=' mt-12 mb-6 ' >
-                <div className=' border border-white ' ></div>
+        <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mt-16  mx-auto px-4   ">
+            <div className=' mt-12 mb-6 '>
+                <div className=' border border-white '></div>
             </div>
-            <div className=' flex md:flex-row lg:flex-row flex-col justify-between items-center mb-11  ' >
-                <div className='flex-1' >
-                    <h1 className=' lg:text-3xl md:text-2xl font-bold leading-9 text-white ' >Browse <span className=' text-[#818080] ' >Vocals</span></h1>
+            <div className=' flex md:flex-row lg:flex-row flex-col justify-between items-center mb-11  '>
+                <div className='flex-1'>
+                    <h1 className=' lg:text-3xl md:text-2xl font-bold leading-9 text-white '>Browse <span
+                        className=' text-[#818080] '>Vocals</span></h1>
                 </div>
 
-                <div className='  flex-1 lg:flex flex-col md:flex-row gap-14 relative   ' >
-                    <div className='   ' >
-                        <button onClick={clearSearch} className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   ' >Clear filters</button>
+                <div className='  flex-1 lg:flex flex-col md:flex-row gap-14 relative   '>
+                    <div className='   '>
+                        <button onClick={clearSearch}
+                                className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
+                            filters
+                        </button>
                     </div>
-                    <div className="relative md:mt-0 mt-6 flex-1">
-                        <input
-                            className="border border-white focus:outline-0 w-full py-2.5 rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
-                            placeholder="SEARCH"
-                            value={searchTerm}
-                            onChange={handleSearch}
-                        />
-                        <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white" />
-                    </div>
+
                 </div>
             </div>
 
 
-            <div className=" grid 2xl:grid-cols-7 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 xl:gap-x-14 md:gap-x-10 gap-y-4 gap-x-5 mx-auto   mb-6  ">
+            <div
+                className=" flex flex-row overflow-y-scroll    justify-between  xl:gap-x-14 md:gap-x-10 gap-y-4 gap-x-5 mx-auto   mb-6  ">
+                <div className="relative w-full mt-1  ">
+                    <input
+                        className="border border-white focus:outline-0  py-2.5  rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
+                        placeholder="SEARCH"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                    <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white"/>
+                </div>
 
                 {/* genre  */}
 
@@ -645,9 +622,9 @@ const BrowseArtist = () => {
                     >
                         {/* Icon on RIGHT side */}
                         {open ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         )}
 
                         {/* Only show selected count */}
@@ -659,12 +636,12 @@ const BrowseArtist = () => {
                     <AnimatePresence>
                         {open && (
                             <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
                                 className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
+                                style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
                             >
                                 {genres.map((genre) => (
                                     <label
@@ -689,185 +666,6 @@ const BrowseArtist = () => {
                 </div>
 
 
-                {/* BPM */}
-
-                <div className="relative md:w-[177px] w-[150px] " ref={bpmRef}>
-                    <button
-                        type="button"
-                        className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                        onClick={() => setOpenBPM(!openBPM)}
-                    >
-                        {openBPM ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                        ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                        )}
-
-                        <span className="w-28 text-white md:text-lg   ">
-                            {selectedBPM.length > 0 ? <>Selected {selectedBPM.length}</> : "BPM"}
-                        </span>
-                    </button>
-
-                    <AnimatePresence>
-                        {openBPM && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50"
-                            >
-                                <div
-                                    ref={bpmRef}
-                                    className="bg-[#201F1F] rounded-2xl p-6 w-[90%] max-w-md max-h-[80vh] overflow-auto"
-                                >
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
-                                        <button onClick={() => setOpenBPM(false)} className="cursor-pointer text-white text-2xl">×</button>
-                                    </div>
-
-                                    <div className="flex flex-col gap-6">
-
-
-                                        <div className="flex flex-col items-center gap-4">
-                                            {/* Selected BPM and Range Input */}
-                                            <div className="relative w-full pt-8">
-                                                {/* Number Labels */}
-                                                <div
-                                                    className="absolute  -top-4 text-sm font-semibold text-white bg-black   px-2 py-1 rounded"
-                                                    style={{ left: `calc(${getPercent(minValue)}% - 20px)` }}
-                                                >
-                                                    {minValue.toFixed(2)}
-                                                </div>
-                                                <div
-                                                    className="absolute -top-4 text-sm font-semibold text-white bg-black  px-2 py-1 rounded -ml-10 "
-                                                    style={{ left: `calc(${getPercent(maxValue)}% - 20px)` }}
-                                                >
-                                                    {maxValue.toFixed(2)}
-                                                </div>
-
-                                                {/* Track */}
-                                                <div
-                                                    className="w-full h-2 rounded-full"
-                                                    style={{ background: getTrackBackground() }}
-                                                />
-
-                                                {/* Left Thumb */}
-                                                <input
-                                                    type="range"
-                                                    min={minBPM}
-                                                    max={maxBPM}
-                                                    value={minValue}
-                                                    onChange={(e) => {
-                                                        const val = Math.min(Number(e.target.value), maxValue - 1);
-                                                        setMinValue(val);
-                                                    }}
-                                                    className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
-                                                />
-
-                                                {/* Right Thumb */}
-                                                <input
-                                                    type="range"
-                                                    min={minBPM}
-                                                    max={maxBPM}
-                                                    value={maxValue}
-                                                    onChange={(e) => {
-                                                        const val = Math.max(Number(e.target.value), minValue + 1);
-                                                        setMaxValue(val);
-                                                    }}
-                                                    className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
-                                                />
-                                            </div>
-
-                                            {/* Buttons */}
-                                            <div className="flex justify-center items-center gap-4 w-full">
-                                                <button
-                                                    onClick={() => {
-                                                        setSelectedBPM(0); // or default value
-                                                        handleFilterChange("bpm", "");
-                                                        setOpenBPM(false)
-                                                    }}
-                                                    className="bg-gray-700 cursor-pointer text-white px-4 py-1 rounded-lg hover:bg-gray-600 transition"
-                                                >
-                                                    Reset
-                                                </button>
-
-                                                <button
-                                                    onClick={() => handleFilterChange("bpm", selectedBPM)}
-                                                    className="bg-[#E7F056] cursor-pointer  text-black px-4 py-1 font-semibold rounded-lg transition"
-                                                >
-                                                    Filter
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-
-
-
-
-
-
-
-
-                {/* KEY */}
-
-                <div className="relative md:w-[177px] w-[150px]" ref={keyRef}>
-                    <button
-                        type="button"
-                        className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                        onClick={() => setOpenKey(!openKey)}
-                    >
-                        {openKey ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                        ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                        )}
-
-                        <span className="w-28 text-white md:text-lg ">
-                            {selectedKey.length > 0 ? <>Selected {selectedKey.length}</> : "KEY"}
-                        </span>
-                    </button>
-
-                    <AnimatePresence>
-                        {openKey && (
-                            <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
-                                className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                style={{ top: "calc(100% + 0.5rem)" }}
-                            >
-                                {keys.map((keys) => (
-                                    <label
-                                        key={keys}
-                                        className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedKey.includes(keys)}
-                                            onChange={(e) => {
-                                                toggleKey(keys);
-                                                handleFilterChange('keys', e.target.checked ? keys : '');
-                                            }}
-                                            className="mr-3 accent-indigo-500 w-5 h-5"
-                                        />
-                                        <span className="text-white md:text-lg ">{keys}</span>
-                                    </label>
-                                ))}
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-
-
-
-
                 {/* Gender */}
 
                 <div className="relative md:w-[177px] w-[150px]" ref={genderRef}>
@@ -877,9 +675,9 @@ const BrowseArtist = () => {
                         onClick={() => setOpenGender(!openGender)}
                     >
                         {openGender ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         )}
 
                         <span className="w-28 text-white md:text-lg  ">
@@ -890,12 +688,12 @@ const BrowseArtist = () => {
                     <AnimatePresence>
                         {openGender && (
                             <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
                                 className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                style={{ top: "calc(100% + 0.5rem)" }}
+                                style={{top: "calc(100% + 0.5rem)"}}
                             >
                                 {gender.map((gender) => (
                                     <label
@@ -929,9 +727,9 @@ const BrowseArtist = () => {
                         onClick={() => setOpenLicense(!openLicense)}
                     >
                         {openLicense ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         )}
                         <span className="w-28 text-white md:text-lg">
                             {selectedLicense.length > 0
@@ -943,12 +741,12 @@ const BrowseArtist = () => {
                     <AnimatePresence>
                         {openLicense && (
                             <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: 'easeInOut'}}
                                 className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                style={{ top: 'calc(100% + 0.5rem)' }}
+                                style={{top: 'calc(100% + 0.5rem)'}}
                             >
                                 {License.map((license) => (
                                     <label
@@ -979,7 +777,6 @@ const BrowseArtist = () => {
                 {/* Type  */}
 
 
-
                 <div className="relative md:w-[177px] w-[150px]" ref={typeRef}>
                     <button
                         type="button"
@@ -987,9 +784,9 @@ const BrowseArtist = () => {
                         onClick={() => setOpenType(!openType)}
                     >
                         {openType ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         )}
 
                         <span className="w-28 text-white md:text-lg   ">
@@ -1000,12 +797,12 @@ const BrowseArtist = () => {
                     <AnimatePresence>
                         {openType && (
                             <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
                                 className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                style={{ top: "calc(100% + 0.5rem)" }}
+                                style={{top: "calc(100% + 0.5rem)"}}
                             >
                                 {type.map((item) => (
                                     <label
@@ -1030,9 +827,6 @@ const BrowseArtist = () => {
                 </div>
 
 
-
-
-
                 {/* latest  */}
 
 
@@ -1043,9 +837,9 @@ const BrowseArtist = () => {
                         onClick={() => setOpenLatest(!openLatest)}
                     >
                         {openLatest ? (
-                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         ) : (
-                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                         )}
 
                         <span className="w-28 text-white md:text-lg   ">
@@ -1056,12 +850,12 @@ const BrowseArtist = () => {
                     <AnimatePresence>
                         {openLatest && (
                             <motion.div
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
                                 className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                style={{ top: "calc(100% + 0.5rem)" }}
+                                style={{top: "calc(100% + 0.5rem)"}}
                             >
                                 {
                                     latest.map((item) => (
@@ -1110,7 +904,7 @@ const BrowseArtist = () => {
                                 <h1 className="text-white text-lg leading-6">{singer.name}</h1>
                                 <Link href={`/artist-library/${singer.id}`}>
                                     <p className="flex flex-row items-center text-sm leading-6 text-white hover:underline">
-                                        VIEW <span className="ml-1"><ArrowRight /></span>
+                                        VIEW <span className="ml-1"><ArrowRight/></span>
                                     </p>
                                 </Link>
                             </div>
@@ -1129,34 +923,28 @@ const BrowseArtist = () => {
             </div>
 
 
-
-
-
-
-
             <div>
 
-                <div className='  mt-14 mb-20 grid lg:grid-cols-2 items-center lg:space-y-0 space-y-4  ' >
+                <div className='  mt-14 mb-20 grid lg:grid-cols-2 items-center lg:space-y-0 space-y-4  '>
                     <div>
                         {/* <h1 className=' text-[#818080] text-sm lg:text-lg ' >*New Vocals Added Monthly</h1>
                         <h1 className=' lg:text-3xl text-xl text-[#E7F056] leading-9 font-thin ' >Notify me</h1> */}
                     </div>
 
-                    {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)} className=' w-[40%] rounded-2xl border border-white text-white lg:px-6 px-3 py-2 lg:py-3 text-sm lg:text-lg cursor-pointer   ' >LOAD MORE ARTISTS</button>)}
+                    {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)}
+                                                               className=' w-[40%] rounded-2xl border border-white text-white lg:px-6 px-3 py-2 lg:py-3 text-sm lg:text-lg cursor-pointer   '>LOAD
+                        MORE ARTISTS</button>)}
 
                 </div>
 
             </div>
 
-            <div  >
+            <div>
 
             </div>
 
 
-
             {/* Want to hire our singers? */}
-
-
 
 
             <div className="flex lg:flex-row-reverse flex-col justify-between relative lg:gap-5 lg:mt-40 items-stretch">
@@ -1181,19 +969,26 @@ const BrowseArtist = () => {
 
                         <div className="max-w-[698px] lg:mt-8 mt-3">
                             <h1 className="lg:text-lg text-[#fff] leading-6 font-thin">
-                                How it works: browse and purchase acapellas created by top singers from around the world.
-                                Use them to create original music that you can release and profit from.
+                                Browse our roster of top vocalists, explore their work, and connect directly to hire or
+                                request custom vocals.
+                            </h1>
+                            <h1 className="lg:text-lg text-[#fff] leading-6 font-thin">
+                                Whether you’re just starting out or already experienced, TuneM brings the work to you —
+                                no need to keep searching for vocal gigs.
+                                No fees. No confusion. Just consistent income on a trusted, professional platform.
+
                             </h1>
                         </div>
 
                         <div className="max-w-[700px] mx-auto lg:mt-[50px] mt-7 lg:space-y-[72px] space-y-3">
                             {/* Step 1 */}
                             <div className="flex flex-row gap-5 items-start">
-                                <div className="lg:w-[50px] lg:h-[47px] rounded-full bg-[#D9D9D9]" />
+                                <div className="lg:w-[50px] lg:h-[47px] rounded-full bg-[#D9D9D9]"/>
                                 <div className="transition duration-300 w-full">
                                     <p className="text-[#fff] font-bold lg:text-xl mb-4">Select a singer</p>
                                     <p className="text-[#fff] font-light mt-4 lg:text-lg leading-7">
-                                        Perfectly edited by our industry-leading vocal editors to make your music the best it can be.
+                                        Perfectly edited by our industry-leading vocal editors to make your music the
+                                        best it can be.
                                         3 Vocal Takes and edited vocals are always included.
                                     </p>
                                 </div>
@@ -1201,11 +996,12 @@ const BrowseArtist = () => {
 
                             {/* Step 2 */}
                             <div className="flex flex-row gap-5 items-start">
-                                <div className="lg:w-[50px] lg:h-[47px] rounded-full bg-[#D9D9D9]" />
+                                <div className="lg:w-[50px] lg:h-[47px] rounded-full bg-[#D9D9D9]"/>
                                 <div className="transition duration-300 w-full">
                                     <p className="text-[#fff] font-bold lg:text-xl mb-4">Describe your project</p>
                                     <p className="text-[#fff] font-light mt-4 lg:text-lg leading-7">
-                                        All singers are fully verified and must meet our high quality standards regarding skill,
+                                        All singers are fully verified and must meet our high quality standards
+                                        regarding skill,
                                         lyrics and recording quality. Message and hire our artists for your projects.
                                     </p>
                                 </div>
@@ -1213,11 +1009,12 @@ const BrowseArtist = () => {
 
                             {/* Step 3 */}
                             <div className="flex flex-row gap-5 items-start">
-                                <div className="lg:w-[50px] lg:h-[47px] rounded-full bg-[#D9D9D9]" />
+                                <div className="lg:w-[50px] lg:h-[47px] rounded-full bg-[#D9D9D9]"/>
                                 <div className="transition duration-300 w-full">
                                     <p className="text-[#fff] font-bold lg:text-xl mb-4">A few days later: Done</p>
                                     <p className="text-[#fff] font-light mt-4 lg:text-lg leading-7">
-                                        Publish your new song on all streaming platforms, record labels, use commercially and never worry about royalties,
+                                        Publish your new song on all streaming platforms, record labels, use
+                                        commercially and never worry about royalties,
                                         they belong to you – 100%. Go beyond with Vocalfy.
                                     </p>
                                 </div>
@@ -1228,19 +1025,14 @@ const BrowseArtist = () => {
                     {/* Button */}
                     <div className="mt-7 lg:mt-[61px]">
                         <Link href="">
-                            <button className="text-[#FFFFFF] text-lg px-5 py-2 rounded-2xl border border-[#FFFFFF] cursor-pointer">
+                            <button
+                                className="text-[#FFFFFF] text-lg px-5 py-2 rounded-2xl border border-[#FFFFFF] cursor-pointer">
                                 GET STARTED
                             </button>
                         </Link>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
 
 
             <div className="flex flex-col gap-6 lg:flex-row justify-between items-stretch lg:mt-20 mt-10">
@@ -1272,11 +1064,6 @@ const BrowseArtist = () => {
             </div>
 
 
-
-
-
-
-
             <div
                 className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
             >
@@ -1284,24 +1071,26 @@ const BrowseArtist = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                 <div className="relative z-10 mt-20 ">
-                    <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-lg">
+                    <h1 style={{fontFamily: 'Favorit'}}
+                        className="text-center text-[#E7F056] font-bold lg:text-3xl text-xl">
                         Become a TuneM Artist.
                     </h1>
 
-                    <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+                    <div style={{fontFamily: 'Favorit'}} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                         <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            We work with talented singers and songwriters ready to take their voice further. Expand your audience, get discovered, and join our global music network.                        </p>
+                            We work with talented singers and songwriters ready to take their voice further. Expand your
+                            audience, get discovered, and join our global music network. </p>
                     </div>
                     <div>
                         <Link href={"/tune-m-artist"}>
-                            <button style={{ fontFamily: 'Favorit' }} className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                            <button style={{fontFamily: 'Favorit'}}
+                                    className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                 GET STARTED
                             </button>
                         </Link>
                     </div>
                 </div>
             </div>
-
 
 
         </div>
