@@ -1173,12 +1173,9 @@ const BrowseAllVocal = () => {
                     </table>
                 </div>
 
-                <div className='  mt-14 mb-20 grid lg:grid-cols-2 items-center ' >
-                    <div>
-                        <h1 className=' text-[#818080] text-lg ' >*New Vocals Added Monthly</h1>
-                        <h1 className=' text-3xl text-[#E7F056] leading-9 font-thin ' >Notify me</h1>
-                    </div>
-                    <div  >
+                <div className='  mt-14 mb-20 flex flex-row justify-center ' >
+
+                    <div style={{fontFamily:""}}  >
                         {
                             visibleData < filteredData.length && (
                                 <button onClick={() => { setVisibleData(prev => prev + 10) }} className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-3 text-lg cursor-pointer   ' >LOAD MORE VOCALS</button>
@@ -1285,7 +1282,7 @@ const BrowseAllVocal = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                     <div className="relative z-10 mt-20 ">
-                        <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-lg">
+                        <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-3xl  text-lg">
                             Become a TuneM Artist.
                         </h1>
 
