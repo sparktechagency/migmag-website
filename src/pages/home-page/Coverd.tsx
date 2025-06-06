@@ -16,7 +16,7 @@ const Coverd: React.FC = () => {
                     </div>
 
                     <div className=' max-w-[578px] lg:mt-8 mt-3 ' >
-                        <h1 className=' lg:text-lg text-[#000000] leading-6 font-bold ' >Vocals that get played, signed, and remembered -  backed by service that’s just as professional as the sound - <span className=' font-thin  ' >Mantas Stinson (Lithuania HQ - Label Manager)</span> </h1>
+                        <h1 className=' lg:text-lg text-[#000000] leading-6 font-bold ' >LOVE TUNEM - GREAT CHOICE AND EVEN BETTER SERVICE </h1>
                     </div>
 
 
@@ -64,7 +64,7 @@ const Coverd: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                 <div className="relative mt-20 z-10">
-                    <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-lg">
+                    <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-3xl text-lg ">
                         Become a TuneM Artist.
                     </h1>
 

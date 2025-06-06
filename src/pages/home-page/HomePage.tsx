@@ -8,6 +8,7 @@ import Footer from '@/components/footer/Footer'
 import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
+import Quote from "@/pages/home-page/QuotePage";
 
 const HomePage : React.FC = () => {
     return (
@@ -24,6 +25,7 @@ const HomePage : React.FC = () => {
                 <div className='  ' >
                     <ArtistList></ArtistList>
                 </div>
+
                 <div>
                     <VocalPublish></VocalPublish>
                 </div>

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import React from 'react'
+import {Quote} from "lucide-react";
+import QuotePage from "@/pages/home-page/QuotePage";
 
 const VocalPublish: React.FC = () => {
   interface VocalInt {
@@ -31,7 +33,7 @@ const VocalPublish: React.FC = () => {
   return (
     <>
       <div style={{ fontFamily: 'Favorit' }} className=' max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  ' >
-        <h1 className=' text-center text-[#000000] lg:text-lg   ' >TuneM Vocals Featured In </h1>
+        <h1 className=' text-center text-[#000000] lg:text-4xl text-2xl font-semibold   ' >TuneM Vocals Featured In </h1>
         <div className=' flex flex-col lg:flex-row md:flex-row justify-between mx-auto ' >
           {
             vocalData.map((item, i) => {
@@ -138,6 +140,10 @@ const VocalPublish: React.FC = () => {
 
           </div>
         </div>
+      </div>
+
+      <div>
+          <QuotePage />
       </div>
 
 
