@@ -29,10 +29,10 @@ const BrowseVocalNavbar: React.FC = () => {
     }, [pathname])
 
     return (
-        <div className={`fixed  top-0 w-full      `}>
-            < div className={`bg-[#000000] `}>
+        <div className={` `}>
+            < div className={`bg-[#000000] w-full  `}>
                 <div style={{fontFamily: 'Favorit'}}
-                     className='flex items-center justify-between   max-w-[1549px] py-5 z-50 px-4   mx-auto  '>
+                     className='flex items-center justify-between  w-full max-w-[1549px] py-5 z-50 px-4   mx-auto  '>
                     {/* Logo */}
                     <Link href="/">
                         <svg width="174" height="22" viewBox="0 0 174 22" fill="none"
@@ -109,7 +109,7 @@ const BrowseVocalNavbar: React.FC = () => {
                                     </li>
                                 </ul>
                             </li>
-                            <li><Link className="text-white" href="/artist-library">Artist Library</Link></li>
+                            <li><Link  className={`${pathname === "/artist-library" ? "text-[#E7F056]" : "text-white"}`} href="/artist-library">Artist Library</Link></li>
                             <li><Link className="text-white" href="/hire">Hire</Link></li>
                         </ul>
 

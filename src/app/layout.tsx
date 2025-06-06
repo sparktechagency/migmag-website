@@ -29,7 +29,7 @@ export default function RootLayout({
             className={` ${bayon.variable} antialiased`}
         >
 
-        <main className={``} >
+        <main className={` w-full `} >
             {children}
         </main>
         </body>

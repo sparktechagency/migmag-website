@@ -4,20 +4,19 @@ import React from 'react'
 
 const ArtistLibraryBanner = () => {
     return (
-        <div className=' max-w-[1539px] mx-auto px-4  ' >
+        <div className=' max-w-[1539px] mx-auto px-4 mt-8   ' >
             <div className=' ' >
-                <div className=' lg:mt-14 mt-10 flex flex-col lg:flex-row justify-between ' >
+                <div className='  flex flex-col lg:flex-row justify-between ' >
                     {/* left side  */}
                     <div className=' max-w-2xl text-white ' >
-                        <div style={{ fontFamily: 'Bayon' }} className=' max-w-[633px] lg:text-[90px] text-4xl lg:leading-24 ' >
-                            <h1>Discover Unique Voices</h1>
+                        <div style={{ fontFamily: 'Bayon' }} className=' max-w-[633px] lg:text-[60px] text-4xl lg:leading-24 ' >
+                            <h1>TALENTED ARTISTS AVAILABLE FOR YOUR TRACKS <span className={`text-[#E7F056]`} > - TuneM Artists </span> </h1>
                         </div>
                         <div style={{ fontFamily: 'Favorit' }} className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 font-bold ' >
                             <p>
-                                Browse our roster of top vocalists, explore their work, and connect directly to hire or request custom vocals.
+                                Looking for someone with that something special? Contact us and let us know what you’re after, and we’ll search the world for you! -
                             </p>
-                            <p>Whether you’re just starting out or already experienced, TuneM brings the work to you — no need to keep searching for vocal gigs.
-                                No fees. No confusion. Just consistent income on a trusted, professional platform.
+                            <p>
                             </p>
                         </div>
                         

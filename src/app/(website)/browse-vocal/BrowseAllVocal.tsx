@@ -593,7 +593,7 @@ const BrowseAllVocal = () => {
                 </div>
 
 
-                <div className=" grid 2xl:flex 2xl:flex-row justify-between xl:grid-cols-7 lg:grid-cols-4 grid-cols-2 xl:gap-x-1 md:gap-x-2 gap-y-4 gap-x-1 max-w-[1539px]  mx-auto   mb-6  ">
+                <div className=" flex flex-row overflow-y-scroll  xl:gap-x-1 md:gap-x-2 gap-y-4 gap-x-1 max-w-[1539px]  mx-auto   mb-6  ">
                     <div className="relative md:mt-0">
                         <input
                             className="border border-white focus:outline-0 py-2.5 rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] lg:w-[200px] w-[150px] placeholder:ml-3.5"
@@ -1188,7 +1188,7 @@ const BrowseAllVocal = () => {
                 <div className="flex flex-col lg:flex-row justify-between items-stretch gap-5">
                     {/* Box 1 */}
                     <div className="bg-[#201F1F] p-6 lg:pt-44 rounded-md text-white max-w-full lg:max-w-[32%]">
-                        <h1 className="text-3xl font-bold leading-9">100% Royalty free</h1>
+                        <h1 className="lg:text-3xl text-xl font-bold leading-9">100% Royalty free</h1>
                         <p className="mt-6 text-lg leading-6">
                             Use your vocals anywhere. No limits. Cleared for release. Keep all royalties.
                         </p>
@@ -1196,16 +1196,16 @@ const BrowseAllVocal = () => {
 
                     {/* Box 2 */}
                     <div className="bg-[#201F1F] p-6 lg:pt-44 rounded-md text-white max-w-full lg:max-w-[32%]">
-                        <h1 className="text-3xl font-bold leading-9">Yours forever</h1>
-                        <p className="mt-6 text-lg leading-6">
+                        <h1 className="lg:text-3xl text-xl font-bold leading-9">Yours forever</h1>
+                        <p className="mt-6 lg:text-lg leading-6">
                             Dry vocal stems, Licence and Invoice emailed after purchase. Instrumental at an extra cost.
                         </p>
                     </div>
 
                     {/* Box 3 */}
                     <div className="bg-[#201F1F]  p-6 lg:pt-44 rounded-md text-white max-w-full lg:max-w-[32%]">
-                        <h1 className="text-3xl font-bold leading-9">Vocal love guarantee</h1>
-                        <p className="mt-6 text-lg leading-6">
+                        <h1 className="lg:text-3xl text-xl font-bold leading-9">Vocal love guarantee</h1>
+                        <p className="mt-6 lg:text-lg leading-6">
                             Don’t love your existing vocal? We’ll replace it with a new one!
                         </p>
                     </div>
@@ -1276,12 +1276,12 @@ const BrowseAllVocal = () => {
 
 
                 <div
-                    className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
+                    className="bg-[url('/images/home-page/tunemImg.png')] lg:h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
                 >
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
-                    <div className="relative z-10 mt-20 ">
+                    <div className="relative z-10 lg:mt-20 mt-10 ">
                         <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-3xl  text-lg">
                             Become a TuneM Artist.
                         </h1>
