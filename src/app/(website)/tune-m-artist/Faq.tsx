@@ -86,16 +86,16 @@ const Faq = () => {
   return (
     <section style={{ fontFamily: 'Favorit' }} className="px-4 max-w-[1539px] mx-auto py-5   ">
       <h1 className={" text-[#000000] lg:text-3xl text-xl leading-9 font-bold text-center mb-10 lg:mb-20 mt-10 "} >TuneM Vocals – Frequently Asked Questions (FAQ)</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="">
         {faqs.map((faq, index) => (
           <div key={index}>
-            <h3 className="font-bold text-lg leading-6  text-black mb-3 lg:mb-6">{faq.question}</h3>
-            <p className="text-lg text-[#000000] leading-6 ">{faq.answer}</p>
+            <h3 className="font-bold lg:text-2xl text-xl leading-6  text-black mb-3 lg:mb-4">{faq.question}</h3>
+            <p className="lg:text-lg text-[#000000] leading-6 lg:mb-4 mb-2  ">{faq.answer}</p>
           </div>
         ))}
       </div>
       <div >
-        <h3 className="font-bold text-lg leading-6  text-black mb-3 mt-6 lg:mb-5">What are the differences between your vocal packages?</h3>
+        <h3 className="font-bold lg:text-2xl text-lg leading-6  text-black mb-3 mt-4 lg:mb-3">What are the differences between your vocal packages?</h3>
         <ul className="list-disc  space-y-1">
           <li className="font-bold text-lg leading-6 flex flex-row items-center list-disc ">
             Limited Vocal (30 copies only):
@@ -118,13 +118,13 @@ const Faq = () => {
         </ul>
       </div>
       <div >
-        <h3 className="font-bold text-lg leading-6  text-black mb-3 mt-6 lg:mb-5">What are the license limitations?</h3>
+        <h3 className="font-bold lg:text-2xl text-lg leading-6  text-black mb-3 mt-2 lg:mt-4 lg:mb-5">What are the license limitations?</h3>
         <ul className="list-disc  space-y-1">
           < li className="block font-normal text-[#000000] text-lg leading-6">
             Includes 1x wet vocal, 3x dry vocal takes (untreated), with full commercial license. Not exclusive, but strictly limited to 30 total purchases.
           </li>
 
-          <li className=" text-lg leading-6 flex flex-row items-center  ">
+          <li className=" lg:text-lg leading-6 flex flex-row items-center  ">
             Use vocals to create sample packs You can use vocals for client work or ghost productions. Exclusive licenses have no limitations.
           </li>
 
