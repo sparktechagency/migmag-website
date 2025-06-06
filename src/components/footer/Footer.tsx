@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import React, {useState} from 'react'
-import {FaCcApplePay, FaInstagramSquare} from "react-icons/fa";
+import {FaCcApplePay, FaFacebook, FaInstagramSquare} from "react-icons/fa";
 import {FaTiktok} from "react-icons/fa";
 import {BsDiscord} from "react-icons/bs";
 import {FcGoogle} from "react-icons/fc";
@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
                         <h1>Payment methods</h1>
                         <div className="flex items-center  mt-2 gap-4">
                             <div className=" rounded-full">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                <svg width="80" height="8 0" viewBox="0 0 24 24" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M18.9861 6.91069C19.0396 4.12819 16.7436 1.99219 13.5866 1.99219H7.05757C6.90538 1.99224 6.7582 2.0466 6.64252 2.14551C6.52685 2.24441 6.45027 2.38135 6.42657 2.53169L3.81007 18.8797C3.79837 18.9538 3.80285 19.0295 3.82323 19.1017C3.8436 19.1738 3.87937 19.2407 3.92808 19.2978C3.97678 19.3548 4.03727 19.4006 4.10537 19.432C4.17348 19.4634 4.24758 19.4797 4.32257 19.4797H8.19107L7.58607 23.2657C7.57436 23.3398 7.57886 23.4156 7.59926 23.4878C7.61966 23.56 7.65548 23.6269 7.70424 23.684C7.753 23.741 7.81355 23.7868 7.88172 23.8181C7.94988 23.8495 8.02403 23.8657 8.09907 23.8657H11.2501C11.4026 23.8657 11.5381 23.8107 11.6536 23.7122C11.7691 23.6132 11.7881 23.4767 11.8116 23.3262L12.7366 17.8837C12.7601 17.7337 12.8366 17.5387 12.9526 17.4397C13.0681 17.3407 13.1691 17.2867 13.3211 17.2862H15.2501C18.3416 17.2862 20.9651 15.0892 21.4446 12.0327C21.7836 9.86269 20.8531 7.88919 18.9861 6.91069Z"
@@ -146,7 +146,7 @@ const Footer: React.FC = () => {
 
                             </div>
                             <div className="  rounded-full">
-                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
+                                <svg width="80" height="100" viewBox="0 0 24 16" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M22 0H2C0.89543 0 0 0.89543 0 2V14C0 15.1046 0.89543 16 2 16H22C23.1046 16 24 15.1046 24 14V2C24 0.89543 23.1046 0 22 0Z"
@@ -164,7 +164,7 @@ const Footer: React.FC = () => {
 
                             </div>
                             <div className="  rounded-full">
-                                <svg width="24" height="16" viewBox="0 0 24 16" fill="none"
+                                <svg width="80" height="100" viewBox="0 0 24 16" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <g clipPath="url(#clip0_181783_2033)">
                                         <path
@@ -176,7 +176,7 @@ const Footer: React.FC = () => {
                                     </g>
                                     <defs>
                                         <clipPath id="clip0_181783_2033">
-                                            <rect width="24" height="16" fill="white"/>
+                                            <rect width="80" height="100" fill="white"/>
                                         </clipPath>
                                     </defs>
                                 </svg>
@@ -184,11 +184,33 @@ const Footer: React.FC = () => {
 
                             </div>
                             <div className="  rounded-full">
-                                <FaCcApplePay size={20}/>
+                                <FaCcApplePay size={65}/>
 
                             </div>
                             <div className="  rounded-full">
-                                <FcGoogle size={20}/>
+                                <FcGoogle size={65}/>
+                            </div>
+                        </div>
+                        {/*social icons */}
+                        <div className={`mt-16`}>
+
+                            {/*face book*/}
+
+                            <div>
+
+                                <a
+                                    target="_blank"
+                                    href="https://www.facebook.com"
+                                    rel="noopener noreferrer"
+                                    className="cursor-pointer flex items-center gap-x-3.5"
+                                >
+                                    <FaFacebook
+                                        size={30}
+                                        className="text-black hover:text-[#E7F056] transition-all cursor-pointer"
+                                    />
+                                    <p className="text-black text-xl">@migmag.com</p>
+                                </a>
+
                             </div>
                         </div>
                     </div>

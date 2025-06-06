@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import {FaFacebook} from "react-icons/fa";
 
 const AuthFooter: React.FC = () => {
     return (
@@ -72,6 +73,28 @@ const AuthFooter: React.FC = () => {
                                 <div className="w-[31px] h-[31px] bg-[#E7F056] rounded-full"></div>
                                 <div className="w-[31px] h-[31px] bg-[#E7F056] rounded-full"></div>
                                 <div className="w-[31px] h-[31px] bg-[#E7F056] rounded-full"></div>
+                            </div>
+                        </div>
+                        {/*social icons */}
+                        <div className={`mt-16`}>
+
+                            {/*face book*/}
+
+                            <div>
+
+                                <a
+                                    target="_blank"
+                                    href="https://www.facebook.com"
+                                    rel="noopener noreferrer"
+                                    className="cursor-pointer flex items-center gap-x-3.5"
+                                >
+                                    <FaFacebook
+                                        size={30}
+                                        className="text-black hover:text-[#E7F056] transition-all cursor-pointer"
+                                    />
+                                    <p className="text-black text-xl">@migmag.com</p>
+                                </a>
+
                             </div>
                         </div>
 
