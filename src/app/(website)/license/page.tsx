@@ -7,7 +7,7 @@ const Page = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className = "lg:my-14 my-6" >
+            <div className = "lg:my-28 my-6" >
                 <LicensesPage></LicensesPage>
             </div>
             <Footer></Footer>
