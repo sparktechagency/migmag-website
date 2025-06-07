@@ -9,7 +9,7 @@ const PremiumLicense: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="space-y-6 text-gray-800"
         >
-            <h2 className="text-4xl lg:text-2xl font-bold">TuneM Premium Vocal License</h2>
+            <h2 className="text-4xl lg:text-2xl font-bold">5 copies only available.</h2>
             <p className="text-gray-600 lg:text-2xl text-lg  ">Effective Date: Upon purchase</p>
             <p className="text-gray-700 lg:text-2xl text-lg ">Parties: This agreement is entered into by TuneM (“Licensor”) and the purchaser (“Licensee”).</p>
 

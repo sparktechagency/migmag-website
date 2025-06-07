@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
                                 clean, original, and ready for your next release.
                             </p>
                         </div>
-                        <div className="mt-30 lg:mt-24 flex justify-end">
+                        <div className="mt-36 lg:mt-24 flex justify-end">
                             <h1 className="text-[#000000] text-lg font-bold leading-9 mt-6 ">FOLLOW US</h1>
                         </div>
                         <div className="flex gap-x-5 justify-end mt-4">

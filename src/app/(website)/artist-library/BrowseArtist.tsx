@@ -566,9 +566,9 @@ const BrowseArtist = () => {
 
     useEffect(() => {
         if (openBPM) {
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "hidden"; // 🔒 disable scroll
         } else {
-            document.body.style.overflow = "auto";
+            document.body.style.overflow = "auto"; // 🔓 enable scroll
         }
 
         // Cleanup just in case
@@ -578,7 +578,7 @@ const BrowseArtist = () => {
     }, [openBPM]);
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mt-16  mx-auto px-4   ">
+        <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mt-16 mx-auto px-4   ">
             <div className=' mt-12 mb-6 '>
                 <div className=' border border-white '></div>
             </div>
@@ -601,20 +601,26 @@ const BrowseArtist = () => {
 
 
             <div
-                className=" flex flex-row overflow-y-scroll    justify-between  xl:gap-x-14 md:gap-x-10 gap-y-4 gap-x-5 mx-auto   mb-6  ">
-                <div className="relative w-full mt-1  ">
+                className=" grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 xl:gap-x-14 md:gap-x-10 gap-y-4 gap-x-5 mx-auto    mb-6  ">
+
+
+                <div className="relative   ">
+
                     <input
-                        className="border border-white focus:outline-0  py-2.5  rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
+                        className="border border-white focus:outline-0  py-2.5 md:w-[250px] w-[150px]  rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
                         placeholder="SEARCH"
                         value={searchTerm}
                         onChange={handleSearch}
                     />
                     <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white"/>
+
+
                 </div>
+
 
                 {/* genre  */}
 
-                <div className="relative md:w-[177px] w-[150px]  " ref={genreRef}>
+                <div className="relative md:w-[177px] w-[150px]   " ref={genreRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F] text-white md:px-5 px-3 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -777,7 +783,7 @@ const BrowseArtist = () => {
                 {/* Type  */}
 
 
-                <div className="relative md:w-[177px] w-[150px]" ref={typeRef}>
+                <div className="relative md:w-[177px] w-[150px] " ref={typeRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -830,7 +836,7 @@ const BrowseArtist = () => {
                 {/* latest  */}
 
 
-                <div className="relative md:w-[177px] w-[150px] " ref={latestRef}>
+                <div className="relative md:w-[177px] w-[150px]   " ref={latestRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -891,33 +897,31 @@ const BrowseArtist = () => {
             <div className="mt-6 lg:mt-14 grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12">
                 {singers.slice(0, visibleCount).map((singer) => (
                     <div key={singer.id} className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
-                        <div className="w-full max-w-[357px] rounded-md p-5 bg-[#222222]">
-                            <Image
-                                src={singer.image}
-                                width={340}
-                                height={219}
-                                alt={`${singer.name} Image`}
-                                className="object-cover w-[340px] h-[219px] rounded-md"
-                            />
+                        <Link href={`/artist-library/${singer.id}`}>
+                            <div className="w-full max-w-[357px] rounded-md p-5 bg-[#222222]">
+                                <Image
+                                    src={singer.image}
+                                    width={340}
+                                    height={219}
+                                    alt={`${singer.name} Image`}
+                                    className="object-cover w-[340px] h-[219px] rounded-md"
+                                />
 
-                            <div className="flex flex-row items-center justify-between mt-3.5">
-                                <h1 className="text-white text-lg leading-6">{singer.name}</h1>
-                                <Link href={`/artist-library/${singer.id}`}>
-                                    <p className="flex flex-row items-center text-sm leading-6 text-white hover:underline">
-                                        VIEW <span className="ml-1"><ArrowRight/></span>
-                                    </p>
-                                </Link>
-                            </div>
+                                <div className="flex flex-row items-center justify-between mt-3.5">
+                                    <h1 className="text-white text-lg leading-6">{singer.name}</h1>
 
-                            <div className="mt-2">
-                                <p className="text-[#818080] text-lg leading-6">{singer.role}</p>
-                                <p className="mt-2 text-[#818080] text-lg leading-6">Genre: {singer.genre}</p>
-                            </div>
+                                </div>
 
-                            <div className="mt-5 text-[#FFFFFF] h-40 text-[15px] leading-6">
-                                {singer.description}
+                                <div className="mt-2">
+                                    <p className="text-[#818080] text-lg leading-6">{singer.role}</p>
+                                </div><div className="mt-2">
+                                    <p className="text-[#818080] text-lg leading-6">Genre : {singer.genre}</p>
+                                </div>
+
+
                             </div>
-                        </div>
+                        </Link>
+
                     </div>
                 ))}
             </div>

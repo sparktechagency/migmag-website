@@ -10,7 +10,7 @@ const LimitedLicense: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="space-y-6 text-gray-800"
             >
-                <h2 className="lg:text-4xl text-2xl font-bold">Limited Vocal License</h2>
+                <h2 className="lg:text-4xl text-2xl font-bold">30 copies only available.</h2>
                 <p className="text-gray-600  lg:text-2xl text-lg">Effective Date: Upon purchase</p>
                 <p className="text-gray-700 lg:text-2xl text-lg ">Parties: This agreement is between TuneM (“Licensor”) and you, the purchaser (“Licensee”).</p>
 

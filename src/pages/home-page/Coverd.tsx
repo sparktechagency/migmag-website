@@ -58,12 +58,12 @@ const Coverd: React.FC = () => {
 
 
             <div
-                className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
+                className="bg-[url('/images/home-page/tunemImg.png')] lg:h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
             >
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
-                <div className="relative mt-20 z-10">
+                <div className="relative lg:mt-20 mt-10 z-10">
                     <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-3xl text-lg ">
                         Become a TuneM Artist.
                     </h1>
@@ -74,7 +74,7 @@ const Coverd: React.FC = () => {
                     </div>
                     <div>
                         <Link href={"/tune-m-artist"}>
-                            <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                            <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] text-sm lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                             </button>
                         </Link>
