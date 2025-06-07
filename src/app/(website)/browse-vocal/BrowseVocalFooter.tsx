@@ -113,10 +113,10 @@ const BrowseVocalFooter = () => {
                     <div className="border border-[#FFFFFF] mt-12"></div>
 
                     {/* Payment Methods and Links */}
-                    <div className="mt-7 pb-20  flex flex-col md:flex-row justify-between gap-10">
-                        <div className={`hidden lg:flex lg:flex-row justify-between `}>
+                    <div className="mt-7 pb-20  flex flex-col md:flex-row justify-between gap-x-10">
+                        <div className={`hidden lg:flex lg:flex-col justify-between `}>
                             <h1 className='text-white text-lg leading-9 font-bold '>Payment methods</h1>
-                            <div className="flex items-center  mt-2 gap-4">
+                            <div className="flex items-center  gap-4">
                                 <div className=" rounded-full">
                                     <svg width="70" height="100" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -204,7 +204,7 @@ const BrowseVocalFooter = () => {
 
 
                         {/*small device payment icons */}
-                        <div className={`lg:hidden flex flex-col justify-between `}>
+                        <div className={`lg:hidden flex flex-col justify-between mb-7 lg:mb-0 `}>
                             <h1 className='text-white text-lg leading-9 font-bold '>Payment methods</h1>
                             <div className="flex items-center  mt-2 gap-4">
                                 <div className=" rounded-full">
@@ -223,7 +223,7 @@ const BrowseVocalFooter = () => {
 
                                 </div>
                                 <div className="  rounded-full">
-                                    <svg width="40" height="60" viewBox="0 0 24 16" fill="none"
+                                    <svg width="50" height="70" viewBox="0 0 24 16" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M22 0H2C0.89543 0 0 0.89543 0 2V14C0 15.1046 0.89543 16 2 16H22C23.1046 16 24 15.1046 24 14V2C24 0.89543 23.1046 0 22 0Z"
@@ -241,7 +241,7 @@ const BrowseVocalFooter = () => {
 
                                 </div>
                                 <div className="  rounded-full">
-                                    <svg width="40" height="60" viewBox="0 0 24 16" fill="none"
+                                    <svg width="50" height="70" viewBox="0 0 24 16" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <g clipPath="url(#clip0_181783_2033)">
                                             <path

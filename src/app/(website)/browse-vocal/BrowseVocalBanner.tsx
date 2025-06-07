@@ -4,7 +4,7 @@ import React from 'react'
 const BrowseVocalBanner = () => {
   return (
     <div className=' pt-1 ' >
-      <div className=' lg:mt-14  flex flex-col lg:flex-row justify-between ' >
+      <div className='   flex flex-col lg:flex-row justify-between ' >
         {/* left side  */}
         <div className=' max-w-2xl text-white ' >
           <div style={{ fontFamily: 'Bayon' }} className=' lg:max-w-[668px] lg:text-[80px] text-4xl lg:leading-20 ' >

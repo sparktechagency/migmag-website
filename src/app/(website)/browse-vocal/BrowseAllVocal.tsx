@@ -1,15 +1,16 @@
 "use client"
 
-import { useState, useEffect, useRef } from 'react';
-import { Search } from 'lucide-react';
-import { motion, AnimatePresence } from "framer-motion";
-import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import {useState, useEffect, useRef} from 'react';
+import {Search} from 'lucide-react';
+import {motion, AnimatePresence} from "framer-motion";
+import {HiChevronDown, HiChevronUp} from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast, Toaster } from 'react-hot-toast';
+import {toast, Toaster} from 'react-hot-toast';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
-import { FaPause } from "react-icons/fa";
-import { FaPlay } from "react-icons/fa6";
+import {FaPause} from "react-icons/fa";
+import {FaPlay} from "react-icons/fa6";
+
 type VocalItem = {
     id: number;
     title: string;
@@ -67,14 +68,10 @@ const BrowseAllVocal = () => {
                 setOpen(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-
-
-
-
-
 
 
     // BPM  start
@@ -85,7 +82,6 @@ const BrowseAllVocal = () => {
 
     const [selectedBPM, setSelectedBPM] = useState<string[]>([]);
     const [openBPM, setOpenBPM] = useState<boolean>(false);
-
 
 
     function toggleBPM(bpm: string): void {
@@ -100,13 +96,13 @@ const BrowseAllVocal = () => {
     }
 
 
-
     useEffect(() => {
         function handleClickOutside(event: MouseEvent): void {
             if (bpmRef.current && !bpmRef.current.contains(event.target as Node)) {
                 setOpenBPM(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
@@ -162,13 +158,12 @@ const BrowseAllVocal = () => {
                 setOpenKey(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     // Key end
-
-
 
 
     // Gender  start
@@ -186,7 +181,6 @@ const BrowseAllVocal = () => {
         );
 
 
-
         setSelectedGender(newGender);
         setOpenGender(false); // Close dropdown
 
@@ -198,19 +192,10 @@ const BrowseAllVocal = () => {
                 setOpenGender(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-
-
-
-
-
-
-
-
-
-
 
 
     // Gender end
@@ -247,22 +232,13 @@ const BrowseAllVocal = () => {
                 setOpenLicense(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
 
-
-
-
-
     // License end
-
-
-
-
-
-
 
 
     // Type  start
@@ -302,15 +278,13 @@ const BrowseAllVocal = () => {
                 setOpenType(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
 
-
     // Type end
-
-
 
 
     // Latest  start
@@ -340,14 +314,12 @@ const BrowseAllVocal = () => {
                 setOpenLatest(false);
             }
         }
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     // Latest end
-
-
-
 
 
     const [searchTerm, setSearchTerm] = useState<string>('');
@@ -517,7 +489,7 @@ const BrowseAllVocal = () => {
     };
 
     const handleFilterChange = (key: keyof FilterType, value: string) => {
-        setFilter((prev) => ({ ...prev, [key]: value }));
+        setFilter((prev) => ({...prev, [key]: value}));
     };
 
     const filteredData = data.filter((item) =>
@@ -575,25 +547,30 @@ const BrowseAllVocal = () => {
 
     return (
         <>
-            <div style={{ fontFamily: 'Favorit' }} className=" max-w-[1551px] mx-auto px-4  ">
-                <div className=' mt-12 mb-6 ' >
-                    <div className=' border border-white ' ></div>
+            <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mx-auto px-4  ">
+                <div className=' mt-12 mb-6 '>
+                    <div className=' border border-white '></div>
                 </div>
-                <div className=' flex md:flex-row lg:flex-row flex-col justify-between items-center mb-11  ' >
-                    <div className='flex-1' >
-                        <h1 className=' lg:text-3xl md:text-2xl font-bold leading-9 text-white ' >Browse <span className=' text-[#818080] ' >Vocals</span></h1>
+                <div className=' flex md:flex-row lg:flex-row flex-col justify-between items-center mb-11  '>
+                    <div className='flex-1'>
+                        <h1 className=' lg:text-3xl md:text-2xl font-bold leading-9 text-white '>Browse <span
+                            className=' text-[#818080] '>Vocals</span></h1>
                     </div>
 
-                    <div className='   flex jeustify-end   gap-14 relative   ' >
-                        <div className='   ' >
-                            <button onClick={clearSearch} className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   ' >Clear filters</button>
+                    <div className='   flex jeustify-end   gap-14 relative   '>
+                        <div className='   '>
+                            <button onClick={clearSearch}
+                                    className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
+                                filters
+                            </button>
                         </div>
 
                     </div>
                 </div>
 
 
-                <div className=" flex flex-row overflow-y-scroll  xl:gap-x-1 md:gap-x-2 gap-y-4 gap-x-1 max-w-[1539px]  mx-auto   mb-6  ">
+                <div
+                    className=" grid 2xl:flex 2xl:flex-row justify-between xl:grid-cols-7 lg:grid-cols-4 grid-cols-2 xl:gap-x-1 md:gap-x-2 gap-y-4 gap-x-1 max-w-[1539px]  mx-auto   mb-6  ">
                     <div className="relative md:mt-0">
                         <input
                             className="border border-white focus:outline-0 py-2.5 rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] lg:w-[200px] w-[150px] placeholder:ml-3.5"
@@ -603,7 +580,7 @@ const BrowseAllVocal = () => {
                         />
 
                         {/* Search Icon */}
-                        <Search className="absolute top-[45%] left-3 transform -translate-y-1/2 text-white" />
+                        <Search className="absolute top-[45%] left-3 transform -translate-y-1/2 text-white"/>
 
                         {/* Cross Icon (Only shows when searchTerm has content) */}
                         {searchTerm.length > 0 && (
@@ -620,7 +597,6 @@ const BrowseAllVocal = () => {
                     {/* genre  */}
 
 
-
                     {/* BPM */}
 
                     <div className="relative md:w-[170px] w-[140px]  " ref={bpmRef}>
@@ -630,9 +606,9 @@ const BrowseAllVocal = () => {
                             onClick={() => setOpenBPM(!openBPM)}
                         >
                             {openBPM ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             )}
 
                             <span className="w-28 text-white md:text-lg   ">
@@ -643,10 +619,10 @@ const BrowseAllVocal = () => {
                         <AnimatePresence>
                             {openBPM && (
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                    initial={{opacity: 0, scale: 0.9}}
+                                    animate={{opacity: 1, scale: 1}}
+                                    exit={{opacity: 0, scale: 0.9}}
+                                    transition={{duration: 0.3, ease: "easeInOut"}}
                                     className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50"
                                 >
                                     <div
@@ -655,7 +631,9 @@ const BrowseAllVocal = () => {
                                     >
                                         <div className="flex justify-between items-center mb-4">
                                             <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
-                                            <button onClick={() => setOpenBPM(false)} className="cursor-pointer text-white text-2xl">×</button>
+                                            <button onClick={() => setOpenBPM(false)}
+                                                    className="cursor-pointer text-white text-2xl">×
+                                            </button>
                                         </div>
 
                                         <div className="flex flex-col   gap-6">
@@ -667,13 +645,13 @@ const BrowseAllVocal = () => {
                                                     {/* Number Labels */}
                                                     <div
                                                         className="absolute  -top-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                        style={{ left: `calc(${getPercent(minValue)}% - 20px)` }}
+                                                        style={{left: `calc(${getPercent(minValue)}% - 20px)`}}
                                                     >
                                                         {minValue.toFixed(2)}
                                                     </div>
                                                     <div
                                                         className="absolute  -top-4  -ml-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                        style={{ left: `calc(${getPercent(maxValue)}% - 20px)` }}
+                                                        style={{left: `calc(${getPercent(maxValue)}% - 20px)`}}
                                                     >
                                                         {maxValue.toFixed(2)}
                                                     </div>
@@ -681,7 +659,7 @@ const BrowseAllVocal = () => {
                                                     {/* Track */}
                                                     <div
                                                         className="w-full h-2 rounded-full"
-                                                        style={{ background: getTrackBackground() }}
+                                                        style={{background: getTrackBackground()}}
                                                     />
 
                                                     {/* Left Thumb */}
@@ -744,7 +722,6 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-
                     {/* KEY */}
 
                     {/* <div className="relative md:w-[177px] w-[150px]" ref={keyRef}>
@@ -797,15 +774,6 @@ const BrowseAllVocal = () => {
                     </div> */}
 
 
-
-
-
-
-
-
-
-
-
                     {/* License */}
 
                     <div className="relative md:w-[177px]  w-[140px]" ref={licenseRef}>
@@ -815,9 +783,9 @@ const BrowseAllVocal = () => {
                             onClick={() => setOpenLicense(!openLicense)}
                         >
                             {openLicense ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             )}
 
                             <span className="w-28 text-white md:text-lg   ">
@@ -828,12 +796,12 @@ const BrowseAllVocal = () => {
                         <AnimatePresence>
                             {openLicense && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
                                     className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{ top: "calc(100% + 0.5rem)" }}
+                                    style={{top: "calc(100% + 0.5rem)"}}
                                 >
                                     {License.map((license) => (
                                         <label
@@ -858,7 +826,6 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-
                     <div className="relative md:w-[177px] w-[140px]  " ref={genreRef}>
                         <button
                             type="button"
@@ -867,9 +834,9 @@ const BrowseAllVocal = () => {
                         >
                             {/* Icon on RIGHT side */}
                             {open ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             )}
 
                             {/* Only show selected count */}
@@ -881,12 +848,12 @@ const BrowseAllVocal = () => {
                         <AnimatePresence>
                             {open && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
                                     className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
+                                    style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
                                 >
                                     {genres.map((genre) => (
                                         <label
@@ -911,7 +878,6 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-
                     {/* Gender */}
 
                     <div className="relative md:w-[177px] w-[140px]" ref={genderRef}>
@@ -921,9 +887,9 @@ const BrowseAllVocal = () => {
                             onClick={() => setOpenGender(!openGender)}
                         >
                             {openGender ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             )}
 
                             <span className="w-28 text-white md:text-lg  ">
@@ -934,12 +900,12 @@ const BrowseAllVocal = () => {
                         <AnimatePresence>
                             {openGender && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
                                     className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{ top: "calc(100% + 0.5rem)" }}
+                                    style={{top: "calc(100% + 0.5rem)"}}
                                 >
                                     {gender.map((gender) => (
                                         <label
@@ -964,9 +930,7 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-
                     {/* Type  */}
-
 
 
                     <div className="relative md:w-[177px] w-[140px]  " ref={typeRef}>
@@ -976,9 +940,9 @@ const BrowseAllVocal = () => {
                             onClick={() => setOpenType(!openType)}
                         >
                             {openType ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             )}
 
                             <span className="w-28 text-white md:text-lg   ">
@@ -989,12 +953,12 @@ const BrowseAllVocal = () => {
                         <AnimatePresence>
                             {openType && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
                                     className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{ top: "calc(100% + 0.5rem)" }}
+                                    style={{top: "calc(100% + 0.5rem)"}}
                                 >
                                     {type.map((item) => (
                                         <label
@@ -1019,9 +983,6 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-
-
-
                     {/* latest  */}
 
 
@@ -1032,9 +993,9 @@ const BrowseAllVocal = () => {
                             onClick={() => setOpenLatest(!openLatest)}
                         >
                             {openLatest ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
                             )}
 
                             <span className="w-28 text-white md:text-lg   ">
@@ -1045,12 +1006,12 @@ const BrowseAllVocal = () => {
                         <AnimatePresence>
                             {openLatest && (
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
                                     className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{ top: "calc(100% + 0.5rem)" }}
+                                    style={{top: "calc(100% + 0.5rem)"}}
                                 >
                                     {
                                         latest.map((item) => (
@@ -1080,14 +1041,13 @@ const BrowseAllVocal = () => {
                 </div>
 
 
-
                 {/* table  */}
 
-                <div className='overflow-x-auto w-full' >
+                <div className='overflow-x-auto w-full'>
                     <table className="  min-w-[800px] rounded-lg overflow-hidden w-full">
                         <thead>
-                            <tr className="text-white  ">
-                                {/* <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">TITLE</th>
+                        <tr className="text-white  ">
+                            {/* <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">TITLE</th>
                                 <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] "></th>
                                 <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">ARTIST</th>
                                 <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">GENRE</th>
@@ -1097,88 +1057,108 @@ const BrowseAllVocal = () => {
                                 <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">License</th>
                                 <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] "></th>
                                 <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">PRICE</th> */}
-                            </tr>
+                        </tr>
                         </thead>
                         <tbody>
-                            {filteredData.slice(0, visibleData).map((item, i) => (
-                                <motion.tr
-                                    key={item.id}
-                                    className={`cursor-pointer ${i % 2 === 0 ? "bg-[#201F1F]" : "bg-[#000000]"} rounded-md `}
-                                >
-                                    <td className="lg:py-4 py-1 px-3 lg:px-6">
-                                        <div className="relative w-20 h-20">
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                width={80}
-                                                height={80}
-                                                className="w-full h-full rounded-lg object-cover"
-                                            />
-                                            <span
-                                                onClick={() => handleOpenModal(item.id)}
-                                                className="absolute top-1/2 -right-[70px] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                                            >
+                        {filteredData.slice(0, visibleData).map((item, i) => (
+                            <motion.tr
+                                key={item.id}
+                                className={`cursor-pointer ${i % 2 === 0 ? "bg-[#201F1F]" : "bg-[#000000]"} rounded-md `}
+                            >
+                                <td className="lg:py-4 py-1 px-3 lg:px-6">
+                                    <div className="relative w-20 h-20">
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            width={80}
+                                            height={80}
+                                            className="w-full h-full rounded-lg object-cover"
+                                        />
+                                        <span
+                                            onClick={() => handleOpenModal(item.id)}
+                                            className="absolute top-1/2 -right-[70px] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                                        >
                                                 {playingId === item.id ? (
-                                                    <FaPause className="text-white text-3xl" />
+                                                    <FaPause className="text-white text-3xl"/>
                                                 ) : (
-                                                    <FaPlay className="text-white text-3xl" />
+                                                    <FaPlay className="text-white text-3xl"/>
                                                 )}
                                             </span>
-                                        </div>
-                                    </td>
-                                    <td className="lg:py-4 lg:px-6 px-3 ">
-                                        <h3 className="text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6 md:text-sm  ">{item.title}</h3>
-                                    </td>
-                                    <td className="lg:py-4 lg:px-6 px-3 ">
-                                        <p className="text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.artist}</p>
-                                    </td>
-                                    <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.genre}</td>
-                                    {/* <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.bpm}</td> */}
-                                    {/* <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.key}</td> */}
-                                    <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.gender}</td>
-                                    <td className='lg:py-4 py-1 px-2 lg:px-6 text-white md:text-lg text-[10px]  '
+                                    </div>
+                                </td>
+                                <td className="lg:py-4 lg:px-6 px-3 ">
+                                    <h3 className="text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6 md:text-sm  ">{item.title}</h3>
+                                </td>
+                                <td className="lg:py-4 lg:px-6 px-3 ">
+                                    <Link className={`cursor-pointer  `}  href={`/artist-library/${item?.id}`}>
+                                        <p className="text-white hover:underline lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.artist}</p>
+                                    </Link>
+                                </td>
+                                <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.genre}</td>
+                                {/* <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.bpm}</td> */}
+                                {/* <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.key}</td> */}
+                                <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.gender}</td>
+                                <td className='lg:py-4 py-1 px-2 lg:px-6 text-white md:text-lg text-[10px]  '
 
-                                    >
-                                        <h1 className={` text-center rounded-2xl py-1 px-3
+                                >
+                                    <h1 className={` text-center rounded-2xl py-1 px-3
                                     ${item.license === "EXCLUSIVE"
-                                                ? "bg-[#80BC02] "
-                                                : item.license === "NON-EXCLUSIVE"
-                                                    ? "bg-[#818080]"
-                                                    : item.license === "PREMIUM"
-                                                        ? "bg-[#00C2CE]"
-                                                        : ""
-                                            }`} >
-                                            {item.license}
-                                        </h1>
-                                    </td>
-                                    <td className="py-4 px-6">
-                                        <span onClick={() => { addToCard(item?.id) }} className="inline-block">
-                                            <svg width="22" height="28" viewBox="0 0 22 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836" stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                                <path d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z" stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                                <path d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z" stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                                <path d="M8.16187 9.03003H20.4394" stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                        ? "bg-[#80BC02] "
+                                        : item.license === "NON-EXCLUSIVE"
+                                            ? "bg-[#818080]"
+                                            : item.license === "PREMIUM"
+                                                ? "bg-[#00C2CE]"
+                                                : ""
+                                    }`}>
+                                        {item.license}
+                                    </h1>
+                                </td>
+                                <td className="py-4 px-6">
+                                        <span onClick={() => {
+                                            addToCard(item?.id)
+                                        }} className="inline-block">
+                                            <svg width="22" height="28" viewBox="0 0 22 28" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836"
+                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
+                                                    strokeLinejoin="round"/>
+                                                <path
+                                                    d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z"
+                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
+                                                    strokeLinejoin="round"/>
+                                                <path
+                                                    d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z"
+                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
+                                                    strokeLinejoin="round"/>
+                                                <path d="M8.16187 9.03003H20.4394" stroke="#E7F056"
+                                                      strokeMiterlimit="10" strokeLinecap="round"
+                                                      strokeLinejoin="round"/>
                                             </svg>
 
                                         </span>
-                                    </td>
-                                    <td className="lg:py-4 py-1 px-3 lg:px-6 ">
-                                        <h1 className=' text-[#000000] font-bold text-[10px] lg:text-lg bg-[#E7F056] text-center rounded-2xl px-2 ' >
-                                            {item.price}
-                                        </h1>
-                                    </td>
-                                </motion.tr>
-                            ))}
+                                </td>
+                                <td className="lg:py-4 py-1 px-3 lg:px-6 ">
+                                    <h1 className=' text-[#000000] font-bold text-[10px] lg:text-lg bg-[#E7F056] text-center rounded-2xl px-2 '>
+                                        {item.price}
+                                    </h1>
+                                </td>
+                            </motion.tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>
 
-                <div className='  mt-14 mb-20 flex flex-row justify-center ' >
+                <div className='  mt-14 mb-20 flex flex-row justify-center '>
 
-                    <div style={{fontFamily:""}}  >
+                    <div style={{fontFamily: ""}}>
                         {
                             visibleData < filteredData.length && (
-                                <button onClick={() => { setVisibleData(prev => prev + 10) }} className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-3 text-lg cursor-pointer   ' >LOAD MORE VOCALS</button>
+                                <button onClick={() => {
+                                    setVisibleData(prev => prev + 10)
+                                }}
+                                        className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-3 text-lg cursor-pointer   '>LOAD
+                                    MORE VOCALS</button>
                             )
                         }
                     </div>
@@ -1189,7 +1169,7 @@ const BrowseAllVocal = () => {
                     {/* Box 1 */}
                     <div className="bg-[#201F1F] p-6 lg:pt-44 rounded-md text-white max-w-full lg:max-w-[32%]">
                         <h1 className="lg:text-3xl text-xl font-bold leading-9">100% Royalty free</h1>
-                        <p className="mt-6 text-lg leading-6">
+                        <p className="mt-6 lg:text-lg leading-6">
                             Use your vocals anywhere. No limits. Cleared for release. Keep all royalties.
                         </p>
                     </div>
@@ -1212,56 +1192,61 @@ const BrowseAllVocal = () => {
                 </div>
 
 
-
-
-                <div className='  flex lg:flex-row flex-col items-start justify-between relative gap-5 lg:mt-40 mt-8 ' >
+                <div className='  flex lg:flex-row flex-col items-start justify-between relative gap-5 lg:mt-40 mt-8 '>
                     {/* left side  */}
                     <div>
-                        <div className=' max-w-[411px] ' >
-                            <h1 className=' text-2xl lg:text-[35px] font-bold text-[#ffffff] leading-9 ' >
+                        <div className=' max-w-[411px] '>
+                            <h1 className=' text-2xl lg:text-[35px] font-bold text-[#ffffff] leading-9 '>
                                 Vocals from the Industry’s Best
                             </h1>
                         </div>
 
-                        <div className=' max-w-[478px] lg:mt-8 mt-3 ' >
-                            <h1 className=' lg:text-lg text-[#ffffff] leading-6 font-thin ' >Get access to top featured artists and rising voices, professionally recorded in studio environments. All vocals come from credited singers behind major releases — trusted by producers and labels worldwide.</h1>
+                        <div className=' max-w-[478px] lg:mt-8 mt-3 '>
+                            <h1 className=' lg:text-lg text-[#ffffff] leading-6 font-thin '>Get access to top featured
+                                artists and rising voices, professionally recorded in studio environments. All vocals
+                                come from credited singers behind major releases — trusted by producers and labels
+                                worldwide.</h1>
                         </div>
 
 
-
                         <div className="max-w-[700px] mx-auto lg:mt-[50px] mt-7 lg:space-y-12 space-y-3 ">
-                            <div className=' flex flex-row gap-5  items-start  ' >
-                                <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] ' >
+                            <div className=' flex flex-row gap-5  items-start  '>
+                                <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] '>
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
                                     <p className="text-[#ffffff] font-bold lg:text-xl mb-4">100% Royalty-Free</p>
                                     <p className="text-[#ffffff] font-light mt-4 lg:text-lg leading-7">
-                                        All vocals on TuneM are cleared for commercial use. You can release your music on any platform and keep 100% of the royalties — no licenses, no revenue splits, no restrictions.
+                                        All vocals on TuneM are cleared for commercial use. You can release your music
+                                        on any platform and keep 100% of the royalties — no licenses, no revenue splits,
+                                        no restrictions.
                                     </p>
                                 </div>
                             </div>
 
-                            <div className=' flex flex-row gap-5  items-start  ' >
-                                <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] ' >
+                            <div className=' flex flex-row gap-5  items-start  '>
+                                <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] '>
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
                                     <p className="text-[#ffffff] font-bold lg:text-xl mb-4">Lifetime Use</p>
                                     <p className="text-[#ffffff] font-light mt-4 lg:text-lg leading-7">
-                                        Receive your dry vocal stems, invoice, and confirmation by email after purchase. MIDI files sold separately if required.
+                                        Receive your dry vocal stems, invoice, and confirmation by email after purchase.
+                                        MIDI files sold separately if required.
                                     </p>
                                 </div>
                             </div>
 
-                            <div className=' flex flex-row gap-5  items-start  ' >
-                                <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] ' >
+                            <div className=' flex flex-row gap-5  items-start  '>
+                                <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] '>
 
                                 </div>
                                 <div className=" transition duration-300 w-full ">
                                     <p className="text-[#ffffff] font-bold lg:text-xl mb-4">Trusted Agreements</p>
                                     <p className="text-[#ffffff] font-light mt-4 lg:text-lg leading-7">
-                                        Clear, professional, and built to protect you. Every vocal comes with a downloadable license — no hidden terms, no obstacles, release your music with no limits.
+                                        Clear, professional, and built to protect you. Every vocal comes with a
+                                        downloadable license — no hidden terms, no obstacles, release your music with no
+                                        limits.
                                     </p>
                                 </div>
                             </div>
@@ -1270,7 +1255,8 @@ const BrowseAllVocal = () => {
                     </div>
                     {/* right side  */}
                     <div>
-                        <Image src={"/images/home-page/coveredImg.png"} className=' object-cover rounded-lg block mx-auto ' width={652} height={654} alt='....' />
+                        <Image src={"/images/home-page/coveredImg.png"}
+                               className=' object-cover rounded-lg block mx-auto ' width={652} height={654} alt='....'/>
                     </div>
                 </div>
 
@@ -1281,18 +1267,21 @@ const BrowseAllVocal = () => {
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
-                    <div className="relative z-10 lg:mt-20 mt-10 ">
-                        <h1 style={{ fontFamily: 'Favorit' }} className="text-center text-[#E7F056] font-bold lg:text-3xl  text-lg">
+                    <div className="relative z-10 mt-8 lg:mt-20 ">
+                        <h1 style={{fontFamily: 'Favorit'}}
+                            className="text-center text-[#E7F056] font-bold lg:text-3xl  text-lg">
                             Become a TuneM Artist.
                         </h1>
 
-                        <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+                        <div style={{fontFamily: 'Favorit'}} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                             <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                                We work with talented singers and songwriters ready to take their voice further. Expand your audience, get discovered, and join our global music network.                        </p>
+                                We work with talented singers and songwriters ready to take their voice further. Expand
+                                your audience, get discovered, and join our global music network. </p>
                         </div>
                         <div>
                             <Link href={"/tune-m-artist"}>
-                                <button style={{ fontFamily: 'Favorit' }} className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                <button style={{fontFamily: 'Favorit'}}
+                                        className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>
                             </Link>

@@ -5,6 +5,7 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import HireVocal from './HireVocal'
 import Footer from '@/components/footer/Footer';
+import {FaCartArrowDown} from "react-icons/fa";
 
 
 const Page: React.FC = () => {
@@ -71,46 +72,58 @@ const Page: React.FC = () => {
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex flex-row items-center gap-x-12">
               <ul className="flex items-center gap-x-8 text-lg">
-                <li>
+                <li className="relative group">
+                  {/* parent link */}
                   <Link
-                    href="/ai-data-sets"
-                    className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
-                  >
-                    Ai Data Sets
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/browse-vocal"
-                    className={` ${pathname === "/browse-vocal" ? "text-[#E7F056]  " : "text-white"}`}
+                      href="/browse-vocal"
+                      className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : "text-white"}`}
                   >
                     Browse Vocals
                   </Link>
+
+                  {/* ▼ smooth dropdown */}
+                  <ul
+                      className="
+      absolute left-0 top-full w-52 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+      overflow-hidden                        /* keeps content clipped during scale */
+      opacity-0 translate-y-2 pointer-events-none
+      group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+      transition-all duration-300 ease-out
+    "
+                  >
+                    <li className="px-4 py-3 hover:bg-gray-100">
+                      <Link className="text-black" href="/ai-data-sets">
+                        AI Data Sets
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
-                <li><Link className={` ${pathname === "/artist-library" ? "text-[#E7F056]  " : "text-white"}`} href="/artist-library">Artist Library</Link></li>
+                <li><Link className="text-white" href="/artist-library">Artist Library</Link></li>
                 <li><Link className={` ${pathname === "/hire" ? "text-[#E7F056]  " : "text-white"}`} href="/hire">Hire</Link></li>
               </ul>
 
               <div className="relative">
                 <Link href="/cart">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center" >
-                    <svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 1.41724H2.4242C3.30818 1.41724 4.0039 2.35284 3.93024 3.42928L3.25088 13.4493C3.13629 15.0891 4.19215 16.4975 5.53449 16.4975H14.2515C15.4302 16.4975 16.4615 15.3104 16.5515 13.8718L16.9935 6.32663C17.0917 4.65663 16.0604 3.2985 14.6935 3.2985H4.12669" stroke="black" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M12.6638 21.5378C13.2288 21.5378 13.6869 20.9748 13.6869 20.2802C13.6869 19.5857 13.2288 19.0227 12.6638 19.0227C12.0987 19.0227 11.6406 19.5857 11.6406 20.2802C11.6406 20.9748 12.0987 21.5378 12.6638 21.5378Z" stroke="black" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M6.11566 21.5378C6.68072 21.5378 7.13878 20.9748 7.13878 20.2802C7.13878 19.5857 6.68072 19.0227 6.11566 19.0227C5.5506 19.0227 5.09253 19.5857 5.09253 20.2802C5.09253 20.9748 5.5506 21.5378 6.11566 21.5378Z" stroke="black" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M6.72949 7.45337H16.5515" stroke="black" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-
-                    <span className="absolute -top-1 -right-1 bg-lime-300 text-black text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                  <div
+                      className="w-8 h-8 bg-white rounded-full flex items-center justify-center relative">
+        <span className="text-white">
+          {/* Cart Icon SVG */}
+          <FaCartArrowDown className={` text-black `}/>
+        </span>
+                    <span
+                        className="absolute -top-1 -right-1 bg-[#E7F056] text-black text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold">
+          0
+        </span>
                   </div>
-
-
                 </Link>
               </div>
 
-              <Link href={"/login"}><button className="bg-white cursor-pointer text-black px-6 py-2 rounded-full w-full">
-                Log in
-              </button></Link>
+              <Link href="/login">
+                <button
+                    className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
+                  Log in
+                </button>
+              </Link>
             </nav>
           </div>
 

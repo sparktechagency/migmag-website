@@ -39,7 +39,7 @@ const Page: React.FC = () => {
     }, [pathname])
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className=' bg-[#000000] '>
+        <div style={{fontFamily: 'Favorit'}} className='  bg-[#000000] '>
             {/* navbar  */}
             <>
                 <BrowseVocalNavbar></BrowseVocalNavbar>
@@ -48,7 +48,7 @@ const Page: React.FC = () => {
 
             <div className={``} >
                 {/* browse vocal content  */}
-                <div className='max-w-[1549px] mx-auto px-4 mt-8   '>
+                <div className='max-w-[1549px] mx-auto px-4 mt-8    '>
                     <BrowseVocalBanner/>
                 </div>
                 <div>

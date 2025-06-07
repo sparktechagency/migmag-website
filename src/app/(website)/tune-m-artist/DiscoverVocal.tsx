@@ -45,8 +45,8 @@ const DiscoverVocal: React.FC = () => {
 
                             </div>
                             <div className=" transition duration-300 w-full ">
-                                <p className="text-[#818080] font-bold lg:text-xl mb-4">Leave the advertising to us</p>
-                                <p className="text-[#818080] font-light mt-4 lg:text-lg leading-7">
+                                <p className="text-[#000000]  font-bold lg:text-xl mb-4">Leave the advertising to us</p>
+                                <p className="text-[#000000]  font-light mt-4 lg:text-lg leading-7">
                                     You find our vocals only on Vocalfy and nowhere else. We delete our Non-Exclusive vocals regularly to make sure you’ll get a rare vocal.                                </p>
                             </div>
                         </div>
@@ -56,8 +56,8 @@ const DiscoverVocal: React.FC = () => {
 
                             </div>
                             <div className=" transition duration-300 w-full ">
-                                <p className="text-[#818080] font-bold lg:text-xl mb-4">Distributed through our network</p>
-                                <p className="text-[#818080] font-light mt-4 lg:text-lg leading-7">
+                                <p className="text-[#000000]  font-bold lg:text-xl mb-4">Distributed through our network</p>
+                                <p className="text-[#000000]  font-light mt-4 lg:text-lg leading-7">
                                     Our contracts are easy to understand without any sketchy clauses. Download your license for each of your vocals. Pick a vocal and start without obstacles.                                </p>
                             </div>
                         </div>
