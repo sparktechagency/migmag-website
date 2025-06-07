@@ -1,0 +1,163 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import {GrNext, GrPrevious} from "react-icons/gr";
+
+type Review = {
+    name: string;
+    avatar: string;
+    rating: number;
+    review: string;
+};
+
+const reviews: Review[] = [
+    {
+        name: "Andrew Tao",
+        avatar: "/images/artist-library/artist/artist-1.png",
+        rating: 5,
+        review:
+            "Loving the vocals that this website provides! This website provides a lot of good quality vocals that I have used in my projects and all are top quality!",
+    },
+    {
+        name: "Lukas Hofmann",
+        avatar: "/images/artist-library/artist/artist-2.png",
+        rating: 5,
+        review:
+            "Released some tracks with their Vocals and the support was always super friendly and fast with my questions. I will definitely buy again.",
+    },
+    {
+        name: "Augusto Chiarle",
+        avatar: "/images/artist-library/artist/artist-3.png",
+        rating: 5,
+        review:
+            "Clear rules, excellent material, very good quality, easy & safe payments. I am a happy customer and certainly will be a customer again.",
+    },
+    {
+        name: "Andrew Tao",
+        avatar: "/images/artist-library/artist/artist-4.png",
+        rating: 5,
+        review:
+            "Loving the vocals that this website provides! This website provides a lot of good quality vocals that I have used in my projects and all are top quality!",
+    },
+    {
+        name: "Lukas Hofmann",
+        avatar: "/images/artist-library/artist/artist-5.png",
+        rating: 5,
+        review:
+            "Released some tracks with their Vocals and the support was always super friendly and fast with my questions. I will definitely buy again.",
+    },
+    {
+        name: "Augusto Chiarle",
+        avatar: "/images/artist-library/artist/artist-6.png",
+        rating: 5,
+        review:
+            "Clear rules, excellent material, very good quality, easy & safe payments. I am a happy customer and certainly will be a customer again.",
+    },
+];
+
+const Review: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [visibleSlides, setVisibleSlides] = useState(3);
+
+    // Update visibleSlides on resize
+    useEffect(() => {
+        function handleResize() {
+            if (window.innerWidth < 768) {
+                setVisibleSlides(1);
+            } else {
+                setVisibleSlides(3);
+            }
+        }
+
+        handleResize(); // initial check
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const maxIndex = reviews.length - visibleSlides;
+
+    const nextSlide = () => {
+        if (currentIndex < maxIndex) {
+            setCurrentIndex((prev) => prev + 1);
+        }
+    };
+
+    const prevSlide = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex((prev) => prev - 1);
+        }
+    };
+
+    const totalBullets = maxIndex + 1;
+
+    return (
+        <div style={{ fontFamily: "Favorit" }} className="relative max-w-7xl mx-auto py-12 px-4">
+            <div className="mb-8">
+                <h1 className="text-2xl lg:text-4xl font-bold text-center">Reviews</h1>
+                <p className="text-lg mt-2 text-center">4.7 Stars – 200+ Reviews</p>
+            </div>
+            <div className="overflow-hidden">
+                <div
+                    className="flex transition-transform duration-500"
+                    style={{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }}
+                >
+                    {reviews.map((review, i) => (
+                        <div key={i} className={`min-w-[${100 / visibleSlides}%] px-3`} style={{ minWidth: `${100 / visibleSlides}%` }}>
+                            <div className="bg-white border rounded-xl shadow p-6 h-full flex flex-col">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <Image
+                                        src={review.avatar}
+                                        alt={review.name}
+                                        width={48}
+                                        height={48}
+                                        className="rounded-full object-cover"
+                                    />
+                                    <div>
+                                        <p className="font-semibold text-sm">{review.name}</p>
+                                        <p className="text-yellow-400 text-sm">{`★`.repeat(review.rating)}</p>
+                                    </div>
+                                </div>
+                                <p className="text-gray-700 text-sm flex-grow">{review.review}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Buttons */}
+            <button
+                onClick={prevSlide}
+                disabled={currentIndex === 0}
+                className="absolute left-0 top-[60%] -translate-y-1/2 bg-white   cursor-pointer  disabled:opacity-50"
+                aria-label="Previous"
+            >
+                <GrPrevious className={`font-semibold `} />
+            </button>
+            <button
+                onClick={nextSlide}
+                disabled={currentIndex >= maxIndex}
+                className="absolute right-0 top-[60%] -translate-y-1/2 bg-white  cursor-pointer   disabled:opacity-50"
+                aria-label="Next"
+            >
+                <GrNext className={`font-semibold `} />
+            </button>
+
+            {/* Pagination Bullets */}
+            <div className="flex justify-center mt-6 space-x-3">
+                {[...Array(totalBullets)].map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setCurrentIndex(i)}
+                        aria-label={`Go to slide ${i + 1}`}
+                        className={`w-3 h-3 rounded-full transition-colors ${
+                            i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
+                        }`}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default Review;
