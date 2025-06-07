@@ -198,3 +198,10 @@ input[type="range"]::-moz-range-thumb {
   }
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: black;
+}
+.swiper-pagination-bullet-active {
+  background: black;
+}

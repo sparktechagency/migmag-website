@@ -8,21 +8,21 @@ import Footer from '@/components/footer/Footer'
 import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
-import Quote from "@/pages/home-page/QuotePage";
+import Review from "@/pages/home-page/Review";
 
-const HomePage : React.FC = () => {
+const HomePage: React.FC = () => {
     return (
         <div>
             <div>
                 <Navbar></Navbar>
-                <div className='px-4' >
+                <div className='px-4'>
                     <HomeBanner></HomeBanner>
                 </div>
                 <MusickSlider></MusickSlider>
-                <div className=' px-4 lg:mt-[69px] mt-6 ' >
+                <div className=' px-4 lg:mt-[69px] mt-6 '>
                     <TopTenVocal></TopTenVocal>
                 </div>
-                <div className='  ' >
+                <div className='  '>
                     <ArtistList></ArtistList>
                 </div>
 
@@ -31,6 +31,9 @@ const HomePage : React.FC = () => {
                 </div>
                 <div>
                     <Coverd></Coverd>
+                </div>
+                <div>
+                    <Review></Review>
                 </div>
                 <Footer></Footer>
                 <CookieConsent/>

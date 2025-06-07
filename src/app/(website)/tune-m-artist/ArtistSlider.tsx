@@ -64,7 +64,7 @@ const ArtistSlider: React.FC = () => {
 
                             {/* Text block */}
                             <div className="max-w-3xl">
-                                <p className=" mb-2">{review.review}</p>
+                                <p className=" text-lg mb-2">{review.review}</p>
                                 <div className={`${isRight ? "flex justify-end" : ""}`}>
                                     <div>
                                         <h3 className="font-semibold text-lg text-black">

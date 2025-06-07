@@ -387,9 +387,10 @@ const SingerDetails: React.FC = () => {
                 <h1 className="text-[#121212] text-xl lg:text-3xl font-bold">Available <span
                     className=' text-[#818080] '>Vocals</span></h1>
 
-                <div className="flex items-center mx-auto justify-between bg-white rounded-md shadow p-4 w-full max-w-4xl">
+                <div
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-md shadow p-4 w-full max-w-4xl mx-auto">
                     {/* Left: Image & Play */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
                         <Image
                             src="/images/artist-library/artist/artist-1.png"
                             alt="Album Cover"
@@ -397,7 +398,9 @@ const SingerDetails: React.FC = () => {
                             width={56}
                             height={56}
                         />
-                        <button className="w-0 h-0 border-l-[10px] border-l-black border-t-[6px] border-t-transparent border-b-[6px] cursor-pointer  border-b-transparent" />
+                        <button
+                            className="w-0 h-0 border-l-[10px] border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
+                        />
                         <div>
                             <p className="font-semibold text-sm">The Last Time</p>
                             <p className="text-xs text-gray-500">Nate · 144 BPM · C#min</p>
@@ -405,15 +408,16 @@ const SingerDetails: React.FC = () => {
                     </div>
 
                     {/* Middle: Genre and License */}
-                    <div className="flex items-center gap-8 text-sm text-gray-500">
+                    <div
+                        className="flex flex-wrap sm:flex-nowrap items-center gap-4 text-sm text-gray-500 w-full sm:w-auto justify-start sm:justify-center">
                         <span>Eurodance</span>
                         <span>Non-Exclusive</span>
                     </div>
 
                     {/* Right: Price and Button */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
                         <span className="text-sm font-medium">$34</span>
-                        <button className="bg-[#E7F056]  text-black text-sm font-semibold px-4 py-1 rounded">
+                        <button className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
                             Get Vocal
                         </button>
                     </div>
@@ -624,31 +628,33 @@ const SingerDetails: React.FC = () => {
                     </Link>
                 </div>
 
-                <div className="mt-6 lg:mt-14 grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12">
+                <div
+                    className="mt-6 lg:mt-14 grid gap-6 sm:gap-8 lg:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto lg:grid-cols-4">
                     {singers.map((singer) => (
-                        <div onClick={() => {
-                            getSingerId(singer.id)
-                        }} key={singer.id}
-                             className=" cursor-pointer transition-transform duration-300 hover:-translate-y-1 mx-auto">
-                            <div className="w-full max-w-[357px] rounded-md p-5 bg-[#222222]">
+                        <div
+                            onClick={() => getSingerId(singer.id)}
+                            key={singer.id}
+                            className="cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+                        >
+                            <div className="w-full max-w-[357px] mx-auto rounded-md p-5 bg-[#222222]">
                                 <Image
                                     src={singer.image}
                                     width={340}
                                     height={219}
                                     alt={`${singer.name} Image`}
-                                    className="object-cover rounded-md"
+                                    className="w-full h-auto object-cover rounded-md"
                                 />
 
-                                <div className="mt-3.5">
+                                <div className="mt-4">
                                     <h1 className="text-white text-lg leading-6">{singer.name}</h1>
-
                                 </div>
 
                                 <div className="mt-2">
-                                    <p className="text-[#818080] text-lg leading-6">{singer.role}</p>
-                                    <p className="mt-2 text-[#818080] text-lg leading-6">Genre: {singer.genre}</p>
+                                    <p className="text-[#818080] text-base leading-6">{singer.role}</p>
+                                    <p className="mt-2 text-[#818080] text-base leading-6">
+                                        Genre: {singer.genre}
+                                    </p>
                                 </div>
-
                             </div>
                         </div>
                     ))}
@@ -837,7 +843,7 @@ const SingerDetails: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                 <div className="relative z-10">
-                    <h1 className="text-center text-[#E7F056] font-bold lg:text-lg">
+                    <h1 className="text-center text-[#E7F056] font-bold text-xl lg:text-3xl">
                         TUNEM FOR ARTISTS
                     </h1>
                     <div className="mx-auto mt-5 lg:mt-16">
