@@ -9,6 +9,7 @@ import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
 import Review from "@/pages/home-page/Review";
+import UseSound from "@/pages/home-page/UseSound";
 
 const HomePage: React.FC = () => {
     return (
@@ -29,9 +30,11 @@ const HomePage: React.FC = () => {
                 <div>
                     <VocalPublish></VocalPublish>
                 </div>
+                <UseSound></UseSound>
                 <div>
                     <Coverd></Coverd>
                 </div>
+
                 <div>
                     <Review></Review>
                 </div>

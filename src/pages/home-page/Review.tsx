@@ -132,7 +132,7 @@ const Review: React.FC = () => {
                 className="absolute left-0 top-[60%] -translate-y-1/2 bg-white   cursor-pointer  disabled:opacity-50"
                 aria-label="Previous"
             >
-                <GrPrevious className={`font-semibold `} />
+                <GrPrevious size={30} className={`font-bold`} />
             </button>
             <button
                 onClick={nextSlide}
@@ -140,7 +140,7 @@ const Review: React.FC = () => {
                 className="absolute right-0 top-[60%] -translate-y-1/2 bg-white  cursor-pointer   disabled:opacity-50"
                 aria-label="Next"
             >
-                <GrNext className={`font-semibold `} />
+                <GrNext size={30} className={`font-bold`} />
             </button>
 
             {/* Pagination Bullets */}
@@ -150,7 +150,7 @@ const Review: React.FC = () => {
                         key={i}
                         onClick={() => setCurrentIndex(i)}
                         aria-label={`Go to slide ${i + 1}`}
-                        className={`w-3 h-3 rounded-full transition-colors ${
+                        className={`w-3 h-3 cursor-pointer rounded-full transition-colors ${
                             i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
                         }`}
                     />
