@@ -54,11 +54,30 @@ const UseSound: React.FC = () => {
     const [visibleSlides, setVisibleSlides] = useState(3);
 
     useEffect(() => {
-        const handleResize = () =>
-            setVisibleSlides(window.innerWidth < 768 ? 1 : 4);
+        const handleResize = () => {
+            const width = window.innerWidth;
 
-        handleResize();                // initial check
+            if (width < 480) {
+                // Extra small devices (mobile phones)
+                setVisibleSlides(1);
+            } else if (width >= 480 && width < 768) {
+                // Small devices (large phones)
+                setVisibleSlides(1);
+            } else if (width >= 768 && width < 1024) {
+                // Medium devices (tablets)
+                setVisibleSlides(2);
+            } else if (width >= 1024 && width < 1280) {
+                // Large devices (small laptops)
+                setVisibleSlides(3);
+            } else {
+                // Extra large devices (desktops and up)
+                setVisibleSlides(5);
+            }
+        };
+
+        handleResize(); // initial check
         window.addEventListener("resize", handleResize);
+
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
@@ -68,7 +87,7 @@ const UseSound: React.FC = () => {
     const totalBullets = maxIndex + 1;
 
     return (
-        <div style={{fontFamily: "Favorit"}} className="relative max-w-7xl mx-auto py-12 px-4">
+        <div style={{fontFamily: "Favorit"}} className="relative max-w-[1580px] mx-auto py-12 px-4">
             <div className="mb-8 ">
                 <h1 className="text-2xl lg:text-4xl font-bold">Who uses our sounds</h1>
             </div>

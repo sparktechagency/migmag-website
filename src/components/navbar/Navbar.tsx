@@ -73,9 +73,9 @@ const Navbar: React.FC = () => {
                     </Link>
 
                     {/* Mobile Menu Button */}
-                    <div className="lg:hidden">
+                    <div className="lg:hidden cursor-pointer ">
                         <button onClick={toggleDrawer}>
-                            <FiMenu size={23} className={`text-black`}/>
+                            <FiMenu size={23} className={`text-black cursor-pointer `}/>
                         </button>
                     </div>
 
@@ -186,7 +186,7 @@ const Navbar: React.FC = () => {
                         </Link>
                     </span>
                         <button onClick={toggleDrawer}>
-                            <FiX size={24}/>
+                            <FiX size={24} className={`cursor-pointer`} />
                         </button>
                     </div>
                     <ul style={{fontFamily: "Favorit"}} className="flex flex-col p-4 gap-4">

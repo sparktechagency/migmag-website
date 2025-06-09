@@ -3,8 +3,7 @@ import Link from "next/link";
 import {FaCcApplePay, FaFacebook, FaInstagramSquare, FaTiktok} from "react-icons/fa";
 import {BsDiscord} from "react-icons/bs";
 import {FcGoogle} from "react-icons/fc";
-import {ArrowRight, Facebook} from "lucide-react";
-import {FaFaceFrownOpen} from "react-icons/fa6";
+import {ArrowRight} from "lucide-react";
 
 const BrowseVocalFooter = () => {
     return (

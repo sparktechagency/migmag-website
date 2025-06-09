@@ -60,17 +60,29 @@ const Review: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [visibleSlides, setVisibleSlides] = useState(3);
 
-    // Update visibleSlides on resize
     useEffect(() => {
         function handleResize() {
-            if (window.innerWidth < 768) {
+            const width = window.innerWidth;
+
+            if (width < 480) {
+                // Extra small devices (very small phones)
                 setVisibleSlides(1);
-            } else {
+            } else if (width >= 480 && width < 768) {
+                // Small devices (phones)
+                setVisibleSlides(2);
+            } else if (width >= 768 && width < 1024) {
+                // Medium devices (tablets)
                 setVisibleSlides(3);
+            } else if (width >= 1024 && width < 1280) {
+                // Large devices (small laptops)
+                setVisibleSlides(4);
+            } else {
+                // Extra large devices (desktops and larger)
+                setVisibleSlides(4);
             }
         }
 
-        handleResize(); // initial check
+        handleResize(); // Initial check
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
@@ -111,7 +123,7 @@ const Review: React.FC = () => {
                                         alt={review.name}
                                         width={48}
                                         height={48}
-                                        className="rounded-full object-cover"
+                                        className="rounded-full w-12 h-12 object-cover"
                                     />
                                     <div>
                                         <p className="font-semibold text-sm">{review.name}</p>
