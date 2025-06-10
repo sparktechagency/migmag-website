@@ -51,7 +51,7 @@ const Page: React.FC = () => {
 
 
                     {/* footer  */}
-                    <div style={{fontFamily: 'Favorit'}} className='max-w-[1549px] mx-auto px-4'>
+                    <div style={{fontFamily: 'Favorit'}} className='max-w-[1549px]  mx-auto px-4'>
                         <div className="max-w-[1539px] mx-auto">
                             {/* Logo */}
                             <div className="mx-auto flex justify-center">
@@ -105,7 +105,7 @@ const Page: React.FC = () => {
                                                     type="submit"
                                                     className="bg-yellow-400 px-6 py-5 hover:bg-yellow-500 "
                                                 >
-                                                    <ArrowRight className="w-4 h-4 text-black"/>
+                                                    <ArrowRight className="w-4 h-4 text-white"/>
                                                 </button>
                                             </form>
                                         </div>
@@ -156,7 +156,7 @@ const Page: React.FC = () => {
                             <div className="border border-[#FFFFFF] mt-12"></div>
 
                             {/* Payment Methods and Links */}
-                            <div className="mt-7 hidden pb-20  lg:flex flex-col md:flex-row justify-between gap-10">
+                            <div className="mt-7 hidden  pb-20  lg:flex flex-col md:flex-row justify-between gap-10">
                                 <div>
                                     <h1 className='text-white text-lg leading-9 font-bold '>Payment methods</h1>
                                     <div className="flex items-center  mt-2 gap-4">
@@ -290,7 +290,7 @@ const Page: React.FC = () => {
                             </div>
 
                             {/*small device */}
-                            <div className="mt-7 pb-20 lg:hidden flex justify-between gap-10">
+                            <div className="mt-5 lg:pb-20 lg:hidden block justify-between gap-10">
                                 <div>
                                     <h1 className='text-white text-lg leading-9 font-bold '>Payment methods</h1>
                                     <div className="flex items-center  mt-2 gap-4">
@@ -310,7 +310,7 @@ const Page: React.FC = () => {
 
                                         </div>
                                         <div className="  rounded-full">
-                                            <svg width="40" height="60"  viewBox="0 0 24 16" fill="none"
+                                            <svg width="40" height="60" viewBox="0 0 24 16" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M22 0H2C0.89543 0 0 0.89543 0 2V14C0 15.1046 0.89543 16 2 16H22C23.1046 16 24 15.1046 24 14V2C24 0.89543 23.1046 0 22 0Z"
@@ -328,7 +328,7 @@ const Page: React.FC = () => {
 
                                         </div>
                                         <div className="  rounded-full">
-                                            <svg width="40" height="60"  viewBox="0 0 24 16" fill="none"
+                                            <svg width="40" height="60" viewBox="0 0 24 16" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <g clipPath="url(#clip0_181783_2033)">
                                                     <path
@@ -357,7 +357,7 @@ const Page: React.FC = () => {
                                         </div>
                                     </div>
                                     {/*social icons */}
-                                    <div className={`mt-16`}>
+                                    <div className={` my-4 `}>
 
                                         {/*face book*/}
 

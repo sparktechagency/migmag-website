@@ -190,11 +190,11 @@ const Navbar: React.FC = () => {
                         </button>
                     </div>
                     <ul style={{fontFamily: "Favorit"}} className="flex flex-col p-4 gap-4">
-                        <li><Link className='text-black' href="/ai-data-sets">Ai Data Sets</Link></li>
-                        <li><Link href="/browse-vocal">Browse Vocals</Link></li>
-                        <li><Link href="/artist-library">Artist Library</Link></li>
-                        <li><Link href="/hire">Hire</Link></li>
-                        <li><Link href="/cart">Cart (0)</Link></li>
+                        <li><Link className={`${pathname === "/ai-data-sets" ? "text-[#E7F056]" : "text-black"}`} href="/ai-data-sets">Ai Data Sets</Link></li>
+                        <li><Link className={`${pathname==="/browse-vocal" ? "text-[#E7F056]" : " text-black " }`} href="/browse-vocal">Browse Vocals</Link></li>
+                        <li><Link className={`${pathname==="/artist-library" ? "text-[#E7F056]" : " text-black " }`} href="/artist-library">Artist Library</Link></li>
+                        <li><Link className={`${pathname==="/hire" ? "text-[#E7F056]" : " text-black " }`} href="/hire">Hire</Link></li>
+                        <li><Link className={` ${pathname === "/cart" ? "text-[#E7F056]  " : "text-black"}`} href="/cart">Cart (0)</Link></li>
                         <li>
                             <button className="bg-black text-white px-6 py-2 rounded-full w-full">
                                 <Link href={"/login"}>Log in</Link>

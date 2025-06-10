@@ -209,7 +209,7 @@ const Page: React.FC = () => {
                                 href="/artist-library">Artist Library</Link></li>
                             <li><Link className={` ${pathname === "/hire" ? "text-[#E7F056]  " : "text-white"}`}
                                       href="/hire">Hire</Link></li>
-                            <li><Link className=' text-white ' href="/cart">Cart (0)</Link></li>
+                            <li><Link  className={` ${pathname === "/cart" ? "text-[#E7F056]  " : "text-white"}`} href="/cart">Cart (0)</Link></li>
                             <li>
                                 <button className="bg-white text-black px-6 py-2 rounded-full w-full">
                                     <Link href={"/login"}>Log in</Link>
