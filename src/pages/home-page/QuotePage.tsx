@@ -4,7 +4,7 @@ const QuotePage: React.FC = () => {
     return (
         <div style={{ fontFamily: 'Favorit' }} >
             <section className="bg-white lg:mt-10 mt-5  px-6 lg:px-20">
-                <h1 style={{ fontFamily: 'Favorit' }}  className={ ` lg:text-4xl text-2xl font-semibold text-center mb-3 ` } >Quote</h1>
+                <h1 style={{ fontFamily: 'Favorit' }}  className={ ` lg:text-4xl text-3xl font-semibold text-center mb-3 ` } >Quote</h1>
                 {/* Quote */}
                 <blockquote style={{ fontFamily: 'Favorit' }} className="max-w-4xl mx-auto text-center text-2xl  mb-12">
                     “Vocals that get played, signed, and remembered – backed by service that’s just as professional as

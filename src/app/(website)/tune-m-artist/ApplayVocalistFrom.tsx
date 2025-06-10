@@ -11,84 +11,127 @@ const ApplayVocalistFrom: React.FC = () => {
         'OTHER'
     ];
     return (
-        <div className=' bg-black  ' >
-            <div style={{ fontFamily: 'Favorit' }} className=' max-w-[1366px] mx-auto py-8 lg:py-[60px] px-4 ' >
-                <div className=' flex lg:flex-row flex-col items-start gap-y-8 lg:gap-y-0 relative lg:gap-5 ' >
+        <div className=' bg-black '>
+            <div style={{fontFamily: 'Favorit'}} className=' max-w-[1366px] mx-auto py-8 lg:py-[60px] px-4 '>
+                <div className=' flex lg:flex-row flex-col items-start gap-y-8 lg:gap-y-0 relative lg:gap-5 '>
                     <div>
-                        <p className=' lg:rotate-90 text-[#fff] lg:text-lg lg:absolute lg:top-14 lg:-ml-20   ' >JUST FOR YOU</p>
+                        <p className=' lg:rotate-90 text-[#fff] lg:text-lg lg:absolute lg:top-14 lg:-ml-20   '>JUST FOR
+                            YOU</p>
                     </div>
                     {/* left side  */}
-                    <div className=' w-full ' >
-                        <div className=' max-w-[301px] ' >
-                            <h1 className=' text-white leading-9 text-xl lg:text-[35px] ' >Apply to become a vocalist at TUNEM.</h1>
+                    <div className=' w-full '>
+                        <div className=' max-w-[301px] '>
+                            <h1 className=' text-white leading-9 text-xl lg:text-[35px] '>Work With TuneM in 3 Simple
+                                Steps.</h1>
                         </div>
-                        <div className='  max-w-[449px] mt-5 text-white text-lg space-y-6 ' >
-                            <p>Quality and transparency are our top priorities, therefore we want to be as transparent as possible when recruiting vocalists to Vocalsite.</p>
+                        <div className='  max-w-[449px] mt-5 text-white text-lg space-y-6 '>
+                            <h1 className={`lg:text-3xl text-xl font-semibold`}>1. Apply to Join</h1>
+                            <p>Submit your profile and a few vocal samples. If accepted, you’ll be added to our roster
+                                of professional singers.</p>
                             <div>
-                                The payment split on TUNEM is: <br />
-                                70% You | 30% TUNEM
+                                <h1 className={`lg:text-3xl text-xl font-semibold`}>2. Receive Vocal Requests</h1>
+                                <p>
+                                    We’ll assign you vocal projects based on your voice and style — no need to look for
+                                    work. Just focus on recording.
+                                </p>
                             </div>
                             <div>
+                                <h1 className={`lg:text-3xl text-xl font-semibold`}>3. Get Paid. No Fees.</h1>
                                 <p>
-                                    Read more about the vocalist qualification and terms here.When signing up to become a vocalist you agree to the terms & conditions and vocalist guidelines.
+                                    We handle everything from marketing to sales. You earn for every vocal used — with
+                                    clear payouts and no platform fees.
                                 </p>
                             </div>
 
                         </div>
 
-                        <div className=' max-w-[372px] mt-9 ' >
-                            <p className=' text-[21px] text-[#E7F056] font-bold ' >Why would you wanna become a vocalist at TUNEM?</p>
+                        <div className=' max-w-[572px] mt-9 '>
+                            <p className=' lg:text-3xl text-xl  text-[#E7F056] font-semibold '>Apply to Become a
+                                Vocalist at TuneM</p>
+                            <p className={`text-white`}>
+                                We’re looking for dedicated vocalists who are passionate about music and ready to work
+                                professionally with a growing network of producers. If you have talent, drive, and a
+                                strong work ethic — TuneM could be the perfect platform for you.
+                            </p>
+                            <h1 className={`lg:text-3xl text-xl font-semibold text-white mt-5 `}>What We’re Looking
+                                For</h1>
                         </div>
-                        <div className=' mt-10' >
-                            <div className=' flex items-center gap-8 ' >
-                                <div className=' w-[38px] h-[38px] rounded-full bg-[#D9D9D9] ' >
+                        <div className=' max-w-[572px] mt-8'>
+                            <div className='  '>
+                                <div className=''>
+                                    <h1 className={`lg:text-3xl text-xl font-semibold text-white mt-5 `}>Vocal Talent &
+                                        Recording Setup</h1>
+                                    <p className={`text-white`}>Strong singing ability with access to a home or studio
+                                        setup. Must be able to deliver clean vocal stems</p>
+                                </div>
+
+                            </div>
+                            <div className='  my-8 '>
+                                <div className='  '>
+                                    <div className=''>
+                                        <h1 className={`lg:text-3xl text-xl font-semibold text-white mt-5 `}>Work Ethic & Drive</h1>
+                                        <p className={`text-white`}>We value vocalists who are committed, consistent, and passionate about building a career in music.</p>
+                                    </div>
 
                                 </div>
-                                <div>
-                                    <p className=' text-white leading-6 text-lg ' >Passive Income</p>
-                                </div>
                             </div>
-                            <div className=' flex items-center gap-8 my-8 ' >
-                                <div className=' w-[38px] h-[38px] rounded-full bg-[#D9D9D9] ' >
 
-                                </div>
-                                <div>
-                                    <p className='text-white leading-6 text-lg ' >Grow Your Brand</p>
-                                </div>
-                            </div>
-                            <div className=' flex items-center gap-8 ' >
-                                <div className=' w-[38px] h-[38px] rounded-full bg-[#D9D9D9] ' >
 
-                                </div>
-                                <div>
-                                    <p className=' text-white leading-6 text-lg ' >Time Freedom</p>
+                            <div>
+                                <div className='  '>
+                                    <span className={`text-white  `} >
+                                        Apply to become a vocalist at TUNEM - <p className={`lg:text-2xl font-bold `} >Become Part of the TuneM Artist Squad</p>
+                                    </span>
                                 </div>
                             </div>
+                            <div className=' mt-4 ' >
+                                <h1 className={` lg:text-3xl text-xl font-semibold text-white `} >Why Become a Vocalist at TuneM?</h1>
+                            </div>
+
+                            <div className=' mt-4 ' >
+                                <h1 className={` lg:text-xl text-lg font-semibold text-white `} >Earn from Your Talent</h1>
+                            </div>
+                            <div className=' mt-4 ' >
+                                <h1 className={` lg:text-xl text-lg font-semibold text-white `} >Build Your Vocal Catalogue</h1>
+                            </div>
+                            <div className=' mt-4 ' >
+                                <h1 className={` lg:text-xl text-lg font-semibold text-white `} >Time & Creative Freedom</h1>
+                            </div>
+
+
+
                         </div>
 
                     </div>
                     {/* right side  */}
-                    <div className='  w-full ' >
+                    <div className='  w-full '>
 
                         <form>
                             {/* name  */}
-                            <div className=' flex flex-col ' >
+                            <div className=' flex flex-col '>
                                 <label className=' text-white text-lg font-bold leading-6  ' htmlFor="name">Name</label>
-                                <input id='name' className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium ' type="text" />
+                                <input id='name'
+                                       className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
+                                       type="text"/>
                             </div>
 
                             {/* email  */}
 
-                            <div className=' flex flex-col mt-5 text-lg font-bold leading-6  ' >
+                            <div className=' flex flex-col mt-5 text-lg font-bold leading-6  '>
                                 <label className=' text-white  ' htmlFor="email">Email</label>
-                                <input id='email' className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium ' type="email" />
+                                <input id='email'
+                                       className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
+                                       type="email"/>
                             </div>
 
                             {/* Social link(optional) */}
 
-                            <div className=' flex flex-col mt-5  ' >
-                                <label className=' text-white text-lg font-bold leading-6  ' htmlFor="stageName">Social link (optional)</label>
-                                <input id='stageName' placeholder={"Tiktok"} className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium ' type="text" />
+                            <div className=' flex flex-col mt-5  '>
+                                <label className=' text-white text-lg font-bold leading-6  ' htmlFor="stageName">Social
+                                    link (optional)</label>
+                                <input id='stageName' placeholder={"Tiktok"}
+                                       className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
+                                       type="text"/>
                             </div>
 
 
@@ -161,8 +204,11 @@ const ApplayVocalistFrom: React.FC = () => {
                             </div>
 
 
-                            <div className=' mt-9 ' >
-                                <button className=' cursor-pointer text-center text-lg font-medium bg-[#D9D9D9] w-full py-1.5 rounded-2xl   ' >SEND NOW</button>
+                            <div className=' mt-9 '>
+                                <button
+                                    className=' cursor-pointer text-center text-lg font-medium bg-[#D9D9D9] w-full py-1.5 rounded-2xl   '>SEND
+                                    NOW
+                                </button>
                             </div>
 
 

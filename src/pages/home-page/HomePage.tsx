@@ -14,9 +14,9 @@ import UseSound from "@/pages/home-page/UseSound";
 const HomePage: React.FC = () => {
     return (
         <div>
-            <div>
+            <div className={``}>
                 <Navbar></Navbar>
-                <div className='px-4'>
+                <div className='px-4 mt-4 '>
                     <HomeBanner></HomeBanner>
                 </div>
                 <MusickSlider></MusickSlider>

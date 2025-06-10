@@ -205,3 +205,30 @@ input[type="range"]::-moz-range-thumb {
 .swiper-pagination-bullet-active {
   background: black;
 }
+
+
+
+
+@layer utilities {
+  /* Custom yellow scrollbar */
+  .scrollbar-yellow::-webkit-scrollbar {
+    width: 6px;
+    height: 12px;
+  }
+
+  .scrollbar-yellow::-webkit-scrollbar-track {
+    background: #f0f0f0;
+  }
+
+  .scrollbar-yellow::-webkit-scrollbar-thumb {
+    background-color: yellow;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0;
+  }
+
+  /* Firefox */
+  .scrollbar-yellow {
+    scrollbar-width: thin;
+    scrollbar-color: yellow #f0f0f0;
+  }
+}

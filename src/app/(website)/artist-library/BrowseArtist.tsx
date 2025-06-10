@@ -585,7 +585,7 @@ const BrowseArtist = () => {
             <div className=' flex md:flex-row lg:flex-row flex-col justify-between items-center mb-11  '>
                 <div className='flex-1'>
                     <h1 className=' lg:text-3xl md:text-2xl font-bold leading-9 text-white '>Browse <span
-                        className=' text-[#818080] '>Vocals</span></h1>
+                        className=' text-[#818080] '>Artists</span></h1>
                 </div>
 
                 <div className='  flex-1 lg:flex flex-col md:flex-row gap-14 relative   '>
@@ -601,7 +601,7 @@ const BrowseArtist = () => {
 
 
             <div
-                className=" grid 2xl:grid-cols-6 xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-3 grid-cols-2 xl:gap-x-14 md:gap-x-10 gap-y-4 gap-x-5 mx-auto    mb-6  ">
+                className=" scrollbar-yellow grid 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2  xl:gap-x-12 md:gap-x-5 gap-y-4 gap-x-5 mx-auto border border-yellow-50   mb-6  ">
 
 
                 <div className="relative   ">
@@ -620,7 +620,7 @@ const BrowseArtist = () => {
 
                 {/* genre  */}
 
-                <div className="relative md:w-[177px] w-[150px]   " ref={genreRef}>
+                <div className="relative md:w-[177px] w-[150px]  lg:ml-[24%]   " ref={genreRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F] text-white md:px-5 px-3 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -674,7 +674,7 @@ const BrowseArtist = () => {
 
                 {/* Gender */}
 
-                <div className="relative md:w-[177px] w-[150px]" ref={genderRef}>
+                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]  " ref={genderRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -726,7 +726,7 @@ const BrowseArtist = () => {
 
                 {/* License */}
 
-                <div className="relative md:w-[177px] w-[150px]" ref={licenseRef}>
+                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]  " ref={licenseRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F] relative text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -783,7 +783,7 @@ const BrowseArtist = () => {
                 {/* Type  */}
 
 
-                <div className="relative md:w-[177px] w-[150px] " ref={typeRef}>
+                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]  " ref={typeRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -836,7 +836,7 @@ const BrowseArtist = () => {
                 {/* latest  */}
 
 
-                <div className="relative md:w-[177px] w-[150px]   " ref={latestRef}>
+                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]   " ref={latestRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
