@@ -161,12 +161,12 @@ export default function BrowseMusickVocalSlider() {
                                 width={265}
                                 height={265}
                                 alt={item.title}
-                                className="object-cover rounded-xl w-[265px] h-[265px]"
+                                className="object-cover rounded-[4px] w-[265px] h-[265px]"
                             />
                             {/* Absolutely centered play/pause button */}
                             <button
                                 onClick={()=>{ handleOpenModal(item.id) }}
-                                className="w-[50px] h-[50px] rounded-full bg-black flex justify-center items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                                className="w-[50px] h-[50px] rounded-full cursor-pointer bg-black flex justify-center items-center absolute  top-52 right-10 transform -translate-x-1/2 -translate-y-1/2"
                             >
                                 {playingUrl === item.audio && isPlaying ? (
                                     <CiPause1 className="text-[#E7F056] text-xl" />
