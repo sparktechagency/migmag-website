@@ -1,117 +1,50 @@
-"use client"
-import MusickPlayer from '@/components/musick-player/MusickPlayer';
-import Image from 'next/image';
-import React, { useRef, useState } from 'react';
-import { CiPause1 } from 'react-icons/ci';
-import { FaPlay } from 'react-icons/fa';
+"use client";
+import MusickPlayer      from "@/components/musick-player/MusickPlayer";
+import Image             from "next/image";
+import React, { useRef, useState } from "react";
+import { CiPause1 }      from "react-icons/ci";
+import { FaPlay }        from "react-icons/fa";
+
+interface AudioItem {
+    id:    number;
+    title: string;
+    name:  string;
+    price: string;
+    img:   string;
+    audio: string;
+}
 
 const TopTenVocal: React.FC = () => {
-    interface AudioItem {
-        id: number;
-        title: string;
-        name: string;
-        price: string;
-        img: string;
-        audio: string;
-
-    }
-    const [visibleData, setVisibleData] = useState<number>(10);
+    /* ---------- static data ---------- */
     const audioData: AudioItem[] = [
-        {
-            id: 1,
-            title: 'Rock Anthem',
-            name: 'Bujhina Toh Tai',
-            price: '€8',
-            img: '/images/home-page/top/top-1.png',
-            audio: '/images/audio/audio-1.mp3',
-        },
-        {
-            id: 2,
-            title: 'Classic Tune',
-            name: 'Tomar Jonno',
-            price: '€11',
-            img: '/images/home-page/top/top-2.png',
-            audio: '/images/audio/audio-2.mp3',
-        },
-        {
-            id: 3,
-            title: 'Pop Hit',
-            name: 'Ei Mon Tomake',
-            price: '€9',
-            img: '/images/home-page/top/top-3.png',
-            audio: '/images/audio/audio-3.mp3',
-        },
-        {
-            id: 4,
-            title: 'Jazz Vibes',
-            name: 'Chirokal Tomar',
-            price: '€10',
-            img: '/images/home-page/top/top-4.png',
-            audio: '/images/audio/audio-4.mp3',
-        },
-        {
-            id: 5,
-            title: 'Indie Mood',
-            name: 'Ekla Pothe',
-            price: '€7',
-            img: '/images/home-page/top/top-5.png',
-            audio: '/images/home-page/audio-5.mp3',
-        },
-        {
-            id: 6,
-            title: 'Soul Beats',
-            name: 'Alo Chhaya',
-            price: '€12',
-            img: '/images/home-page/top/top-6.png',
-            audio: '/images/home-page/audio-6.mp3',
-        },
-        {
-            id: 7,
-            title: 'Acoustic Chill',
-            name: 'Mone Pore',
-            price: '€9',
-            img: '/images/home-page/top/top-7.png',
-            audio: '/images/home-page/audio-7.mp3',
-        },
-        {
-            id: 8,
-            title: 'EDM Drop',
-            name: 'Brishtite Tumi',
-            price: '€14',
-            img: '/images/home-page/top/top-8.png',
-            audio: '/images/home-page/audio-8.mp3',
-        },
-        {
-            id: 9,
-            title: 'Lo-Fi Zone',
-            name: 'Tumi Nei',
-            price: '€6',
-            img: '/images/home-page/top/top-9.png',
-            audio: '/images/home-page/audio-9.mp3',
-        },
-        {
-            id: 10,
-            title: 'Fusion Funk',
-            name: 'Bondhu Hoye Thako',
-            price: '€10',
-            img: '/images/home-page/top/top-10.png',
-            audio: '/images/home-page/audio-10.mp3',
-        },
+        { id: 1,  title: "Rock Anthem",  name: "Bujhina Toh Tai",  price: "€8",  img: "/images/home-page/top/top-1.png",  audio: "/images/audio/audio-1.mp3" },
+        { id: 2,  title: "Classic Tune", name: "Tomar Jonno",      price: "€11", img: "/images/home-page/top/top-2.png",  audio: "/images/audio/audio-2.mp3" },
+        { id: 3,  title: "Pop Hit",      name: "Ei Mon Tomake",    price: "€9",  img: "/images/home-page/top/top-3.png",  audio: "/images/audio/audio-3.mp3" },
+        { id: 4,  title: "Jazz Vibes",   name: "Chirokal Tomar",   price: "€10", img: "/images/home-page/top/top-4.png",  audio: "/images/audio/audio-4.mp3" },
+        { id: 5,  title: "Indie Mood",   name: "Ekla Pothe",       price: "€7",  img: "/images/home-page/top/top-5.png",  audio: "/images/home-page/audio-5.mp3" },
+        { id: 6,  title: "Soul Beats",   name: "Alo Chhaya",       price: "€12", img: "/images/home-page/top/top-6.png",  audio: "/images/home-page/audio-6.mp3" },
+        { id: 7,  title: "Acoustic Chill", name: "Mone Pore",      price: "€9",  img: "/images/home-page/top/top-7.png",  audio: "/images/home-page/audio-7.mp3" },
+        { id: 8,  title: "EDM Drop",     name: "Brishtite Tumi",   price: "€14", img: "/images/home-page/top/top-8.png",  audio: "/images/home-page/audio-8.mp3" },
+        { id: 9,  title: "Lo-Fi Zone",   name: "Tumi Nei",         price: "€6",  img: "/images/home-page/top/top-9.png",  audio: "/images/home-page/audio-9.mp3" },
+        { id: 10, title: "Fusion Funk",  name: "Bondhu Hoye Thako", price:"€10", img: "/images/home-page/top/top-10.png", audio: "/images/home-page/audio-10.mp3" },
     ];
+
+    /* ---------- state ---------- */
+    const [visibleData, setVisibleData] = useState<number>(10);                 // how many to show
+    const [playingUrl, setPlayingUrl]   = useState<string | null>(null);
+    const [isPlaying,  setIsPlaying]    = useState<boolean>(false);
+    const [showModal,  setShowModal]    = useState(false);
+    const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+
+    /* ---------- audio element ---------- */
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [playingUrl, setPlayingUrl] = useState<string | null>(null);
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
-
 
     const handleTogglePlay = (url: string) => {
         if (playingUrl === url && isPlaying) {
             audioRef.current?.pause();
             setIsPlaying(false);
         } else {
-            if (audioRef.current) {
-                audioRef.current.pause();
-            }
+            audioRef.current?.pause();
             const audio = new Audio(url);
             audioRef.current = audio;
             audio.play();
@@ -120,127 +53,120 @@ const TopTenVocal: React.FC = () => {
         }
     };
 
-    const [showModal, setShowModal] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-
-    const handleOpenModal = (index: number) => {
-        setCurrentIndex(index);
+    /* ---------- modal helpers ---------- */
+    const handleOpenModal = (globalIndex: number) => {
+        setCurrentIndex(globalIndex);
         setShowModal(true);
     };
+    const nextTrack = () => currentIndex !== null && setCurrentIndex((currentIndex + 1) % audioData.length);
+    const prevTrack = () => currentIndex !== null && setCurrentIndex((currentIndex - 1 + audioData.length) % audioData.length);
 
-    const nextTrack = () => {
-        if (currentIndex !== null) {
-            const nextIndex = (currentIndex + 1) % audioData.length;
-            setCurrentIndex(nextIndex);
-        }
-    };
+    /* ---------- split list into two vertical columns ---------- */
+    const midpoint   = Math.ceil(visibleData / 2);
+    const leftItems  = audioData.slice(0, midpoint);
+    const rightItems = audioData.slice(midpoint, visibleData);
 
-    const prevTrack = () => {
-        if (currentIndex !== null) {
-            const prevIndex = (currentIndex - 1 + audioData.length) % audioData.length;
-            setCurrentIndex(prevIndex);
-        }
-    };
+    /* ---------- reusable renderer ---------- */
+    const renderCard = (item: AudioItem, globalIndex: number) => (
+        <div
+            key={item.id}
+            className={`flex flex-col lg:flex-row items-center justify-between
+                  gap-y-2 lg:gap-y-0 lg:py-2 py-3 px-10 my-2 rounded-lg max-w-[713px]
+                  transition-all duration-300 cursor-pointer
+                  ${playingUrl === item.audio && isPlaying
+                ? "bg-black"
+                : globalIndex % 2 === 0
+                    ? "bg-[#F1F1F1]"
+                    : "bg-[#FFFFFF]"}`}
+        >
+            {/* index */}
+            <h1 className={`text-3xl ${playingUrl === item.audio && isPlaying ? "text-white" : "text-black"}`}>
+                {globalIndex + 1}
+            </h1>
 
+            {/* cover */}
+            <Image
+                src={item.img}
+                alt={item.title}
+                width={93}
+                height={91}
+                className="object-cover rounded-xl"
+            />
 
+            {/* title + artist */}
+            <div className="flex flex-col">
+                <h3 className={`text-lg font-bold leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "text-black"}`}>
+                    {item.title}
+                </h3>
+                <p className={`text-lg font-bold flex gap-x-2.5 leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "text-black"}`}>
+                    Luna <span className="">Exclusive</span>
+                </p>
+            </div>
 
+            {/* play / pause */}
+            <button
+                onClick={() => { handleTogglePlay(item.audio); handleOpenModal(globalIndex); }}
+                className={`w-[50px] cursor-pointer h-[50px] rounded-full flex justify-center items-center
+                    ${playingUrl === item.audio && isPlaying
+                    ? "border border-[#E7F056]"
+                    : "border border-black"}`}
+                aria-label="Play or pause"
+            >
+                {playingUrl === item.audio && isPlaying
+                    ? <CiPause1 className="text-[#E7F056] text-2xl" />
+                    : <FaPlay   className="text-black text-2xl" />}
+            </button>
 
+            {/* price */}
+            <button className={`w-[112px] cursor-pointer rounded-2xl text-lg py-1
+                          ${playingUrl === item.audio && isPlaying
+                ? "bg-[#E7F056] text-black"
+                : "bg-black text-white"}`}>
+                {item.price}
+            </button>
+        </div>
+    );
 
     return (
         <>
-            <div style={{ fontFamily: 'Favorit' }} className="max-w-[1539px] mx-auto">
-                <div className="border border-black"></div>
-                <div className="mt-7">
+            <div style={{ fontFamily: "Favorit" }} className="max-w-[1539px] mx-auto">
+                <div className="border border-black" />
+                <h2 className="mt-7 text-2xl lg:text-4xl font-semibold text-black">Top 10 Vocals</h2>
 
+                {/* ---------- two fixed vertical columns ---------- */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7 w-[95%]">
+                    {/* left column (1-5) */}
+                    <div className="flex flex-col">{leftItems.map((item, i) => renderCard(item, i))}</div>
+
+                    {/* right column (6-10) */}
+                    <div className="flex flex-col mt-4 md:mt-0">
+                        {rightItems.map((item, i) => renderCard(item, i + midpoint))}
+                    </div>
                 </div>
 
-                <div className=' ' >
-                    <div className=" ">
-                        <p className="  text-[#000000] text-2xl lg:text-4xl font-semibold   whitespace-nowrap">
-                            Top 10 Vocals
-                        </p>
-                    </div>
-
-                    <div className=" grid md:grid-cols-2 grid-cols-1 lg:gap-x-7 gap-x-3 order w-[95%]  flex-1  ">
-                        {audioData.slice(0, visibleData).map((item, i) => (
-                            <div
-                                key={item.id}
-                                className={`:h-32 flex flex-col gap-y-2 lg:py-2  py-3 lg:flex-row items-center px-10 justify-between border 
-                                -black my-2 rounded-lg max-w-[713px] transition-all duration-300 cursor-pointer
-                            ${playingUrl === item.audio && isPlaying
-                                        ? 'bg-black'
-                                        : i % 2 === 0
-                                            ? 'bg-[#F1F1F1]  '
-                                            : 'bg-[#FFFFFF]'}
-                        `}
+                {/* see-all / see-less controls */}
+                {audioData.length > 10 && (
+                    <div className="flex justify-center mt-10">
+                        {visibleData < audioData.length ? (
+                            <button
+                                onClick={() => setVisibleData(prev => Math.min(prev + 10, audioData.length))}
+                                className="bg-black border border-white text-white w-[194px] py-2 rounded-2xl lg:text-lg"
                             >
-                                <h1 className={`text-3xl ${playingUrl === item.audio && isPlaying ? ' text-white ' : 'text-black '} `}>{i + 1}</h1>
-                                <Image
-                                    src={item.img}
-                                    width={93}
-                                    height={91}
-                                    alt={item.title}
-                                    className="object-cover rounded-xl"
-                                />
-                                <div className=" flex flex-col gap-x-1">
-                                    <h3 className={`text-lg font-bold  leading-6 ${playingUrl === item.audio && isPlaying ? ' text-white ' : 'text-black '}`}>
-                                        {item.title}
-                                    </h3>
-                                    <p className={`text-lg font-bold flex flex-row gap-x-2.5  leading-6 ${playingUrl === item.audio && isPlaying ? ' text-white ' : 'text-black '}`}>
-                                        Luna <span className={`text-[#E7F056] text-lg font-bold leading-6 ${playingUrl === item.audio && isPlaying ? ' text-white ' : 'text-black '} `}>Exclusive</span>
-                                    </p>
-                                </div>
-                                <button
-                                    onClick={() => { handleOpenModal(i) }}
-                                    className={`w-[50px] h-[50px] rounded-full cursor-pointer   flex  justify-center items-center self-center1 ${playingUrl === item.audio && isPlaying ? ' border border-[#E7F056] ' : ' border border-black '} `}
-                                >
-                                    {playingUrl === item.audio && isPlaying ? (
-                                        <CiPause1 className="text-[#E7F056] text-2xl cursor-pointer " />
-                                    ) : (
-                                        <FaPlay className=' cursor-pointer ' />
-                                    )}
-                                </button>
-                                <div>
-                                    <button className={`w-[112px]  rounded-2xl  text-lg py-1 ${playingUrl === item.audio && isPlaying ? ' text-black bg-[#E7F056] ' : 'bg-black text-white '} `}>
-                                        {item.price}
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-
-                <div className=' flex lg:flex-row flex-col mx-auto justify-between items-center mt-5 ' >
-                    <div className=' max-w-[562px] ' >
-                        {/*<h1 className=' text-black font-thin text-lg leading-6 mb-6 lg:mb-[69px] mx-auto ' >Our bi-weekly top-10 list features the popular artists coming up in our network, great for club nights and gigs to artist signings.</h1>*/}
-                    </div>
-                    <div>
-
-                        {audioData.length > 10 && (
-                            <div className="flex flex-col items-center space-y-4 mb-10">
-                                {visibleData < audioData.length && (
-                                    <button
-                                        onClick={() => setVisibleData((prev) => prev + 10)}
-                                        className="bg-black border border-white font-thin w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
-                                    >
-                                        SEE ALL
-                                    </button>
-                                )}
-
-                                {visibleData > 10 && (
-                                    <button
-                                        onClick={() => setVisibleData(10)}
-                                        className="bg-black border border-white font-thin w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
-                                    >
-                                        SEE LESS
-                                    </button>
-                                )}
-                            </div>
+                                SEE ALL
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => setVisibleData(10)}
+                                className="bg-black border border-white text-white w-[194px] py-2 rounded-2xl lg:text-lg"
+                            >
+                                SEE LESS
+                            </button>
                         )}
                     </div>
-                </div>
+                )}
             </div>
+
+            {/* modal player */}
             {showModal && currentIndex !== null && (
                 <MusickPlayer
                     show={showModal}
@@ -251,7 +177,6 @@ const TopTenVocal: React.FC = () => {
                 />
             )}
         </>
-
     );
 };
 

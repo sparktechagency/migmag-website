@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     }, [pathname])
 
     return (
-        <div className={`fixed  top-0 w-full  z-50 `}>
+        <div className={`  z-50 `}>
             <>
                 <div style={{fontFamily: 'Favorit'}}
                      className='flex items-center justify-between   max-w-[1549px] py-5   mx-auto px-4 '>
