@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState, Fragment } from 'react';
-import { FaPlay, FaPause, FaStepBackward, FaStepForward, FaShoppingCart } from 'react-icons/fa';
+import {useEffect, useRef, useState, Fragment} from 'react';
+import {FaPlay, FaPause, FaStepBackward, FaStepForward, FaShoppingCart} from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
-import { Dialog, Transition } from '@headlessui/react';
+import {Dialog, Transition} from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -261,12 +261,12 @@ const CartPage = () => {
     return (
         <div className="bg-[#f5fff8] min-h-screen">
             <div className="max-w-[1539px] mx-auto px-4 pt-10">
-                <h1 style={{ fontFamily: 'Degular' }} className="text-[#121212] text-3xl font-bold">My cart</h1>
-                <p style={{ fontFamily: 'Degular' }} className="text-[#3A3A3A] font-medium mt-2 text-[16px]">
+                <h1 style={{fontFamily: 'Degular'}} className="text-[#121212] text-3xl font-bold">My cart</h1>
+                <p style={{fontFamily: 'Degular'}} className="text-[#3A3A3A] font-medium mt-2 text-[16px]">
                     List of songs that you selected for the cart section.
                 </p>
 
-                <div style={{ fontFamily: 'Favorit' }} className="mt-10">
+                <div style={{fontFamily: 'Favorit'}} className="mt-10">
                     <div className="overflow-x-auto w-full lg:block hidden ">
                         {currentTracks.map((track) => (
                             <div
@@ -277,8 +277,10 @@ const CartPage = () => {
                                 {/* Image + Title/Artist */}
                                 <div className="flex items-start gap-4 w-full lg:w-auto">
                                     <div className="relative w-16 h-16 flex-shrink-0">
-                                        <Image width={93} height={91} src={track.image} alt="cover" className="w-full h-full object-cover rounded-md" />
-                                        <FaPlay onClick={() => openModal(track)} className="absolute inset-0 m-auto text-yellow-400 w-6 h-6" />
+                                        <Image width={93} height={91} src={track.image} alt="cover"
+                                               className="w-full h-full object-cover rounded-md"/>
+                                        <FaPlay onClick={() => openModal(track)}
+                                                className="absolute inset-0 m-auto text-yellow-400 w-6 h-6"/>
                                     </div>
                                     <div>
                                         <div className="font-bold text-base">{track.title}</div>
@@ -287,13 +289,15 @@ const CartPage = () => {
                                 </div>
 
                                 {/* Track Info */}
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4 text-sm text-gray-200 mt-4 lg:mt-0 w-full lg:w-1/2 text-left sm:text-center">
+                                <div
+                                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4 text-sm text-gray-200 mt-4 lg:mt-0 w-full lg:w-1/2 text-left sm:text-center">
                                     <span>{track.genre}</span>
                                     <span>{track.bpm}</span>
                                     <span>{track.key}</span>
                                     <span>{track.gender}</span>
                                     <span>
-                                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
+                                        <span
+                                            className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
                                             {track.license}
                                         </span>
                                     </span>
@@ -302,7 +306,7 @@ const CartPage = () => {
 
                                 <div>
                                     <Link href={`/checkout`}>
-                                        <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer" />
+                                        <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer"/>
                                     </Link>
                                 </div>
 
@@ -329,12 +333,14 @@ const CartPage = () => {
                                 {/* Image + Title/Artist */}
                                 <div className="">
                                     <div className="relative w-full h-full flex-shrink-0">
-                                        <Image width={93} height={91} src={track.image} alt="cover" className="w-full h-full object-cover rounded-md" />
-                                        <FaPlay onClick={() => openModal(track)} className="absolute inset-0 m-auto text-yellow-400 w-6 h-6" />
+                                        <Image width={93} height={91} src={track.image} alt="cover"
+                                               className="w-full h-full object-cover rounded-md"/>
+                                        <FaPlay onClick={() => openModal(track)}
+                                                className="absolute inset-0 m-auto text-yellow-400 w-6 h-6"/>
                                     </div>
 
                                 </div>
-                                <div className=' my-3  ' >
+                                <div className=' my-3  '>
                                     <h1 className="font-bold text-base text-left ">{track.title}</h1>
                                     <h1 className="text-sm text-gray-300 text-left ">{track.artist}</h1>
                                 </div>
@@ -345,12 +351,13 @@ const CartPage = () => {
                                     <span>{track.bpm}</span>
                                     <span>{track.key}</span>
                                     <span>{track.gender}</span>
-                                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
+                                    <span
+                                        className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
                                         {track.license}
                                     </span>
                                     <div>
                                         <Link href={`/checkout`}>
-                                            <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer" />
+                                            <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer"/>
                                         </Link>
                                     </div>
                                     <span className="bg-yellow-300 text-black font-bold px-4 py-1 rounded-full">
@@ -367,12 +374,6 @@ const CartPage = () => {
                             </div>
                         ))}
                     </div>
-
-
-
-
-
-
 
 
                     <div>
@@ -404,7 +405,7 @@ const CartPage = () => {
 
                 {/* player  */}
 
-                <div style={{ fontFamily: 'Favorit' }} className='px-4' >
+                <div style={{fontFamily: 'Favorit'}} className='px-4'>
                     <Transition appear show={isOpen} as={Fragment}>
                         <Dialog as="div" className="relative z-50" onClose={closeModal}>
                             <Transition.Child
@@ -416,7 +417,7 @@ const CartPage = () => {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                             >
-                                <div className="fixed inset-0 bg-opacity-50  " />
+                                <div className="fixed inset-0 bg-opacity-50  "/>
                             </Transition.Child>
 
                             <div className="fixed inset-0 overflow-y-auto">
@@ -430,40 +431,45 @@ const CartPage = () => {
                                         leaveFrom="opacity-100 translate-y-0"
                                         leaveTo="opacity-0 translate-y-4"
                                     >
-                                        <Dialog.Panel className="w-full max-w-[1539px] mx-auto transform overflow-hidden rounded-t-xl bg-[#1e1e1e] text-white px-4 py-3 text-left align-middle shadow-xl transition-all">
+                                        <Dialog.Panel
+                                            className="w-full max-w-[1539px] mx-auto transform overflow-hidden rounded-t-xl bg-[#1e1e1e] text-white px-4 py-3 text-left align-middle shadow-xl transition-all">
                                             {selectedTrack && (
                                                 <div className="space-y-3 flex flex-row items-center  ">
                                                     <div className="flex items-center justify-between gap-x-6">
-                                                        <Image width={93} height={91} src={selectedTrack.image} alt="cover" className="w-16 h-16 rounded-md object-cover" />
+                                                        <Image width={93} height={91} src={selectedTrack.image}
+                                                               alt="cover"
+                                                               className="w-16 h-16 rounded-md object-cover"/>
                                                         <div>
                                                             <h2 className="text-lg font-semibold">{selectedTrack.title}</h2>
                                                             <p className="text-sm text-gray-400">{selectedTrack.artist}</p>
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center justify-center ml-16 gap-4 text-yellow-300 text-xl mt-2">
-                                                        <FaStepBackward className="cursor-pointer" onClick={playPrev} />
+                                                    <div
+                                                        className="flex items-center justify-center ml-16 gap-4 text-yellow-300 text-xl mt-2">
+                                                        <FaStepBackward className="cursor-pointer" onClick={playPrev}/>
                                                         {isPlaying ? (
-                                                            <FaPlay className="cursor-pointer" onClick={togglePlay} />
+                                                            <FaPlay className="cursor-pointer" onClick={togglePlay}/>
                                                         ) : (
 
-                                                            <FaPause className="cursor-pointer" onClick={togglePlay} />
+                                                            <FaPause className="cursor-pointer" onClick={togglePlay}/>
                                                         )}
-                                                        <FaStepForward className="cursor-pointer" onClick={playNext} />
+                                                        <FaStepForward className="cursor-pointer" onClick={playNext}/>
                                                     </div>
-                                                    <div className=' ml-11 ' >
+                                                    <div className=' ml-11 '>
                                                         <span>{formatTime(currentTime)}</span>
                                                     </div>
 
                                                     {/* Waveform container */}
                                                     <div className="w-full max-w-[800px] mx-auto">
                                                         {/* Waveform */}
-                                                        <div ref={waveformRef} className="w-full" />
+                                                        <div ref={waveformRef} className="w-full"/>
 
                                                         {/* Progress bar */}
-                                                        <div className="w-maw-w-[800px] h-1 bg-gray-300 rounded overflow-hidden mt-2">
+                                                        <div
+                                                            className="w-maw-w-[800px] h-1 bg-gray-300 rounded overflow-hidden mt-2">
                                                             <div
                                                                 className="h-full bg-yellow-400 transition-all duration-100"
-                                                                style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+                                                                style={{width: `${(currentTime / duration) * 100 || 0}%`}}
                                                             />
                                                         </div>
                                                     </div>
@@ -475,8 +481,12 @@ const CartPage = () => {
 
                                                     <div>
                                                         <span>
-                                                            <svg width="37" height="33" viewBox="0 0 37 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M19.1105 31.2013C18.5307 31.4059 17.5757 31.4059 16.9959 31.2013C12.0505 29.513 1 22.47 1 10.5327C1 5.2633 5.24625 1 10.4816 1C13.5853 1 16.3308 2.50068 18.0532 4.81992C19.7756 2.50068 22.5382 1 25.6249 1C30.8602 1 35.1064 5.2633 35.1064 10.5327C35.1064 22.47 24.056 29.513 19.1105 31.2013Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            <svg width="37" height="33" viewBox="0 0 37 33" fill="none"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M19.1105 31.2013C18.5307 31.4059 17.5757 31.4059 16.9959 31.2013C12.0505 29.513 1 22.47 1 10.5327C1 5.2633 5.24625 1 10.4816 1C13.5853 1 16.3308 2.50068 18.0532 4.81992C19.7756 2.50068 22.5382 1 25.6249 1C30.8602 1 35.1064 5.2633 35.1064 10.5327C35.1064 22.47 24.056 29.513 19.1105 31.2013Z"
+                                                                    stroke="white" strokeWidth="2" strokeLinecap="round"
+                                                                    strokeLinejoin="round"/>
                                                             </svg>
 
                                                         </span>
@@ -492,8 +502,6 @@ const CartPage = () => {
                         </Dialog>
                     </Transition>
                 </div>
-
-
 
 
             </div>

@@ -1090,7 +1090,7 @@ const BrowseAllVocal = () => {
                                     <h3 className="text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6 md:text-sm  ">{item.title}</h3>
                                 </td>
                                 <td className="lg:py-4 lg:px-6 px-3 ">
-                                    <Link className={`cursor-pointer  `}  href={`/artist-library/${item?.id}`}>
+                                    <Link className={`cursor-pointer  `} href={`/artist-library/${item?.id}`}>
                                         <p className="text-white hover:underline lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.artist}</p>
                                     </Link>
                                 </td>
