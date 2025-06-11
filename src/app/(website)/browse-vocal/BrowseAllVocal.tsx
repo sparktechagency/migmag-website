@@ -545,6 +545,20 @@ const BrowseAllVocal = () => {
         }
     };
 
+    // const [playingId, setPlayingId] = useState(null);
+
+    const handlePlayPause = (id) => {
+        if (playingId === id) {
+            // Pause current track
+            setPlayingId(null);
+            // pauseAudio()
+        } else {
+            // Play selected track
+            setPlayingId(id);
+            // playAudio(id)
+        }
+    };
+
     return (
         <>
             <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mx-auto px-4  ">
@@ -570,28 +584,28 @@ const BrowseAllVocal = () => {
 
 
                 <div
-                    className=" grid 2xl:flex 2xl:flex-row justify-between xl:grid-cols-7 lg:grid-cols-4 grid-cols-2 xl:gap-x-1 md:gap-x-2 gap-y-4 gap-x-1 max-w-[1539px]  mx-auto   mb-6  ">
-                    <div className="relative md:mt-0">
+                    className=" hidden lg:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
+                    <div className="relative w-full ">
                         <input
-                            className="border border-white focus:outline-0 py-2.5 rounded-2xl text-white px-14 bg-transparent placeholder-gray-400 placeholder:text-[16px] lg:w-[200px] w-[150px] placeholder:ml-3.5"
+                            className="border border-white focus:outline-0 py-2.5 rounded-2xl text-white pl-6 pr-6 bg-transparent placeholder-gray-400 placeholder:text-[16px] "
                             placeholder="SEARCH"
                             value={searchTerm}
                             onChange={handleSearch}
                         />
 
-                        {/* Search Icon */}
-                        <Search className="absolute top-[45%] left-3 transform -translate-y-1/2 text-white"/>
+                        {/* Search Icon - Left side */}
+                        <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white"/>
 
-                        {/* Cross Icon (Only shows when searchTerm has content) */}
-                        {searchTerm.length > 0 && (
-                            <button
-                                type="button"
-                                onClick={() => setSearchTerm('')}
-                                className="absolute top-[45%] cursor-pointer  right-3 transform -translate-y-1/2 text-white hover:text-gray-300"
-                            >
-                                ✕
-                            </button>
-                        )}
+                        {/* Clear Icon - Right side */}
+                        {/*{searchTerm.length > 0 && (*/}
+                        {/*    <button*/}
+                        {/*        type="button"*/}
+                        {/*        onClick={() => setSearchTerm('')}*/}
+                        {/*        className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white hover:text-gray-300"*/}
+                        {/*    >*/}
+                        {/*        ✕*/}
+                        {/*    </button>*/}
+                        {/*)}*/}
                     </div>
 
                     {/* genre  */}
@@ -599,7 +613,7 @@ const BrowseAllVocal = () => {
 
                     {/* BPM */}
 
-                    <div className="relative md:w-[170px] w-[140px]  " ref={bpmRef}>
+                    <div className="relative w-full  " ref={bpmRef}>
                         <button
                             type="button"
                             className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -722,111 +736,7 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-                    {/* KEY */}
-
-                    {/* <div className="relative md:w-[177px] w-[150px]" ref={keyRef}>
-                        <button
-                            type="button"
-                            className="bg-[#201F1F]  relative  text-white px-3 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                            onClick={() => setOpenKey(!openKey)}
-                        >
-                            {openKey ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                            ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                            )}
-
-                            <span className="w-28 text-white md:text-lg ">
-                                {selectedKey.length > 0 ? <>Selected {selectedKey.length}</> : "KEY"}
-                            </span>
-                        </button>
-
-                        <AnimatePresence>
-                            {openKey && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{ top: "calc(100% + 0.5rem)" }}
-                                >
-                                    {keys.map((keys) => (
-                                        <label
-                                            key={keys}
-                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                        >
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedKey.includes(keys)}
-                                                onChange={(e) => {
-                                                    toggleKey(keys);
-                                                    handleFilterChange('keys', e.target.checked ? keys : '');
-                                                }}
-                                                className="mr-3 accent-indigo-500 w-5 h-5"
-                                            />
-                                            <span className="text-white md:text-lg ">{keys}</span>
-                                        </label>
-                                    ))}
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div> */}
-
-
-                    {/* License */}
-
-                    <div className="relative md:w-[177px]  w-[140px]" ref={licenseRef}>
-                        <button
-                            type="button"
-                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                            onClick={() => setOpenLicense(!openLicense)}
-                        >
-                            {openLicense ? (
-                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
-                            ) : (
-                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
-                            )}
-
-                            <span className="w-28 text-white md:text-lg   ">
-                                {selectedLicense.length > 0 ? <>Selected {selectedLicense.length}</> : "License"}
-                            </span>
-                        </button>
-
-                        <AnimatePresence>
-                            {openLicense && (
-                                <motion.div
-                                    initial={{opacity: 0, y: -10}}
-                                    animate={{opacity: 1, y: 0}}
-                                    exit={{opacity: 0, y: -10}}
-                                    transition={{duration: 0.4, ease: "easeInOut"}}
-                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                    style={{top: "calc(100% + 0.5rem)"}}
-                                >
-                                    {License.map((license) => (
-                                        <label
-                                            key={license}
-                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                        >
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedLicense.includes(license)}
-                                                onChange={(e) => {
-                                                    toggleLicense(license);
-                                                    handleFilterChange('license', e.target.checked ? license : '');
-                                                }}
-                                                className="mr-3 accent-indigo-500 w-5 h-5"
-                                            />
-                                            <span className="text-white md:text-lg  ">{license}</span>
-                                        </label>
-                                    ))}
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-
-
-                    <div className="relative md:w-[177px] w-[140px]  " ref={genreRef}>
+                    <div className="relative w-full " ref={genreRef}>
                         <button
                             type="button"
                             className="bg-[#201F1F] text-white md:px-5 px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -880,7 +790,7 @@ const BrowseAllVocal = () => {
 
                     {/* Gender */}
 
-                    <div className="relative md:w-[177px] w-[140px]" ref={genderRef}>
+                    <div className="relative w-full " ref={genderRef}>
                         <button
                             type="button"
                             className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -928,12 +838,62 @@ const BrowseAllVocal = () => {
                             )}
                         </AnimatePresence>
                     </div>
+                    {/* License */}
+
+                    <div className="relative w-full " ref={licenseRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenLicense(!openLicense)}
+                        >
+                            {openLicense ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            <span className="w-28 text-white md:text-lg   ">
+                                {selectedLicense.length > 0 ? <>Selected {selectedLicense.length}</> : "License"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openLicense && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}}
+                                >
+                                    {License.map((license) => (
+                                        <label
+                                            key={license}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedLicense.includes(license)}
+                                                onChange={(e) => {
+                                                    toggleLicense(license);
+                                                    handleFilterChange('license', e.target.checked ? license : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg  ">{license}</span>
+                                        </label>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
 
 
                     {/* Type  */}
 
 
-                    <div className="relative md:w-[177px] w-[140px]  " ref={typeRef}>
+                    <div className="relative w-full " ref={typeRef}>
                         <button
                             type="button"
                             className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -986,7 +946,7 @@ const BrowseAllVocal = () => {
                     {/* latest  */}
 
 
-                    <div className="relative md:w-[177px] w-[140px]  " ref={latestRef}>
+                    <div className="relative w-full " ref={latestRef}>
                         <button
                             type="button"
                             className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -1041,113 +1001,646 @@ const BrowseAllVocal = () => {
                 </div>
 
 
-                {/* table  */}
+                {/* wrapper — keeps the old horizontal-scroll safety net */}
+                <div className=" lg:block hidden space-y-4">
+                    {filteredData.slice(0, visibleData).map((item, i) => (
+                        <motion.div
+                            key={item.id}
+                            className={`cursor-pointer rounded-md p-4
+        ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'}
+        flex flex-col lg:flex-row lg:items-center gap-4`}
+                        >
+                            {/* ─────────── Image + Play/Pause (side-by-side) ─────────── */}
+                            <div className="flex items-center gap-3">
+                                {/* Image */}
+                                <div className="relative w-20 h-20 flex-shrink-0">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.title}
+                                        width={80}
+                                        height={80}
+                                        className="w-full h-full rounded-lg object-cover"
+                                    />
+                                </div>
 
-                <div className='overflow-x-auto w-full'>
-                    <table className="  min-w-[800px] rounded-lg overflow-hidden w-full">
-                        <thead>
-                        <tr className="text-white  ">
-                            {/* <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">TITLE</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] "></th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">ARTIST</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">GENRE</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">BPM</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">KEY</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">GENDER</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">License</th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] "></th>
-                                <th className="py-3 lg:px-6 mt-10 mb-8 text-left text-[#E7F056] text-[10px] md:text-[16px] ">PRICE</th> */}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {filteredData.slice(0, visibleData).map((item, i) => (
-                            <motion.tr
-                                key={item.id}
-                                className={`cursor-pointer ${i % 2 === 0 ? "bg-[#201F1F]" : "bg-[#000000]"} rounded-md `}
-                            >
-                                <td className="lg:py-4 py-1 px-3 lg:px-6">
-                                    <div className="relative w-20 h-20">
-                                        <Image
-                                            src={item.image}
-                                            alt={item.title}
-                                            width={80}
-                                            height={80}
-                                            className="w-full h-full rounded-lg object-cover"
-                                        />
-                                        <span
-                                            onClick={() => handleOpenModal(item.id)}
-                                            className="absolute top-1/2 -right-[70px] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-                                        >
-                                                {playingId === item.id ? (
-                                                    <FaPause className="text-white text-3xl"/>
-                                                ) : (
-                                                    <FaPlay className="text-white text-3xl"/>
-                                                )}
-                                            </span>
-                                    </div>
-                                </td>
-                                <td className="lg:py-4 lg:px-6 px-3 ">
-                                    <h3 className="text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6 md:text-sm  ">{item.title}</h3>
-                                </td>
-                                <td className="lg:py-4 lg:px-6 px-3 ">
-                                    <Link className={`cursor-pointer  `} href={`/artist-library/${item?.id}`}>
-                                        <p className="text-white hover:underline lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.artist}</p>
-                                    </Link>
-                                </td>
-                                <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.genre}</td>
-                                {/* <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.bpm}</td> */}
-                                {/* <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.key}</td> */}
-                                <td className="lg:py-4 py-1 px-2 lg:px-6 text-white lg:font-bold text-[10px] lg:text-xl lg:leading-6">{item.gender}</td>
-                                <td className='lg:py-4 py-1 px-2 lg:px-6 text-white md:text-lg text-[10px]  '
-
+                                {/* Play / Pause button — now to the right of image */}
+                                <button
+                                    onClick={() => handleOpenModal(item.id)}
+                                    aria-label="Play or pause"
+                                    className="p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur"
                                 >
-                                    <h1 className={` text-center rounded-2xl py-1 px-3
-                                    ${item.license === "EXCLUSIVE"
-                                        ? "bg-[#80BC02] "
-                                        : item.license === "NON-EXCLUSIVE"
-                                            ? "bg-[#818080]"
-                                            : item.license === "PREMIUM"
-                                                ? "bg-[#00C2CE]"
-                                                : ""
-                                    }`}>
-                                        {item.license}
-                                    </h1>
-                                </td>
-                                <td className="py-4 px-6">
-                                        <span onClick={() => {
-                                            addToCard(item?.id)
-                                        }} className="inline-block">
-                                            <svg width="22" height="28" viewBox="0 0 22 28" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round"/>
-                                                <path
-                                                    d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round"/>
-                                                <path
-                                                    d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round"/>
-                                                <path d="M8.16187 9.03003H20.4394" stroke="#E7F056"
-                                                      strokeMiterlimit="10" strokeLinecap="round"
-                                                      strokeLinejoin="round"/>
-                                            </svg>
+                                    {playingId === item.id ? (
+                                        <FaPause className="text-white text-2xl"/>
+                                    ) : (
+                                        <FaPlay className="text-white text-2xl"/>
+                                    )}
+                                </button>
+                            </div>
 
-                                        </span>
-                                </td>
-                                <td className="lg:py-4 py-1 px-3 lg:px-6 ">
-                                    <h1 className=' text-[#000000] font-bold text-[10px] lg:text-lg bg-[#E7F056] text-center rounded-2xl px-2 '>
-                                        {item.price}
-                                    </h1>
-                                </td>
-                            </motion.tr>
-                        ))}
-                        </tbody>
-                    </table>
+                            {/* ─────────── Info Row ─────────── */}
+                            <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-x-12 w-full items-center">
+                                {/* Title */}
+                                <h3 className="text-white font-medium text-xs md:text-sm lg:text-base truncate">
+                                    {item.title}
+                                </h3>
+
+                                {/* Artist */}
+                                <Link
+                                    href={`/artist-library/${item.id}`}
+                                    className="text-white hover:underline font-medium text-xs md:text-sm lg:text-base truncate"
+                                >
+                                    {item.artist}
+                                </Link>
+
+                                {/* Genre */}
+                                <p className="text-white font-medium text-xs md:text-sm lg:text-base truncate">
+                                    {item.genre}
+                                </p>
+
+                                {/* Gender */}
+                                <p className="text-white font-medium text-xs md:text-sm lg:text-base truncate">
+                                    {item.gender}
+                                </p>
+
+                                {/* License Badge */}
+                                <span
+                                    className={`inline-block rounded-2xl text-center font-bold px-3 py-1 text-[10px] md:text-sm lg:text-base
+            ${item.license === 'EXCLUSIVE'
+                                        ? 'bg-[#80BC02]'
+                                        : item.license === 'NON-EXCLUSIVE'
+                                            ? 'bg-[#818080]'
+                                            : item.license === 'PREMIUM'
+                                                ? 'bg-[#00C2CE]'
+                                                : 'bg-gray-600'}`}
+                                >
+          {item.license}
+        </span>
+
+                                {/* Price + Cart */}
+                                <div className="flex items-center gap-x-12">
+                                    {/* Cart Button */}
+                                    <button
+                                        onClick={() => addToCard(item.id)}
+                                        aria-label="Add to cart"
+                                    >
+                                        <svg width="22" height="28" viewBox="0 0 22 28" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836"
+                                                stroke="#E7F056" stroke-miterlimit="10" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                            <path
+                                                d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z"
+                                                stroke="#E7F056" stroke-miterlimit="10" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                            <path
+                                                d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z"
+                                                stroke="#E7F056" stroke-miterlimit="10" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                            <path d="M8.16187 9.03003H20.4394" stroke="#E7F056" stroke-miterlimit="10"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                    </button>
+
+                                    {/* Price */}
+                                    <span
+                                        className="bg-[#E7F056] text-black font-bold rounded-2xl text-xs md:text-sm lg:text-base px-2">
+            {item.price}
+          </span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
+
+                {/*small device */}
+
+
+                <div
+                    className=" lg:hidden  grid grid-cols-3 gap-6  max-w-[1539px]  mx-auto   mb-6  ">
+                    <div
+                        className="  text-[#E7F056] text-[10px] md:text-[16px]">
+                        <div className="relative md:mt-0  ">
+                            <input
+                                className="border border-white focus:outline-0 w-full  py-2.5 px-3 rounded-2xl text-white  bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
+                                placeholder="SEARCH"
+                                value={searchTerm}
+                                onChange={handleSearch}
+                            />
+                            <Search size={10}
+                                    className="absolute  top-1/2 right-2 transform -translate-y-1/2 text-white"/>
+                        </div>
+                    </div>
+
+                    {/* genre  */}
+
+
+                    {/* BPM */}
+
+                    <div className="relative w-full " ref={bpmRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenBPM(!openBPM)}
+                        >
+                            {openBPM ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            <span className="w-28 text-white  text-sm   ">
+                                BPM
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openBPM && (
+                                <motion.div
+                                    initial={{opacity: 0, scale: 0.9}}
+                                    animate={{opacity: 1, scale: 1}}
+                                    exit={{opacity: 0, scale: 0.9}}
+                                    transition={{duration: 0.3, ease: "easeInOut"}}
+                                    className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50"
+                                >
+                                    <div
+                                        ref={bpmRef}
+                                        className="bg-[#201F1F] rounded-2xl p-6 w-[90%] max-w-md max-h-[80vh] overflow-auto"
+                                    >
+                                        <div className="flex justify-between items-center mb-4">
+                                            <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
+                                            <button onClick={() => setOpenBPM(false)}
+                                                    className="cursor-pointer text-white text-2xl">×
+                                            </button>
+                                        </div>
+
+                                        <div className="flex flex-col   gap-6">
+
+
+                                            <div className="flex flex-col items-center gap-4">
+                                                {/* Selected BPM and Range Input */}
+                                                <div className="relative w-full pt-8">
+                                                    {/* Number Labels */}
+                                                    <div
+                                                        className="absolute  -top-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
+                                                        style={{left: `calc(${getPercent(minValue)}% - 20px)`}}
+                                                    >
+                                                        {minValue.toFixed(2)}
+                                                    </div>
+                                                    <div
+                                                        className="absolute  -top-4  -ml-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
+                                                        style={{left: `calc(${getPercent(maxValue)}% - 20px)`}}
+                                                    >
+                                                        {maxValue.toFixed(2)}
+                                                    </div>
+
+                                                    {/* Track */}
+                                                    <div
+                                                        className="w-full h-2 rounded-full"
+                                                        style={{background: getTrackBackground()}}
+                                                    />
+
+                                                    {/* Left Thumb */}
+                                                    <input
+                                                        type="range"
+                                                        min={minBPM}
+                                                        max={maxBPM}
+                                                        value={minValue}
+                                                        onChange={(e) => {
+                                                            const val = Math.min(Number(e.target.value), maxValue - 1);
+                                                            setMinValue(val);
+                                                        }}
+                                                        className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
+                                                    />
+
+                                                    {/* Right Thumb */}
+                                                    <input
+                                                        type="range"
+                                                        min={minBPM}
+                                                        max={maxBPM}
+                                                        value={maxValue}
+                                                        onChange={(e) => {
+                                                            const val = Math.max(Number(e.target.value), minValue + 1);
+                                                            setMaxValue(val);
+                                                        }}
+                                                        className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
+                                                    />
+                                                </div>
+
+                                                {/* Buttons */}
+                                                <div className="flex justify-center items-center gap-4 w-full">
+                                                    <button
+                                                        onClick={() => {
+                                                            setSelectedBPM(0); // or default value
+                                                            handleFilterChange("bpm", "");
+                                                            setOpenBPM(false)
+                                                        }}
+                                                        className="bg-gray-700 cursor-pointer text-white px-4 py-1 rounded-lg hover:bg-gray-600 transition"
+                                                    >
+                                                        Reset
+                                                    </button>
+
+                                                    <button
+                                                        onClick={() => {
+                                                            handleFilterChange("bpm", [minValue, maxValue]); // ⬅ send the selected range
+                                                            setSelectedBPM([minValue, maxValue]);           // ⬅ store the selection
+                                                            setOpenBPM(false);                              // ⬅ close the modal
+                                                        }}
+                                                        className="bg-[#E7F056] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
+                                                    >
+                                                        Filter
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+
+                    <div className="relative w-full " ref={genreRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F] text-white md:px-5 px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpen(!open)}
+                        >
+                            {/* Icon on RIGHT side */}
+                            {open ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            {/* Only show selected count */}
+                            <span className="w-28 text-white md:text-lg ">
+                                {selectGenre.length > 0 ? <>Selected {selectGenre.length}</> : "Genre"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {open && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                >
+                                    {genres.map((genre) => (
+                                        <label
+                                            key={genre}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectGenre.includes(genre)}
+                                                onChange={(e) => {
+                                                    toggleGenre(genre);
+                                                    handleFilterChange('genre', e.target.checked ? genre : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg   ">{genre}</span>
+                                        </label>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+
+                    {/* Gender */}
+
+                    <div className="relative w-full " ref={genderRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenGender(!openGender)}
+                        >
+                            {openGender ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            <span className="w-28 text-white md:text-lg  ">
+                                {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openGender && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}}
+                                >
+                                    {gender.map((gender) => (
+                                        <label
+                                            key={gender}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedGender.includes(gender)}
+                                                onChange={(e) => {
+                                                    toggleGender(gender);
+                                                    handleFilterChange('gender', e.target.checked ? gender : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg ">{gender}</span>
+                                        </label>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                    {/* License */}
+
+                    <div className="relative w-full " ref={licenseRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenLicense(!openLicense)}
+                        >
+                            {openLicense ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            <span className="w-28 text-white md:text-lg   ">
+                                {selectedLicense.length > 0 ? <>Selected {selectedLicense.length}</> : "License"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openLicense && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}}
+                                >
+                                    {License.map((license) => (
+                                        <label
+                                            key={license}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedLicense.includes(license)}
+                                                onChange={(e) => {
+                                                    toggleLicense(license);
+                                                    handleFilterChange('license', e.target.checked ? license : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg  ">{license}</span>
+                                        </label>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+
+                    {/* Type  */}
+
+
+                    <div className="relative w-full " ref={typeRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenType(!openType)}
+                        >
+                            {openType ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            <span className="w-28 text-white md:text-lg   ">
+                                {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Type"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openType && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}}
+                                >
+                                    {type.map((item) => (
+                                        <label
+                                            key={item}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedType.includes(item)}
+                                                onChange={(e) => {
+                                                    toggleType(item); // ✅ Efficient toggle
+                                                    handleFilterChange("type", e.target.checked ? item : "");
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg  ">{item}</span>
+                                        </label>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+
+                    {/* latest  */}
+
+
+                    <div className="relative w-full " ref={latestRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenLatest(!openLatest)}
+                        >
+                            {openLatest ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            <span className="w-28 text-white md:text-lg   ">
+                                {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openLatest && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}}
+                                >
+                                    {
+                                        latest.map((item) => (
+                                            <label
+                                                key={item}
+                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedType.includes(item)}
+                                                    onChange={(e) => {
+                                                        toggleLatest(item);
+                                                        handleFilterChange('latest', e.target.checked ? item : '');
+                                                    }}
+                                                    className="mr-3 accent-indigo-500 w-5 h-5"
+                                                />
+                                                <span className="text-white md:text-lg  ">{item}</span>
+                                            </label>
+                                        ))
+                                    }
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+
+                </div>
+
+                <div className=" lg:hidden block space-y-4">
+                    {filteredData.slice(0, visibleData).map((item, i) => (
+                        <motion.div
+                            key={item.id}
+                            className={`cursor-pointer rounded-md p-4
+        ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'}
+         flex-col `}
+                        >
+                            {/* ─────────── Image + Play/Pause (side-by-side) ─────────── */}
+                            <div
+                                className="relative ">
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    width={18}
+                                    height={18}
+                                    className="rounded-lg w-full my-4  object-cover"
+                                />
+                                <button
+                                    onClick={() => handlePlayPause(item.id)}
+                                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg"
+                                >
+                                    {playingId === item.id ? (
+                                        // Pause icon
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-black"
+                                             viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
+                                        </svg>
+                                    ) : (
+                                        // Play icon
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-black"
+                                             viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    )}
+                                </button>
+                            </div>
+
+                            {/* ─────────── Info Row ─────────── */}
+                            <div className="grid md:grid-cols-3 text-center lg:grid-cols-6 gap-x-12 w-full items-center">
+                                {/* Title */}
+                                <h3 className="text-white font-medium  lg:text-base truncate">
+                                    {item.title}
+                                </h3>
+
+                                {/* Artist */}
+                                <Link
+                                    href={`/artist-library/${item.id}`}
+                                    className="text-white hover:underline font-medium  lg:text-base truncate"
+                                >
+                                    {item.artist}
+                                </Link>
+
+                                {/* Genre */}
+                                <p className="text-white font-medium  lg:text-base truncate">
+                                    {item.genre}
+                                </p>
+
+                                {/* Gender */}
+                                <p className="text-white font-medium  lg:text-base truncate">
+                                    {item.gender}
+                                </p>
+
+                                {/* License Badge */}
+                                <span
+                                    className={`inline-block rounded-2xl mt-3  text-center font-bold px-3 py-2
+            ${item.license === 'EXCLUSIVE'
+                                        ? 'bg-[#80BC02]'
+                                        : item.license === 'NON-EXCLUSIVE'
+                                            ? 'bg-[#818080]'
+                                            : item.license === 'PREMIUM'
+                                                ? 'bg-[#00C2CE]'
+                                                : 'bg-gray-600'}`}
+                                >
+          {item.license}
+        </span>
+
+                                {/* Price + Cart */}
+                                <div className="flex items-center justify-center my-5 gap-x-12">
+                                    {/* Cart Button */}
+                                    <button
+                                        onClick={() => addToCard(item.id)}
+                                        aria-label="Add to cart"
+                                    >
+                                        <svg width="22" height="28" viewBox="0 0 22 28" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836"
+                                                stroke="#E7F056" stroke-miterlimit="10" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                            <path
+                                                d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z"
+                                                stroke="#E7F056" stroke-miterlimit="10" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                            <path
+                                                d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z"
+                                                stroke="#E7F056" stroke-miterlimit="10" stroke-linecap="round"
+                                                stroke-linejoin="round"/>
+                                            <path d="M8.16187 9.03003H20.4394" stroke="#E7F056" stroke-miterlimit="10"
+                                                  stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                    </button>
+
+                                    {/* Price */}
+                                    <span
+                                        className="bg-[#E7F056] text-black font-bold rounded-2xl  lg:text-base px-2">
+            {item.price}
+          </span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
 
                 <div className='  mt-14 mb-20 flex flex-row justify-center '>
 
