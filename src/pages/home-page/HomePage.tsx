@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
         <div>
             <div className={``}>
                 <Navbar></Navbar>
-                <div className='px-4 mt-4 '>
+                <div className='px-4  '>
                     <HomeBanner></HomeBanner>
                 </div>
                 <MusickSlider></MusickSlider>

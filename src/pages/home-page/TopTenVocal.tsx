@@ -4,6 +4,7 @@ import Image             from "next/image";
 import React, { useRef, useState } from "react";
 import { CiPause1 }      from "react-icons/ci";
 import { FaPlay }        from "react-icons/fa";
+import Link from "next/link";
 
 interface AudioItem {
     id:    number;
@@ -71,7 +72,7 @@ const TopTenVocal: React.FC = () => {
         <div
             key={item.id}
             className={`flex flex-col lg:flex-row items-center justify-between
-                  gap-y-2 lg:gap-y-0 lg:py-2 py-3 px-10 my-2 rounded-lg max-w-[713px]
+                  gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px]
                   transition-all duration-300 cursor-pointer
                   ${playingUrl === item.audio && isPlaying
                 ? "bg-black"
@@ -95,9 +96,11 @@ const TopTenVocal: React.FC = () => {
 
             {/* title + artist */}
             <div className="flex flex-col">
-                <h3 className={`text-lg font-bold leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "text-black"}`}>
-                    {item.title}
-                </h3>
+                <Link href={`/artist-library/${item.id}`}>
+                    <h3 className={`text-lg font-bold leading-6 hover:underline ${playingUrl === item.audio && isPlaying ? "text-white" : "text-black"}`}>
+                        {item.title}
+                    </h3>
+                </Link>
                 <p className={`text-lg font-bold flex gap-x-2.5 leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "text-black"}`}>
                     Luna <span className="">Exclusive</span>
                 </p>
@@ -134,7 +137,7 @@ const TopTenVocal: React.FC = () => {
                 <h2 className="mt-7 text-2xl lg:text-4xl font-semibold text-black">Top 10 Vocals</h2>
 
                 {/* ---------- two fixed vertical columns ---------- */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7 w-[95%]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 w-[95%]">
                     {/* left column (1-5) */}
                     <div className="flex flex-col">{leftItems.map((item, i) => renderCard(item, i))}</div>
 

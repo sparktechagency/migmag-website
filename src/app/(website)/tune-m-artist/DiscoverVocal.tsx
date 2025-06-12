@@ -3,8 +3,8 @@ import React from 'react'
 
 const DiscoverVocal: React.FC = () => {
     return (
-        <div style={{ fontFamily: 'Favorit' }} className=' max-w-[1550px] mx-auto px-4 ' >
-            <div className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-24  ' >
+        <div style={{ fontFamily: 'Favorit' }} className=' max-w-[1550px] mx-auto px-4  ' >
+            <div className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 mt-8 lg:mt-14 ' >
                 <div>
                     <p className=' lg:rotate-90 text-[#000000] lg:text-lg lg:absolute lg:top-14 lg:-ml-20 my-3 lg:my-0  ' >JUST FOR YOU</p>
                 </div>
