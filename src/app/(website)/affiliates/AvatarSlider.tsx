@@ -40,7 +40,7 @@ const ReviewSlider : React.FC = () => {
     });
 
     return (
-        <div  className="max-w-7xl mx-auto px-4 mt-14 " style={{ fontFamily: "Favorit" }}>
+        <div  className="max-w-7xl mx-auto px-4 lg:mt-14 mt-7 " style={{ fontFamily: "Favorit" }}>
             <div className=" text-center">
                 <h1 className=" lg:text-lg text-sm font-bold">Join 100+ Individuals and Companies that already promote Vocalfy</h1>
             </div>
