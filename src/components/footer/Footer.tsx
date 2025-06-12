@@ -250,6 +250,11 @@ const Footer: React.FC = () => {
                                 <li className="text-lg text-[#000000] font-bold leading-9">WORK WITH US</li>
                                 <li><Link className="text-lg text-[#000000] leading-9" href="/tune-m-artist">TUNEM for
                                     Artists</Link></li>
+                                <li>
+                                    <Link className="text-lg text-[#000000] leading-9" href="/affiliates">
+                                        Affiliates
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -381,8 +386,16 @@ const Footer: React.FC = () => {
                         <div>
                             <ul className="flex flex-col gap-1">
                                 <li className="text-lg text-[#000000] font-bold leading-9">WORK WITH US</li>
-                                <li><Link className="text-lg text-[#000000] leading-9" href="/tune-m-artist">TUNEM for
-                                    Artists</Link></li>
+                                <li>
+                                    {/*<Link className="text-lg text-[#000000] leading-9" href="/tune-m-artist">TUNEM for*/}
+                                    {/*    Artists*/}
+                                    {/*</Link>*/}
+                                </li>
+                                <li>
+                                    <Link className="text-lg text-[#000000] leading-9" href="/affiliates">
+                                        Affiliates
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>

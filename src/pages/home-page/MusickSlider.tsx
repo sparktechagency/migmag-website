@@ -88,7 +88,7 @@ export default function MusicSlider() {
                 slides: {perView: 3, spacing: 15},
             },
             '(min-width: 1024px)': {
-                slides: {perView: 6, spacing: 20},
+                slides: {perView: 6, spacing: 24},
             },
         },
     });
@@ -126,7 +126,7 @@ export default function MusicSlider() {
                 {audioData.map((item, index) => (
                     <div key={item.id} className="keen-slider__slide w-full px-4 lg:px-0">
                         <div className="relative w-full h-[260px] overflow-hidden">
-                            <Image src={item.img} fill alt={item.title} className="object-cover"/>
+                            <Image src={item.img} fill alt={item.title} className=" rounded-[4px] object-cover"/>
 
                             <button
                                 onClick={() => handleOpenModal(index)}
