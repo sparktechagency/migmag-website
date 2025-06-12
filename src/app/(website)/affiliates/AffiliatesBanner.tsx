@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 const AffiliatesBanner: React.FC = () => {
     return (
@@ -56,10 +57,12 @@ const AffiliatesBanner: React.FC = () => {
             </div>
 
             <div className=" mt-5">
-                <button
-                    className={`block mx-auto lg:mt-14 mt-8 px-6 py-2 lg:text-lg text-[16px] font-semibold bg-[#000000] text-white rounded-md  `}>JOIN
-                    NOW
-                </button>
+                <Link href={"/affiliate-area"}>
+                    <button
+                        className={` cursor-pointer block mx-auto lg:mt-14 mt-8 px-6 py-2 lg:text-lg text-[16px] font-semibold bg-[#000000] text-white rounded-md  `}>JOIN
+                        NOW
+                    </button>
+                </Link>
             </div>
 
 
