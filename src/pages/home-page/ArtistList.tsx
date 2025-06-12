@@ -124,7 +124,7 @@ const ArtistList: React.FC = () => {
                             <button
                                 className="border border-white font-thin mt-3 w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer"
                             >
-                                SEE ALL
+                                SEE MORE
                             </button>
                         </Link>
                     </div>

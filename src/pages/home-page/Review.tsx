@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import {GrNext, GrPrevious} from "react-icons/gr";
 
@@ -104,7 +104,7 @@ const Review: React.FC = () => {
     const totalBullets = maxIndex + 1;
 
     return (
-        <div style={{ fontFamily: "Favorit" }} className="relative max-w-7xl mx-auto py-12 px-4">
+        <div style={{fontFamily: "Favorit"}} className="relative max-w-7xl mx-auto py-12 px-4">
             <div className="mb-8">
                 <h1 className="text-2xl lg:text-4xl font-bold text-center">Reviews</h1>
                 <p className="text-lg mt-2 text-center">4.7 Stars – 200+ Reviews</p>
@@ -112,23 +112,32 @@ const Review: React.FC = () => {
             <div className="overflow-hidden">
                 <div
                     className="flex transition-transform duration-500"
-                    style={{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }}
+                    style={{transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)`}}
                 >
                     {reviews.map((review, i) => (
-                        <div key={i} className={`min-w-[${100 / visibleSlides}%] px-3`} style={{ minWidth: `${100 / visibleSlides}%` }}>
+                        <div key={i} className={`min-w-[${100 / visibleSlides}%] px-3`}
+                             style={{minWidth: `${100 / visibleSlides}%`}}>
                             <div className="bg-white border rounded-xl shadow p-6 h-full flex flex-col">
-                                <div className="flex items-center gap-4 mb-4">
-                                    <Image
-                                        src={review.avatar}
-                                        alt={review.name}
-                                        width={48}
-                                        height={48}
-                                        className="rounded-full w-12 h-12 object-cover"
-                                    />
-                                    <div>
-                                        <p className="font-semibold text-sm">{review.name}</p>
-                                        <p className="text-yellow-400 text-sm">{`★`.repeat(review.rating)}</p>
+                                <div className="flex items-start justify-between">
+                                    <div className={"flex items-center gap-4 mb-4"} >
+                                        <div>
+                                            <Image
+                                                src={review.avatar}
+                                                alt={review.name}
+                                                width={48}
+                                                height={48}
+                                                className="rounded-full w-12 h-12 object-cover"
+                                            />
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-sm">{review.name}</p>
+                                            <p className="text-yellow-400 text-sm">{`★`.repeat(review.rating)}</p>
+                                        </div>
                                     </div>
+                                    <div>
+                                        <Image src={"/images/badge/badge.png"} width={12} height={12} alt={"badge"} className="rounded-full w-4 h-4 mt-1.5 object-cover" />
+                                    </div>
+
                                 </div>
                                 <p className="text-gray-700 text-sm flex-grow">{review.review}</p>
                             </div>
@@ -144,7 +153,7 @@ const Review: React.FC = () => {
                 className="absolute left-0 top-[60%] -translate-y-1/2 bg-white   cursor-pointer  disabled:opacity-50"
                 aria-label="Previous"
             >
-                <GrPrevious size={30} className={`font-bold`} />
+                <GrPrevious size={30} className={`font-bold`}/>
             </button>
             <button
                 onClick={nextSlide}
@@ -152,7 +161,7 @@ const Review: React.FC = () => {
                 className="absolute right-0 top-[60%] -translate-y-1/2 bg-white  cursor-pointer   disabled:opacity-50"
                 aria-label="Next"
             >
-                <GrNext size={30} className={`font-bold`} />
+                <GrNext size={30} className={`font-bold`}/>
             </button>
 
             {/* Pagination Bullets */}

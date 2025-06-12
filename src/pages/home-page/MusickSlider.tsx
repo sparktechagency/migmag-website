@@ -118,7 +118,7 @@ export default function MusicSlider() {
     return (
         <main className="lg:mt-32 mt-8">
             <h1 style={{fontFamily: 'Favorit'}}
-                className="text-[#000000] text-2xl lg:text-4xl font-semibold  max-w-[1519px]  mx-auto px-4">
+                className="text-[#000000] text-2xl lg:text-4xl font-semibold  max-w-[1519px] px-4  mx-auto ">
                 Latest Trending Vocals
             </h1>
 
@@ -147,8 +147,8 @@ export default function MusicSlider() {
 
             <div style={{fontFamily: 'Favorit'}}
                  className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
-                <div className="max-w-[700px] lg:mt-[68px] mt-5">
-                    <h1 className="text-[#000000] text-2xl lg:text-4xl font-semibold   px-4">
+                <div className="max-w-[1280px] lg:mt-[68px] mt-5">
+                    <h1 className="text-[#000000] text-2xl lg:text-4xl font-semibold px-4   ">
                         Updated every Friday with new royalty-free vocals curated for music producers looking to elevate
                         their sound and stand out.
                     </h1>

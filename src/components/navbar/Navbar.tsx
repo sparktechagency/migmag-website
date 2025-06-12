@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
     }, [pathname])
 
     return (
-        <div className={`  z-50 `}>
+        <div className={`   z-50 `}>
             <>
                 <div style={{fontFamily: 'Favorit'}}
                      className='flex items-center justify-between   max-w-[1549px] py-5   mx-auto px-4 '>
@@ -94,7 +94,7 @@ const Navbar: React.FC = () => {
                                 {/* ▼ smooth dropdown */}
                                 <ul
                                     className="
-      absolute left-0 top-full w-52 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+      absolute left-0 top-full w-32 rounded-lg bg-white shadow-lg border border-gray-300 z-50
       overflow-hidden                        /* keeps content clipped during scale */
       opacity-0 translate-y-2 pointer-events-none
       group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
@@ -186,15 +186,20 @@ const Navbar: React.FC = () => {
                         </Link>
                     </span>
                         <button onClick={toggleDrawer}>
-                            <FiX size={24} className={`cursor-pointer`} />
+                            <FiX size={24} className={`cursor-pointer`}/>
                         </button>
                     </div>
                     <ul style={{fontFamily: "Favorit"}} className="flex flex-col p-4 gap-4">
-                        <li><Link className={`${pathname === "/ai-data-sets" ? "text-[#E7F056]" : "text-black"}`} href="/ai-data-sets">Ai Data Sets</Link></li>
-                        <li><Link className={`${pathname==="/browse-vocal" ? "text-[#E7F056]" : " text-black " }`} href="/browse-vocal">Browse Vocals</Link></li>
-                        <li><Link className={`${pathname==="/artist-library" ? "text-[#E7F056]" : " text-black " }`} href="/artist-library">Artist Library</Link></li>
-                        <li><Link className={`${pathname==="/hire" ? "text-[#E7F056]" : " text-black " }`} href="/hire">Hire</Link></li>
-                        <li><Link className={` ${pathname === "/cart" ? "text-[#E7F056]  " : "text-black"}`} href="/cart">Cart (0)</Link></li>
+                        <li><Link className={`${pathname === "/ai-data-sets" ? "text-[#E7F056]" : "text-black"}`}
+                                  href="/ai-data-sets">Ai Data Sets</Link></li>
+                        <li><Link className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : " text-black "}`}
+                                  href="/browse-vocal">Browse Vocals</Link></li>
+                        <li><Link className={`${pathname === "/artist-library" ? "text-[#E7F056]" : " text-black "}`}
+                                  href="/artist-library">Artist Library</Link></li>
+                        <li><Link className={`${pathname === "/hire" ? "text-[#E7F056]" : " text-black "}`}
+                                  href="/hire">Hire</Link></li>
+                        <li><Link className={` ${pathname === "/cart" ? "text-[#E7F056]  " : "text-black"}`}
+                                  href="/cart">Cart (0)</Link></li>
                         <li>
                             <button className="bg-black text-white px-6 py-2 rounded-full w-full">
                                 <Link href={"/login"}>Log in</Link>
