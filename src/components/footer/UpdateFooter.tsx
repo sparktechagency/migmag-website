@@ -21,7 +21,7 @@ const UpdateFooter: React.FC = () => {
     };
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className="lg:mt-1 mt-5 pb-20 h-screen ">
+        <div style={{fontFamily: 'Favorit'}} className="lg:mt-1">
             <MaxWidth>
                 <div className=" ">
                     {/* Logo */}
@@ -39,9 +39,10 @@ const UpdateFooter: React.FC = () => {
                     {/* Divider */}
                     {/*<div className="border border-[#000000] mt-12"></div>*/}
 
-                    <div className={`flex flex-row items-start justify-between gap-x-20 my-7 `}>
+                    <div
+                        className={`flex flex-col lg:flex-row items-start justify-between lg:gap-x-20  mt-10 lg:mt-14  my-3 `}>
                         {/*left side */}
-                        <div className={` max-w-[30%]   w-full `}>
+                        <div className={` lg:max-w-[30%]   w-full `}>
                             {/*logo*/}
                             <div>
                                 <Image src={"/images/logo/TuneMSVG.svg"} alt={"logo"} width={200} height={200}
@@ -49,7 +50,7 @@ const UpdateFooter: React.FC = () => {
 
                             </div>
                             <div className={`my-5`}>
-                                <p className="textColor text-justify text-lg leading-6">
+                                <p className="textColor  block text-justify text-lg leading-6">
                                     We work with unique, handpicked trusted singers, top-tier songwriters, and
                                     professional
                                     engineers. All vocals are recorded in high-quality studio setups to ensure every
@@ -68,7 +69,7 @@ const UpdateFooter: React.FC = () => {
                                     <div className="  rounded-full">
                                         <a target="_blank"
                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaTiktok
-                                            className={"textColor"} size={25} /></a>
+                                            className={"textColor"} size={25}/></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
@@ -98,10 +99,38 @@ const UpdateFooter: React.FC = () => {
 
                                 </div>
                             </div>
+
+                            <div>
+                                <p className=" mt-5 textColor text-lg mb-2">
+                                    Sign up for our mailing list to get latest updates and offers
+                                </p>
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="flex items-center rounded-full overflow-hidden border border-gray-300 bg-white"
+                                >
+                                    <input
+                                        type="email"
+                                        required
+                                        placeholder="Enter your email address"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="flex-1 px-4 py-2 lg:py-2 text-lg headerColor focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="bg-yellow-400 cursor-pointer px-4 py-3 lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
+                                    >
+                                        <ArrowRight className="w-5 h-5 textColor" />
+                                    </button>
+                                </form>
+
+                            </div>
+
+
                         </div>
                         {/*right side footer menu item */}
-                        <div className={`max-w-[70%]   w-full `}>
-                            <div className="flex flex-row justify-between  ">
+                        <div className={`lg:max-w-[70%]   w-full `}>
+                            <div className="flex lg:flex-row flex-col justify-between  ">
                                 <div className="  ">
                                     <ul className="flex flex-col gap-1">
                                         <li className="text-lg headerColor font-bold leading-9">TUNEM</li>
@@ -152,8 +181,26 @@ const UpdateFooter: React.FC = () => {
                             </div>
                         </div>
                     </div>
-
-
+                    <div>
+                        <h1 className={`lg:text-lg text-sm textColor text-center  `}>Payment Methods</h1>
+                    </div>
+                    <div className="max-w-6xl mx-auto ">
+                        <Image
+                            src="/images/payment/paymentMethod.png"
+                            alt="payment-logo"
+                            width={600}
+                            height={400}
+                            className="mx-auto object-cover  " // center the image horizontally
+                            priority // optional: preload if this image is above the fold
+                        />
+                    </div>
+                    {/*date time */}
+                    <div>
+                        <p className="text-lg textColor">
+                            Copyright
+                            &copy; {new Date().getFullYear()} – Vocalfy LLC
+                        </p>
+                    </div>
                 </div>
             </MaxWidth>
         </div>
