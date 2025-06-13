@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {toast, Toaster} from 'react-hot-toast';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 
 type VocalItem = {
@@ -553,8 +554,8 @@ const BrowseAllVocal = () => {
 
 
     return (
-        <>
-            <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mx-auto px-4  ">
+        <MaxWidth>
+            <div style={{fontFamily: 'Favorit'}} className=" mx-auto  ">
                 <div className=' mt-12 mb-6 '>
                     <div className=' border border-white '></div>
                 </div>
@@ -1458,7 +1459,7 @@ const BrowseAllVocal = () => {
                             </h1>
                         </div>
 
-                        <div className=' max-w-[478px] lg:mt-8 mt-3 '>
+                        <div className=' max-w-[478px] lg:mt-5 mt-3 '>
                             <h1 className=' lg:text-lg text-[#ffffff] leading-6 font-thin '>Get access to top featured
                                 artists and rising voices, professionally recorded in studio environments. All vocals
                                 come from credited singers behind major releases — trusted by producers and labels
@@ -1466,7 +1467,7 @@ const BrowseAllVocal = () => {
                         </div>
 
 
-                        <div className="max-w-[700px] mx-auto lg:mt-[50px] mt-7 lg:space-y-12 space-y-3 ">
+                        <div className="max-w-[700px] mx-auto lg:mt-[50px] mt-5 space-y-2  ">
                             <div className=' flex flex-row gap-5  items-start  '>
                                 <div className=' w-[50px] h-[47px]  rounded-full bg-[#201F1F] '>
 
@@ -1563,7 +1564,7 @@ const BrowseAllVocal = () => {
                     prevTrack={prevTrack}
                 />
             )}
-        </>
+        </MaxWidth>
     );
 };
 
