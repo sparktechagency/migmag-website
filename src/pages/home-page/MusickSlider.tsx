@@ -7,6 +7,7 @@ import 'keen-slider/keen-slider.min.css';
 import {useKeenSlider} from 'keen-slider/react';
 import {FiPause, FiPlay} from 'react-icons/fi';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 interface AudioItem {
     id: number;
@@ -117,10 +118,12 @@ export default function MusicSlider() {
 
     return (
         <main className="lg:mt-32 mt-8">
-            <h1 style={{fontFamily: 'Favorit'}}
-                className="text-[#000000] text-2xl lg:text-4xl font-semibold  max-w-[1519px] px-4 lg:px-0 mx-auto ">
-                Latest Trending Vocals
-            </h1>
+            <MaxWidth>
+                <h1 style={{fontFamily: 'Favorit'}}
+                    className="headerColor text-2xl lg:text-4xl font-semibold  -0 mx-auto ">
+                    Latest Trending Vocals
+                </h1>
+            </MaxWidth>
 
             <div ref={sliderRef} className="keen-slider relative w-full lg:mt-9 mt-4">
                 {audioData.map((item, index) => (
@@ -136,32 +139,35 @@ export default function MusicSlider() {
                             </button>
                         </div>
 
-                        <h3 style={{fontFamily: 'Favorit'}} className="lg:text-lg font-bold mt-3">{item.title}</h3>
+                        <h3 style={{fontFamily: 'Favorit'}} className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
                         <p style={{fontFamily: 'Favorit'}}
-                           className="text-[#504E4E] lg:text-lg font-bold">{item.name}</p>
+                           className="textColor lg:text-lg font-bold">{item.name}</p>
                         <p style={{fontFamily: 'Favorit'}}
-                           className="text-[#504E4E] lg:text-lg font-bold">{item.price}</p>
+                           className="textColor lg:text-lg font-bold">{item.price}</p>
                     </div>
                 ))}
             </div>
 
-            <div style={{fontFamily: 'Favorit'}}
-                 className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
-                <div className="max-w-[1280px] lg:mt-[68px] mt-5">
-                    <h1 className="text-[#000000] text-2xl lg:text-4xl font-semibold px-4 lg:px-0   ">
-                        Updated every Friday with new royalty-free vocals curated for music producers looking to elevate
-                        their sound and stand out.
-                    </h1>
+            <MaxWidth>
+                <div style={{fontFamily: 'Favorit'}}
+                     className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
+                    <div className="max-w-[1280px] lg:mt-[68px] mt-5">
+                        <h1 className="headerColor text-2xl lg:text-4xl font-semibold px-4 lg:px-0   ">
+                            Updated every Friday with new royalty-free vocals curated for music producers looking to
+                            elevate
+                            their sound and stand out.
+                        </h1>
+                    </div>
+                    <div className="mt-4 md:mt-12">
+                        <Link href="/browse-vocal">
+                            <button
+                                className="bg-[#000000] cursor-pointer w-[194px] text-white py-2 rounded-2xl lg:text-lg">
+                                BROWSE VOCALS
+                            </button>
+                        </Link>
+                    </div>
                 </div>
-                <div className="mt-4 md:mt-12">
-                    <Link href="/browse-vocal">
-                        <button
-                            className="bg-[#000000] cursor-pointer w-[194px] text-white py-2 rounded-2xl lg:text-lg">
-                            BROWSE VOCALS
-                        </button>
-                    </Link>
-                </div>
-            </div>
+            </MaxWidth>
 
             {showModal && currentIndex !== null && (
                 <MusickPlayer

@@ -10,17 +10,18 @@ import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
 import Review from "@/pages/home-page/Review";
 import UseSound from "@/pages/home-page/UseSound";
+import UpdateFooter from "@/components/footer/UpdateFooter";
 
 const HomePage: React.FC = () => {
     return (
         <div>
             <div className={``}>
                 <Navbar></Navbar>
-                <div className='px-4  '>
+                <div className=''>
                     <HomeBanner></HomeBanner>
                 </div>
                 <MusickSlider></MusickSlider>
-                <div className=' px-4 lg:mt-[69px] mt-6 '>
+                <div className='  lg:mt-[69px] mt-6 '>
                     <TopTenVocal></TopTenVocal>
                 </div>
                 <div className='  '>
@@ -38,7 +39,8 @@ const HomePage: React.FC = () => {
                 <div>
                     <Review></Review>
                 </div>
-                <Footer></Footer>
+                {/*<Footer></Footer>*/}
+                <UpdateFooter></UpdateFooter>
                 <CookieConsent/>
             </div>
         </div>
