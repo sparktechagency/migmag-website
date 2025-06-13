@@ -6,6 +6,7 @@ import WaveSurfer from 'wavesurfer.js';
 import {Dialog, Transition} from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 interface Track {
     id: number;
@@ -260,226 +261,227 @@ const CartPage = () => {
 
     return (
         <div className="bg-[#f5fff8] min-h-screen">
-            <div className="max-w-[1539px] mx-auto px-4 pt-10">
-                <h1 style={{fontFamily: 'Degular'}} className="text-[#121212] text-3xl font-bold">My cart</h1>
-                <p style={{fontFamily: 'Degular'}} className="text-[#3A3A3A] font-medium mt-2 text-[16px]">
-                    List of songs that you selected for the cart section.
-                </p>
+            <MaxWidth>
+                <div className="max-w-[1539px] mx-auto  pt-10">
+                    <h1 style={{fontFamily: 'Degular'}} className="text-[#121212] text-3xl font-bold">My cart</h1>
+                    <p style={{fontFamily: 'Degular'}} className="text-[#3A3A3A] font-medium mt-2 text-[16px]">
+                        List of songs that you selected for the cart section.
+                    </p>
 
-                <div style={{fontFamily: 'Favorit'}} className="mt-10">
-                    <div className="overflow-x-auto w-full lg:block hidden ">
-                        {currentTracks.map((track) => (
-                            <div
-                                key={track.id}
-
-                                className="cursor-pointer flex flex-col lg:flex-row items-start lg:items-center justify-between bg-black text-white p-4 rounded-md mb-4 shadow hover:bg-[#1a1a1a] min-w-[350px]"
-                            >
-                                {/* Image + Title/Artist */}
-                                <div className="flex items-start gap-4 w-full lg:w-auto">
-                                    <div className="relative w-16 h-16 flex-shrink-0">
-                                        <Image width={93} height={91} src={track.image} alt="cover"
-                                               className="w-full h-full object-cover rounded-md"/>
-                                        <FaPlay onClick={() => openModal(track)}
-                                                className="absolute inset-0 m-auto text-yellow-400 w-6 h-6"/>
-                                    </div>
-                                    <div>
-                                        <div className="font-bold text-base">{track.title}</div>
-                                        <div className="text-sm text-gray-300">{track.artist}</div>
-                                    </div>
-                                </div>
-
-                                {/* Track Info */}
+                    <div style={{fontFamily: 'Favorit'}} className="mt-10">
+                        <div className="overflow-x-auto w-full lg:block hidden ">
+                            {currentTracks.map((track) => (
                                 <div
-                                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4 text-sm text-gray-200 mt-4 lg:mt-0 w-full lg:w-1/2 text-left sm:text-center">
-                                    <span>{track.genre}</span>
-                                    <span>{track.bpm}</span>
-                                    <span>{track.key}</span>
-                                    <span>{track.gender}</span>
-                                    <span>
+                                    key={track.id}
+
+                                    className="cursor-pointer flex flex-col lg:flex-row items-start lg:items-center justify-between bg-black text-white p-4 rounded-md mb-4 shadow hover:bg-[#1a1a1a] min-w-[350px]"
+                                >
+                                    {/* Image + Title/Artist */}
+                                    <div className="flex items-start gap-4 w-full lg:w-auto">
+                                        <div className="relative w-16 h-16 flex-shrink-0">
+                                            <Image width={93} height={91} src={track.image} alt="cover"
+                                                   className="w-full h-full object-cover rounded-md"/>
+                                            <FaPlay onClick={() => openModal(track)}
+                                                    className="absolute inset-0 m-auto text-yellow-400 w-6 h-6"/>
+                                        </div>
+                                        <div>
+                                            <div className="font-bold text-base">{track.title}</div>
+                                            <div className="text-sm text-gray-300">{track.artist}</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Track Info */}
+                                    <div
+                                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4 text-sm text-gray-200 mt-4 lg:mt-0 w-full lg:w-1/2 text-left sm:text-center">
+                                        <span>{track.genre}</span>
+                                        <span>{track.bpm}</span>
+                                        <span>{track.key}</span>
+                                        <span>{track.gender}</span>
+                                        <span>
                                         <span
                                             className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
                                             {track.license}
                                         </span>
                                     </span>
-                                </div>
-
-
-                                <div>
-                                    <Link href={`/checkout`}>
-                                        <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer"/>
-                                    </Link>
-                                </div>
-
-                                {/* Price + Cart */}
-                                <div className="flex items-center gap-4 mt-4 lg:mt-0 lg:justify-end w-full lg:w-auto">
-
-                                    <span className="bg-yellow-300 text-black font-bold px-4 py-1 rounded-full">
-                                        €{track.price}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* small device  */}
-
-                    <div className="overflow-x-auto w-full lg:hidden block ">
-                        {currentTracks.map((track) => (
-                            <div
-                                key={track.id}
-
-                                className="cursor-pointer flex flex-col lg:flex-row items-start lg:items-center justify-between bg-black text-white p-4 rounded-md mb-4 shadow hover:bg-[#1a1a1a] min-w-[350px]"
-                            >
-                                {/* Image + Title/Artist */}
-                                <div className="">
-                                    <div className="relative w-full h-full flex-shrink-0">
-                                        <Image width={93} height={91} src={track.image} alt="cover"
-                                               className="w-full h-full object-cover rounded-md"/>
-                                        <FaPlay onClick={() => openModal(track)}
-                                                className="absolute inset-0 m-auto text-yellow-400 w-6 h-6"/>
                                     </div>
 
-                                </div>
-                                <div className=' my-3  '>
-                                    <h1 className="font-bold text-base text-left ">{track.title}</h1>
-                                    <h1 className="text-sm text-gray-300 text-left ">{track.artist}</h1>
-                                </div>
 
-                                {/* Track Info */}
-                                <div className=" text-sm text-gray-200  flex flex-wrap gap-x-5  ">
-                                    <span>{track.genre}</span>
-                                    <span>{track.bpm}</span>
-                                    <span>{track.key}</span>
-                                    <span>{track.gender}</span>
-                                    <span
-                                        className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
-                                        {track.license}
-                                    </span>
                                     <div>
                                         <Link href={`/checkout`}>
                                             <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer"/>
                                         </Link>
                                     </div>
+
+                                    {/* Price + Cart */}
+                                    <div className="flex items-center gap-4 mt-4 lg:mt-0 lg:justify-end w-full lg:w-auto">
+
                                     <span className="bg-yellow-300 text-black font-bold px-4 py-1 rounded-full">
                                         €{track.price}
                                     </span>
+                                    </div>
                                 </div>
+                            ))}
+                        </div>
+
+                        {/* small device  */}
+
+                        <div className="overflow-x-auto w-full lg:hidden block ">
+                            {currentTracks.map((track) => (
+                                <div
+                                    key={track.id}
+
+                                    className="cursor-pointer flex flex-col lg:flex-row items-start lg:items-center justify-between bg-black text-white p-4 rounded-md mb-4 shadow hover:bg-[#1a1a1a] min-w-[350px]"
+                                >
+                                    {/* Image + Title/Artist */}
+                                    <div className="">
+                                        <div className="relative w-full h-full flex-shrink-0">
+                                            <Image width={93} height={91} src={track.image} alt="cover"
+                                                   className="w-full h-full object-cover rounded-md"/>
+                                            <FaPlay onClick={() => openModal(track)}
+                                                    className="absolute inset-0 m-auto text-yellow-400 w-6 h-6"/>
+                                        </div>
+
+                                    </div>
+                                    <div className=' my-3  '>
+                                        <h1 className="font-bold text-base text-left ">{track.title}</h1>
+                                        <h1 className="text-sm text-gray-300 text-left ">{track.artist}</h1>
+                                    </div>
+
+                                    {/* Track Info */}
+                                    <div className=" text-sm text-gray-200  flex flex-wrap gap-x-5  ">
+                                        <span>{track.genre}</span>
+                                        <span>{track.bpm}</span>
+                                        <span>{track.key}</span>
+                                        <span>{track.gender}</span>
+                                        <span
+                                            className={`px-3 py-1 rounded-full text-xs font-semibold ${licenseColors[track.license]}`}>
+                                        {track.license}
+                                    </span>
+                                        <div>
+                                            <Link href={`/checkout`}>
+                                                <FaShoppingCart size={24} className="text-yellow-300 cursor-pointer"/>
+                                            </Link>
+                                        </div>
+                                        <span className="bg-yellow-300 text-black font-bold px-4 py-1 rounded-full">
+                                        €{track.price}
+                                    </span>
+                                    </div>
 
 
-                                <div>
+                                    <div>
+
+                                    </div>
+
 
                                 </div>
+                            ))}
+                        </div>
 
 
-                            </div>
-                        ))}
-                    </div>
+                        <div>
 
+                        </div>
 
-                    <div>
-
-                    </div>
-
-                    <div className="flex justify-between items-center mt-6 text-sm text-[#344054]">
+                        <div className="flex justify-between items-center mt-6 text-sm text-[#344054]">
                         <span>
                             Page {currentPage} of {totalPages}
                         </span>
-                        <div className="space-x-2">
-                            <button
-                                className="border border-[#B0B0B0] shadow px-3 py-1 rounded disabled:opacity-50 cursor-pointer text-[#272727] text-sm"
-                                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                                disabled={currentPage === 1}
-                            >
-                                Previous
-                            </button>
-                            <button
-                                className="border border-[#B0B0B0] shadow px-3 py-1 rounded disabled:opacity-50 cursor-pointer text-[#272727] text-sm"
-                                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                                disabled={currentPage === totalPages}
-                            >
-                                Next
-                            </button>
+                            <div className="space-x-2">
+                                <button
+                                    className="border border-[#B0B0B0] shadow px-3 py-1 rounded disabled:opacity-50 cursor-pointer text-[#272727] text-sm"
+                                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                                    disabled={currentPage === 1}
+                                >
+                                    Previous
+                                </button>
+                                <button
+                                    className="border border-[#B0B0B0] shadow px-3 py-1 rounded disabled:opacity-50 cursor-pointer text-[#272727] text-sm"
+                                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                                    disabled={currentPage === totalPages}
+                                >
+                                    Next
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* player  */}
+                    {/* player  */}
 
-                <div style={{fontFamily: 'Favorit'}} className='px-4'>
-                    <Transition appear show={isOpen} as={Fragment}>
-                        <Dialog as="div" className="relative z-50" onClose={closeModal}>
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0"
-                                enterTo="opacity-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                            >
-                                <div className="fixed inset-0 bg-opacity-50  "/>
-                            </Transition.Child>
+                    <div style={{fontFamily: 'Favorit'}} className='px-4'>
+                        <Transition appear show={isOpen} as={Fragment}>
+                            <Dialog as="div" className="relative z-50" onClose={closeModal}>
+                                <Transition.Child
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0"
+                                    enterTo="opacity-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                >
+                                    <div className="fixed inset-0 bg-opacity-50  "/>
+                                </Transition.Child>
 
-                            <div className="fixed inset-0 overflow-y-auto">
-                                <div className="flex min-h-full items-end justify-center p-2 text-center">
-                                    <Transition.Child
-                                        as={Fragment}
-                                        enter="ease-out duration-300"
-                                        enterFrom="opacity-0 translate-y-4"
-                                        enterTo="opacity-100 translate-y-0"
-                                        leave="ease-in duration-200"
-                                        leaveFrom="opacity-100 translate-y-0"
-                                        leaveTo="opacity-0 translate-y-4"
-                                    >
-                                        <Dialog.Panel
-                                            className="w-full max-w-[1539px] mx-auto transform overflow-hidden rounded-t-xl bg-[#1e1e1e] text-white px-4 py-3 text-left align-middle shadow-xl transition-all">
-                                            {selectedTrack && (
-                                                <div className="space-y-3 flex flex-row items-center  ">
-                                                    <div className="flex items-center justify-between gap-x-6">
-                                                        <Image width={93} height={91} src={selectedTrack.image}
-                                                               alt="cover"
-                                                               className="w-16 h-16 rounded-md object-cover"/>
-                                                        <div>
-                                                            <h2 className="text-lg font-semibold">{selectedTrack.title}</h2>
-                                                            <p className="text-sm text-gray-400">{selectedTrack.artist}</p>
+                                <div className="fixed inset-0 overflow-y-auto">
+                                    <div className="flex min-h-full items-end justify-center p-2 text-center">
+                                        <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0 translate-y-4"
+                                            enterTo="opacity-100 translate-y-0"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100 translate-y-0"
+                                            leaveTo="opacity-0 translate-y-4"
+                                        >
+                                            <Dialog.Panel
+                                                className="w-full max-w-[1539px] mx-auto transform overflow-hidden rounded-t-xl bg-[#1e1e1e] text-white px-4 py-3 text-left align-middle shadow-xl transition-all">
+                                                {selectedTrack && (
+                                                    <div className="space-y-3 flex flex-row items-center  ">
+                                                        <div className="flex items-center justify-between gap-x-6">
+                                                            <Image width={93} height={91} src={selectedTrack.image}
+                                                                   alt="cover"
+                                                                   className="w-16 h-16 rounded-md object-cover"/>
+                                                            <div>
+                                                                <h2 className="text-lg font-semibold">{selectedTrack.title}</h2>
+                                                                <p className="text-sm text-gray-400">{selectedTrack.artist}</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div
-                                                        className="flex items-center justify-center ml-16 gap-4 text-yellow-300 text-xl mt-2">
-                                                        <FaStepBackward className="cursor-pointer" onClick={playPrev}/>
-                                                        {isPlaying ? (
-                                                            <FaPlay className="cursor-pointer" onClick={togglePlay}/>
-                                                        ) : (
-
-                                                            <FaPause className="cursor-pointer" onClick={togglePlay}/>
-                                                        )}
-                                                        <FaStepForward className="cursor-pointer" onClick={playNext}/>
-                                                    </div>
-                                                    <div className=' ml-11 '>
-                                                        <span>{formatTime(currentTime)}</span>
-                                                    </div>
-
-                                                    {/* Waveform container */}
-                                                    <div className="w-full max-w-[800px] mx-auto">
-                                                        {/* Waveform */}
-                                                        <div ref={waveformRef} className="w-full"/>
-
-                                                        {/* Progress bar */}
                                                         <div
-                                                            className="w-maw-w-[800px] h-1 bg-gray-300 rounded overflow-hidden mt-2">
-                                                            <div
-                                                                className="h-full bg-yellow-400 transition-all duration-100"
-                                                                style={{width: `${(currentTime / duration) * 100 || 0}%`}}
-                                                            />
+                                                            className="flex items-center justify-center ml-16 gap-4 text-yellow-300 text-xl mt-2">
+                                                            <FaStepBackward className="cursor-pointer" onClick={playPrev}/>
+                                                            {isPlaying ? (
+                                                                <FaPlay className="cursor-pointer" onClick={togglePlay}/>
+                                                            ) : (
+
+                                                                <FaPause className="cursor-pointer" onClick={togglePlay}/>
+                                                            )}
+                                                            <FaStepForward className="cursor-pointer" onClick={playNext}/>
                                                         </div>
-                                                    </div>
+                                                        <div className=' ml-11 '>
+                                                            <span>{formatTime(currentTime)}</span>
+                                                        </div>
 
-                                                    <div className="flex justify-between text-xs text-gray-400 px-1">
+                                                        {/* Waveform container */}
+                                                        <div className="w-full max-w-[800px] mx-auto">
+                                                            {/* Waveform */}
+                                                            <div ref={waveformRef} className="w-full"/>
 
-                                                        <span>-{formatTime(duration - currentTime)}</span>
-                                                    </div>
+                                                            {/* Progress bar */}
+                                                            <div
+                                                                className="w-maw-w-[800px] h-1 bg-gray-300 rounded overflow-hidden mt-2">
+                                                                <div
+                                                                    className="h-full bg-yellow-400 transition-all duration-100"
+                                                                    style={{width: `${(currentTime / duration) * 100 || 0}%`}}
+                                                                />
+                                                            </div>
+                                                        </div>
 
-                                                    <div>
+                                                        <div className="flex justify-between text-xs text-gray-400 px-1">
+
+                                                            <span>-{formatTime(duration - currentTime)}</span>
+                                                        </div>
+
+                                                        <div>
                                                         <span>
                                                             <svg width="37" height="33" viewBox="0 0 37 33" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
@@ -490,21 +492,22 @@ const CartPage = () => {
                                                             </svg>
 
                                                         </span>
+                                                        </div>
+
+
                                                     </div>
-
-
-                                                </div>
-                                            )}
-                                        </Dialog.Panel>
-                                    </Transition.Child>
+                                                )}
+                                            </Dialog.Panel>
+                                        </Transition.Child>
+                                    </div>
                                 </div>
-                            </div>
-                        </Dialog>
-                    </Transition>
+                            </Dialog>
+                        </Transition>
+                    </div>
+
+
                 </div>
-
-
-            </div>
+            </MaxWidth>
         </div>
     );
 };

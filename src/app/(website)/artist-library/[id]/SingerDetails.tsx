@@ -8,6 +8,7 @@ import {Dialog, Transition} from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {ArrowRight} from 'lucide-react';
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 
 interface Track {
@@ -316,52 +317,53 @@ const SingerDetails: React.FC = () => {
 
 
     return (
-        <div className=' max-w-[1539px] mx-auto px-4 mt-20   '>
-            {/* profile image  */}
-            <div style={{fontFamily: 'Favorit'}}
-                 className=' flex flex-col lg:flex-row items-center  lg:items-stretch justify-between '>
-                {/* left section  */}
-                <div>
-                    <div className=' flex flex-col lg:flex-row items-center lg:gap-x-16 '>
-                        {/* image  */}
-                        <div>
-                            <Image src={"/images/tune/tuneBanner/manageTune.png"}
-                                   className=' object-cover w-full mx-auto rounded-full ' width={120} height={120}
-                                   alt='Singer Image'/>
-                        </div>
-                        {/* description  */}
-                        <div>
-                            <h1 className=' text-xl mt-3 lg:mt-0 lg:text-2xl text-[#000000] leading-9 '>Ethan</h1>
-                            <div className='lg:mt-3 mt-1.5 text-white text-xl lg:space-x-4 space-x-3 '>
-                                <button
-                                    className=' bg-[#818080] cursor-pointer px-4 py-1 rounded-2xl lg:text-lg text-sm '>SINGER
-                                </button>
-                                <button
-                                    className=' bg-[#818080] cursor-pointer px-6 py-1 rounded-2xl lg:text-lg text-sm '>SONGWRITER
-                                </button>
+        <div className=' mt-20   '>
+            <MaxWidth>
+                {/* profile image  */}
+                <div style={{fontFamily: 'Favorit'}}
+                     className=' flex flex-col lg:flex-row items-center  lg:items-stretch justify-between '>
+                    {/* left section  */}
+                    <div>
+                        <div className=' flex flex-col lg:flex-row items-center lg:gap-x-16 '>
+                            {/* image  */}
+                            <div>
+                                <Image src={"/images/tune/tuneBanner/manageTune.png"}
+                                       className=' object-cover w-full mx-auto rounded-full ' width={120} height={120}
+                                       alt='Singer Image'/>
                             </div>
+                            {/* description  */}
+                            <div>
+                                <h1 className=' text-xl mt-3 lg:mt-0 lg:text-2xl headerColor leading-9 '>Ethan</h1>
+                                <div className='lg:mt-3 mt-1.5 text-white text-xl lg:space-x-4 space-x-3 '>
+                                    <button
+                                        className=' bg-[#E7F0FB] font-bold textColor cursor-pointer px-3 py-1 rounded-2xl text-sm '>SINGER
+                                    </button>
+                                    <button
+                                        className=' bg-[#FBEBFF]  font-bold textColor cursor-pointer px-3 py-1 rounded-2xl  text-sm '>SONGWRITER
+                                    </button>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/* right section  */}
-                <div className={`'>`}>
+                    {/* right section  */}
+                    <div className={`'>`}>
 
-                    <div className=' mt-8 lg:mt-[75px] flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
-                        <button style={{fontFamily: 'Degular'}}
-                                className=' flex cursor-pointer  items-center gap-x-2 lg:gap-x-3 text-sm lg:text-lg  lg:px-4 px-3.5 py-1 lg:py-1 border border-black rounded-2xl '>
-                            <span><svg width="27" height="27" viewBox="0 0 27 27" fill="none"
+                        <div className=' textColor mt-8 lg:mt-[75px] flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
+                            <button style={{fontFamily: 'Degular'}}
+                                    className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
+                            <span><svg width="27" height="25" viewBox="0 0 27 27" fill="none"
                                        xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd"
                                       d="M18 15.75C19.4918 15.75 20.9226 16.3426 21.9775 17.3975C23.0324 18.4524 23.625 19.8832 23.625 21.375V23.625C23.625 23.9234 23.5065 24.2095 23.2955 24.4205C23.0845 24.6315 22.7984 24.75 22.5 24.75C22.2016 24.75 21.9155 24.6315 21.7045 24.4205C21.4935 24.2095 21.375 23.9234 21.375 23.625V21.375C21.375 20.4799 21.0194 19.6214 20.3865 18.9885C19.7536 18.3556 18.8951 18 18 18H9C8.10489 18 7.24645 18.3556 6.61351 18.9885C5.98058 19.6214 5.625 20.4799 5.625 21.375V23.625C5.625 23.9234 5.50647 24.2095 5.29549 24.4205C5.08452 24.6315 4.79837 24.75 4.5 24.75C4.20163 24.75 3.91548 24.6315 3.7045 24.4205C3.49353 24.2095 3.375 23.9234 3.375 23.625V21.375C3.375 19.8832 3.96763 18.4524 5.02252 17.3975C6.07742 16.3426 7.50816 15.75 9 15.75H18ZM24.0907 10.2161C24.2927 10.0122 24.565 9.89321 24.8519 9.88348C25.1387 9.87375 25.4184 9.97402 25.6338 10.1638C25.8491 10.3535 25.9838 10.6184 26.0102 10.9042C26.0367 11.19 25.9529 11.4751 25.776 11.7011L25.6815 11.808L22.5 14.9895C22.3063 15.1832 22.0485 15.2996 21.7751 15.3168C21.5017 15.3339 21.2315 15.2508 21.015 15.0829L20.9093 14.9895L19.3185 13.3988C19.1146 13.1968 18.9956 12.9245 18.9859 12.6376C18.9761 12.3508 19.0764 12.0711 19.2661 11.8557C19.4559 11.6404 19.7208 11.5057 20.0066 11.4793C20.2924 11.4528 20.5775 11.5366 20.8035 11.7135L20.9093 11.8069L21.7046 12.6034L24.0907 10.2161ZM13.5 2.25C14.9918 2.25 16.4226 2.84263 17.4775 3.89752C18.5324 4.95242 19.125 6.38316 19.125 7.875C19.125 9.36684 18.5324 10.7976 17.4775 11.8525C16.4226 12.9074 14.9918 13.5 13.5 13.5C12.0082 13.5 10.5774 12.9074 9.52252 11.8525C8.46763 10.7976 7.875 9.36684 7.875 7.875C7.875 6.38316 8.46763 4.95242 9.52252 3.89752C10.5774 2.84263 12.0082 2.25 13.5 2.25ZM13.5 4.5C13.0568 4.5 12.6179 4.5873 12.2084 4.75691C11.799 4.92652 11.4269 5.17512 11.1135 5.48851C10.8001 5.80191 10.5515 6.17397 10.3819 6.58344C10.2123 6.99292 10.125 7.43179 10.125 7.875C10.125 8.31821 10.2123 8.75708 10.3819 9.16656C10.5515 9.57603 10.8001 9.94809 11.1135 10.2615C11.4269 10.5749 11.799 10.8235 12.2084 10.9931C12.6179 11.1627 13.0568 11.25 13.5 11.25C14.3951 11.25 15.2536 10.8944 15.8865 10.2615C16.5194 9.62855 16.875 8.77011 16.875 7.875C16.875 6.97989 16.5194 6.12145 15.8865 5.48851C15.2536 4.85558 14.3951 4.5 13.5 4.5Z"
                                       fill="#222222"/>
                             </svg>
                             </span>FOLLOW
-                        </button>
+                            </button>
 
-                        <Link href={"/hire"}>
-                            <button
-                                className=' flex cursor-pointer  items-center gap-x-2 lg:gap-x-3 text-sm lg:text-lg  lg:px-4 px-3.5 py-1 lg:py-1 border border-black rounded-2xl '>
+                            <Link href={"/hire"}>
+                                <button
+                                    className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
                                 <span>
                                     <svg width="27" height="27" viewBox="0 0 35 35" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -372,218 +374,144 @@ const SingerDetails: React.FC = () => {
 
 
                                 </span>
-                                HIRE NOW
-                            </button>
-                        </Link>
+                                    HIRE NOW
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            {/* singer vocal  */}
+                {/* singer vocal  */}
 
 
-            <div style={{fontFamily: 'Favorit'}} className="max-w-[1539px] mx-auto px-4  pt-4 lg:pt-10">
-                <h1 className="text-[#121212] text-xl lg:text-3xl font-bold">Available <span
-                    className=' text-[#818080] '>Vocals</span></h1>
+                <div style={{fontFamily: 'Favorit'}} className="max-w-[1539px] mx-auto px-4  pt-4 lg:pt-10">
+                    <h1 className="headerColor text-xl lg:text-3xl font-bold">Available <span
+                        className='  '>Vocals</span></h1>
 
-                <div
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-md shadow p-4 w-full max-w-4xl mx-auto">
-                    {/* Left: Image & Play */}
-                    <div className="flex items-center gap-4 w-full sm:w-auto">
-                        <Image
-                            src="/images/artist-library/artist/artist-1.png"
-                            alt="Album Cover"
-                            className="w-14 h-14 object-cover rounded"
-                            width={56}
-                            height={56}
-                        />
-                        <button
-                            className="w-0 h-0 border-l-[10px] border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
-                        />
-                        <div>
-                            <p className="font-semibold text-sm">The Last Time</p>
-                            <p className="text-xs text-gray-500">Nate · 144 BPM · C#min</p>
+                    <div
+                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-md shadow p-4 w-full max-w-4xl mx-auto mt-2 ">
+                        {/* Left: Image & Play */}
+                        <div className="flex items-center gap-4 w-full sm:w-auto">
+                            <Image
+                                src="/images/artist-library/artist/artist-1.png"
+                                alt="Album Cover"
+                                className="w-14 h-14 object-cover rounded"
+                                width={56}
+                                height={56}
+                            />
+                            <button
+                                className="w-0 h-0 border-l-[10px] cursor-pointer border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
+                            />
+                            <div>
+                                <p className="font-semibold text-sm">The Last Time</p>
+                                <p className="text-xs textColor ">Nate · 144 BPM · C#min</p>
+                            </div>
+                        </div>
+
+                        {/* Middle: Genre and License */}
+                        <div
+                            className="flex flex-wrap sm:flex-nowrap items-center gap-4 text-sm textColor w-full sm:w-auto justify-start sm:justify-center">
+                            <span>Eurodance</span>
+                            <span>Non-Exclusive</span>
+                        </div>
+
+                        {/* Right: Price and Button */}
+                        <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                            <span className="text-sm textColor font-medium">$34</span>
+                            <button className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
+                                Get Vocal
+                            </button>
                         </div>
                     </div>
 
-                    {/* Middle: Genre and License */}
-                    <div
-                        className="flex flex-wrap sm:flex-nowrap items-center gap-4 text-sm text-gray-500 w-full sm:w-auto justify-start sm:justify-center">
-                        <span>Eurodance</span>
-                        <span>Non-Exclusive</span>
-                    </div>
-
-                    {/* Right: Price and Button */}
-                    <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                        <span className="text-sm font-medium">$34</span>
-                        <button className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
-                            Get Vocal
-                        </button>
-                    </div>
-                </div>
 
 
-                {/*<div className="lg:mt-10 mt-4 overflow-x-auto">*/}
-                {/*    <table className="min-w-full table-auto  text-white rounded-md shadow">*/}
-                {/*        <thead>*/}
-
-                {/*        </thead>*/}
-                {/*        <tbody>*/}
-                {/*        {tracks.map((track) => (*/}
-                {/*            <tr*/}
-
-                {/*                key={track.id}*/}
-
-                {/*                onClick={() => {*/}
-
-                {/*                    setSelectedTrackId(track.id);*/}
-                {/*                }}*/}
-                {/*                className={`cursor-pointer text-black ${selectedTrackId === track.id ? "bg-black text-white " : ""*/}
-                {/*                } ${track.id % 2 === 0 ? " bg-[#D9D9D95E] " : ""} `}*/}
-                {/*            >*/}
-                {/*                <td onClick={() => openModal(track)} className="p-4 lg:px-10">*/}
-                {/*                    <div className="relative w-16 h-16">*/}
-                {/*                        <Image*/}
-                {/*                            src={track.image}*/}
-                {/*                            width={93}*/}
-                {/*                            height={91}*/}
-                {/*                            alt="cover"*/}
-                {/*                            className="w-full h-full object-cover rounded-md"*/}
-                {/*                        />*/}
-                {/*                        <div*/}
-                {/*                            className="absolute inset-0 m-auto w-8 h-8 border-2 border-yellow-400 rounded-full flex items-center justify-center">*/}
-                {/*                            <FaPlay className="text-yellow-400 w-4 h-4"/>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                </td>*/}
-                {/*                <td className="p-4 lg:px-10 ">*/}
-                {/*                    <div className="font-bold">{track.title}</div>*/}
-                {/*                    <div className="text-sm ">{track.artist}</div>*/}
-                {/*                </td>*/}
-                {/*                <td className="p-4 lg:px-10 text-start">{track.genre}</td>*/}
-                {/*                <td className="p-4 lg:px-10 text-start">{track.bpm}</td>*/}
-                {/*                <td className="p-4 lg:px-10 text-start">{track.key}</td>*/}
-                {/*                /!*<td className="p-4 lg:px-10 text-start">{track.gender}</td>*!/*/}
-                {/*                <td className="p-4 lg:px-10 text-start flex flex-row items-center mt-5 gap-x-5 w-full ">*/}
-                {/*                    <button*/}
-                {/*                        className={`px-3 py-1 rounded-full w-[70%] text-xs font-semibold flex justify-center gap-3.5 items-center ${licenseColors[track.license]}`}*/}
-                {/*                    >*/}
-                {/*                        {track.license}*/}
-                {/*                    </button>*/}
-                {/*                    <span*/}
-                {/*                        className={`flex justify-center items-center ${licenseColorsText[track.license]}`}>*/}
-                {/*                            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"*/}
-                {/*                                 xmlns="http://www.w3.org/2000/svg">*/}
-                {/*                                <path*/}
-                {/*                                    d="M11.64 16V13.66C11.64 12.28 12.22 11.76 13.64 11.76H13.86C15.06 11.76 15.84 10.98 15.84 9.78C15.84 8.56 15.04 7.8 13.66 7.8H9.7V6H13.96C16.24 6 17.8 7.5 17.8 9.78C17.8 12 16 13.46 14.24 13.46C13.74 13.46 13.54 13.66 13.54 14.16V16H11.64ZM11.54 20V17.8H13.64V20H11.54Z"*/}
-                {/*                                    fill="#818080"/>*/}
-                {/*                                <circle cx="13" cy="13" r="12.5" stroke="#818080"/>*/}
-                {/*                            </svg>*/}
-                {/*                        </span>*/}
-                {/*                </td>*/}
-                {/*                <td className="p-4 lg:px-10 text-start">*/}
-                {/*                        <span className=" text-black font-bold px-4 py-1 rounded-full">*/}
+                    {/*</div>*/}
 
 
-                {/*                            {*/}
-                {/*                                selectedTrackId === track.id ? <>*/}
-                {/*                                    <button*/}
-                {/*                                        className=' bg-white cursor-pointer text-black text-lg font-medium text-center px-4 rounded-full '> Add*/}
-                {/*                                        to cart*/}
-                {/*                                    </button>*/}
-                {/*                                </> : <button*/}
-                {/*                                    className=' bg-[#E7F056] cursor-pointer px-4 rounded-full py-0.5 '>€{track.price}</button>*/}
-                {/*                            }*/}
+                    {/* bottom player  */}
 
+                    <div className='px-4'>
+                        <Transition appear show={isOpen} as={Fragment}>
+                            <Dialog as="div" className="relative z-50" onClose={closeModal}>
+                                <Transition.Child
+                                    as={Fragment}
+                                    enter="ease-out duration-300"
+                                    enterFrom="opacity-0"
+                                    enterTo="opacity-100"
+                                    leave="ease-in duration-200"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                >
+                                    <div className="fixed inset-0 bg-opacity-50  "/>
+                                </Transition.Child>
 
-                {/*                        </span>*/}
-                {/*                </td>*/}
-
-                {/*            </tr>*/}
-                {/*        ))}*/}
-                {/*        </tbody>*/}
-                {/*    </table>*/}
-                {/*</div>*/}
-
-
-                {/* bottom player  */}
-
-                <div className='px-4'>
-                    <Transition appear show={isOpen} as={Fragment}>
-                        <Dialog as="div" className="relative z-50" onClose={closeModal}>
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0"
-                                enterTo="opacity-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                            >
-                                <div className="fixed inset-0 bg-opacity-50  "/>
-                            </Transition.Child>
-
-                            <div className="fixed inset-0 overflow-y-auto">
-                                <div className="flex min-h-full items-end justify-center p-2 text-center">
-                                    <Transition.Child
-                                        as={Fragment}
-                                        enter="ease-out duration-300"
-                                        enterFrom="opacity-0 translate-y-4"
-                                        enterTo="opacity-100 translate-y-0"
-                                        leave="ease-in duration-200"
-                                        leaveFrom="opacity-100 translate-y-0"
-                                        leaveTo="opacity-0 translate-y-4"
-                                    >
-                                        <Dialog.Panel
-                                            className="w-full max-w-[1539px] mx-auto transform overflow-hidden rounded-t-xl bg-[#1e1e1e] text-white px-4 py-3 text-left align-middle shadow-xl transition-all">
-                                            {selectedTrack && (
-                                                <div className="space-y-3 flex flex-row items-center  ">
-                                                    <div className="flex items-center justify-between gap-x-6">
-                                                        <Image width={93} height={91} src={selectedTrack.image}
-                                                               alt="cover"
-                                                               className="w-16 h-16 rounded-md object-cover"/>
-                                                        <div>
-                                                            <h2 className="text-lg font-semibold">{selectedTrack.title}</h2>
-                                                            <p className="text-sm text-gray-400">{selectedTrack.artist}</p>
+                                <div className="fixed inset-0 overflow-y-auto">
+                                    <div className="flex min-h-full items-end justify-center p-2 text-center">
+                                        <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300"
+                                            enterFrom="opacity-0 translate-y-4"
+                                            enterTo="opacity-100 translate-y-0"
+                                            leave="ease-in duration-200"
+                                            leaveFrom="opacity-100 translate-y-0"
+                                            leaveTo="opacity-0 translate-y-4"
+                                        >
+                                            <Dialog.Panel
+                                                className="w-full max-w-[1539px] mx-auto transform overflow-hidden rounded-t-xl bg-[#1e1e1e] text-white px-4 py-3 text-left align-middle shadow-xl transition-all">
+                                                {selectedTrack && (
+                                                    <div className="space-y-3 flex flex-row items-center  ">
+                                                        <div className="flex items-center justify-between gap-x-6">
+                                                            <Image width={93} height={91} src={selectedTrack.image}
+                                                                   alt="cover"
+                                                                   className="w-16 h-16 rounded-md object-cover"/>
+                                                            <div>
+                                                                <h2 className="text-lg font-semibold">{selectedTrack.title}</h2>
+                                                                <p className="text-sm text-gray-400">{selectedTrack.artist}</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div
-                                                        className="flex items-center justify-center ml-16 gap-4 text-yellow-300 text-xl mt-2">
-                                                        <FaStepBackward className="cursor-pointer" onClick={playPrev}/>
-                                                        {isPlaying ? (
-                                                            <FaPlay className="cursor-pointer" onClick={togglePlay}/>
-                                                        ) : (
-
-                                                            <FaPause className="cursor-pointer" onClick={togglePlay}/>
-                                                        )}
-                                                        <FaStepForward className="cursor-pointer" onClick={playNext}/>
-                                                    </div>
-                                                    <div className=' ml-11 '>
-                                                        <span>{formatTime(currentTime)}</span>
-                                                    </div>
-
-                                                    {/* Waveform container */}
-                                                    <div className="w-full max-w-[800px] mx-auto">
-                                                        {/* Waveform */}
-                                                        <div ref={waveformRef} className="w-full"/>
-
-                                                        {/* Progress bar */}
                                                         <div
-                                                            className="w-maw-w-[800px] h-1 bg-gray-300 rounded overflow-hidden mt-2">
-                                                            <div
-                                                                className="h-full bg-yellow-400 transition-all duration-100"
-                                                                style={{width: `${(currentTime / duration) * 100 || 0}%`}}
-                                                            />
+                                                            className="flex items-center justify-center ml-16 gap-4 text-yellow-300 text-xl mt-2">
+                                                            <FaStepBackward className="cursor-pointer"
+                                                                            onClick={playPrev}/>
+                                                            {isPlaying ? (
+                                                                <FaPlay className="cursor-pointer"
+                                                                        onClick={togglePlay}/>
+                                                            ) : (
+
+                                                                <FaPause className="cursor-pointer"
+                                                                         onClick={togglePlay}/>
+                                                            )}
+                                                            <FaStepForward className="cursor-pointer"
+                                                                           onClick={playNext}/>
                                                         </div>
-                                                    </div>
+                                                        <div className=' ml-11 '>
+                                                            <span>{formatTime(currentTime)}</span>
+                                                        </div>
 
-                                                    <div className="flex justify-between text-xs text-gray-400 px-1">
+                                                        {/* Waveform container */}
+                                                        <div className="w-full max-w-[800px] mx-auto">
+                                                            {/* Waveform */}
+                                                            <div ref={waveformRef} className="w-full"/>
 
-                                                        <span>-{formatTime(duration - currentTime)}</span>
-                                                    </div>
+                                                            {/* Progress bar */}
+                                                            <div
+                                                                className="w-maw-w-[800px] h-1 bg-gray-300 rounded overflow-hidden mt-2">
+                                                                <div
+                                                                    className="h-full bg-yellow-400 transition-all duration-100"
+                                                                    style={{width: `${(currentTime / duration) * 100 || 0}%`}}
+                                                                />
+                                                            </div>
+                                                        </div>
 
-                                                    <div>
+                                                        <div
+                                                            className="flex justify-between text-xs text-gray-400 px-1">
+
+                                                            <span>-{formatTime(duration - currentTime)}</span>
+                                                        </div>
+
+                                                        <div>
                                                         <span>
                                                             <svg width="37" height="33" viewBox="0 0 37 33" fill="none"
                                                                  xmlns="http://www.w3.org/2000/svg">
@@ -594,278 +522,244 @@ const SingerDetails: React.FC = () => {
                                                             </svg>
 
                                                         </span>
+                                                        </div>
+
+
                                                     </div>
-
-
-                                                </div>
-                                            )}
-                                        </Dialog.Panel>
-                                    </Transition.Child>
+                                                )}
+                                            </Dialog.Panel>
+                                        </Transition.Child>
+                                    </div>
                                 </div>
-                            </div>
-                        </Dialog>
-                    </Transition>
-                </div>
-            </div>
-
-
-            {/* More Singers */}
-
-            <div style={{fontFamily: 'Favorit'}} className='px-4  '>
-
-                <div className=' mt-7 '>
-                    <p className=' leading-6 text-[#818080] text-lg '>*all vocals are royalty free, both non-exclusive
-                        and exclusive vocals.</p>
-                </div>
-
-                <div className=' flex flex-col lg:flex-row space-y-2.5 justify-between items-center mt-4 '>
-                    <p className=' text-3xl font-bold '>More <span className=' text-[#818080] '>Singers</span></p>
-                    <Link href={""} className=' '>
-                        <button
-                            className=' flex cursor-pointer  items-center gap-x-5 rounded-2xl px-7 py-1.5 border border-black text-lg  '>
-                            BROWSE SINGERS
-                        </button>
-                    </Link>
-                </div>
-
-                <div
-                    className="mt-6 lg:mt-14 grid gap-6 sm:gap-8 lg:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto lg:grid-cols-4">
-                    {singers.map((singer) => (
-                        <div
-                            onClick={() => getSingerId(singer.id)}
-                            key={singer.id}
-                            className="cursor-pointer transition-transform duration-300 hover:-translate-y-1"
-                        >
-                            <div className="w-full max-w-[357px] mx-auto rounded-md p-5 bg-[#222222]">
-                                <Image
-                                    src={singer.image}
-                                    width={340}
-                                    height={219}
-                                    alt={`${singer.name} Image`}
-                                    className="w-full h-auto object-cover rounded-md"
-                                />
-
-                                <div className="mt-4">
-                                    <h1 className="text-white text-lg leading-6">{singer.name}</h1>
-                                </div>
-
-                                <div className="mt-2">
-                                    <p className="text-[#818080] text-base leading-6">{singer.role}</p>
-                                    <p className="mt-2 text-[#818080] text-base leading-6">
-                                        Genre: {singer.genre}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-            </div>
-
-
-            {/* contact us browse vocal section  */}
-
-            <div style={{fontFamily: 'Favorit'}}
-                 className=' flex flex-col lg:flex-row justify-between items-center px-4 lg:space-y-0 space-y-4 lg:gap-x-11 mt-[66px] '>
-                {/*<div className='w-full p-6 bg-[#D9D9D9]  '>*/}
-                {/*    <div className="max-w-[516px] pt-7 lg:pt-14 space-y-2">*/}
-                {/*        <h1 className="lg:text-4xl text-lg lg:leading-10 font-semibold">*/}
-                {/*            Not finding the vocal you*/}
-                {/*        </h1>*/}
-
-
-                {/*    </div>*/}
-                {/*    <div className="flex flex-col  lg:flex-row lg:items-center justify-between pb-4 gap-3">*/}
-                {/*        <h1 className="lg:text-4xl text-lg lg:leading-10 font-semibold">*/}
-                {/*            Are looking for?*/}
-                {/*        </h1>*/}
-                {/*        <Link href="">*/}
-                {/*            <button*/}
-                {/*                className="flex items-center  rounded-2xl px-7 py-1.5 border border-black lg:text-lg cursor-pointer">*/}
-                {/*                BROWSE SINGERS*/}
-                {/*            </button>*/}
-                {/*        </Link>*/}
-                {/*    </div>*/}
-
-                {/*</div>*/}
-                {/*<div className='w-full p-6 bg-[#D9D9D9]  '>*/}
-                {/*    <div className="max-w-[516px] pt-7 lg:pt-14 space-y-2">*/}
-                {/*        <h1 className="lg:text-4xl text-lg lg:leading-10 font-semibold">*/}
-                {/*            looking for something*/}
-                {/*        </h1>*/}
-
-
-                {/*    </div>*/}
-                {/*    <div className="flex flex-col  lg:flex-row lg:items-center justify-between pb-4 gap-3">*/}
-                {/*        <h1 className="lg:text-4xl text-lg lg:leading-10 font-semiboldd">*/}
-                {/*            More specific?*/}
-                {/*        </h1>*/}
-                {/*        <Link href="/contact">*/}
-                {/*            <button*/}
-                {/*                className="flex items-center gap-x-5 rounded-2xl px-7 py-1.5 border border-black lg:text-lg cursor-pointer">*/}
-                {/*                CONTACT US*/}
-                {/*            </button>*/}
-                {/*        </Link>*/}
-                {/*    </div>*/}
-
-                {/*</div>*/}
-            </div>
-
-
-            <div style={{fontFamily: 'Favorit'}} className=' mt-16 px-4 '>
-
-                <div className=' border border-[#000000] '></div>
-                <div
-                    className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-16 mt-6  '>
-                    <div>
-                        <p className=' lg:rotate-90 text-[#000000] lg:text-lg lg:absolute lg:top-14 lg:-ml-20  '>JUST
-                            FOR YOU</p>
+                            </Dialog>
+                        </Transition>
                     </div>
-                    {/* left side  */}
-                    <div>
-                        <Image src={"/images/hire/bannerImg/hireBannerImg.png"}
-                               className=' object-cover rounded-lg block mx-auto my-1 ' width={652} height={654}
-                               alt='....'/>
+                </div>
+
+
+                {/* More Singers */}
+
+                <div style={{fontFamily: 'Favorit'}} className='px-4  '>
+
+                    <div className=' mt-7 '>
+                        <p className=' leading-6 textColor text-lg '>*all vocals are royalty free, both
+                            non-exclusive
+                            and exclusive vocals.</p>
                     </div>
-                    {/* right side  */}
-                    <div>
-                        <div className=' max-w-[411px] '>
-                            <h1 className=' text-2xl lg:text-[35px] font-bold text-[#000000] leading-9 '>
-                                What’s included when you buy it?
-                            </h1>
+
+                    <div className=' flex flex-col lg:flex-row space-y-2.5 justify-between items-center mt-4 '>
+                        <p className=' text-3xl font-bold '>More <span className=' headerColor '>Singers</span></p>
+                        <Link href={""} className=' '>
+                            <button
+                                className=' flex cursor-pointer  items-center gap-x-5 rounded-2xl px-2 text-sm py-1.5 border border-black  '>
+                                BROWSE SINGERS
+                            </button>
+                        </Link>
+                    </div>
+
+                    <div
+                        className="mt-6 lg:mt-14 grid gap-6 sm:gap-8 lg:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-auto lg:grid-cols-4">
+                        {singers.map((singer) => (
+                            <div
+                                onClick={() => getSingerId(singer.id)}
+                                key={singer.id}
+                                className="cursor-pointer transition-transform duration-300 hover:-translate-y-1"
+                            >
+                                <div className="w-full max-w-[357px] mx-auto rounded-md p-5 bg-[#222222]">
+                                    <Image
+                                        src={singer.image}
+                                        width={340}
+                                        height={219}
+                                        alt={`${singer.name} Image`}
+                                        className="w-full h-auto object-cover rounded-md"
+                                    />
+
+                                    <div className="mt-4">
+                                        <h1 className="text-white text-lg leading-6">{singer.name}</h1>
+                                    </div>
+
+                                    <div className="mt-2">
+                                        <p className="text-[#818080] text-base leading-6">{singer.role}</p>
+                                        <p className="mt-2 text-[#818080] text-base leading-6">
+                                            Genre: {singer.genre}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+
+
+                {/* contact us browse vocal section  */}
+
+                <div style={{fontFamily: 'Favorit'}}
+                     className=' flex flex-col lg:flex-row justify-between items-center px-4 lg:space-y-0 space-y-4 lg:gap-x-11 mt-[66px] '>
+                </div>
+
+
+                <div style={{fontFamily: 'Favorit'}} className=' mt-16 px-4 '>
+
+                    <div className=' border border-[#000000] '></div>
+                    <div
+                        className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-16 mt-6  '>
+                        <div>
+                            <p className=' lg:rotate-90 textColor lg:text-lg lg:absolute lg:top-14 lg:-ml-20  '>JUST
+                                FOR YOU</p>
                         </div>
-
-                        <div className=' max-w-[478px] lg:mt-8 mt-3 '>
-                            <h1 className=' lg:text-lg text-[#000000] leading-6 font-thin '>
-                                WET mixed vocals (with fx), Multiple DRY Vocal Takes and Lyrics PDF. All files in 24bit
-                                WAV.
-                            </h1>
+                        {/* left side  */}
+                        <div>
+                            <Image src={"/images/hire/bannerImg/hireBannerImg.png"}
+                                   className=' object-cover rounded-lg block mx-auto my-1 ' width={652} height={654}
+                                   alt='....'/>
                         </div>
-
-
-                        <div className="max-w-[700px] mx-auto lg:mt-[50px] mt-7  space-y-6 ">
-                            <div className=' lg:w-[50px] lg:h-[47px]   rounded-full bg-[#D9D9D9] '>
-
+                        {/* right side  */}
+                        <div>
+                            <div className=' max-w-[411px] '>
+                                <h1 className=' text-2xl lg:text-[35px] font-bold headerColor leading-9 '>
+                                    What’s included when you buy it?
+                                </h1>
                             </div>
-                            <div className=' lg:ml-14 -mt-4  '>
 
-                                <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#000000] font-bold lg:text-xl ">WET Mixed Vocals (with FX)</p>
-                                    <p className="text-[#000000] font-light mt-4 lg:text-lg leading-7">
-                                        We make sure that you get only the best premium quality vocals by only working
-                                        with the industry’s finest artists. This makes us the #1 vocal provider.
-                                    </p>
+                            <div className=' max-w-[478px] mt-3 '>
+                                <h1 className=' lg:text-lg textColor leading-6 font-thin '>
+                                    WET mixed vocals (with fx), Multiple DRY Vocal Takes and Lyrics PDF. All files in
+                                    24bit
+                                    WAV.
+                                </h1>
+                            </div>
+
+
+                            <div className="max-w-[700px] mx-auto mt-4  ">
+                                <div className=' lg:w-[50px] lg:h-[47px]   rounded-full bg-[#D9D9D9] '>
+
+                                </div>
+                                <div className=' lg:ml-14 -mt-4  '>
+
+                                    <div className=" transition duration-300 w-full ">
+                                        <p className="headerColor font-bold lg:text-xl ">WET Mixed Vocals (with
+                                            FX)</p>
+                                        <p className="textColor font-light mt-4 lg:text-lg leading-7">
+                                            We make sure that you get only the best premium quality vocals by only
+                                            working
+                                            with the industry’s finest artists. This makes us the #1 vocal provider.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
+
+                                </div>
+                                <div className=' lg:ml-14 -mt-4 '>
+
+                                    <div className=" transition duration-300 w-full ">
+                                        <p className= " headerColor font-bold lg:text-xl mb-4">Multiple DRY Vocal
+                                            Takes</p>
+                                        <p className="textColor font-light mt-4 lg:text-lg leading-7">
+                                            You find our vocals only on Vocalfy and nowhere else. We delete our
+                                            Non-Exclusive vocals regularly to make sure you’ll get a rare vocal. </p>
+                                    </div>
+                                </div>
+
+                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
+
+                                </div>
+                                <div className=' lg:ml-14 -mt-4 '>
+
+                                    <div className=" transition duration-300 w-full ">
+                                        <p className="headerColor font-bold lg:text-xl mb-4">Lyrics PDF</p>
+                                        <p className="textColor font-light mt-4 lg:text-lg leading-7">
+                                            Our contracts are easy to understand without any sketchy clauses. Download
+                                            your
+                                            license for each of your vocals. Pick a vocal and start without
+                                            obstacles. </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
 
-                            </div>
-                            <div className=' lg:ml-14 -mt-4 '>
 
-                                <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#000000] font-bold lg:text-xl mb-4">Multiple DRY Vocal Takes</p>
-                                    <p className="text-[#000000] font-light mt-4 lg:text-lg leading-7">
-                                        You find our vocals only on Vocalfy and nowhere else. We delete our
-                                        Non-Exclusive vocals regularly to make sure you’ll get a rare vocal. </p>
-                                </div>
-                            </div>
-
-                            <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
-                            </div>
-                            <div className=' lg:ml-14 -mt-4 '>
-
-                                <div className=" transition duration-300 w-full ">
-                                    <p className="text-[#000000] font-bold lg:text-xl mb-4">Lyrics PDF</p>
-                                    <p className="text-[#000000] font-light mt-4 lg:text-lg leading-7">
-                                        Our contracts are easy to understand without any sketchy clauses. Download your
-                                        license for each of your vocals. Pick a vocal and start without obstacles. </p>
-                                </div>
-                            </div>
                         </div>
 
-
                     </div>
+
 
                 </div>
 
 
-            </div>
+                {/* Card Section */}
+                <div style={{fontFamily: 'Favorit'}}
+                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
+                    <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
+                        <div className=' lg:w-[50px] lg:h-[47px] mt-4  rounded-full bg-[#D9D9D9] '>
 
+                        </div>
 
-            {/* Card Section */}
-            <div style={{fontFamily: 'Favorit'}}
-                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
-                <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
-                    <div className=' lg:w-[50px] lg:h-[47px] mt-4  rounded-full bg-[#D9D9D9] '>
-
-                    </div>
-
-                    <h1 className="text-xl lg:text-3xl leading-9 font-bold mt-5 ">
-                        100% Royalty free
-                    </h1>
-                    <div className="mt-6 lg:text-lg leading-6">
-                        <p>Use your vocals anywhere. No limits. Cleared for release. Keep all royalties..</p>
-                    </div>
-                </div>
-                <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
-                    <div className=' lg:w-[50px] lg:h-[47px] mt-4   rounded-full bg-[#D9D9D9] '>
-
-                    </div>
-
-                    <h1 className="text-xl lg:text-3xl leading-9 font-bold mt-5 ">
-                        Yours forever
-                    </h1>
-                    <div className="mt-6 lg:text-lg leading-6">
-                        <p>Dry vocal stems, Licence and Invoice emailed after purchase. Instrumental at an extra
-                            cost. </p>
-                    </div>
-                </div>
-                <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
-                    <div className=' lg:w-[50px] lg:h-[47px] mt-4   rounded-full bg-[#D9D9D9] '>
-
-                    </div>
-
-                    <h1 className="text-xl lg:text-3xl leading-9 font-bold mt-5 ">
-                        Vocal love gurantee
-                    </h1>
-                    <div className="mt-6 lg:text-lg leading-6">
-                        <p>Don’t love your existing vocal. We’ll replace it with a new one!</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div style={{fontFamily: 'Favorit'}}
-                 className=" my-16 bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
-            >
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
-
-                <div className="relative z-10">
-                    <h1 className="text-center text-[#E7F056] font-bold text-xl lg:text-3xl">
-                        TUNEM FOR ARTISTS
-                    </h1>
-                    <div className="mx-auto mt-5 lg:mt-16">
-                        <h1 style={{fontFamily: 'Bayon'}}
-                            className="text-center lg:leading-24 uppercase lg:text-7xl text-3xl text-white font-thin">
-                            do you want to <br/> apply as a vocalist?
+                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold mt-5 ">
+                            100% Royalty free
                         </h1>
+                        <div className="mt-6 textColor lg:text-lg leading-6">
+                            <p>Use your vocals anywhere. No limits. Cleared for release. Keep all royalties..</p>
+                        </div>
                     </div>
-                    <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
-                        <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            We are very selective with who we work with as we value quality the most.Apply today and
-                            start earning money from your vocals.
-                        </p>
+                    <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
+                        <div className=' lg:w-[50px] lg:h-[47px] mt-4   rounded-full bg-[#D9D9D9] '>
+
+                        </div>
+
+                        <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold mt-5 ">
+                            Yours forever
+                        </h1>
+                        <div className="mt-6 textColor lg:text-lg leading-6">
+                            <p>Dry vocal stems, Licence and Invoice emailed after purchase. Instrumental at an extra
+                                cost. </p>
+                        </div>
                     </div>
-                    <div>
-                        <button
-                            className="text-[#E7F056] lg:text-lg w-[194px] py-2 border border-[#E7F056] rounded-2xl block mx-auto mt-4 lg:mt-13">
-                            <Link href={""}>GET STARTED</Link>
-                        </button>
+                    <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
+                        <div className=' lg:w-[50px] lg:h-[47px] mt-4   rounded-full bg-[#D9D9D9] '>
+
+                        </div>
+
+                        <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold mt-5 ">
+                            Vocal love gurantee
+                        </h1>
+                        <div className="mt-6 textColor lg:text-lg leading-6">
+                            <p>Don’t love your existing vocal. We’ll replace it with a new one!</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+
+                <div style={{fontFamily: 'Favorit'}}
+                     className=" my-16 bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
+                >
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
+
+                    <div className="relative z-10">
+                        <h1 className="text-center text-[#E7F056] font-bold text-xl lg:text-3xl">
+                            TUNEM FOR ARTISTS
+                        </h1>
+                        <div className="mx-auto mt-5 lg:mt-16">
+                            <h1 style={{fontFamily: 'Bayon'}}
+                                className="text-center lg:leading-24 uppercase lg:text-7xl text-3xl text-white font-thin">
+                                do you want to <br/> apply as a vocalist?
+                            </h1>
+                        </div>
+                        <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+                            <p className="text-center text-white leading-6 lg:text-xl font-thin ">
+                                We are very selective with who we work with as we value quality the most.Apply today and
+                                start earning money from your vocals.
+                            </p>
+                        </div>
+                        <div>
+                            <button
+                                className="text-[#E7F056] lg:text-lg w-[194px] py-2 border border-[#E7F056] rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                <Link href={""}>GET STARTED</Link>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </MaxWidth>
 
 
         </div>
