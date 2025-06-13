@@ -3,6 +3,7 @@
 import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import {GrNext, GrPrevious} from "react-icons/gr";
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 type Review = {
     name: string;
@@ -71,7 +72,7 @@ const UseSound: React.FC = () => {
                 setVisibleSlides(3);
             } else {
                 // Extra large devices (desktops and up)
-                setVisibleSlides(5);
+                setVisibleSlides(4);
             }
         };
 
@@ -87,71 +88,73 @@ const UseSound: React.FC = () => {
     const totalBullets = maxIndex + 1;
 
     return (
-        <div style={{fontFamily: "Favorit"}} className="relative max-w-[1580px] mx-auto py-12 px-4">
-            <div className="mb-8 ">
-                <h1 className="text-2xl lg:text-4xl font-bold">Who uses our sounds</h1>
-            </div>
+        <MaxWidth>
+            <div style={{fontFamily: "Favorit"}} className="relative mx-auto py-12 ">
+                <div className="mb-8 ">
+                    <h1 className="text-2xl lg:text-4xl headerColor font-bold">Who uses our sounds</h1>
+                </div>
 
-            {/* slider */}
-            <div className="overflow-hidden">
-                <div
-                    className="flex transition-transform duration-500"
-                    style={{transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)`}}
-                >
-                    {reviews.map((item, i) => (
-                        <div
-                            key={i}
-                            className="px-3"
-                            style={{minWidth: `${100 / visibleSlides}%`}}
-                        >
-                            <div className="p-6 h-full flex flex-col items-center gap-4">
-                                <Image
-                                    src={item.avatar}
-                                    alt={item.name}
-                                    width={208}
-                                    height={208}
-                                    className="rounded-full w-[208px] h-[208px] object-cover"
-                                />
-                                <p className="font-semibold lg:text-xl text-sm">{item.name}</p>
-                                <p className=" lg:text-lg text-sm">{item.role}</p>
+                {/* slider */}
+                <div className="overflow-hidden">
+                    <div
+                        className="flex transition-transform duration-500"
+                        style={{transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)`}}
+                    >
+                        {reviews.map((item, i) => (
+                            <div
+                                key={i}
+                                className="px-3"
+                                style={{minWidth: `${100 / visibleSlides}%`}}
+                            >
+                                <div className="p-6 h-full flex flex-col items-center gap-4">
+                                    <Image
+                                        src={item.avatar}
+                                        alt={item.name}
+                                        width={208}
+                                        height={208}
+                                        className="rounded-full w-[208px] h-[208px] object-cover"
+                                    />
+                                    <p className="font-semibold headerColor lg:text-xl text-sm">{item.name}</p>
+                                    <p className=" textColor lg:text-lg text-sm">{item.role}</p>
+                                </div>
                             </div>
-                        </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* arrows */}
+                <button
+                    onClick={prevSlide}
+                    disabled={currentIndex === 0}
+                    aria-label="Previous"
+                    className="absolute cursor-pointer left-0 top-[45%] -translate-y-1/2  p-2 disabled:opacity-50"
+                >
+                    <GrPrevious size={30} className={`font-bold`}/>
+                </button>
+                <button
+                    onClick={nextSlide}
+                    disabled={currentIndex >= maxIndex}
+                    aria-label="Next"
+                    className="absolute right-0 top-[45%] cursor-pointer -translate-y-1/2  p-2 disabled:opacity-50"
+                >
+                    <GrNext size={30} className={`font-bold`}/>
+                </button>
+
+                {/* bullets */}
+                <div className="flex justify-center mt-6 space-x-3">
+                    {Array.from({length: totalBullets}).map((_, i) => (
+                        <button
+                            key={i}
+                            onClick={() => setCurrentIndex(i)}
+                            aria-label={`Go to slide ${i + 1}`}
+                            className={`w-3 h-3 cursor-pointer rounded-full transition-colors ${
+                                i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
+                            }`}
+                        />
                     ))}
                 </div>
             </div>
-
-            {/* arrows */}
-            <button
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-                aria-label="Previous"
-                className="absolute cursor-pointer left-0 top-[50%] -translate-y-1/2  p-2 disabled:opacity-50"
-            >
-                <GrPrevious size={30} className={`font-bold`}/>
-            </button>
-            <button
-                onClick={nextSlide}
-                disabled={currentIndex >= maxIndex}
-                aria-label="Next"
-                className="absolute right-0 top-[50%] cursor-pointer -translate-y-1/2  p-2 disabled:opacity-50"
-            >
-                <GrNext size={30} className={`font-bold`}/>
-            </button>
-
-            {/* bullets */}
-            <div className="flex justify-center mt-6 space-x-3">
-                {Array.from({length: totalBullets}).map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => setCurrentIndex(i)}
-                        aria-label={`Go to slide ${i + 1}`}
-                        className={`w-3 h-3 cursor-pointer rounded-full transition-colors ${
-                            i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
-                        }`}
-                    />
-                ))}
-            </div>
-        </div>
+        </MaxWidth>
     );
 };
 
