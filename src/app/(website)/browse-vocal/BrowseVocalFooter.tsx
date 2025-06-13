@@ -7,8 +7,8 @@ import {ArrowRight} from "lucide-react";
 
 const BrowseVocalFooter = () => {
     return (
-        <div>
-            <div className='max-w-[1549px] mx-auto px-4'>
+        <div style={{fontFamily:"Favorit"}} >
+            <div className='max-w-[1549px] mx-auto lg:px-0 px-4'>
                 <div className="max-w-[1539px] mx-auto">
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
@@ -34,9 +34,9 @@ const BrowseVocalFooter = () => {
                     <div className="text-black border border-[#fff] "></div>
 
                     {/* Newsletter and Description */}
-                    <div className="mt-12 flex flex-col lg:flex-row justify-between gap-10">
+                    <div className="lg:mt-12 mt-6 flex flex-col lg:flex-row justify-between gap-10">
                         <div>
-                            <h1 className="font-bold text-3xl lg:text-[35px] leading-9 text-[#FFFFFF]">Sign-up to our
+                            <h1 className="font-bold text-2xl lg:text-4xl lg:text-[35px] leading-9 text-[#FFFFFF]">Sign-up to our
                                 newsletter</h1>
                             <div className="max-w-[478px] mt-4">
                                 <p className="text-lg leading-6 text-[#FFFFFF]">
@@ -57,13 +57,13 @@ const BrowseVocalFooter = () => {
                                             placeholder="Enter your email address"
 
 
-                                            className="flex-1 px-4 py-3 text-lg bg-white text-black border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
+                                            className="flex-1 px-4 lg:py-3 py-1 text-lg bg-white text-black border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
                                         />
                                         <button
                                             type="submit"
-                                            className="bg-yellow-400 px-6 py-5 hover:bg-yellow-500 "
+                                            className="bg-yellow-400 px-6 lg:py-5 py-3 hover:bg-yellow-500 "
                                         >
-                                            <ArrowRight className="w-4 h-4 text-black"/>
+                                            <ArrowRight className="w-4 h-4 -ml-5 lg:-ml-0 text-black"/>
                                         </button>
                                     </form>
                                 </div>
@@ -72,7 +72,7 @@ const BrowseVocalFooter = () => {
                             <div className="mt-6">
                                 <Link href="/register">
                                     <button
-                                        className="w-[194px] rounded-2xl border border-[##FFFFFF]  text-[#FFFFFF] text-lg py-1.5 cursor-pointer ">
+                                        className="w-[194px] text-lg lg:text-xl rounded-2xl border border-[##FFFFFF]  text-[#FFFFFF] py-1.5 cursor-pointer ">
                                         REGISTER
                                     </button>
                                 </Link>
@@ -87,7 +87,7 @@ const BrowseVocalFooter = () => {
                                     vocal you’ve been looking for.
                                 </p>
                             </div>
-                            <div className="mt-12 lg:mt-24 flex justify-end">
+                            <div className=" lg:mt-20 flex justify-end">
                                 <h1 className=" text-[#FFFFFF] text-lg font-bold leading-9">FOLLOW US</h1>
                             </div>
                             <div className="flex gap-x-5 justify-end mt-4 text-white ">
@@ -112,10 +112,10 @@ const BrowseVocalFooter = () => {
                     <div className="border border-[#FFFFFF] mt-12"></div>
 
                     {/* Payment Methods and Links */}
-                    <div className="mt-7 pb-20  flex flex-col md:flex-row justify-between gap-x-10">
+                    <div className="mt-7 pb-20  flex flex-col md:flex-row justify-between ">
                         <div className={`hidden lg:flex lg:flex-col justify-between `}>
                             <h1 className='text-white text-lg leading-9 font-bold '>Payment methods</h1>
-                            <div className="flex items-center  gap-4">
+                            <div className="flex items-center  -ml-5 -mt-20  gap-x-4">
                                 <div className=" rounded-full">
                                     <svg width="70" height="100" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +178,7 @@ const BrowseVocalFooter = () => {
                                 </div>
                             </div>
                             {/*social icons */}
-                            <div className={`mt-16`}>
+                            <div className={`-mt-20`}>
 
                                 {/*face book*/}
 
@@ -203,9 +203,9 @@ const BrowseVocalFooter = () => {
 
 
                         {/*small device payment icons */}
-                        <div className={`lg:hidden flex flex-col justify-between mb-7 lg:mb-0 `}>
+                        <div className={`lg:hidden flex flex-col justify-between mb-6 lg:mb-0 `}>
                             <h1 className='text-white text-lg leading-9 font-bold '>Payment methods</h1>
-                            <div className="flex items-center  mt-2 gap-4">
+                            <div className="flex items-center   gap-4">
                                 <div className=" rounded-full">
                                     <svg width="40" height="60" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -268,7 +268,7 @@ const BrowseVocalFooter = () => {
                                 </div>
                             </div>
                             {/*social icons */}
-                            <div className={`lg:mt-16 mt-7 `}>
+                            <div className={` mt-3 `}>
 
                                 {/*face book*/}
 
@@ -292,7 +292,7 @@ const BrowseVocalFooter = () => {
                         </div>
 
                         {/* Links Section */}
-                        <div className="flex flex-wrap gap-10">
+                        <div className="flex flex-wrap gap-8">
                             <div>
                                 <ul className="flex flex-col gap-1">
                                     <li className="text-lg text-white font-bold leading-9">TUNEM</li>
@@ -328,6 +328,9 @@ const BrowseVocalFooter = () => {
                                     <li className="text-lg text-white font-bold leading-9">WORK WITH US</li>
                                     <li><Link className="text-lg text-white leading-9" href="/tune-m-artist">TUNEM for
                                         Artists</Link></li>
+                                    <Link className="text-lg text-white leading-9" href="/affiliates">
+                                        Affiliates
+                                    </Link>
                                 </ul>
                             </div>
                         </div>

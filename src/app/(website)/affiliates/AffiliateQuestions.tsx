@@ -3,12 +3,12 @@ import React from 'react';
 const AffiliateQuestions: React.FC = () => {
     return (
         <div>
-            <section className=" px-4 bg-white my-14 " style={{fontFamily: 'Favorit'}}>
+            <section className=" px-4 bg-white lg:my-14 mt-6 " style={{fontFamily: 'Favorit'}}>
                 <div className="max-w-6xl mx-auto text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold">Questions and Answers</h2>
                 </div>
 
-                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-left text-gray-900">
+                <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:gap-12 text-left text-gray-900">
                     {/* Left Column */}
                     <div className="space-y-6">
                         <div>

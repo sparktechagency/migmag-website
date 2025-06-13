@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
     };
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className="mt-16 px-4 md:px-4">
+        <div style={{fontFamily: 'Favorit'}} className="lg:mt-16 mt-5 px-4 md:px-4">
             <div className="max-w-[1539px] mx-auto">
                 {/* Logo */}
                 <div className="mx-auto flex justify-center">
@@ -43,9 +43,9 @@ const Footer: React.FC = () => {
                 <div className="text-black border border-[#000000] "></div>
 
                 {/* Newsletter and Description */}
-                <div className="mt-12 flex flex-col lg:flex-row justify-between gap-10">
+                <div className="lg:mt-12 mt-6 flex flex-col lg:flex-row justify-between gap-4 lg:gap-10">
                     <div>
-                        <h1 className="font-bold text-3xl lg:text-[35px] leading-9 text-[#000000]">Sign Up for the TuneM
+                        <h1 className="font-bold lg:text-4xl text-2xl lg:text-[35px] leading-9 text-[#000000]">Sign Up for the TuneM
                             Newsletter</h1>
                         <div className="max-w-[478px] mt-4">
                             <p className="text-lg leading-6 text-[#000000]">
@@ -68,13 +68,13 @@ const Footer: React.FC = () => {
                                         placeholder="Enter your email address"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="flex-1 px-4 py-3 text-lg bg-white text-black border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
+                                        className="flex-1 px-4 lg:py-3 py-1 text-lg bg-white text-black border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
                                     />
                                     <button
                                         type="submit"
-                                        className="bg-yellow-400 px-6 py-5 hover:bg-yellow-500 "
+                                        className="bg-yellow-400 px-6 lg:py-5 py-3 hover:bg-yellow-500 "
                                     >
-                                        <ArrowRight className="w-4 h-4 text-black"/>
+                                        <ArrowRight className="w-4 h-4 -ml-5 lg:-ml-0 text-black"/>
                                     </button>
                                 </form>
                             </div>
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                         <div className="mt-6">
                             <Link href="/register">
                                 <button
-                                    className="w-[194px] rounded-2xl border border-[#000000] text-[#000000] text-lg py-1.5 cursor-pointer ">
+                                    className="w-[194px] lg:text-xl text-lg rounded-2xl border border-[#000000] text-[#000000]  py-1.5 cursor-pointer ">
                                     REGISTER
                                 </button>
                             </Link>
@@ -91,10 +91,10 @@ const Footer: React.FC = () => {
 
                     <div className="  ">
                         <div>
-                            <h1 className="font-bold text-3xl lg:text-[35px] leading-9 text-[#000000]">TuneM helps you
+                            <h1 className="font-bold text-2xl lg:text-4xl leading-9 text-[#000000]">TuneM helps you
                                 create the best vocals in the industry.</h1>
                         </div>
-                        <div className="max-w-[478px] absolute right-[10%] mt-4 ">
+                        <div className="max-w-[478px] absolute right-[10%] mt-2 lg:mt-4 ">
                             <p className="text-[#000000] text-end text-lg leading-6">
                                 We work with unique, handpicked trusted singers, top-tier songwriters, and professional
                                 engineers. All vocals are recorded in high-quality studio setups to ensure every take is
@@ -102,9 +102,9 @@ const Footer: React.FC = () => {
                             </p>
                         </div>
                         <div className="mt-36 lg:mt-24 flex justify-end">
-                            <h1 className="text-[#000000] text-lg font-bold leading-9 mt-6 ">FOLLOW US</h1>
+                            <h1 className="text-[#000000] text-lg font-bold leading-9 mt-10 ">FOLLOW US</h1>
                         </div>
-                        <div className="flex gap-x-5 justify-end mt-4">
+                        <div className="flex gap-x-5 justify-end mt-3">
                             <div className="  rounded-full">
                                 <a target="_blank"
                                    href="https://www.instagram.com/accounts/login/?hl=en"><FaInstagramSquare size={25}/></a>
@@ -264,7 +264,7 @@ const Footer: React.FC = () => {
                 {/*small device payment */}
 
 
-                <div className="mt-7 pb-20 lg:hidden flex flex-col md:flex-row justify-between gap-10">
+                <div className="mt-7  lg:hidden flex flex-col md:flex-row justify-between gap-10">
                     <div>
                         <h1>Payment methods</h1>
                         <div className="flex items-center  mt-2 gap-4">
@@ -330,7 +330,7 @@ const Footer: React.FC = () => {
                             </div>
                         </div>
                         {/*social icons */}
-                        <div className={`lg:mt-16 mt-7 `}>
+                        <div className={`l mt-3 `}>
 
                             {/*face book*/}
 
@@ -387,9 +387,9 @@ const Footer: React.FC = () => {
                             <ul className="flex flex-col gap-1">
                                 <li className="text-lg text-[#000000] font-bold leading-9">WORK WITH US</li>
                                 <li>
-                                    {/*<Link className="text-lg text-[#000000] leading-9" href="/tune-m-artist">TUNEM for*/}
-                                    {/*    Artists*/}
-                                    {/*</Link>*/}
+                                    <Link className="text-lg text-[#000000] leading-9" href="/tune-m-artist">TUNEM for
+                                        Artists
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link className="text-lg text-[#000000] leading-9" href="/affiliates">

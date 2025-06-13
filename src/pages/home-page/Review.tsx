@@ -104,10 +104,10 @@ const Review: React.FC = () => {
     const totalBullets = maxIndex + 1;
 
     return (
-        <div style={{fontFamily: "Favorit"}} className="relative max-w-7xl mx-auto py-12 px-4">
+        <div style={{fontFamily: "Favorit"}} className="relative max-w-[1539px]  mx-auto py-12 lg:px-0 px-4">
             <div className="mb-8">
-                <h1 className="text-2xl lg:text-4xl font-bold text-center">Reviews</h1>
-                <p className="text-lg mt-2 text-center">4.7 Stars – 200+ Reviews</p>
+                <h1 className="text-2xl lg:text-4xl font-bold ">Reviews</h1>
+                <p className="lg:text-xl text-lg mt-2 ">4.7 Stars – 200+ Reviews</p>
             </div>
             <div className="overflow-hidden">
                 <div
@@ -115,7 +115,7 @@ const Review: React.FC = () => {
                     style={{transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)`}}
                 >
                     {reviews.map((review, i) => (
-                        <div key={i} className={`min-w-[${100 / visibleSlides}%] px-3`}
+                        <div key={i} className={`min-w-[${100 / visibleSlides}%] px-10`}
                              style={{minWidth: `${100 / visibleSlides}%`}}>
                             <div className="bg-white border rounded-xl shadow p-6 h-full flex flex-col">
                                 <div className="flex items-start justify-between">
