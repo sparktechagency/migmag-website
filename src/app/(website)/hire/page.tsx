@@ -37,8 +37,8 @@ const Page: React.FC = () => {
       <div
         className="bg-gradient-to-r from-black/10 to-transparent  bg-[url('/images/hire/bannerImg/hire-banner-img.jpg')] bg-cover object-cover bg-center w-full pb-28 "
       >
-        <div style={{ fontFamily: 'Favorit' }} className=" max-w-[1539px] mx-auto   bg-opacity-90 ">
-          <div className='flex items-center justify-between h-16 max-w-[1549px] pt-12 mx-auto px-4'>
+        <div style={{ fontFamily: 'Favorit' }} className=" max-w-[1539px] mx-auto py-5  bg-opacity-90 ">
+          <div className='flex items-center justify-between  max-w-[1549px]  mx-auto px-4'>
             {/* Logo */}
             <Link href="/">
               <svg width="174" height="22" viewBox="0 0 174 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -194,7 +194,7 @@ const Page: React.FC = () => {
 
         {/* website content  */}
 
-        <div className=' max-w-[1539px] mx-auto px-4 mt-16 lg:mt-32
+        <div className=' max-w-[1539px] mx-auto lg:px-0 mt-8 lg:mt-14 px-4
          ' >
           <div style={{ fontFamily: 'Bayon' }} className=' max-w-[631px] ' >
             <h1 className=' lg:text-8xl text-4xl lg:leading-20 text-[#fff] ' >Custom Vocals,</h1>

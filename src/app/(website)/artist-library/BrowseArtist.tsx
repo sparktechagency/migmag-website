@@ -601,7 +601,7 @@ const BrowseArtist = () => {
 
 
             <div
-                className=" scrollbar-yellow grid 2xl:grid-cols-6 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 grid-cols-2  xl:gap-x-12 md:gap-x-5 gap-y-4 gap-x-5 mx-auto border border-yellow-50   mb-6  ">
+                className="  hidden lg:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
 
 
                 <div className="relative   ">
@@ -612,7 +612,7 @@ const BrowseArtist = () => {
                         value={searchTerm}
                         onChange={handleSearch}
                     />
-                    <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white"/>
+                    <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white"/>
 
 
                 </div>
@@ -620,7 +620,7 @@ const BrowseArtist = () => {
 
                 {/* genre  */}
 
-                <div className="relative md:w-[177px] w-[150px]  lg:ml-[24%]   " ref={genreRef}>
+                <div className="relative w-full  " ref={genreRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F] text-white md:px-5 px-3 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -674,7 +674,7 @@ const BrowseArtist = () => {
 
                 {/* Gender */}
 
-                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]  " ref={genderRef}>
+                <div className="relative w-full " ref={genderRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -726,7 +726,7 @@ const BrowseArtist = () => {
 
                 {/* License */}
 
-                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]  " ref={licenseRef}>
+                <div className="relative w-full" ref={licenseRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F] relative text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -783,7 +783,7 @@ const BrowseArtist = () => {
                 {/* Type  */}
 
 
-                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]  " ref={typeRef}>
+                <div className="relative w-full " ref={typeRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -836,7 +836,7 @@ const BrowseArtist = () => {
                 {/* latest  */}
 
 
-                <div className="relative md:w-[177px] w-[150px]  lg:ml-[16%]   " ref={latestRef}>
+                <div className="relative w-full" ref={latestRef}>
                     <button
                         type="button"
                         className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
@@ -889,6 +889,299 @@ const BrowseArtist = () => {
 
 
             </div>
+
+            <div
+                className="  lg:hidden items-center grid md:grid-cols-3 grid-cols-2  gap-x-12 space-y-3.5  max-w-[1539px]  mx-auto   mb-6  ">
+
+
+                <div className="relative   ">
+
+                    <input
+                        className="border border-white focus:outline-0 w-full  lg:py-2.5 py-1 md:w-[250px] px-4  rounded-2xl text-white  bg-transparent placeholder-gray-400 placeholder:text-[10px] lg:placeholder:ml-3.5  "
+                        placeholder="SEARCH"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                    <Search size={16} className="absolute top-[50%] right-5 transform -translate-y-1/2 text-white "/>
+
+
+                </div>
+
+
+                {/* genre  */}
+
+                <div className="relative w-full  " ref={genreRef}>
+                    <button
+                        type="button"
+                        className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                        onClick={() => setOpen(!open)}
+                    >
+                        {/* Icon on RIGHT side */}
+                        {open ? (
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        ) : (
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        )}
+
+                        {/* Only show selected count */}
+                        <span className="w-28 text-white text-sm ">
+                            {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
+                        </span>
+                    </button>
+
+                    <AnimatePresence>
+                        {open && (
+                            <motion.div
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
+                                className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                            >
+                                {genres.map((genre) => (
+                                    <label
+                                        key={genre}
+                                        className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedGenre.includes(genre)}
+                                            onChange={(e) => {
+                                                toggleGenre(genre);
+                                                handleFilterChange('genre', e.target.checked ? genre : '');
+                                            }}
+                                            className="mr-3 accent-indigo-500 w-5 h-5"
+                                        />
+                                        <span className="text-white md:text-lg   ">{genre}</span>
+                                    </label>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+                {/* Gender */}
+
+                <div className="relative w-full " ref={genderRef}>
+                    <button
+                        type="button"
+                        className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                        onClick={() => setOpenGender(!openGender)}
+                    >
+                        {openGender ? (
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        ) : (
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        )}
+
+                        <span className="w-28 text-white text-sm ">
+                            {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
+                        </span>
+                    </button>
+
+                    <AnimatePresence>
+                        {openGender && (
+                            <motion.div
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
+                                className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                style={{top: "calc(100% + 0.5rem)"}}
+                            >
+                                {gender.map((gender) => (
+                                    <label
+                                        key={gender}
+                                        className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedGender.includes(gender)}
+                                            onChange={(e) => {
+                                                toggleGender(gender);
+                                                handleFilterChange('gender', e.target.checked ? gender : '');
+                                            }}
+                                            className="mr-3 accent-indigo-500 w-5 h-5"
+                                        />
+                                        <span className="text-white md:text-lg ">{gender}</span>
+                                    </label>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+                {/* License */}
+
+                <div className="relative w-full" ref={licenseRef}>
+                    <button
+                        type="button"
+                        className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                        onClick={() => setOpenLicense(!openLicense)}
+                    >
+                        {openLicense ? (
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        ) : (
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        )}
+                        <span className="w-28 text-white text-sm">
+                            {selectedLicense.length > 0
+                                ? <>Selected {selectedLicense.length}</>
+                                : 'License'}
+                        </span>
+                    </button>
+
+                    <AnimatePresence>
+                        {openLicense && (
+                            <motion.div
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: 'easeInOut'}}
+                                className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                style={{top: 'calc(100% + 0.5rem)'}}
+                            >
+                                {License.map((license) => (
+                                    <label
+                                        key={license}
+                                        className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedLicense.includes(license)}
+                                            onChange={(e) => {
+                                                toggleLicense(license);
+                                                handleFilterChange(
+                                                    'license',
+                                                    e.target.checked ? license : ''
+                                                );
+                                            }}
+                                            className="mr-3 accent-indigo-500 w-5 h-5"
+                                        />
+                                        <span className="text-white md:text-lg">{license}</span>
+                                    </label>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+                {/* Type  */}
+
+
+                <div className="relative w-full " ref={typeRef}>
+                    <button
+                        type="button"
+                        className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                        onClick={() => setOpenType(!openType)}
+                    >
+                        {openType ? (
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        ) : (
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        )}
+
+                        <span className="w-28 text-white text-sm  ">
+                            {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Type"}
+                        </span>
+                    </button>
+
+                    <AnimatePresence>
+                        {openType && (
+                            <motion.div
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
+                                className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                style={{top: "calc(100% + 0.5rem)"}}
+                            >
+                                {type.map((item) => (
+                                    <label
+                                        key={item}
+                                        className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedType.includes(item)}
+                                            onChange={(e) => {
+                                                toggleType(item); // ✅ Efficient toggle
+                                                handleFilterChange("type", e.target.checked ? item : "");
+                                            }}
+                                            className="mr-3 accent-indigo-500 w-5 h-5"
+                                        />
+                                        <span className="text-white md:text-lg  ">{item}</span>
+                                    </label>
+                                ))}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+                {/* latest  */}
+
+
+                <div className="relative w-full -mt-2.5 " ref={latestRef}>
+                    <button
+                        type="button"
+                        className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                        onClick={() => setOpenLatest(!openLatest)}
+                    >
+                        {openLatest ? (
+                            <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        ) : (
+                            <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                        )}
+
+                        <span className="w-28 text-white text-sm   ">
+                            {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
+                        </span>
+                    </button>
+
+                    <AnimatePresence>
+                        {openLatest && (
+                            <motion.div
+                                initial={{opacity: 0, y: -10}}
+                                animate={{opacity: 1, y: 0}}
+                                exit={{opacity: 0, y: -10}}
+                                transition={{duration: 0.4, ease: "easeInOut"}}
+                                className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                style={{top: "calc(100% + 0.5rem)"}}
+                            >
+                                {
+                                    latest.map((item) => (
+                                        <label
+                                            key={item}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedType.includes(item)}
+                                                onChange={(e) => {
+                                                    toggleLatest(item);
+                                                    handleFilterChange('latest', e.target.checked ? item : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg  ">{item}</span>
+                                        </label>
+                                    ))
+                                }
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+            </div>
+
+
+
 
 
             {/* artist list  */}

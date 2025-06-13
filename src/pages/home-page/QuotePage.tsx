@@ -2,24 +2,25 @@ import React from 'react'
 
 const QuotePage: React.FC = () => {
     return (
-        <div style={{ fontFamily: 'Favorit' }} >
-            <section className="bg-white lg:mt-10 mt-5  px-6 lg:px-20">
-                <h1 style={{ fontFamily: 'Favorit' }}  className={ ` lg:text-4xl text-3xl font-semibold text-center mb-3 ` } >Quote</h1>
+        <div style={{fontFamily: 'Favorit'}}>
+            <section className="bg-white lg:mt-20 mt-10 max-w-[1539px] mx-auto lg:px-0 px-4  ">
+                <h1 style={{fontFamily: 'Favorit'}}
+                    className={` lg:text-4xl text-2xl font-semibold  mb-3 `}>Quote</h1>
                 {/* Quote */}
-                <blockquote style={{ fontFamily: 'Favorit' }} className="max-w-4xl mx-auto text-center text-2xl  mb-12">
+                <blockquote style={{fontFamily: 'Favorit'}} className=" lg:text-2xl text-xl  mb-12">
                     “Vocals that get played, signed, and remembered – backed by service that’s just as professional as
                     the sound.”
                     <br/>
                     <span className="not-italic font-semibold">
-        – Mantas&nbsp;Stinson (Lithuania HQ • Label Manager)
-      </span>
+                        – Mantas&nbsp;Stinson (Lithuania HQ • Label Manager)
+                     </span>
                 </blockquote>
 
                 {/* Intro */}
-                <h2 className="text-3xl lg:text-4xl font-bold text-center mb-4">
+                <h2 className="text-3xl lg:text-4xl font-bold  mb-4">
                     We’ve got you covered – Tired of Overused Vocals?
                 </h2>
-                <p className="max-w-3xl mx-auto text-lg text-[#000000 ] text-center mb-12">
+                <p className="text-lg text-[#000000 ] mb-12">
                     Browse and purchase top-quality vocals created by the best singers in the music industry. Every
                     vocal on TuneM is
                     rare, limited, and our library is refreshed regularly—use them to create original music you can
@@ -27,7 +28,7 @@ const QuotePage: React.FC = () => {
                 </p>
 
                 {/* Product tiers */}
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3  mx-auto">
                     {/* Exclusive */}
                     <div className="border border-gray-300 rounded-xl p-6 shadow-md">
                         <h3 className="lg:text-2xl text-xl font-semibold text-black mb-2">
