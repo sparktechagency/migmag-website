@@ -883,13 +883,15 @@ const BrowseAllVocal = () => {
                             {/* Artwork + play button */}
                             <div className="lg:py-4 py-1 flex-1 px-3 lg:px-6">
                                 <div className="relative w-18 h-18 ">
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        width={18}
-                                        height={18}
-                                        className="w-full h-full rounded-lg object-cover"
-                                    />
+                                    <Link href={`/browse-vocal/${item?.id}`}>
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            width={18}
+                                            height={18}
+                                            className="w-full h-full rounded-lg object-cover"
+                                        />
+                                    </Link>
 
                                     <button
                                         onClick={() => handlePlayPause(item.id)}
@@ -1301,13 +1303,15 @@ const BrowseAllVocal = () => {
                             <div className="lg:py-4 py-1 flex-1 px-3 lg:px-6">
                                 <div
                                     className="relative ">
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        width={18}
-                                        height={18}
-                                        className="rounded-lg w-full contrast-75 object-cover"
-                                    />
+                                    <Link href={`/browse-vocal/${item?.id}`}>
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            width={18}
+                                            height={18}
+                                            className="rounded-lg w-full contrast-75 object-cover"
+                                        />
+                                    </Link>
                                     <button
                                         onClick={() => handlePlayPause(item.id)}
                                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2

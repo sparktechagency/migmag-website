@@ -349,7 +349,8 @@ const SingerDetails: React.FC = () => {
                     {/* right section  */}
                     <div className={`'>`}>
 
-                        <div className=' textColor mt-8 lg:mt-[75px] flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
+                        <div
+                            className=' textColor mt-8 lg:mt-[75px] flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
                             <button style={{fontFamily: 'Degular'}}
                                     className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
                             <span><svg width="27" height="25" viewBox="0 0 27 27" fill="none"
@@ -393,13 +394,15 @@ const SingerDetails: React.FC = () => {
                         className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-md shadow p-4 w-full max-w-4xl mx-auto mt-2 ">
                         {/* Left: Image & Play */}
                         <div className="flex items-center gap-4 w-full sm:w-auto">
-                            <Image
-                                src="/images/artist-library/artist/artist-1.png"
-                                alt="Album Cover"
-                                className="w-14 h-14 object-cover rounded"
-                                width={56}
-                                height={56}
-                            />
+                            <Link href={`/browse-vocal/${1}`}>
+                                <Image
+                                    src="/images/artist-library/artist/artist-1.png"
+                                    alt="Album Cover"
+                                    className="w-14 h-14 object-cover rounded"
+                                    width={56}
+                                    height={56}
+                                />
+                            </Link>
                             <button
                                 className="w-0 h-0 border-l-[10px] cursor-pointer border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"
                             />
@@ -424,7 +427,6 @@ const SingerDetails: React.FC = () => {
                             </button>
                         </div>
                     </div>
-
 
 
                     {/*</div>*/}
@@ -653,7 +655,7 @@ const SingerDetails: React.FC = () => {
                                 <div className=' lg:ml-14 -mt-4 '>
 
                                     <div className=" transition duration-300 w-full ">
-                                        <p className= " headerColor font-bold lg:text-xl mb-4">Multiple DRY Vocal
+                                        <p className=" headerColor font-bold lg:text-xl mb-4">Multiple DRY Vocal
                                             Takes</p>
                                         <p className="textColor font-light mt-4 lg:text-lg leading-7">
                                             You find our vocals only on Vocalfy and nowhere else. We delete our
