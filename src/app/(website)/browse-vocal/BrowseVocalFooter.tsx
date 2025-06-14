@@ -76,6 +76,24 @@ const BrowseVocalFooter: React.FC = () => {
                                            href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
                                             className={"text-white"} size={25}/></a>
                                     </div>
+                                    {/*face book*/}
+
+                                    <div>
+
+                                        <a
+                                            target="_blank"
+                                            href="https://www.facebook.com"
+                                            rel="noopener noreferrer"
+                                            className="cursor-pointer flex items-center gap-x-3.5"
+                                        >
+                                            <FaFacebook
+                                                size={25}
+                                                className=" text-white transition-all cursor-pointer"
+                                            />
+
+                                        </a>
+
+                                    </div>
                                 </div>
                             </div>
                             <div className={`my-5`}>
@@ -84,18 +102,7 @@ const BrowseVocalFooter: React.FC = () => {
 
                                 <div>
 
-                                    <a
-                                        target="_blank"
-                                        href="https://www.facebook.com"
-                                        rel="noopener noreferrer"
-                                        className="cursor-pointer flex items-center gap-x-3.5"
-                                    >
-                                        <FaFacebook
-                                            size={30}
-                                            className=" text-white transition-all cursor-pointer"
-                                        />
-                                        <p className="text-white text-xl">@migmag.com</p>
-                                    </a>
+                                    <p className="text-white text-xl">@migmag.com</p>
 
                                 </div>
                             </div>

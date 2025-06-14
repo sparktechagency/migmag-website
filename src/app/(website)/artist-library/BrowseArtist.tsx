@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {ArrowRight, Search} from 'lucide-react';
 import {motion, AnimatePresence} from "framer-motion";
 import {HiChevronDown, HiChevronUp} from "react-icons/hi";
@@ -1230,7 +1230,7 @@ const BrowseArtist = () => {
                         </div>
 
                         {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)}
-                                                                   className=' w-[37%] rounded-2xl border border-white text-white  px-3 py-2 lg:py-3 text-[15px] cursor-pointer   '>LOAD
+                                                                   className=' w-[37%] rounded-2xl border text-sm border-white text-white  px-3 py-2 lg:py-3 cursor-pointer   '>LOAD
                             MORE ARTISTS</button>)}
 
                     </div>
@@ -1387,8 +1387,7 @@ const BrowseArtist = () => {
                         </div>
                         <div>
                             <Link href={"/tune-m-artist"}>
-                                <button style={{fontFamily: 'Favorit'}}
-                                        className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>
                             </Link>

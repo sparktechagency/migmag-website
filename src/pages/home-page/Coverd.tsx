@@ -76,7 +76,7 @@ const Coverd: React.FC = () => {
                         </div>
                         <div>
                             <Link href={"/tune-m-artist"}>
-                                <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] text-sm lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>
                             </Link>

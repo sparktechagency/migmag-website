@@ -753,7 +753,7 @@ const SingerDetails: React.FC = () => {
                         </div>
                         <div>
                             <button
-                                className="text-[#E7F056] lg:text-lg w-[194px] py-2 border border-[#E7F056] rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                className="text-[#E7F056]  text-sm px-4 py-2 border border-[#E7F056] rounded-2xl block mx-auto mt-4 lg:mt-13">
                                 <Link href={""}>GET STARTED</Link>
                             </button>
                         </div>

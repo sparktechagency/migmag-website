@@ -6,7 +6,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const HomeBanner: React.FC = () => {
     return (
         <MaxWidth>
-            <div style={{fontFamily: 'Bayon'}} className=' mt-8 lg:mt-14  '>
+            <div style={{fontFamily: 'Bayon'}} className=' mt-8 lg:mt-10  '>
                 <div className="flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
                     {/* Left Side */}
                     <div className="max-w-[658px]   text-center lg:text-left">
