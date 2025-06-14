@@ -8,13 +8,12 @@ import ArtistSlider from './ArtistSlider'
 import ApplayTune from './ApplayTune'
 import ApplayVocalistFrom from './ApplayVocalistFrom'
 import CoreValue from './CoreValue'
-import ManageTune from './ManageTune'
 import Link from 'next/link'
 
-import Faq from './Faq'
-import Footer from '@/components/footer/Footer'
 import {FaCartArrowDown} from "react-icons/fa";
 import MaxWidth from "@/components/max-width/MaxWidth";
+import FeatureSection from "@/app/(website)/tune-m-artist/FeatureSection";
+import UpdateFooter from "@/components/footer/UpdateFooter";
 
 const Page: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -271,10 +270,11 @@ const Page: React.FC = () => {
             <ArtistSlider></ArtistSlider>
             <ApplayTune></ApplayTune>
             <ApplayVocalistFrom></ApplayVocalistFrom>
+            <FeatureSection></FeatureSection>
             <CoreValue></CoreValue>
 
 
-            <Footer></Footer>
+           <UpdateFooter ></UpdateFooter>
 
         </>
 
