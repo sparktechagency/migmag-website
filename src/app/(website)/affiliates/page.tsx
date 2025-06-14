@@ -8,21 +8,24 @@ import VocalPartner from "@/app/(website)/affiliates/VocalPartner";
 import DownloadSection from "@/app/(website)/affiliates/DownloadSection";
 import AffiliateQuestions from "@/app/(website)/affiliates/AffiliateQuestions";
 import AffiliateGuidelines from "@/app/(website)/affiliates/AffiliateGuidelines";
+import UpdateFooter from "@/components/footer/UpdateFooter";
 
-const Page : React.FC = () => {
+const Page: React.FC = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <AffiliatesBanner></AffiliatesBanner>
-            <AvatarSlider></AvatarSlider>
-            <Benefits></Benefits>
-            <VocalPartner></VocalPartner>
-            <DownloadSection></DownloadSection>
-            <AffiliateGuidelines></AffiliateGuidelines>
-            <AffiliateQuestions></AffiliateQuestions>
-            <Footer></Footer>
+            <div className={` lg:my-14 my-8 `} >
+                <AffiliatesBanner></AffiliatesBanner>
+                <AvatarSlider></AvatarSlider>
+                <Benefits></Benefits>
+                <VocalPartner></VocalPartner>
+                <DownloadSection></DownloadSection>
+                <AffiliateGuidelines></AffiliateGuidelines>
+                <AffiliateQuestions></AffiliateQuestions>
+            </div>
+            <UpdateFooter></UpdateFooter>
         </div>
     );
 };
 
-export default Page ;
+export default Page;
