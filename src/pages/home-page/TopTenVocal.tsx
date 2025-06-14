@@ -159,18 +159,20 @@ const TopTenVocal: React.FC = () => {
                     : "bg-[#FFFFFF]"}`}
         >
             {/* index */}
-            <h1 className={`text-3xl ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"}`}>
+            <h1 className={`text-3xl  ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"}`}>
                 {globalIndex + 1}
             </h1>
 
             {/* cover */}
-            <Image
-                src={item.img}
-                alt={item.title}
-                width={93}
-                height={91}
-                className="object-cover rounded-xl"
-            />
+            <Link href={`/browse-vocal/${item.id}`}>
+                <Image
+                    src={item.img}
+                    alt={item.title}
+                    width={93}
+                    height={91}
+                    className="object-cover rounded-xl"
+                />
+            </Link>
 
             {/* title + artist */}
             <div className="flex flex-col">
@@ -219,7 +221,7 @@ const TopTenVocal: React.FC = () => {
                     <h2 className="mt-7 text-2xl lg:text-4xl font-semibold headerColor">Top 10 Vocals</h2>
 
                     {/* ---------- two fixed vertical columns ---------- */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 w-[100%]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 w-[100%]  ">
                         {/* left column (1-5) */}
                         <div className="flex flex-col">{leftItems.map((item, i) => renderCard(item, i))}</div>
 

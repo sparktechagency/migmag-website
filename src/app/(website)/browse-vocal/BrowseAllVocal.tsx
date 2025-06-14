@@ -1015,13 +1015,15 @@ const BrowseAllVocal = () => {
                             <div className="flex items-center gap-3">
                                 {/* Image */}
                                 <div className="relative w-20 h-20 flex-shrink-0">
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        width={80}
-                                        height={80}
-                                        className="w-full h-full rounded-lg object-cover"
-                                    />
+                                    <Link href={`/browse-vocal/${item.id}`}>
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            width={80}
+                                            height={80}
+                                            className="w-full h-full rounded-lg object-cover"
+                                        />
+                                    </Link>
                                 </div>
 
                                 {/* Play / Pause button — now to the right of image */}
@@ -1566,7 +1568,8 @@ const BrowseAllVocal = () => {
                             </div>
 
                             {/* ─────────── Info Row ─────────── */}
-                            <div className="grid md:grid-cols-3 text-center lg:grid-cols-6 gap-x-12 w-full items-center">
+                            <div
+                                className="grid md:grid-cols-3 text-center lg:grid-cols-6 gap-x-12 w-full items-center">
                                 {/* Title */}
                                 <h3 className="text-white font-medium  lg:text-base truncate">
                                     {item.title}
@@ -1774,7 +1777,8 @@ const BrowseAllVocal = () => {
                         </div>
                         <div>
                             <Link href={"/tune-m-artist"}>
-                                <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                <button style={{fontFamily: 'Favorit'}}
+                                        className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>
                             </Link>
