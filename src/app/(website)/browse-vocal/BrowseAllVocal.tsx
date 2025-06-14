@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Search} from 'lucide-react';
 import {motion, AnimatePresence} from "framer-motion";
 import {HiChevronDown, HiChevronUp} from "react-icons/hi";
@@ -10,6 +10,7 @@ import {toast, Toaster} from 'react-hot-toast';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import {FaPause} from "react-icons/fa";
 import {FaPlay} from "react-icons/fa6";
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 type VocalItem = {
     id: number;
@@ -560,8 +561,8 @@ const BrowseAllVocal = () => {
     };
 
     return (
-        <>
-            <div style={{fontFamily: 'Favorit'}} className=" max-w-[1551px] mx-auto px-4  ">
+        <MaxWidth>
+            <div style={{fontFamily: 'Favorit'}} className="  mx-auto   ">
                 <div className=' mt-12 mb-6 '>
                     <div className=' border border-white '></div>
                 </div>
@@ -1040,31 +1041,31 @@ const BrowseAllVocal = () => {
                             {/* ─────────── Info Row ─────────── */}
                             <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-x-12 w-full items-center">
                                 {/* Title */}
-                                <h3 className="text-white font-medium text-xs md:text-sm lg:text-base truncate">
+                                <h3 className="text-white text-sm    truncate">
                                     {item.title}
                                 </h3>
 
                                 {/* Artist */}
                                 <Link
                                     href={`/artist-library/${item.id}`}
-                                    className="text-white hover:underline font-medium text-xs md:text-sm lg:text-base truncate"
+                                    className="text-white hover:underline font-medium text-sm truncate"
                                 >
                                     {item.artist}
                                 </Link>
 
                                 {/* Genre */}
-                                <p className="text-white font-medium text-xs md:text-sm lg:text-base truncate">
+                                <p className="text-white text-sm truncate">
                                     {item.genre}
                                 </p>
 
                                 {/* Gender */}
-                                <p className="text-white font-medium text-xs md:text-sm lg:text-base truncate">
+                                <p className="text-white text-sm truncate">
                                     {item.gender}
                                 </p>
 
                                 {/* License Badge */}
                                 <span
-                                    className={`inline-block rounded-2xl text-center font-bold px-3 py-1 text-[10px] md:text-sm lg:text-base
+                                    className={`inline-block rounded-2xl text-center font-bold px-3 py-1  text-xs
             ${item.license === 'EXCLUSIVE'
                                         ? 'bg-[#80BC02]'
                                         : item.license === 'NON-EXCLUSIVE'
@@ -1773,8 +1774,7 @@ const BrowseAllVocal = () => {
                         </div>
                         <div>
                             <Link href={"/tune-m-artist"}>
-                                <button style={{fontFamily: 'Favorit'}}
-                                        className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                <button style={{ fontFamily: 'Favorit' }} className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>
                             </Link>
@@ -1800,7 +1800,7 @@ const BrowseAllVocal = () => {
                     prevTrack={prevTrack}
                 />
             )}
-        </>
+        </MaxWidth>
     );
 };
 

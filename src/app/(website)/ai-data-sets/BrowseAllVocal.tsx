@@ -1,6 +1,6 @@
 "use client"
 
-import {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Search} from 'lucide-react';
 import {motion, AnimatePresence} from "framer-motion";
 import {HiChevronDown, HiChevronUp} from "react-icons/hi";
@@ -914,29 +914,29 @@ const BrowseAllVocal = () => {
                             </div>
 
                             {/* Title */}
-                            <div className="w-full w-full ml-3 lg:py-4 lg:px-6 px-3">
-                                <h3 className="text-white lg:font-bold text-[10px] lg:text-xl md:text-sm">
+                            <div className="w-full  ml-3 lg:py-4 lg:px-6 px-3">
+                                <h3 className="text-white text-sm md:text-sm">
                                     {item.title}
                                 </h3>
                             </div>
 
                             {/* Artist */}
                             <div className="lg:py-4 w-full lg:px-6 px-3">
-                                <p className="text-white lg:font-bold text-[10px] lg:text-xl">
+                                <p className="text-white text-sm">
                                     {item.artist}
                                 </p>
                             </div>
 
                             {/* Genre */}
                             <div className="lg:py-4 w-full py-1 px-2 lg:px-6 text-center">
-                                <p className="text-white lg:font-bold text-[10px] lg:text-xl">
+                                <p className="text-white text-sm">
                                     {item.genre}
                                 </p>
                             </div>
 
                             {/* Gender */}
                             <div className="lg:py-4 py-1 w-full px-2 lg:px-6 text-center">
-                                <p className="text-white lg:font-bold text-[10px] lg:text-xl">
+                                <p className="text-white text-sm">
                                     {item.gender}
                                 </p>
                             </div>
@@ -944,7 +944,7 @@ const BrowseAllVocal = () => {
                             {/* License badge */}
                             <div className="lg:py-4 w-full py-1 px-2 lg:px-6">
                                 <span
-                                    className={`block text-center rounded-2xl py-1 px-3 text-[10px] md:text-sm lg:text-base font-bold
+                                    className={`block text-center rounded-2xl py-1 px-3 text-sm
                                      ${item.license === 'EXCLUSIVE'
                                         ? 'bg-[#80BC02]'
                                         : item.license === 'NON-EXCLUSIVE'
@@ -1332,7 +1332,7 @@ const BrowseAllVocal = () => {
 
                             {/* Title */}
                             <div className="w-full lg:py-4 lg:px-6 px-3">
-                                <h3 className="text-white text-center my-3   ">
+                                <h3 className="text-white text-sm border  text-center my-3   ">
                                     {item.title}
                                 </h3>
                             </div>
@@ -1415,7 +1415,7 @@ const BrowseAllVocal = () => {
                                 <button onClick={() => {
                                     setVisibleData(prev => prev + 10)
                                 }}
-                                        className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-3 text-lg cursor-pointer   '>LOAD
+                                        className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-2 text-sm cursor-pointer   '>LOAD
                                     MORE VOCALS</button>
                             )
                         }
@@ -1538,7 +1538,7 @@ const BrowseAllVocal = () => {
                         <div>
                             <Link href={"/tune-m-artist"}>
                                 <button style={{fontFamily: 'Favorit'}}
-                                        className=" cursor-pointer text-[#E7F056] lg:text-lg w-[194px] py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                                        className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>
                             </Link>

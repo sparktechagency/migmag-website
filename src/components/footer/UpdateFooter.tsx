@@ -76,26 +76,29 @@ const UpdateFooter: React.FC = () => {
                                            href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
                                             className={"textColor"} size={25}/></a>
                                     </div>
+                                    <div>
+                                        <a
+                                            target="_blank"
+                                            href="https://www.facebook.com"
+                                            rel="noopener noreferrer"
+                                            className="cursor-pointer flex items-center gap-x-3.5"
+                                        >
+                                            <FaFacebook
+                                                size={25}
+                                                className=" textColor transition-all cursor-pointer"
+                                            />
+
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div className={`my-5`}>
 
-                                {/*face book*/}
+                                {/*email*/}
 
                                 <div>
 
-                                    <a
-                                        target="_blank"
-                                        href="https://www.facebook.com"
-                                        rel="noopener noreferrer"
-                                        className="cursor-pointer flex items-center gap-x-3.5"
-                                    >
-                                        <FaFacebook
-                                            size={30}
-                                            className=" textColor transition-all cursor-pointer"
-                                        />
-                                        <p className="textColor text-xl">@migmag.com</p>
-                                    </a>
+                                    <p className="textColor text-xl">@migmag.com</p>
 
                                 </div>
                             </div>
