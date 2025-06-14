@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import MaxWidth from "@/components/max-width/MaxWidth";
 
 type Review = {
     name: string;
@@ -35,60 +36,62 @@ const reviews: Review[] = [
 const ArtistSlider: React.FC = () => {
     return (
         <div
-            style={{ fontFamily: "Favorit" }}
-            className="max-w-[1588px]  lg:mt-24 lg:mb-28 mx-auto px-4"
+            style={{fontFamily: "Favorit"}}
+            className="lg:mt-24 lg:mb-28 mx-auto "
         >
-            <div className="lg:py-16 ">
-                <h2 className="lg:text-4xl text-2xl font-bold mb-6 lg:mb-12">Reviews from artists</h2>
+            <MaxWidth>
+                <div className="lg:py-16 ">
+                    <h2 className="lg:text-4xl text-2xl font-bold mb-6 headerColor lg:mb-12">Reviews from artists</h2>
 
-                {reviews.map((review, index) => {
-                    const isRight = index % 2 === 1;
+                    {reviews.map((review, index) => {
+                        const isRight = index % 2 === 1;
 
-                    return (
-                        <div
-                            key={review.name}
-                            className={`flex items-start lg:gap-6 gap-3 mb-6 lg:mb-12 ${
-                                isRight ? "justify-end text-right" : "text-left"
-                            }`}
-                        >
-                            {/* Avatar left */}
-                            {!isRight && (
-                                <Image
-                                    src={review.image}
-                                    alt={review.name}
-                                    width={60}
-                                    height={60}
-                                    className="rounded-full object-cover"
-                                />
-                            )}
+                        return (
+                            <div
+                                key={review.name}
+                                className={`flex items-start lg:gap-6 gap-3 mb-6 lg:mb-12 ${
+                                    isRight ? "justify-end text-right" : "text-left"
+                                }`}
+                            >
+                                {/* Avatar left */}
+                                {!isRight && (
+                                    <Image
+                                        src={review.image}
+                                        alt={review.name}
+                                        width={60}
+                                        height={60}
+                                        className="rounded-full object-cover"
+                                    />
+                                )}
 
-                            {/* Text block */}
-                            <div className="max-w-3xl">
-                                <p className=" text-lg mb-2">{review.review}</p>
-                                <div className={`${isRight ? "flex justify-end" : ""}`}>
-                                    <div>
-                                        <h3 className="font-semibold text-lg text-black">
-                                            {review.name}
-                                        </h3>
-                                        <p className="text-sm ">{review.role}</p>
+                                {/* Text block */}
+                                <div className="max-w-3xl">
+                                    <p className=" textColor text-lg mb-2">{review.review}</p>
+                                    <div className={`${isRight ? "flex justify-end" : ""}`}>
+                                        <div>
+                                            <h3 className="font-semibold text-lg  headerColor">
+                                                {review.name}
+                                            </h3>
+                                            <p className="text-sm  textColor ">{review.role}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Avatar right */}
-                            {isRight && (
-                                <Image
-                                    src={review.image}
-                                    alt={review.name}
-                                    width={60}
-                                    height={60}
-                                    className="rounded-full object-cover"
-                                />
-                            )}
-                        </div>
-                    );
-                })}
-            </div>
+                                {/* Avatar right */}
+                                {isRight && (
+                                    <Image
+                                        src={review.image}
+                                        alt={review.name}
+                                        width={60}
+                                        height={60}
+                                        className="rounded-full object-cover"
+                                    />
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            </MaxWidth>
         </div>
     );
 };
