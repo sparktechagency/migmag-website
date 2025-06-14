@@ -2,15 +2,16 @@ import React from 'react'
 import LicensesPage from './LicensesPage'
 import Footer from '@/components/footer/Footer'
 import Navbar from '@/components/navbar/Navbar'
+import UpdateFooter from "@/components/footer/UpdateFooter";
 
 const Page = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className = "lg:my-28 my-16" >
+            <div className = "lg:my-14 my-8" >
                 <LicensesPage></LicensesPage>
             </div>
-            <Footer></Footer>
+            <UpdateFooter></UpdateFooter>
         </div>
     )
 }
