@@ -8,10 +8,8 @@ import BrowseVocalBanner from './BrowseVocalBanner'
 import BrowseVocalMarque from './BrowseVocalMarque'
 import BrowseMusickVocalSlider from './BrowseMusickVocalSlider';
 import BrowseAllVocal from './BrowseAllVocal'
-import {FaCartArrowDown, FaCcApplePay, FaInstagramSquare} from "react-icons/fa";
-import {FaTiktok} from "react-icons/fa";
-import {BsDiscord} from "react-icons/bs";
-import {FcGoogle} from "react-icons/fc";
+import {FaCartArrowDown} from "react-icons/fa";
+
 import BrowseVocalFooter from "@/app/(website)/browse-vocal/BrowseVocalFooter";
 import MaxWidth from "@/components/max-width/MaxWidth";
 

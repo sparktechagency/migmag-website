@@ -3,10 +3,9 @@
 
 import Link from 'next/link'
 import React, {useState} from 'react'
-import {FaCcApplePay, FaFacebook, FaInstagramSquare} from "react-icons/fa";
+import {FaFacebook, FaInstagramSquare} from "react-icons/fa";
 import {FaTiktok} from "react-icons/fa";
 import {BsDiscord} from "react-icons/bs";
-import {FcGoogle} from "react-icons/fc";
 import {ArrowRight} from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
@@ -64,17 +63,17 @@ const UpdateFooter: React.FC = () => {
                                     <div className="  rounded-full">
                                         <a target="_blank"
                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaInstagramSquare
-                                            size={25} className={"textColor"}/></a>
+                                            size={25} className={""}/></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaTiktok
-                                            className={"textColor"} size={25}/></a>
+                                            className={""} size={25}/></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
                                            href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
-                                            className={"textColor"} size={25}/></a>
+                                            className={""} size={25}/></a>
                                     </div>
                                     <div>
                                         <a
@@ -85,7 +84,7 @@ const UpdateFooter: React.FC = () => {
                                         >
                                             <FaFacebook
                                                 size={25}
-                                                className=" textColor transition-all cursor-pointer"
+                                                className="  transition-all cursor-pointer"
                                             />
 
                                         </a>
@@ -109,7 +108,7 @@ const UpdateFooter: React.FC = () => {
                                 </p>
                                 <form
                                     onSubmit={handleSubmit}
-                                    className="flex items-center rounded-full overflow-hidden border border-gray-300 bg-white"
+                                    className="flex items-center rounded-full overflow-hidden w-[70%] lg:w-full  border border-black bg-white"
                                 >
                                     <input
                                         type="email"
@@ -117,11 +116,11 @@ const UpdateFooter: React.FC = () => {
                                         placeholder="Enter your email address"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="flex-1 px-4 py-2 lg:py-2 text-lg headerColor focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
+                                        className="flex-1 px-4 py-1 lg:py-2 w-32 text-lg headerColor focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
                                     />
                                     <button
                                         type="submit"
-                                        className="bg-yellow-400 cursor-pointer px-4 py-3 lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
+                                        className="bg-yellow-400 cursor-pointer px-4 py-2 lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
                                     >
                                         <ArrowRight className="w-5 h-5 textColor" />
                                     </button>

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { FaUser, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const AccountFromPage: React.FC = () => {
@@ -21,8 +21,8 @@ const AccountFromPage: React.FC = () => {
     return (
         <>
             <div style={{ fontFamily: 'Degular' }} className="bg-[#FFFFFF] p-6 rounded-2xl">
-                <h1 className="text-[#121212] text-xl font-semibold">My Profile</h1>
-                <p className="text-[#454545] text-sm mt-1">You can update your profile information.</p>
+                <h1 className="headerColor text-xl lg:text-3xl font-semibold">My Profile</h1>
+                <p className="textColor text-sm mt-1">You can update your profile information.</p>
             </div>
 
             <form style={{ fontFamily: 'Degular' }} className="border border-[#E7E7E7] bg-[#FFFFFF] rounded-3xl p-8 mt-4 lg:mt-6">
@@ -61,7 +61,7 @@ const AccountFromPage: React.FC = () => {
                         onChange={handleImageChange}
                         className="hidden"
                     />
-                    <p className="font-bold text-2xl text-center mt-4">Upload your photo</p>
+                    <p className="font-bold text-xl headerColor lg:text-2xl text-center mt-4">Upload your photo</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-14">
@@ -103,7 +103,7 @@ const AccountFromPage: React.FC = () => {
 
                 <button
                     type="submit"
-                    className="w-full bg-[#E7F056] cursor-pointer text-black font-semibold py-3 mt-10 lg:mt-18 rounded-[40px] transition-all duration-300"
+                    className="w-full bg-[#E7F056] cursor-pointer headerColor font-semibold py-3 mt-10 lg:mt-18 rounded-[40px] transition-all duration-300"
                 >
                     Update
                 </button>

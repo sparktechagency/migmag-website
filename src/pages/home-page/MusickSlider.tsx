@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import 'keen-slider/keen-slider.min.css';
 import {useKeenSlider} from 'keen-slider/react';
-import {FiPause, FiPlay} from 'react-icons/fi';
+import {FiPlay} from 'react-icons/fi';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import MaxWidth from "@/components/max-width/MaxWidth";
 

@@ -20,7 +20,7 @@ const ExclusiveLicense = () => {
                         <li>1x Wet Vocal (processed & tuned) in high-quality WAV format</li>
                         <li>Minimum 3x Dry Vocal Takes (raw, unprocessed)</li>
                         <li>If included: instrumental stems (piano, drums, etc.) and chord/melody files in .MIDI format</li>
-                        <li>Files delivered via email and in the user's account dashboard</li>
+                        <li>Files delivered via email and in the user account dashboard</li>
                     </ul>
                 </section>
 
@@ -41,7 +41,7 @@ const ExclusiveLicense = () => {
                     <ul className="list-disc list-inside space-y-2 lg:text-xl text-lg textColor  ">
                         <li>100% Buyout License – full master rights belong to Licensee</li>
                         <li>No resale, sublicensing, or transfer of license/files</li>
-                        <li>Do not upload the vocal to content ID/fingerprinting systems unless you're the sole claimant</li>
+                        <li>Do not upload the vocal to content ID/fingerprinting systems unless you are the sole claimant</li>
                         <li>Credit to TuneM or the vocalist is optional</li>
                     </ul>
                 </section>

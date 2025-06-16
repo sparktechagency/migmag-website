@@ -3,10 +3,9 @@
 
 import Link from 'next/link'
 import React, {useState} from 'react'
-import {FaCcApplePay, FaFacebook, FaInstagramSquare} from "react-icons/fa";
+import { FaFacebook, FaInstagramSquare} from "react-icons/fa";
 import {FaTiktok} from "react-icons/fa";
 import {BsDiscord} from "react-icons/bs";
-import {FcGoogle} from "react-icons/fc";
 import {ArrowRight} from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
@@ -121,7 +120,7 @@ const BrowseVocalFooter: React.FC = () => {
                                         placeholder="Enter your email address"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="flex-1 px-4 py-2 lg:py-2 text-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
+                                        className="flex-1 lg:w-full w-1/4 px-4 py-2 lg:py-2 text-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 placeholder-gray-500"
                                     />
                                     <button
                                         type="submit"
