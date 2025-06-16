@@ -1,6 +1,5 @@
 import React from 'react'
 import SingerDetails from './SingerDetails'
-import Footer from '@/components/footer/Footer'
 import Navbar from '@/components/navbar/Navbar'
 import UpdateFooter from "@/components/footer/UpdateFooter";
 

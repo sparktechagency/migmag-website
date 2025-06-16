@@ -10,23 +10,21 @@ const HireVocal: React.FC = () => {
 
     const vocalData: VocalInt[] = [
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-1.png"
         },
 
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-2.png"
         },
 
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-3.png"
         },
 
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-4.png"
         },
-        {
-            image: "/images/home-page/vocal-publish/p-1.png"
-        },
+
 
     ]
     return (
@@ -39,7 +37,7 @@ const HireVocal: React.FC = () => {
                         vocalData.map((item, i) => {
                             return (
                                 <div key={i}>
-                                    <Image src={item.image} width={175} height={85}
+                                    <Image src={item.image} width={175} height={100}
                                            className=' object-cover block mx-auto ' alt="..."/>
                                 </div>
                             )

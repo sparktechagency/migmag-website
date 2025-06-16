@@ -6,27 +6,25 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const VocalPublish: React.FC = () => {
     interface VocalInt {
         image: string;
-    };
+    }
 
     const vocalData: VocalInt[] = [
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-1.png"
         },
 
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-2.png"
         },
 
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-3.png"
         },
 
         {
-            image: "/images/home-page/vocal-publish/p-1.png"
+            image: "/update-image/sponser-logo/sponser-4.png"
         },
-        {
-            image: "/images/home-page/vocal-publish/p-1.png"
-        },
+
 
     ]
 
@@ -36,12 +34,12 @@ const VocalPublish: React.FC = () => {
                 <div style={{fontFamily: 'Favorit'}} className=' max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  '>
                     <h1 className=' text-center headerColor lg:text-4xl text-2xl font-semibold   '>TuneM Vocals
                         Featured In </h1>
-                    <div className=' flex flex-col lg:flex-row md:flex-row justify-between mx-auto '>
+                    <div className=' flex flex-col lg:flex-row md:flex-row justify-between mx-auto mt-4 '>
                         {
                             vocalData.map((item, i) => {
                                 return (
                                     <div key={i}>
-                                        <Image src={item.image} width={175} height={85}
+                                        <Image src={item.image} width={175} height={90}
                                                className=' object-cover block mx-auto ' alt="..."/>
                                     </div>
                                 )
@@ -54,12 +52,12 @@ const VocalPublish: React.FC = () => {
 
                 </div>
                 <div style={{fontFamily: 'Favorit'}}
-                     className='  mx-auto flex flex-col  lg:flex-row  gap-x-14 lg:mt-[110px] md:mt-20  '>
+                     className='  mx-auto flex flex-col items-stretch  lg:flex-row  gap-x-14 lg:mt-[110px] md:mt-20  '>
 
                     {/* left section  */}
-                    <div className='  '>
-                        <Image src={"/images/home-page/vocal-publish/p-2.png"}
-                               className=' object-cover rounded-lg mx-auto ' width={661} height={691} alt='....'/>
+                    <div className=' w-full  '>
+                        <Image src={"/update-image/home-page/vocal-relase/vocal-relase.jpg"}
+                               className=' object-cover  mx-auto w-full ' width={961} height={991} alt='....'/>
                     </div>
                     {/* right section  */}
                     <div className=' lg:-mt-1 mt-4   '>
@@ -71,7 +69,7 @@ const VocalPublish: React.FC = () => {
                         <div className=' maw-w-[450px] lg:mt-8 mt-3 '>
                             <h1 className=' lg:text-lg leading-6 textColor '>Connect your Spotify or Apple Music, and
                                 we’ll show
-                                you relevant events based on your favourite artists - Whether you're uploading to
+                                you relevant events based on your favourite artists - Whether you&apos;re uploading to
                                 Spotify, Apple Music, Beatport, or YouTube all vocals from TuneM are fully royalty-free
                                 and release-ready.</h1>
                         </div>
@@ -191,9 +189,11 @@ const VocalPublish: React.FC = () => {
 
                 <div style={{fontFamily: 'Bayon'}} className='mx-auto  '>
                     <div className=' maw-w-[1116px]  '>
-                        <h1 className=' lg:text-[90px] md:text-4xl text-2xl font-thin lg:mt-32 md:20 mt-7 headerColor '>“LOVE TUNEM
+                        <h1 className=' lg:text-[90px] md:text-4xl text-2xl font-thin lg:mt-32 md:20 mt-7 headerColor '>“LOVE
+                            TUNEM
                             - GREAT CHOICE AND EVEN BETTER SERVICE” </h1>
-                        <p style={{fontFamily: 'Favorit'}} className="mt-2 text-lg font-medium  textColor ">Simon Godard, London</p>
+                        <p style={{fontFamily: 'Favorit'}} className="mt-2 text-lg font-medium  textColor ">Simon
+                            Godard, London</p>
                     </div>
                 </div>
 

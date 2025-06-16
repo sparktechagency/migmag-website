@@ -4,7 +4,6 @@ import HomeBanner from './HomeBanner'
 import MusickSlider from './MusickSlider'
 import TopTenVocal from './TopTenVocal'
 import ArtistList from './ArtistList'
-import Footer from '@/components/footer/Footer'
 import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
@@ -39,7 +38,6 @@ const HomePage: React.FC = () => {
                 <div>
                     <Review></Review>
                 </div>
-                {/*<Footer></Footer>*/}
                 <UpdateFooter></UpdateFooter>
                 <CookieConsent/>
             </div>

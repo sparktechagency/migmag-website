@@ -1,11 +1,6 @@
-import React, {ReactElement} from 'react'
+import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
 
-interface FeatureItem {
-    icon: ReactElement;
-    title: string;
-    description: string;
-}
 
 const ApplayVocalistFrom: React.FC = () => {
     const genres = [

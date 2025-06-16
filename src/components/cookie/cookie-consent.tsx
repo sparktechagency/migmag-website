@@ -96,12 +96,12 @@ export default function CookieConsent() {
     return (
         <>
             {/* Cookie Banner */}
-            <div style={{ fontFamily: 'Favorit' }} className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t shadow-lg">
+            <div style={{ fontFamily: 'Favorit' }} className="fixed bottom-0 border   left-0 right-0 z-50 p-4 bg-white border-t shadow-lg">
                 <div className="container mx-auto max-w-6xl">
                     <Card className="border-0 shadow-none">
                         <CardContent className="">
                             <div className="flex items-start gap-4">
-                                <Cookie className="h-8 w-8 text-orange-500 flex-shrink-0 mt-1" />
+                                <Cookie className="h-8   w-8 text-orange-500 flex-shrink-0 mt-1" />
                                 <div className="flex-1">
                                     <CardTitle className="text-xl lg:text-2xl mb-2">We use cookies</CardTitle>
                                     <CardDescription className="lg:text-xl text-sm  mb-4">

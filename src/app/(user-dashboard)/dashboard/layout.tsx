@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import Sidebar from "@/components/sidebar/Sidebar";
-import Footer from '@/components/footer/Footer';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -28,10 +27,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         setDrawerOpen(false)
     }, [pathname])
     return (
-        <div className=' bg-[#222222] z-50 ' >
-            <main className="w-full bg-[#222222]  min-h-screen relative">
-                <div style={{ fontFamily: 'Favorit' }} className=' fixed top-0 w-full  py-8 ' >
-                    <div className='flex items-center justify-between  max-w-[1749px]  mx-auto px-4'>
+        <div className=' bg-[#222222] z-50  ' >
+            <main className=" bg-[#222222] w-full  min-h-screen relative">
+                <div style={{ fontFamily: 'Favorit' }} className=' fixed top-0 w-full  py-5 ' >
+                    <div className='flex items-center justify-between    mx-auto '>
                         {/* Logo */}
                         <Link href="/">
                             <svg width="174" height="22" viewBox="0 0 174 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,12 +57,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         {/* Mobile Menu Button */}
                         <div className="2xl:hidden">
                             <button onClick={toggleDrawer}>
-                                <FiMenu className=' text-black cursor-pointer ' size={23} />
+                                <FiMenu className=' text-black cursor-pointer ' size={30} />
                             </button>
                         </div>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden lg:flex flex-row items-center gap-x-12">
+                        <nav className="hidden 2xl:flex flex-row items-center gap-x-12">
                             <ul className="flex items-center gap-x-8 text-lg">
                                 <li><Link className='text-white' href="/ai-data-sets">Ai Data Sets</Link></li>
                                 <li><Link className='text-white' href="/browse-vocal">Browse Vocals</Link></li>
@@ -97,10 +96,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
                                 </Link>
                             </div>
-                            {/* 
-                            <Link href={"/login"}><button className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
-                                <Link href={"/login"}>Log in</Link>
-                            </button></Link> */}
+
+
                         </nav>
                     </div>
 
@@ -162,9 +159,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
                 {/* On mobile, Sidebar handles its own fixed positioning and toggle */}
             </main>
-            {/* <div className=' bg-white pt-8 ' >
-                <Footer></Footer>
-            </div> */}
+
 
         </div>
     );

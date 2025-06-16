@@ -1,12 +1,10 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
-import React, {useState} from 'react'
-import {FaArrowRight} from 'react-icons/fa';
+import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 const ArtistList: React.FC = () => {
-    const [visibleData, setVisibleData] = useState<number>(6)
 
     interface SingerInterface {
         image: string;
@@ -87,7 +85,7 @@ const ArtistList: React.FC = () => {
                     <div
                         className=' lg:my-10 my-4 grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     '>
                         {
-                            singerData.slice(0, visibleData).map((item, i) => {
+                            singerData.slice(0, 6).map((item, i) => {
                                 return (
                                     <div
                                         key={i}

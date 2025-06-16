@@ -11,11 +11,12 @@ const PrivacyPage: React.FC = () => {
                 <section className="mb-8">
                     <h2 className="lg:text-3xl text-2xl headerColor font-semibold mb-2">INTRODUCTION</h2>
                     <p className=" textColor text-lg lg:text-xl " >
-                        TuneM ("we," "our," or "us") values your privacy and is committed to safeguarding the personal
-                        information of our users ("you," "your," or "User"). This Privacy Policy explains how we
+                        TuneM (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) values your privacy and is committed to safeguarding the personal
+                        information of our users (&quot;you,&quot; &quot;your,&quot; or &quot;User&quot;). This Privacy Policy explains how we
                         collect, use, store, and share your data when you access our website (tunem.ai or any associated
                         platform) and any services provided by TuneM. By using our site, you consent to the terms of
                         this Privacy Policy.
+
                     </p>
                     <p className="mt-2 textColor text-lg lg:text-xl ">
                         We may update this Privacy Policy from time to time. Any modifications will be effective
@@ -125,7 +126,7 @@ const PrivacyPage: React.FC = () => {
                 </section>
 
                 <section className="mb-8">
-                    <h2 className="text-2xl lg:text-3xl headerColor font-semibold mb-2">9. CHILDREN’S PRIVACY</h2>
+                    <h2 className="text-2xl lg:text-3xl headerColor font-semibold mb-2">9. CHILDREN&apos;S PRIVACY</h2>
                     <p className={"lg:text-xl text-lg textColor"}>
                         Our services are not intended for children under 13. We do not knowingly collect data from
                         minors. If we become aware that such data has been collected, we will delete it immediately.

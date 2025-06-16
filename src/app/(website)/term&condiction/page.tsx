@@ -1,7 +1,6 @@
 import React from 'react'
 import TermPage from './TermPage';
 import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/Footer';
 import UpdateFooter from "@/components/footer/UpdateFooter";
 
 const Page: React.FC = () => {

@@ -7,7 +7,6 @@ import WaveSurfer from 'wavesurfer.js';
 import {Dialog, Transition} from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {ArrowRight} from 'lucide-react';
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 
@@ -25,16 +24,17 @@ interface Track {
     audioUrl: string;
 }
 
-const licenseColors: Record<Track['license'], string> = {
-    PREMIUM: 'bg-[#00C2CE] text-white',
-    EXCLUSIVE: 'bg-[#80BC02] text-white',
-    'NON-EXCLUSIVE': 'bg-[#818080] text-white',
-};
-const licenseColorsText: Record<Track['license'], string> = {
-    PREMIUM: 'text-[#00C2CE] ',
-    EXCLUSIVE: 'text-[#80BC02]',
-    'NON-EXCLUSIVE': 'text-[#818080] ',
-};
+// const licenseColors: Record<Track['license'], string> = {
+//     PREMIUM: 'bg-[#00C2CE] text-white',
+//     EXCLUSIVE: 'bg-[#80BC02] text-white',
+//     'NON-EXCLUSIVE': 'bg-[#818080] text-white',
+// };
+// const licenseColorsText: Record<Track['license'], string> = {
+//     PREMIUM: 'text-[#00C2CE] ',
+//     EXCLUSIVE: 'text-[#80BC02]',
+//     'NON-EXCLUSIVE': 'text-[#818080] ',
+// };
+
 type Singer = {
     id: number;
     name: string;
@@ -84,7 +84,7 @@ const singers: Singer[] = [
 ];
 
 const SingerDetails: React.FC = () => {
-    const [selectedTrackId, setSelectedTrackId] = useState(null);
+    // const [selectedTrackId, setSelectedTrackId] = useState(null);
 
     const tracks: Track[] = [
         {
