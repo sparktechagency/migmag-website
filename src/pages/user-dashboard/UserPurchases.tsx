@@ -101,13 +101,13 @@ const PurchasesTable = () => {
                                         {item.license}
                                     </span>
                                 </td>
-                                <td className="py-4 text-[#818080] underline text-[16px] leading-6">
+                                <td className="py-4 cursor-pointer text-[#818080] underline text-[16px] leading-6">
                                     {item.contract}
                                 </td>
 
                                 <td className="py-4   gap-3">
                                     <button
-                                        className="text-xs px-3 py-1 rounded-full bg-[#2C2C2C] text-[#9C9C9C] border border-[#444]"
+                                        className="text-xs px-3 cursor-pointer py-1 rounded-full bg-[#2C2C2C] text-[#9C9C9C] border border-[#444]"
                                         onClick={() => downloadContract(item.contractUrl, item.contract)}
                                     >
                                         View contract
@@ -117,7 +117,7 @@ const PurchasesTable = () => {
                                 <td className='   ' >
                                     <button
                                         onClick={() => downloadContract(item.contractUrl, item.contract)}
-                                        className="flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-[#2C2C2C] text-[#9C9C9C] border border-[#444] hover:bg-[#3a3a3a] transition"
+                                        className="flex items-center cursor-pointer gap-2 text-xs px-3 py-1 rounded-full bg-[#2C2C2C] text-[#9C9C9C] border border-[#444] hover:bg-[#3a3a3a] transition"
                                     >
                                         <FiDownload size={14} />
                                     </button>

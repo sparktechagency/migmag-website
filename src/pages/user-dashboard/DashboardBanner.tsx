@@ -47,7 +47,7 @@ export default function Banner() {
                     {/* Bottom Row */}
                     <div className="flex items-center justify-between w-full mt-3">
                         <p className="text-sm md:text-base ml-4">06 VOCAL</p>
-                        <button className="border border-white text-sm md:text-lg rounded-2xl px-6 py-1">LISTEN</button>
+                        <button className="border border-white text-sm cursor-pointer md:text-lg rounded-2xl px-6 py-1">LISTEN</button>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@ export default function Banner() {
                     <div className="flex justify-end ">
                         <div className="flex gap-x-3 items-center">
                             <p className="text-white text-sm">View Services</p>
-                            <div className="bg-[#E7F056] w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
+                            <div className="bg-[#E7F056] w-6 h-6 md:w-7 md:h-7 cursor-pointer rounded-full"></div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export default function Banner() {
                 <div className="bg-[#333333] p-4 rounded-md min-h-[70px]">
                     <div className="flex items-center justify-between">
                         <p className="text-white text-sm md:text-lg">Contact our team</p>
-                        <div className="bg-[#E7F056] w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
+                    <div className="bg-[#E7F056] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
                     </div>
                 </div>
             </div>

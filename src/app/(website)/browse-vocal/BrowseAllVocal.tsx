@@ -566,50 +566,45 @@ const BrowseAllVocal = () => {
                 <div className=' mt-12 mb-6 '>
                     <div className=' border border-white '></div>
                 </div>
-                <div className=' flex md:flex-row lg:flex-row flex-col justify-between items-center mb-11  '>
-                    <div className='flex-1'>
-                        <h1 className=' lg:text-3xl md:text-2xl font-bold leading-9 text-white '>Browse <span
-                            className=' text-[#818080] '>Vocals</span></h1>
+                <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center mb-11 gap-14'>
+                    {/* Title Section */}
+                    <div className='flex-1 w-full'>
+                        <h1 className='lg:text-3xl md:text-2xl text-xl font-bold leading-9 text-white'>
+                            Browse <span className='text-[#818080]'>Vocals</span>
+                        </h1>
                     </div>
 
-                    <div className='   flex jeustify-end   gap-14 relative   '>
-                        <div className='   '>
-                            <button onClick={clearSearch}
-                                    className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
-                                filters
-                            </button>
-                        </div>
-
+                    {/* Clear Filters Button */}
+                    <div className='w-full md:w-auto text-center mt-6 md:text-right'>
+                        <button
+                            onClick={clearSearch}
+                            className='text-white text-lg underline mt-12 md:mt-0 cursor-pointer'
+                        >
+                            Clear filters
+                        </button>
                     </div>
+
+                    {/* Search Input Section */}
+                    <div className="relative w-full md:w-[300px] lg:w-[400px]">
+                        <input
+                            className="w-full border border-white focus:outline-0 py-2.5 rounded-2xl text-white pl-10 pr-6 bg-transparent placeholder-gray-400 placeholder:text-[16px]"
+                            placeholder="SEARCH"
+                            value={searchTerm}
+                            onChange={handleSearch}
+                        />
+                        {/* Search Icon */}
+                        <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white w-5 h-5"/>
+                    </div>
+
+
                 </div>
 
 
                 <div
                     className=" hidden lg:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
-                    <div className="relative w-full ">
-                        <input
-                            className="border border-white focus:outline-0 py-2.5 rounded-2xl text-white pl-6 pr-6 bg-transparent placeholder-gray-400 placeholder:text-[16px] "
-                            placeholder="SEARCH"
-                            value={searchTerm}
-                            onChange={handleSearch}
-                        />
 
-                        {/* Search Icon - Left side */}
-                        <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white"/>
 
-                        {/* Clear Icon - Right side */}
-                        {/*{searchTerm.length > 0 && (*/}
-                        {/*    <button*/}
-                        {/*        type="button"*/}
-                        {/*        onClick={() => setSearchTerm('')}*/}
-                        {/*        className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white hover:text-gray-300"*/}
-                        {/*    >*/}
-                        {/*        ✕*/}
-                        {/*    </button>*/}
-                        {/*)}*/}
-                    </div>
 
-                    {/* genre  */}
 
 
                     {/* BPM */}
@@ -731,6 +726,60 @@ const BrowseAllVocal = () => {
                                             </div>
                                         </div>
                                     </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+                    {/*key start */}
+
+
+                    <div className="relative w-full " ref={keyRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F] text-white md:px-5 px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenKey(!openKey)}
+                        >
+                            {/* Icon on RIGHT side */}
+                            {openKey ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            {/* Only show selected count */}
+                            <span className="w-28 text-white md:text-lg ">
+                                {selectGenre.length > 0 ? <>Selected {selectedKey.length}</> : "Key"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openKey && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                >
+                                    {keys.map((key) => (
+                                        <label
+                                            key={key}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectGenre.includes(key)}
+                                                onChange={(e) => {
+                                                    toggleGenre(key);
+                                                    handleFilterChange('key', e.target.checked ? key : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg   ">{key}</span>
+                                        </label>
+                                    ))}
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -997,6 +1046,8 @@ const BrowseAllVocal = () => {
                             )}
                         </AnimatePresence>
                     </div>
+
+                    {/*key */}
 
 
                 </div>

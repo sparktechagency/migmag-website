@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
                             <div className="flex justify-end">
                                 <div className="flex gap-x-3 items-center">
                                     <p className="text-[#222222] text-sm">View Services</p>
-                                    <div className="bg-[#222222] w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
+                                    <div className="bg-[#222222] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
                             <div className="flex justify-end mt-10 md:mt-[146px]">
                                 <div className="flex gap-x-3 items-center">
                                     <p className="text-white text-sm">View Services</p>
-                                    <div className="bg-[#E7F056] w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
+                                    <div className="bg-[#E7F056] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
                             <h2 className="text-sm text-[#818080] leading-6">Barbie Mack</h2>
                             <h1 className="text-base font-bold underline text-white">Lost In The Night</h1>
                         </div>
-                        <button className="w-10 h-10 rounded-full border border-[#E7F056] flex items-center justify-center">
+                        <button className="w-10 h-10 cursor-pointer rounded-full border border-[#E7F056] flex items-center justify-center">
                             <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="url(#clip0_1_470)">
                                     <path
@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
                             <h2 className="text-sm text-[#818080] leading-6">Barbie Mack</h2>
                             <h1 className="text-base font-bold underline text-white">Lost In The Night</h1>
                         </div>
-                        <button className="w-10 h-10 rounded-full border border-[#E7F056] flex items-center justify-center">
+                        <button className="w-10 h-10 rounded-full border border-[#E7F056] cursor-pointer flex items-center justify-center">
                             <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clipPath="url(#clip0_1_470)">
                                     <path

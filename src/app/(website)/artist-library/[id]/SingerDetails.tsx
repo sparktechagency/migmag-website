@@ -1,13 +1,14 @@
 "use client"
 
 
-import {useEffect, useRef, useState, Fragment} from 'react';
+import React, {useEffect, useRef, useState, Fragment} from 'react';
 import {FaPlay, FaPause, FaStepBackward, FaStepForward} from 'react-icons/fa';
 import WaveSurfer from 'wavesurfer.js';
 import {Dialog, Transition} from '@headlessui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidth from "@/components/max-width/MaxWidth";
+import {FiSend} from "react-icons/fi";
 
 
 interface Track {
@@ -82,9 +83,19 @@ const singers: Singer[] = [
         image: "/images/artist-library/artist/artist-4.png",
     },
 ];
+interface SingerDetailsProps {
+    artistId: string;
 
-const SingerDetails: React.FC = () => {
-    // const [selectedTrackId, setSelectedTrackId] = useState(null);
+}
+
+const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
+
+
+    console.log(artistId);
+
+    const [chatOpen, setChatOpen] = useState(false);
+
+    const toggleModal = () => setChatOpen(!chatOpen);
 
     const tracks: Track[] = [
         {
@@ -98,7 +109,7 @@ const SingerDetails: React.FC = () => {
             license: 'PREMIUM',
             price: 120,
             image: "/images/browse-vocal/browse/browse-1.png",
-            audioUrl: `${window.location.origin}/images/audio/audio-2.mp3`,
+            audioUrl: `/images/audio/audio-2.mp3`,
         },
         {
             id: 2,
@@ -111,7 +122,7 @@ const SingerDetails: React.FC = () => {
             license: 'EXCLUSIVE',
             price: 120,
             image: "/images/browse-vocal/browse/browse-2.png",
-            audioUrl: `${window.location.origin}/images/audio/audio-2.mp3`,
+            audioUrl: `/images/audio/audio-2.mp3`,
         },
         {
             id: 3,
@@ -215,7 +226,7 @@ const SingerDetails: React.FC = () => {
             license: 'EXCLUSIVE',
             price: 120,
             image: "/images/browse-vocal/browse/browse-10.png",
-            audioUrl: `${window.location.origin}/images/audio/audio-2.mp3`,
+            audioUrl: `/images/audio/audio-2.mp3`,
         },
     ];
 
@@ -324,7 +335,7 @@ const SingerDetails: React.FC = () => {
                      className=' flex flex-col lg:flex-row items-center  lg:items-stretch justify-between '>
                     {/* left section  */}
                     <div>
-                        <div className=' flex flex-col lg:flex-row items-center lg:gap-x-16 '>
+                        <div className=' flex flex-col lg:flex-row items-center lg:gap-x-10 '>
                             {/* image  */}
                             <div>
                                 <Image src={"/images/tune/tuneBanner/manageTune.png"}
@@ -378,6 +389,14 @@ const SingerDetails: React.FC = () => {
                                     HIRE NOW
                                 </button>
                             </Link>
+
+                            <button
+                                onClick={toggleModal}
+                                className='  cursor-pointer h-8    text-sm    px-3    border border-black rounded-2xl '>
+
+                                Message
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -762,6 +781,60 @@ const SingerDetails: React.FC = () => {
                     </div>
                 </div>
             </MaxWidth>
+
+            {/* Modal */}
+            {chatOpen && (
+                <div style={{fontFamily: "Favorit"}} className="fixed inset-0  flex items-center justify-center z-50">
+                    <div className="bg-white w-[40%] rounded-2xl shadow-xl relative p-4">
+                        {/* Close Button */}
+                        <button
+                            onClick={toggleModal}
+                            className="absolute cursor-pointer top-2 right-3 text-xl text-gray-500"
+                        >
+                            &times;
+                        </button>
+
+                        {/* Chat bubble */}
+                        <div className="flex justify-center mb-3">
+                            <div className="bg-gray-100 text-sm px-4 py-2 rounded-2xl max-w-[80%]">
+                                Hi, I will be available soon! Check back later 😊
+                            </div>
+                        </div>
+
+                        {/* User Info */}
+                        <div className="flex flex-col  gap-3 mt-6">
+                            <Image
+                                src="/images/artist-library/artist/artist-1.png" // 👈 update to your image path
+                                alt="User"
+                                width={100}
+                                height={100}
+                                className="rounded-full"
+                            />
+                            <div>
+                                <p className="text-sm text-gray-500">Send a message to</p>
+                                <h2 className="text-lg font-semibold">Summer</h2>
+                                <p className="text-xs text-green-600 mt-1">
+                                    ✅ Get a reply within 24 hours
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Message Input */}
+                        <Link href={`/artist-library/1/artist-message`}>
+                            <div
+                                className=" mt-6 flex justify-center items-center gap-x-4 cursor-pointer  rounded-full  ">
+                                <input
+                                    type="text"
+
+                                    placeholder="Type a message"
+                                    className=" w-[70%] border px-6 py-2.5 rounded-full cursor-pointer  outline-none text-sm"
+                                />
+                                <FiSend className="text-gray-500" size={20}/>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+            )}
 
 
         </div>
