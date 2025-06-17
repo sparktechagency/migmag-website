@@ -3,7 +3,7 @@ import PurchasePage from './PurchasePage'
 
 const page = () => {
   return (
-    <div>
+    <div className={`-z-0`} >
       <PurchasePage></PurchasePage>
     </div>
   )

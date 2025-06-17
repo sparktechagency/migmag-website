@@ -236,7 +236,7 @@ const PurchasePage: React.FC = () => {
                                     <Image
                                         src={track.image || "/images/default.jpg"}
                                         alt={track.title}
-                                        className="object-cover rounded-md w-full -mt-5 h-full"
+                                        className="object-cover rounded-md w-full -z-0 -mt-5 h-full"
                                         width={93}
                                         height={91}
                                     />
