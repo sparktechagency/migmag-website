@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
-
+import {Bayon} from "next/font/google";
+const bayon = Bayon({
+    weight: '400',
+    subsets: ['latin'],
+});
 const BrowseVocalBanner = () => {
     return (
         <MaxWidth>
@@ -9,8 +13,8 @@ const BrowseVocalBanner = () => {
                 <div className='   flex flex-col lg:flex-row justify-between '>
                     {/* left side  */}
                     <div className=' max-w-2xl text-white '>
-                        <div style={{fontFamily: 'Bayon'}}
-                             className=' lg:max-w-[700px] lg:text-[75px] text-4xl lg:leading-20 '>
+                        <div
+                             className={`lg:max-w-[700px] lg:text-[70px] text-4xl lg:leading-20 ${bayon.className} `}>
                             Get Studio Quality Acapellas
                         </div>
                         <div style={{fontFamily: 'Favorit'}}

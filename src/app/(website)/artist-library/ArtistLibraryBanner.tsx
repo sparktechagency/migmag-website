@@ -2,7 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
-
+import {Bayon} from "next/font/google";
+const bayon = Bayon({
+    weight: '400',
+    subsets: ['latin'],
+});
 const ArtistLibraryBanner = () => {
     return (
         <div className=' mx-auto mt-8   '>
@@ -12,7 +16,7 @@ const ArtistLibraryBanner = () => {
                         {/* left side  */}
                         <div className=' max-w-2xl text-white '>
                             <div style={{fontFamily: 'Bayon'}}
-                                 className=' max-w-[633px] lg:text-[60px] text-4xl lg:leading-24 '>
+                                 className= {` ${bayon.className}  max-w-[633px] lg:text-[70px] text-4xl lg:leading-24 `}>
                                 <h1>TALENTED ARTISTS AVAILABLE FOR YOUR TRACKS <span className={`text-[#E7F056]`}> - TuneM Artists </span>
                                 </h1>
                             </div>

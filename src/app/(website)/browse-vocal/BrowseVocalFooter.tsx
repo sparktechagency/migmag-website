@@ -101,7 +101,7 @@ const BrowseVocalFooter: React.FC = () => {
 
                                 <div>
 
-                                    <p className="text-white text-xl">@migmag.com</p>
+                                    {/*<p className="text-white text-xl">@migmag.com</p>*/}
 
                                 </div>
                             </div>
