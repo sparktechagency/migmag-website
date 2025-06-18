@@ -91,7 +91,7 @@ const BrowseVocalNavbar: React.FC = () => {
                                         href="/browse-vocal"
                                         className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : "text-white"}`}
                                     >
-                                        Browse Vocals
+                                        Vocals
                                     </Link>
 
                                     {/* ▼ smooth dropdown */}
@@ -113,7 +113,7 @@ const BrowseVocalNavbar: React.FC = () => {
                                 </li>
                                 <li><Link
                                     className={`${pathname === "/artist-library" ? "text-[#E7F056]" : "text-white"}`}
-                                    href="/artist-library">Artist Library</Link></li>
+                                    href="/artist-library">Artists</Link></li>
                                 <li><Link className="text-white" href="/hire">Hire</Link></li>
                             </ul>
 
@@ -198,9 +198,9 @@ const BrowseVocalNavbar: React.FC = () => {
                             <li><Link className={`${pathname === "/ai-data-sets" ? "text-[#E7F056]" : 'text-black'}`}
                                       href="/ai-data-sets">Ai Data Sets</Link></li>
                             <li><Link className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : 'text-black'}`}
-                                      href="/browse-vocal">Browse Vocals</Link></li>
+                                      href="/browse-vocal">Vocals</Link></li>
                             <li><Link className={`${pathname === "/artist-library" ? "text-[#E7F056]" : 'text-black'}`}
-                                      href="/artist-library">Artist Library</Link></li>
+                                      href="/artist-library">Artists</Link></li>
                             <li><Link className={`${pathname === "/hire" ? "text-[#E7F056]" : 'text-black'}`}
                                       href="/hire">Hire</Link></li>
                             <li><Link className={`${pathname === "/cart" ? "text-[#E7F056]" : 'text-black'}`}

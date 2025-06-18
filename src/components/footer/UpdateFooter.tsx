@@ -3,12 +3,15 @@
 
 import Link from 'next/link'
 import React, {useState} from 'react'
-import {FaFacebook, FaInstagramSquare} from "react-icons/fa";
+import { FaFacebook,  FaInstagramSquare} from "react-icons/fa";
 import {FaTiktok} from "react-icons/fa";
 import {BsDiscord} from "react-icons/bs";
 import {ArrowRight} from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
+// import {FaPaypal} from "react-icons/fa6";
+// import { RiVisaLine } from "react-icons/ri";
+// import {SiAmericanexpress} from "react-icons/si";
 
 const UpdateFooter: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -97,7 +100,7 @@ const UpdateFooter: React.FC = () => {
 
                                 <div>
 
-                                    <p className="textColor text-xl">@migmag.com</p>
+                                    {/*<p className="textColor text-xl">@migmag.com</p>*/}
 
                                 </div>
                             </div>
@@ -192,10 +195,34 @@ const UpdateFooter: React.FC = () => {
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover  " // center the image horizontally
+                            className="mx-auto object-cover bg-gray-400 " // center the image horizontally
                             priority // optional: preload if this image is above the fold
                         />
                     </div>
+                    {/*<div className="max-w-6xl mx-auto ">*/}
+                    {/*paypal*/}
+                    {/*<div>*/}
+                    {/*    <span><FaPaypal size={50}  /></span>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <span> <FaCcMastercard size={50}  /> </span>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <span><RiVisaLine size={50}   /></span>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <span>*/}
+                    {/*        <SiAmericanexpress size={50}  />*/}
+                    {/*    </span>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <span><FaApplePay size={50}  /></span>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                    {/*    <span><FaGooglePay size={50}  /></span>*/}
+                    {/*</div>*/}
+
+                    {/*</div>*/}
                     {/*date time */}
                     <div>
                         <p className="text-lg textColor">

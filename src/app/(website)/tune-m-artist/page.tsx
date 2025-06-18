@@ -104,7 +104,7 @@ const Page: React.FC = () => {
                                             href="/browse-vocal"
                                             className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : "text-white"}`}
                                         >
-                                            Browse Vocals
+                                            Vocals
                                         </Link>
 
                                         {/* ▼ smooth dropdown */}
@@ -124,7 +124,7 @@ const Page: React.FC = () => {
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><Link className="text-white" href="/artist-library">Artist Library</Link></li>
+                                    <li><Link className="text-white" href="/artist-library">Artists</Link></li>
                                     <li><Link className="text-white" href="/hire">Hire</Link></li>
                                 </ul>
 
@@ -211,7 +211,7 @@ const Page: React.FC = () => {
                                         href="/browse-vocal"
                                         className={` ${pathname === "/browse-vocal" ? "text-[#E7F056]  " : "text-white"}`}
                                     >
-                                        Browse Vocals
+                                        Vocals
                                     </Link>
                                 </li>
                                 <li><Link
@@ -219,7 +219,7 @@ const Page: React.FC = () => {
                                     href="/artist-library">Ai Data Sets</Link></li>
                                 <li><Link
                                     className={` ${pathname === "/artist-library" ? "text-[#E7F056]  " : "text-white"}`}
-                                    href="/artist-library">Artist Library</Link></li>
+                                    href="/artist-library">Artists</Link></li>
                                 <li><Link className={` ${pathname === "/hire" ? "text-[#E7F056]  " : "text-white"}`}
                                           href="/hire">Hire</Link></li>
                                 <li><Link className=' text-white ' href="/cart">Cart (0)</Link></li>
@@ -274,7 +274,7 @@ const Page: React.FC = () => {
             <CoreValue></CoreValue>
 
 
-           <UpdateFooter ></UpdateFooter>
+            <UpdateFooter></UpdateFooter>
 
         </>
 

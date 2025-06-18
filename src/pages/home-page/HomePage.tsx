@@ -7,7 +7,6 @@ import ArtistList from './ArtistList'
 import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
-import Review from "@/pages/home-page/Review";
 import UseSound from "@/pages/home-page/UseSound";
 import UpdateFooter from "@/components/footer/UpdateFooter";
 import VocalPublishLogo from "@/pages/home-page/VocalPublishLogo";
