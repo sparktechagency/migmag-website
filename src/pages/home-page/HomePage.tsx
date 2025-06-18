@@ -39,9 +39,7 @@ const HomePage: React.FC = () => {
                     <Coverd></Coverd>
                 </div>
 
-                <div>
-                    <Review></Review>
-                </div>
+
                 <UpdateFooter></UpdateFooter>
                 <CookieConsent/>
             </div>

@@ -91,7 +91,7 @@ const UseSound: React.FC = () => {
         <MaxWidth>
             <div style={{fontFamily: "Favorit"}} className="relative mx-auto py-12 ">
                 <div className="mb-8 ">
-                    <h1 className="text-2xl lg:text-4xl headerColor font-bold">Who uses our sounds</h1>
+                    <h1 className="text-2xl lg:text-4xl headerColor font-bold">Who uses our vocals</h1>
                 </div>
 
                 {/* slider */}
