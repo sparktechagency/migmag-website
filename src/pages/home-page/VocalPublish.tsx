@@ -32,19 +32,54 @@ const VocalPublish: React.FC = () => {
         <>
             <MaxWidth>
                 <div style={{fontFamily: 'Favorit'}} className=' max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  '>
-                    <h1 className=' text-center headerColor lg:text-4xl text-2xl font-semibold   '>TuneM Vocals
-                        Featured In </h1>
-                    <div className=' flex flex-col lg:flex-row md:flex-row justify-between mx-auto mt-4 '>
-                        {
-                            vocalData.map((item, i) => {
-                                return (
-                                    <div key={i}>
-                                        <Image src={item.image} width={175} height={90}
-                                               className=' object-cover block mx-auto ' alt="..."/>
-                                    </div>
-                                )
-                            })
-                        }
+                    {/*<h1 className=' text-center headerColor lg:text-4xl text-2xl font-semibold   '>TuneM Vocals*/}
+                    {/*    Featured In </h1>*/}
+                    <div className="flex flex-wrap justify-between items-center gap-4 mx-auto mt-4">
+                        <div>
+                            <Image
+                                src="/update-image/sponser-logo/logo-1.png"
+                                alt="logo"
+                                width={145}
+                                height={70}
+                                className="object-cover w-full"
+                            />
+                        </div>
+                        <div>
+                            <Image
+                                src="/update-image/sponser-logo/sponser-1.png"
+                                alt="logo"
+                                width={200}
+                                height={85}
+                                className="object-cover w-full"
+                            />
+                        </div>
+                        <div>
+                            <Image
+                                src="/update-image/sponser-logo/sponser-2.png"
+                                alt="logo"
+                                width={175}
+                                height={85}
+                                className="object-cover"
+                            />
+                        </div>
+                        <div>
+                            <Image
+                                src="/update-image/sponser-logo/sponser-3.png"
+                                alt="logo"
+                                width={175}
+                                height={85}
+                                className="object-cover"
+                            />
+                        </div>
+                        <div>
+                            <Image
+                                src="/update-image/sponser-logo/sponser-4.png"
+                                alt="logo"
+                                width={120}
+                                height={70}
+                                className="object-cover"
+                            />
+                        </div>
                     </div>
 
                 </div>

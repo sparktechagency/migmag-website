@@ -123,36 +123,37 @@ export default function MusicSlider() {
                     className="headerColor text-2xl lg:text-4xl font-semibold  -0 mx-auto ">
                     Latest Trending Vocals
                 </h1>
-            </MaxWidth>
+                <div ref={sliderRef} className="keen-slider relative w-full lg:mt-9 mt-4">
+                    {audioData.map((item, index) => (
+                        <div key={item.id} className="keen-slider__slide w-full px-4 lg:px-0">
+                            <div className="relative w-full h-[260px] overflow-hidden">
+                                <Image src={item.img} fill alt={item.title} className=" rounded-[4px] object-cover"/>
 
-            <div ref={sliderRef} className="keen-slider relative w-full lg:mt-9 mt-4">
-                {audioData.map((item, index) => (
-                    <div key={item.id} className="keen-slider__slide w-full px-4 lg:px-0">
-                        <div className="relative w-full h-[260px] overflow-hidden">
-                            <Image src={item.img} fill alt={item.title} className=" rounded-[4px] object-cover"/>
+                                <button
+                                    onClick={() => handleOpenModal(index)}
+                                    className="w-[50px] h-[50px] rounded-full bg-[#000000] flex justify-center items-center absolute bottom-4 right-4 z-10"
+                                >
+                                    <FiPlay className="text-[#E7F056]" size={24}/>
+                                </button>
+                            </div>
 
-                            <button
-                                onClick={() => handleOpenModal(index)}
-                                className="w-[50px] h-[50px] rounded-full bg-[#000000] flex justify-center items-center absolute bottom-4 right-4 z-10"
-                            >
-                                <FiPlay className="text-[#E7F056]" size={24}/>
-                            </button>
+                            <h3 style={{fontFamily: 'Favorit'}}
+                                className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
+                            <div className={`flex gap-x-6 `}>
+                                <p style={{fontFamily: 'Favorit'}}
+                                   className="textColor lg:text-lg font-bold">{item.name}</p>
+                                <Link href={"/checkout"}>
+                                    <p style={{fontFamily: 'Favorit'}}
+                                       className="textColor lg:text-lg font-bold">{item.price}</p>
+                                </Link>
+                            </div>
                         </div>
-
-                        <h3 style={{fontFamily: 'Favorit'}} className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
-                        <p style={{fontFamily: 'Favorit'}}
-                           className="textColor lg:text-lg font-bold">{item.name}</p>
-                        <p style={{fontFamily: 'Favorit'}}
-                           className="textColor lg:text-lg font-bold">{item.price}</p>
-                    </div>
-                ))}
-            </div>
-
-            <MaxWidth>
+                    ))}
+                </div>
                 <div style={{fontFamily: 'Favorit'}}
-                     className="max-w-[1539px] mx-auto flex flex-col lg:flex-row justify-between items-center">
-                    <div className="max-w-[1280px] lg:mt-[68px] mt-5">
-                        <h1 className="headerColor text-2xl lg:text-4xl font-semibold px-4 lg:px-0   ">
+                     className="  ">
+                    <div className=" lg:mt-[68px] mt-5">
+                        <h1 className=" lg:text-2xl text-xl textColor font-semibold px-4 lg:px-0   ">
                             Updated every Friday with new royalty-free vocals curated for music producers looking to
                             elevate
                             their sound and stand out.
@@ -161,13 +162,14 @@ export default function MusicSlider() {
                     <div className="mt-4 md:mt-12">
                         <Link href="/browse-vocal">
                             <button
-                                className="bg-[#000000] cursor-pointer w-[194px] text-white py-2 rounded-2xl lg:text-lg">
+                                className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  ">
                                 BROWSE VOCALS
                             </button>
                         </Link>
                     </div>
                 </div>
             </MaxWidth>
+
 
             {showModal && currentIndex !== null && (
                 <MusickPlayer

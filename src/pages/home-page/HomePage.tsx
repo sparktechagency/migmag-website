@@ -10,6 +10,7 @@ import CookieConsent from '@/components/cookie/cookie-consent'
 import Review from "@/pages/home-page/Review";
 import UseSound from "@/pages/home-page/UseSound";
 import UpdateFooter from "@/components/footer/UpdateFooter";
+import VocalPublishLogo from "@/pages/home-page/VocalPublishLogo";
 
 const HomePage: React.FC = () => {
     return (
@@ -18,6 +19,9 @@ const HomePage: React.FC = () => {
                 <Navbar></Navbar>
                 <div className=''>
                     <HomeBanner></HomeBanner>
+                </div>
+                <div>
+                    <VocalPublishLogo></VocalPublishLogo>
                 </div>
                 <MusickSlider></MusickSlider>
                 <div className='  lg:mt-[69px] mt-6 '>
