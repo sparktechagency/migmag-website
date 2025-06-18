@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
                                         href="/browse-vocal"
                                         className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : "text-black"}`}
                                     >
-                                        Browse Vocals
+                                        Vocals
                                     </Link>
 
                                     {/* ▼ smooth dropdown */}
@@ -110,7 +110,7 @@ const Navbar: React.FC = () => {
                                         </li>
                                     </ul>
                                 </li>
-                                <li><Link className="text-black" href="/artist-library">Artist Library</Link></li>
+                                <li><Link className="text-black" href="/artists">Artists</Link></li>
                                 <li><Link className="text-black" href="/hire">Hire</Link></li>
                             </ul>
 

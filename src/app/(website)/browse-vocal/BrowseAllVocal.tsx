@@ -1173,21 +1173,63 @@ const BrowseAllVocal = () => {
 
                 <div
                     className=" lg:hidden  grid grid-cols-3 gap-6  max-w-[1539px]  mx-auto   mb-6  ">
-                    <div
-                        className="  text-[#E7F056] text-[10px] md:text-[16px]">
-                        <div className="relative md:mt-0  ">
-                            <input
-                                className="border border-white focus:outline-0 w-full  py-2.5 px-3 rounded-2xl text-white  bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
-                                placeholder="SEARCH"
-                                value={searchTerm}
-                                onChange={handleSearch}
-                            />
-                            <Search size={10}
-                                    className="absolute  top-1/2 right-2 transform -translate-y-1/2 text-white"/>
-                        </div>
-                    </div>
+
 
                     {/* genre  */}
+
+                    {/*key start */}
+
+
+                    <div className="relative w-full " ref={keyRef}>
+                        <button
+                            type="button"
+                            className="bg-[#201F1F] text-white md:px-5 px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                            onClick={() => setOpenKey(!openKey)}
+                        >
+                            {/* Icon on RIGHT side */}
+                            {openKey ? (
+                                <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            ) : (
+                                <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                            )}
+
+                            {/* Only show selected count */}
+                            <span className="w-28 text-white md:text-lg ">
+                                {selectGenre.length > 0 ? <>Selected {selectedKey.length}</> : "Key"}
+                            </span>
+                        </button>
+
+                        <AnimatePresence>
+                            {openKey && (
+                                <motion.div
+                                    initial={{opacity: 0, y: -10}}
+                                    animate={{opacity: 1, y: 0}}
+                                    exit={{opacity: 0, y: -10}}
+                                    transition={{duration: 0.4, ease: "easeInOut"}}
+                                    className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                    style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                >
+                                    {keys.map((key) => (
+                                        <label
+                                            key={key}
+                                            className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                        >
+                                            <input
+                                                type="checkbox"
+                                                checked={selectGenre.includes(key)}
+                                                onChange={(e) => {
+                                                    toggleGenre(key);
+                                                    handleFilterChange('key', e.target.checked ? key : '');
+                                                }}
+                                                className="mr-3 accent-indigo-500 w-5 h-5"
+                                            />
+                                            <span className="text-white md:text-lg   ">{key}</span>
+                                        </label>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
 
 
                     {/* BPM */}

@@ -2,6 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import MaxWidth from "@/components/max-width/MaxWidth";
+import { Bayon } from 'next/font/google';
+const bayon = Bayon({
+    weight: '400',
+    subsets: ['latin'],
+});
 
 const HomeBanner: React.FC = () => {
     return (
@@ -10,13 +15,13 @@ const HomeBanner: React.FC = () => {
                 <div className="flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
                     {/* Left Side */}
                     <div className="max-w-[658px]   text-center lg:text-left">
-                        <h1 style={{fontFamily: 'Bayon'}}
-                            className="text-[36px] md:text-[46px] font-thin lg:text-[90px] headerColor uppercase leading-24 ">
+                        <h1
+                            className={`text-[36px] md:text-[46px]  lg:text-[70px] headerColor uppercase  ${bayon.className} `}>
                             Royalty-Free Vocals, Ready for Release
                         </h1>
                         <p style={{fontFamily: 'Favorit'}}
-                           className="textColor text-base md:text-lg mt-4 md:mt-8 leading-6">
-                            Used by producers. Trusted by labels. Vocals that fit your sound and fuel your success.
+                           className="textColor lg:text-2xl text-lg  mt-4 md:mt-8 leading-6">
+                            Used by producers. Trusted by labels.
                         </p>
 
                         <div style={{fontFamily: 'Favorit'}} className="mt-8 md:mt-12">
