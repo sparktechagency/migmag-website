@@ -89,7 +89,7 @@ export default function MusicSlider() {
                 slides: {perView: 3, spacing: 15},
             },
             '(min-width: 1024px)': {
-                slides: {perView: 6, spacing: 24},
+                slides: {perView: 4, spacing: 24},
             },
         },
     });

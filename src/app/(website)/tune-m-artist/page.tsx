@@ -14,7 +14,11 @@ import {FaCartArrowDown} from "react-icons/fa";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import FeatureSection from "@/app/(website)/tune-m-artist/FeatureSection";
 import UpdateFooter from "@/components/footer/UpdateFooter";
-
+import {Bayon} from "next/font/google";
+const bayon = Bayon({
+    weight: '400',
+    subsets: ['latin'],
+});
 const Page: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const pathname = usePathname();
@@ -43,13 +47,13 @@ const Page: React.FC = () => {
 
         <>
             <div
-                className="bg-gradient-to-r from-black/10 to-transparent  bg-[url('/images/tune/tuneBanner/tune-bannerImg.jpg')] bg-cover object-cover bg-center w-full pb-6 md:pb-12 lg:pb-28 "
+                className="bg-gradient-to-r from-black/10 to-transparent  bg-[url('/images/tune/tuneBanner/tune-bannerImg.jpg')] bg-cover object-cover bg-center w-full pb-6 md:pb-12 lg:pb-28  "
             >
                 <MaxWidth>
                     <div style={{fontFamily: 'Favorit'}} className="  mx-auto  py-5   bg-opacity-90 ">
                         <div className='flex items-center justify-between  mx-auto '>
                             {/* Logo */}
-                            <Link className='  ' href="/">
+                            <Link className='' href="/">
                                 <svg width="174" height="22" viewBox="0 0 174 22" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <g clipPath="url(#clip0_1_1601)">
@@ -240,8 +244,8 @@ const Page: React.FC = () => {
                 <MaxWidth>
                     <div style={{fontFamily: 'Favorit'}} className=' mx-auto  mt-8 lg:mt-14  '>
                         <div className=' max-w-[731px] '>
-                            <h1 style={{fontFamily: 'Bayon'}}
-                                className=' lg:text-[85px] text-3xl md:text-5xl  lg:leading-24 text-[#fff] '>
+                            <h1
+                                className={` ${bayon.className} lg:text-[70px] text-3xl md:text-5xl  lg:leading-24 text-[#fff]`}>
                                 start your journey into the music industry with us.
                             </h1>
 

@@ -243,8 +243,12 @@ input[type="range"]::-moz-range-thumb {
 
 
 
+/*affilite bg color */
 
-
+.affiliationBgColor {
+  background: #008AFF;
+  background: linear-gradient(90deg,rgba(0, 138, 255, 1) 0%, rgba(0, 192, 255, 1) 50%, rgba(0, 139, 255, 1) 100%);
+}
 
 
 
