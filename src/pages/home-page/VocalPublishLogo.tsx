@@ -13,7 +13,7 @@ const VocalPublishLogo: React.FC = () => {
                 <h1 className="text-center headerColor lg:text-4xl text-2xl font-semibold font-favorit">
                     {/*TuneM Vocals Featured In*/}
                 </h1>
-                <div className="flex flex-wrap justify-between items-center gap-4 mx-auto mt-4">
+                <div className="flex md:flex-row flex-col   justify-between items-center gap-4 mx-auto mt-4">
                     <div>
                         <Image
                             src="/update-image/sponser-logo/logo-1.png"

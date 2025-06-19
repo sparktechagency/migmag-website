@@ -26,7 +26,7 @@ const BrowseVocalMarque: React.FC = () => {
                         <button style={{ fontFamily: 'Favorit' }}  className=" cursor-pointer text-[#000000] text-lg border border-[#000000] rounded-[17px] py-3 px-6 " >VIEW  OUR SINGERS</button>
                     </div>
                     <div>
-                        <h1 style={{ fontFamily: 'Bayon' }}  className=" cursor-pointer text-[#000000] text-2xl lg:text-5xl leading-24 " >Want to Hire singers Royalty Free?</h1>
+                        <h1 style={{ fontFamily: 'Bayon' }}  className=" cursor-pointer text-[#000000] text-2xl lg:text-5xl leading-24 ">Want to Hire singers Royalty Free?</h1>
                     </div>
                     <div>
                         <button style={{ fontFamily: 'Favorit' }}  className=" cursor-pointer  text-[#000000] text-lg border border-[#000000] rounded-[17px] py-3 px-6 " >VIEW  OUR SINGERS</button>
