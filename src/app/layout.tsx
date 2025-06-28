@@ -1,5 +1,5 @@
-import type {Metadata} from "next";
-import {Bayon,} from "next/font/google";
+import type { Metadata } from "next";
+import { Bayon, } from "next/font/google";
 import "./globals.css";
 
 const bayon = Bayon({
@@ -19,20 +19,20 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html lang="en">
-        <body
-            className={` ${bayon.variable} antialiased`}
-        >
+            <body
+                className={` ${bayon.variable} antialiased`}
+            >
 
-        <main className={` w-full `} >
-            {children}
-        </main>
-        </body>
+                <main className={` w-full `} >
+                    {children}
+                </main>
+            </body>
         </html>
     );
 }
