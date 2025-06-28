@@ -8,45 +8,41 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 type Review = {
     name: string;
     avatar: string;
-    role: string
 };
 
 const reviews: Review[] = [
     {
-        name: "Andrew Tao",
-        avatar: "/images/artist-library/artist/artist-1.png",
-        role: "Music Producer"
+        name: "Corey James",
+        avatar: "/update-image/home-page/use-vocal/James.png",
     },
     {
-        name: "Lukas Hofmann",
-        avatar: "/images/artist-library/artist/artist-2.png",
-        role: "DJ"
+        name: "David Mackay",
+        avatar: "/update-image/home-page/use-vocal/Mackay.png",
     },
     {
-        name: "Augusto Chiarle",
-        avatar: "/images/artist-library/artist/artist-3.png",
-        role: "Sound Engineer"
+        name: "Deniz Koyu",
+        avatar: "/update-image/home-page/use-vocal/Koyu.jpg",
     },
     {
-        name: "Emily Carter",
-        avatar: "/images/artist-library/artist/artist-4.png",
-        role: "Vocalist"
+        name: "John Alto",
+        avatar: "/update-image/home-page/use-vocal/Alto.jpg",
     },
     {
-        name: "Sofia Nguyen",
-        avatar: "/images/artist-library/artist/artist-5.png",
-        role: "Composer"
+        name: "Lee Cabrera",
+        avatar: "/update-image/home-page/use-vocal/Cabrera.jpg",
     },
     {
-        name: "James Liu",
-        avatar: "/images/artist-library/artist/artist-6.png",
-        role: "Music Director"
+        name: "Matt Nash",
+        avatar: "/update-image/home-page/use-vocal/Nash.jpg",
     },
+
     {
-        name: "Isabella Rossi",
-        avatar: "/images/artist-library/artist/artist-7.png",
-        role: "Singer-Songwriter"
+        name: "Pascal Junior",
+        avatar: "/update-image/home-page/use-vocal/Junior.jpg",
     },
+
+
+
 
 ];
 

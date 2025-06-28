@@ -8,29 +8,6 @@ const bayon = Bayon({
     subsets: ['latin'],
 });
 const VocalPublish: React.FC = () => {
-    // interface VocalInt {
-    //     image: string;
-    // }
-
-    // const vocalData: VocalInt[] = [
-    //     {
-    //         image: "/update-image/sponser-logo/sponser-1.png"
-    //     },
-    //
-    //     {
-    //         image: "/update-image/sponser-logo/sponser-2.png"
-    //     },
-    //
-    //     {
-    //         image: "/update-image/sponser-logo/sponser-3.png"
-    //     },
-    //
-    //     {
-    //         image: "/update-image/sponser-logo/sponser-4.png"
-    //     },
-    //
-    //
-    // ]
 
     return (
         <>

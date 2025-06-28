@@ -14,47 +14,41 @@ type Review = {
 
 const reviews: Review[] = [
     {
-        name: "Andrew Tao",
-        avatar: "/images/artist-library/artist/artist-1.png",
+        name: "Manda",
+        avatar: "/update-image/home-page/Reviews/Manda.jpg",
         rating: 5,
         review:
-            "Loving the vocals that this website provides! This website provides a lot of good quality vocals that I have used in my projects and all are top quality!",
+            "Everything I’ve used so far has been studio-quality and effortless to work with. Instantly adds that polished, professional edge.",
     },
     {
-        name: "Lukas Hofmann",
-        avatar: "/images/artist-library/artist/artist-2.png",
+        name: "CF1",
+        avatar: "/update-image/home-page/Reviews/CF1.jpg",
         rating: 5,
         review:
-            "Released some tracks with their Vocals and the support was always super friendly and fast with my questions. I will definitely buy again.",
+            "I’ve released tracks using their vocals the quality delivered, and the support team was fast and helpful. I’ll definitely be coming back.",
     },
     {
-        name: "Augusto Chiarle",
-        avatar: "/images/artist-library/artist/artist-3.png",
+        name: "Thvndex",
+        avatar: "/update-image/home-page/Reviews/Thvndex.jpg",
         rating: 5,
         review:
-            "Clear rules, excellent material, very good quality, easy & safe payments. I am a happy customer and certainly will be a customer again.",
+            "Simple licensing, smooth checkout, and outstanding vocal quality. One of the easiest and most reliable platforms I’ve worked with.",
     },
     {
-        name: "Andrew Tao",
-        avatar: "/images/artist-library/artist/artist-4.png",
+        name: "Paul Aristo",
+        avatar: "/update-image/home-page/Reviews/Paul Aristo.jpg",
         rating: 5,
         review:
-            "Loving the vocals that this website provides! This website provides a lot of good quality vocals that I have used in my projects and all are top quality!",
+            "These vocals have that big-label energy the kind of sound you hear at festivals or on top-charting records. Truly next-level",
     },
     {
-        name: "Lukas Hofmann",
-        avatar: "/images/artist-library/artist/artist-5.png",
+        name: "Julius Arth",
+        avatar: "/update-image/home-page/Reviews/Julius Arth.png",
         rating: 5,
         review:
-            "Released some tracks with their Vocals and the support was always super friendly and fast with my questions. I will definitely buy again.",
+            "You don’t hear the same vocals floating around everywhere that’s what sets this apart. It’s a real advantage when you want your track to stand out.",
     },
-    {
-        name: "Augusto Chiarle",
-        avatar: "/images/artist-library/artist/artist-6.png",
-        rating: 5,
-        review:
-            "Clear rules, excellent material, very good quality, easy & safe payments. I am a happy customer and certainly will be a customer again.",
-    },
+
 ];
 
 const Review: React.FC = () => {
@@ -133,7 +127,7 @@ const Review: React.FC = () => {
                                             </div>
                                             <div>
                                                 <p className="font-semibold text-sm headerColor ">{review.name}</p>
-                                                <p className="text-yellow-400 text-sm ">{`★`.repeat(review.rating)}</p>
+                                                {/*<p className="text-yellow-400 text-sm ">{`★`.repeat(review.rating)}</p>*/}
                                             </div>
                                         </div>
                                         <div>
