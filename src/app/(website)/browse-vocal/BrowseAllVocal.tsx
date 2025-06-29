@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast, Toaster } from 'react-hot-toast';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import { FaPause } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa6";
@@ -511,10 +510,10 @@ const BrowseAllVocal = () => {
     }
 
 
-    const addToCard = (id: number) => {
-        toast.success('Added to cart successfully');
-        console.log(id)
-    }
+    // const addToCard = (id: number) => {
+    //     toast.success('Added to cart successfully');
+    //     console.log(id)
+    // }
 
 
     const [showModal, setShowModal] = useState(false);
@@ -1090,7 +1089,7 @@ const BrowseAllVocal = () => {
                                 </div>
 
                                 {/* ─────────── Info Row ─────────── */}
-                                <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-x-12 w-full items-center">
+                                <div className="grid md:grid-cols-3 lg:grid-cols-6 justify-between  w-full gap-x-10 items-center">
                                     {/* Title */}
                                     <h3 className="text-white text-sm    truncate">
                                         {item.title}
@@ -1130,36 +1129,14 @@ const BrowseAllVocal = () => {
 
                                     {/* Price + Cart */}
                                     <div className="flex items-center gap-x-12">
-                                        {/* Cart Button */}
-                                        <button
-                                            onClick={() => addToCard(item.id)}
-                                            aria-label="Add to cart"
-                                        >
-                                            <svg width="22" height="28" viewBox="0 0 22 28" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round" />
-                                                <path
-                                                    d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round" />
-                                                <path
-                                                    d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round" />
-                                                <path d="M8.16187 9.03003H20.4394" stroke="#E7F056"
-                                                    strokeMiterlimit="10"
-                                                    strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
 
-                                        </button>
 
                                         {/* Price */}
                                         <span
                                             className="bg-[#E7F056] text-black font-bold rounded-2xl text-xs md:text-sm lg:text-base px-2">
-                                            {item.price}
+                                            <Link href={"/checkout"}>
+                                                {item.price}
+                                            </Link>
                                         </span>
                                     </div>
                                 </div>
@@ -1702,35 +1679,14 @@ const BrowseAllVocal = () => {
                                     {/* Price + Cart */}
                                     <div className="flex items-center justify-center my-5 gap-x-12">
                                         {/* Cart Button */}
-                                        <button
-                                            onClick={() => addToCard(item.id)}
-                                            aria-label="Add to cart"
-                                        >
-                                            <svg width="22" height="28" viewBox="0 0 22 28" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M1 1.48486H2.78025C3.88523 1.48486 4.75488 2.65437 4.6628 3.99992L3.8136 16.5249C3.67036 18.5747 4.99019 20.3352 6.66812 20.3352H17.5644C19.0377 20.3352 20.3269 18.8514 20.4394 17.0531L20.9919 7.62161C21.1147 5.53411 19.8255 3.83644 18.1169 3.83644H4.90836"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round" />
-                                                <path
-                                                    d="M15.5797 26.6355C16.2861 26.6355 16.8586 25.9318 16.8586 25.0636C16.8586 24.1954 16.2861 23.4917 15.5797 23.4917C14.8733 23.4917 14.3008 24.1954 14.3008 25.0636C14.3008 25.9318 14.8733 26.6355 15.5797 26.6355Z"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round" />
-                                                <path
-                                                    d="M7.39463 26.6355C8.10096 26.6355 8.67354 25.9318 8.67354 25.0636C8.67354 24.1954 8.10096 23.4917 7.39463 23.4917C6.68831 23.4917 6.11572 24.1954 6.11572 25.0636C6.11572 25.9318 6.68831 26.6355 7.39463 26.6355Z"
-                                                    stroke="#E7F056" strokeMiterlimit="10" strokeLinecap="round"
-                                                    strokeLinejoin="round" />
-                                                <path d="M8.16187 9.03003H20.4394" stroke="#E7F056"
-                                                    strokeMiterlimit="10"
-                                                    strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
 
-                                        </button>
 
                                         {/* Price */}
                                         <span
                                             className="bg-[#E7F056] text-black font-bold rounded-2xl  lg:text-base px-2">
-                                            {item.price}
+                                            <Link href={"/checkout"}>
+                                                {item.price}
+                                            </Link>
                                         </span>
                                     </div>
                                 </div>
@@ -1860,10 +1816,8 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-                    <Toaster
-                        position="top-center"
-                        reverseOrder={false}
-                    />
+
+
 
                 </div>
 

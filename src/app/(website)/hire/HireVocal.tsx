@@ -4,29 +4,7 @@ import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 const HireVocal: React.FC = () => {
-    interface VocalInt {
-        image: string;
-    };
 
-    const vocalData: VocalInt[] = [
-        {
-            image: "/update-image/sponser-logo/sponser-1.png"
-        },
-
-        {
-            image: "/update-image/sponser-logo/sponser-2.png"
-        },
-
-        {
-            image: "/update-image/sponser-logo/sponser-3.png"
-        },
-
-        {
-            image: "/update-image/sponser-logo/sponser-4.png"
-        },
-
-
-    ]
     return (
         <div style={{fontFamily: 'Favorit'}} className=' '>
             <MaxWidth>

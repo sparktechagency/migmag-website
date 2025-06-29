@@ -54,46 +54,10 @@
   }
 } */
 
-@font-face {
-  font-family: 'Favorit';
-  src: url('/fonts/Favorit/Favorit-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
-@font-face {
-  font-family: 'Favorit';
-  src: url('/fonts/Favorit/Favorit-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Decular';
-  src: url('/fonts/Decular/Decular-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Decular';
-  src: url('/fonts/Decular/Decular-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Bayon';
-  src: url('/fonts/Bayon-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 body {
-  font-family: 'Favorit', 'Decular', 'Bayon';
+  font-family: 'Poppins', sans-serif;
 }
 
 input[type="range"]::-webkit-slider-thumb {
