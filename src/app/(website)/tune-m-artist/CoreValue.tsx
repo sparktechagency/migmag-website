@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import MaxWidth from "@/components/max-width/MaxWidth";
 
 const CoreValue: React.FC = () => {
     return (

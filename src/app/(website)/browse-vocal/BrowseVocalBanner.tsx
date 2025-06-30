@@ -10,9 +10,9 @@ const BrowseVocalBanner = () => {
     return (
         <MaxWidth>
             <div className='  '>
-                <div className='   flex flex-col lg:flex-row justify-between '>
+                <div className='   flex flex-col lg:flex-row justify-between gap-y-10 '>
                     {/* left side  */}
-                    <div className=' max-w-2xl text-white '>
+                    <div className=' max-w-2xl text-white w-full '>
                         <div
                              className={`lg:max-w-[700px] lg:text-[70px] text-4xl lg:leading-20 ${bayon.className} `}>
                             Get Studio Quality Acapellas
@@ -22,46 +22,15 @@ const BrowseVocalBanner = () => {
                             <p>Spark new ideas today with our royalty free acapellas made by professional vocalists.Used
                                 by trusted artists and labels.</p>
                         </div>
-                        <div className=' lg:mt-5  '>
-                            <p>Vocals featured with:</p>
-                        </div>
-                        <div className=' flex gap-3.5 lg:gap-12 items-center mb-6  '>
-                            {/* 1st circle */}
-                            <div className=' flex gap-3.5 lg:gap-12 items-center mb-6 lg:mt-10 '>
-                                {/* 1st circle */}
-                                <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
-                                    <Image src={"/images/ai-data-set/broadcast.png"} alt={"Broadcast"} width={100}
-                                           height={100}
-                                           className={`object-cover  `}/>
-                                </div>
-                                <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
-                                    <Image src={"/images/ai-data-set/music.png"} alt={"Broadcast"} width={100}
-                                           height={100}
-                                           className={`object-cover  `}/>
-                                </div>
-                                <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
-                                    <Image src={"/images/ai-data-set/sound.png"} alt={"Broadcast"} width={100}
-                                           height={100}
-                                           className={`object-cover  `}/>
-
-                                </div>
-                                <div className='  lg:w-[90px] w-[50px] h-[50px] lg:h-[90px] rounded-full  '>
-                                    <Image src={"/images/ai-data-set/voice-chat.png"} alt={"Broadcast"} width={100}
-                                           height={100}
-                                           className={`object-cover  `}/>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     {/* right side  */}
-                    <div>
+                    <div className={` w-full`} >
                         <Image
-                            src="/images/browse-vocal/banner/browse-vocal-banner.jpg"
+                            src="/update-image/browse-vocal/banner/banner.png"
                             width={772}
                             height={478}
                             alt="Browse Vocal Banner"
-                            className=' object-cover rounded  '
+                            className=' w-full h-auto   object-cover rounded  '
                         />
 
                     </div>

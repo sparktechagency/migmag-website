@@ -4,34 +4,11 @@ import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 const HireVocal: React.FC = () => {
-    interface VocalInt {
-        image: string;
-    };
 
-    const vocalData: VocalInt[] = [
-        {
-            image: "/update-image/sponser-logo/sponser-1.png"
-        },
-
-        {
-            image: "/update-image/sponser-logo/sponser-2.png"
-        },
-
-        {
-            image: "/update-image/sponser-logo/sponser-3.png"
-        },
-
-        {
-            image: "/update-image/sponser-logo/sponser-4.png"
-        },
-
-
-    ]
     return (
         <div style={{fontFamily: 'Favorit'}} className=' '>
             <MaxWidth>
-                <h1 className=' text-center lg:mt-14 md:mt-7 mt-4 headerColor lg:text-3xl text-lg  font-bold  '>HERE
-                    OUR VOCALS ON</h1>
+                <h1 className=' text-center lg:mt-14 md:mt-7 mt-4 headerColor lg:text-3xl text-lg  font-bold  '>Our Artists Recorded for</h1>
                 <div className="flex flex-wrap justify-between items-center gap-4 mx-auto mt-4">
                     <div>
                         <Image
@@ -81,15 +58,15 @@ const HireVocal: React.FC = () => {
                 </div>
 
                 <div className=' max-w-[1449px] mx-auto my-1 '>
-                    <div className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-40 '>
-                        <div>
-                            <p className=' lg:rotate-90 textColor lg:text-lg lg:absolute lg:top-14 lg:-ml-20   '>JUST
-                                FOR YOU</p>
-                        </div>
+                    <div className=' flex lg:flex-row flex-col items-center justify-between relative lg:gap-8 lg:mt-40 '>
+                        {/*<div>*/}
+                        {/*    <p className=' lg:rotate-90 textColor lg:text-lg lg:absolute lg:top-14 lg:-ml-20   '>JUST*/}
+                        {/*        FOR YOU</p>*/}
+                        {/*</div>*/}
                         {/* left side  */}
                         <div>
-                            <Image src={"/images/hire/bannerImg/hireBannerImg.png"}
-                                   className=' object-cover rounded-lg block mx-auto my-1 ' width={652} height={654}
+                            <Image src={"/update-image/hire/banner/banner2.png"}
+                                   className=' object-cover rounded-lg block mx-auto my-1  ' width={652} height={754}
                                    alt='....'/>
                         </div>
                         {/* right side  */}
@@ -101,53 +78,43 @@ const HireVocal: React.FC = () => {
                             </div>
 
                             <div className=' max-w-[478px] lg:mt-4 mt-3 '>
-                                <h1 className=' lg:text-lg textColor leading-6 font-thin '>
-                                    We will do advertising for you while you can fully focus on your work – without the
-                                    need to actively search for clients. Beautifully simple for you – we handle
-                                    everything around your talent. We distribute your skill throughout our network of
-                                    companies, individual artists, marketplaces and record labels.
-                                </h1>
+
                             </div>
 
 
                             <div className="max-w-[700px] mx-auto mt-4   space-y-3 ">
-                                <div className=' flex flex-row gap-5  items-start  '>
-                                    <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
+                                <div className=' flex flex-row gap-5 mt-2  items-start  '>
+                                    <div className=' lg:w-[107px] lg:h-[107px]  '>
+                                        <Image src={"/update-image/hire/icon/man.png"} alt={"logo1"} width={200} height={200} className={`object-cover`} />
                                     </div>
                                     <div className=" transition duration-300 w-full ">
-                                        <p className="headerColor font-bold lg:text-xl ">Choose A Singer</p>
+                                        <p className="headerColor font-bold lg:text-xl ">1. Choose a Singer</p>
                                         <p className="textColor font-light mt-2 lg:text-lg leading-7">
-                                            We make sure that you get only the best premium quality vocals by only
-                                            working with the industry’s finest artists. This makes us the #1 vocal
-                                            provider.
+                                            Browse our curated roster of professional vocalists, handpicked for quality, tone, and versatility. From pop to soul, EDM to indie, select a voice that fits your sound. Multilingual options available.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className=' flex flex-row gap-5   items-start  '>
+                                    <div className=' lg:w-[107px] lg:h-[107px]  '>
+                                        <Image src={"/update-image/hire/icon/man-2.png"} alt={"logo1"} width={200} height={200} className={`object-cover`} />
+                                    </div>
+                                    <div className=" transition duration-300 w-full ">
+                                        <p className="headerColor font-bold lg:text-xl ">2. Share Your Idea</p>
+                                        <p className="textColor font-light  lg:text-lg leading-7">
+                                            Send us your reference track, lyrics, or creative direction. Whether it's a melody you’ve written or just a vibe you’re chasing, we’ll align the vocal to your vision.
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className=' flex flex-row gap-5  items-start  '>
-                                    <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
+                                    <div className=' lg:w-[107px] lg:h-[107px]  '>
+                                        <Image src={"/update-image/hire/icon/man-3.png"} alt={"logo1"} width={200} height={200} className={`object-cover`} />
                                     </div>
                                     <div className=" transition duration-300 w-full ">
-                                        <p className="headerColor font-bold lg:text-xl ">Share your idea</p>
+                                        <p className="headerColor font-bold lg:text-xl ">3. We Deliver the Vocal</p>
                                         <p className="textColor font-light  lg:text-lg leading-7">
-                                            You find our vocals only on Vocalfy and nowhere else. We delete our
-                                            Non-Exclusive vocals regularly to make sure you’ll get a rare vocal.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className=' flex flex-row gap-5  items-start  '>
-                                    <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
-                                    </div>
-                                    <div className=" transition duration-300 w-full ">
-                                        <p className="headerColor font-bold lg:text-xl ">We Deliver the Vocal</p>
-                                        <p className="textColor font-light  lg:text-lg leading-7">
-                                            Our contracts are easy to understand without any sketchy clauses. Download
-                                            your license for each of your vocals. Pick a vocal and start without
-                                            obstacles..
+                                            Receive a fully recorded, studio-quality vocal. including wet (with FX) and dry stems. Delivered fast, fully licensed, and ready to drop straight into your DAW.
                                         </p>
                                     </div>
                                 </div>
@@ -173,20 +140,26 @@ const HireVocal: React.FC = () => {
                         {/* Card Section */}
                         <div
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
-                            <div className=" p-5 lg:pt-44 pb-14 rounded-md  border border-black shadow ">
-                                <h1 className="text-xl lg:text-3xl leading-9 font-bold headerColor ">
+                            <div className=" p-5  rounded-md  border border-black shadow ">
+                                <div className={" flex justify-center "} >
+                                    <Image src={"/update-image/hire/icon/hire-1.png"} alt={"logo1"} width={150} height={150} className={`object-cover`}  />
+                                </div>
+                                <h1 className="text-xl lg:text-3xl text-center leading-9 font-bold headerColor ">
                                     Work with Trusted Talent
                                 </h1>
-                                <div className="mt-6 lg:text-lg leading-6">
-                                    <p className={` textColor `} >Our singers are hand-selected for their vocal ability, professionalism, and track
+                                <div className="mt-3 lg:text-lg leading-6">
+                                    <p className={` textColor text-center `} >Our singers are hand-selected for their vocal ability, professionalism, and track
                                         record.</p>
                                 </div>
                             </div>
-                            <div className=" p-5 lg:pt-44 pb-14 rounded-md  border border-black shadow ">
-                                <h1 className="text-xl lg:text-3xl leading-9 font-bold headerColor ">
+                            <div className=" p-5  rounded-md  border border-black shadow ">
+                                <div className={" flex justify-center "} >
+                                    <Image src={"/update-image/hire/icon/hire-2.png"} alt={"logo1"} width={150} height={150} className={`object-cover`}  />
+                                </div>
+                                <h1 className="text-xl text-center lg:text-3xl leading-9 font-bold headerColor ">
                                     Secure and Verified
                                 </h1>
-                                <div className="mt-6 lg:text-lg leading-6">
+                                <div className="mt-3 text-center lg:text-lg leading-6">
                                     <p className={` textColor `}     >
                                         TuneM is built for trust with protected payments, verified artists, and real
                                         customer feedback.
@@ -194,11 +167,14 @@ const HireVocal: React.FC = () => {
                                     </p>
                                 </div>
                             </div>
-                            <div className=" p-5 lg:pt-44 pb-14 rounded-md  border border-black shadow ">
-                                <h1 className="text-xl lg:text-3xl leading-9 font-bold headerColor ">
+                            <div className=" p-5  rounded-md  border border-black shadow ">
+                                <div className={" flex justify-center "} >
+                                    <Image src={"/update-image/hire/icon/hire-3.png"} alt={"logo1"} width={150} height={150} className={`object-cover`}  />
+                                </div>
+                                <h1 className="text-xl lg:text-3xl text-center leading-9 font-bold headerColor ">
                                     Delivered Within 3–10 Days
                                 </h1>
-                                <div className="mt-6 lg:text-lg textColor leading-6">
+                                <div className="mt-3 lg:text-lg text-center textColor leading-6">
                                     <p>Our vocalists deliver your custom vocals within 3–10 days, often sooner.</p>
                                 </div>
                             </div>

@@ -71,9 +71,11 @@ const audioData: AudioItem[] = [
 ];
 
 export default function BrowseMusickVocalSlider() {
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    // const audioRef = useRef<HTMLAudioElement | null>(null);
     const [playingUrl, setPlayingUrl] = useState<string | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    console.log(setPlayingUrl(playingUrl));
+    console.log(setIsPlaying(playingUrl));
 
     const [sliderRef] = useKeenSlider<HTMLDivElement>({
         loop: true,
@@ -100,30 +102,30 @@ export default function BrowseMusickVocalSlider() {
     });
 
 
-    const handleTogglePlay = (url: string) => {
+    // const handleTogglePlay = (url: string) => {
+    //
+    //     if (audioRef.current) {
+    //         audioRef.current.pause();
+    //         audioRef.current.currentTime = 0;
+    //     }
+    //
+    //     const audio = new Audio(url);
+    //     audioRef.current = audio;
+    //     audio.play();
+    //     setPlayingUrl(url);
+    //     setIsPlaying(true);
+    //
+    //     audio.onended = () => {
+    //         setIsPlaying(false);
+    //     };
+    // };
 
-        if (audioRef.current) {
-            audioRef.current.pause();
-            audioRef.current.currentTime = 0;
-        }
-
-        const audio = new Audio(url);
-        audioRef.current = audio;
-        audio.play();
-        setPlayingUrl(url);
-        setIsPlaying(true);
-
-        audio.onended = () => {
-            setIsPlaying(false);
-        };
-    };
-
-    const handlePause = () => {
-        if (audioRef.current) {
-            audioRef.current.pause();
-            setIsPlaying(false);
-        }
-    };
+    // const handlePause = () => {
+    //     if (audioRef.current) {
+    //         audioRef.current.pause();
+    //         setIsPlaying(false);
+    //     }
+    // };
 
     const [showModal, setShowModal] = useState(false);
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
