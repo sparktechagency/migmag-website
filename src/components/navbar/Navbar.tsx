@@ -33,8 +33,8 @@ const Navbar: React.FC = () => {
         <div className={`   z-50 `}>
             <MaxWidth>
                 <>
-                    <div style={{fontFamily: 'Favorit'}}
-                         className='flex items-center justify-between   py-5   mx-auto '>
+                    <div
+                        className='flex items-center justify-between   py-5   mx-auto '>
                         {/* Logo */}
                         <Link href="/">
                             <svg width="174" height="22" viewBox="0 0 174 22" fill="none"
@@ -86,26 +86,28 @@ const Navbar: React.FC = () => {
                             <ul className="flex items-center gap-x-8 text-lg">
                                 <li className="relative group">
                                     {/* parent link */}
-                                    <Link
-                                        href="/browse-vocal"
-                                        className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : "text-black"}`}
-                                    >
+                                    <span className={`cursor-pointer`}>
                                         Vocals
-                                    </Link>
+                                    </span>
 
                                     {/* ▼ smooth dropdown */}
                                     <ul
                                         className="
-      absolute left-0 top-full w-32 rounded-lg bg-white shadow-lg border border-gray-300 z-50
-      overflow-hidden                        /* keeps content clipped during scale */
-      opacity-0 translate-y-2 pointer-events-none
-      group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
-      transition-all duration-300 ease-out
+                                              absolute left-0 top-full w-36 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+                                              overflow-hidden                        /* keeps content clipped during scale */
+                                              opacity-0 translate-y-2 pointer-events-none
+                                              group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+                                              transition-all duration-300 ease-out
     "
                                     >
+                                        <li className="px-4 py-2 hover:bg-gray-100">
+                                            <Link className="text-black" href="/cover-vocals">
+                                                Cover Vocals
+                                            </Link>
+                                        </li>
                                         <li className="px-4 py-3 hover:bg-gray-100">
-                                            <Link className="text-black" href="/ai-data-sets">
-                                                AI Data Sets
+                                            <Link className="text-black" href="/browse-vocal">
+                                                Browse Vocal
                                             </Link>
                                         </li>
                                     </ul>
@@ -191,12 +193,19 @@ const Navbar: React.FC = () => {
                                 <FiX size={24} className={`cursor-pointer`}/>
                             </button>
                         </div>
-                        <ul style={{fontFamily: "Favorit"}} className="flex flex-col p-4 gap-4">
-                            <li><Link className={`${pathname === "/ai-data-sets" ? "text-[#E7F056]" : "text-black"}`}
-                                      href="/ai-data-sets">Ai Data Sets</Link></li>
-                            <li><Link className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : " text-black "}`}
-                                      href="/browse-vocal">Vocals</Link></li>
-                            <li><Link
+                        <ul className="flex flex-col p-4 gap-4">
+                            <li>
+                                <Link className={` -ml-1 ${pathname === "/cover-vocals" ? "text-[#E7F056]" : " text-black "}`}  href="/cover-vocals">
+                                    Cover Vocals
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : " text-black "}`}
+                                      href="/browse-vocal">Browse Vocals
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                 className={`${pathname === "/artist-library" ? "text-[#E7F056]" : " text-black "}`}
                                 href="/artist-library">Artists</Link></li>
                             <li><Link className={`${pathname === "/hire" ? "text-[#E7F056]" : " text-black "}`}
