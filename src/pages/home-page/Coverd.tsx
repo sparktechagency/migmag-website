@@ -9,7 +9,7 @@ const Coverd: React.FC = () => {
     return (
         <>
             <MaxWidth>
-                <div style={{fontFamily: 'Favorit'}} className='  mx-auto  mt-10 lg:mt-[91px]   '>
+                <div  className='  mx-auto  mt-10 lg:mt-[91px]   '>
                     <div className=' flex lg:flex-row flex-col items-start justify-between relative gap-5 '>
                         {/* left side  */}
                         <div>
@@ -139,19 +139,19 @@ const Coverd: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                     <div className="relative lg:mt-20 mt-10 z-10">
-                        <h1 style={{fontFamily: 'Favorit'}}
+                        <h1 
                             className="text-center text-[#E7F056] font-bold lg:text-3xl text-lg ">
                             Become a TuneM Artist.
                         </h1>
 
-                        <div style={{fontFamily: 'Favorit'}} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+                        <div  className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                             <p className="text-center text-white leading-6 lg:text-xl font-thin ">
                                 We work with talented singers and songwriters ready to take their voice further.
                                 Expand your audience, get discovered, and join our global music network. </p>
                         </div>
                         <div>
                             <Link href={"/tune-m-artist"}>
-                                <button style={{fontFamily: 'Favorit'}}
+                                <button 
                                         className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                     GET STARTED
                                 </button>

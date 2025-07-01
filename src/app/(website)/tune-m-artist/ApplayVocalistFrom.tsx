@@ -16,13 +16,9 @@ const ApplayVocalistFrom: React.FC = () => {
     return (
         <div className=' bg-black '>
             <MaxWidth>
-                <div style={{fontFamily: 'Favorit'}} className=' max-w-[1366px] mx-auto py-8 lg:py-[60px] px-4 '>
+                <div  className=' max-w-[1366px] mx-auto py-8 lg:py-[60px] px-4 '>
                     <div className=' flex lg:flex-row flex-col items-start gap-y-8 lg:gap-y-0 relative lg:gap-5 '>
-                        <div>
-                            <p className=' lg:rotate-90 text-[#fff] lg:text-lg lg:absolute lg:top-14 lg:-ml-20   '>JUST
-                                FOR
-                                YOU</p>
-                        </div>
+
                         {/* left side  */}
                         <div className=' w-full '>
 
@@ -64,13 +60,6 @@ const ApplayVocalistFrom: React.FC = () => {
                                 </div>
 
 
-                                <div>
-                                    <div className='  '>
-                                    <span className={`text-white  `}>
-                                        Apply to become a vocalist at TUNEM - <p className={`lg:text-2xl font-bold `}>Become Part of the TuneM Artist Squad</p>
-                                    </span>
-                                    </div>
-                                </div>
 
 
                             </div>
@@ -102,8 +91,8 @@ const ApplayVocalistFrom: React.FC = () => {
 
                                 <div className=' flex flex-col mt-5  '>
                                     <label className=' text-white text-lg font-bold leading-6  ' htmlFor="stageName">Social
-                                        link (optional)</label>
-                                    <input id='stageName' placeholder={"Tiktok"}
+                                        link </label>
+                                    <input id='stageName' placeholder={"Instagram Or Tiktok"}
                                            className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
                                            type="text"/>
                                 </div>

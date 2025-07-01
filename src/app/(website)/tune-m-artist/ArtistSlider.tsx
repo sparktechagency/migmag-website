@@ -11,37 +11,36 @@ type Review = {
 
 const reviews: Review[] = [
     {
-        name: "Mabelle",
-        role: "Singer at Vocalfy",
-        image: "/images/artist-library/artist/artist-1.png",
+        name: "Jessica",
+        role: "Singer & Songwriter at TuneM",
+        image: "/update-image/tuneM-Artist/review/jessica.png",
         review:
-            "Vocalfy gives me the opportunity to express myself. I’m involved in awesome projects and sing on music made by incredible producers. I love their concept of keeping everything so simple.",
+            "I don’t have to chase gigs anymore. TuneM brings the work to me, and I just focus on doing what I love — recording vocals. Everything is super clear and easy.",
     },
     {
-        name: "Finn Schaller",
-        role: "Producer at Vocalfy",
-        image: "/images/artist-library/artist/artist-2.png",
+        name: "Kimberly",
+        role: "Vocalist at TuneM",
+        image: "/update-image/tuneM-Artist/review/kimberly.png",
         review:
-            "I produce every once in a while songs for Vocalfy in my spare time. Always great communication and clear instructions for my projects! Vocalfy also gives me the freedom to create something unique.",
+            "Working with TuneM for over five years has been a steady part of my growth as an artist. It’s opened up a lot of opportunities, and over time, it’s helped me build a career where I can support myself through music",
     },
     {
-        name: "Jon",
-        role: "Lyrics at Vocalfy",
-        image: "/images/artist-library/artist/artist-3.png",
+        name: "Sophianne",
+        role: "Songwriter at TuneM",
+        image: "/update-image/tuneM-Artist/review/sophianne.png",
         review:
-            "I feel like I’m in a very good company. I really enjoy working together with Vocalfy. Time is valuable, so they removed all unnecessary steps for artists so they can fully focus on what they do best: singing, writing, producing music, etc.",
+            "TuneM has helped me grow as a songwriter by giving me real opportunities to collaborate with vocalists and producers. It’s been one of the most reliable platforms I’ve worked with, and I’ve been able to steadily build a catalogue that actually gets used.",
     },
 ];
 
 const ArtistSlider: React.FC = () => {
     return (
-        <div
-            style={{fontFamily: "Favorit"}}
-            className="lg:mt-24 lg:mb-28 mx-auto "
-        >
+        <div className="lg:mt-24 lg:mb-28 mx-auto">
             <MaxWidth>
-                <div className="lg:py-16 ">
-                    <h2 className="lg:text-4xl text-2xl font-bold mb-6 headerColor lg:mb-12">Reviews from artists</h2>
+                <div className="lg:py-16">
+                    <h2 className="lg:text-4xl text-2xl font-bold mb-6 headerColor lg:mb-12">
+                        Our Artists Reviews
+                    </h2>
 
                     {reviews.map((review, index) => {
                         const isRight = index % 2 === 1;
@@ -58,21 +57,21 @@ const ArtistSlider: React.FC = () => {
                                     <Image
                                         src={review.image}
                                         alt={review.name}
-                                        width={60}
-                                        height={60}
-                                        className="rounded-full object-cover"
+                                        width={160}
+                                        height={160}
+                                        className="w-[160px] h-[160px] rounded-full object-cover"
                                     />
                                 )}
 
                                 {/* Text block */}
                                 <div className="max-w-3xl">
-                                    <p className=" textColor text-lg mb-2">{review.review}</p>
+                                    <p className="textColor text-lg mb-2">{review.review}</p>
                                     <div className={`${isRight ? "flex justify-end" : ""}`}>
                                         <div>
-                                            <h3 className="font-semibold text-lg  headerColor">
+                                            <h3 className="font-semibold text-lg headerColor">
                                                 {review.name}
                                             </h3>
-                                            <p className="text-sm  textColor ">{review.role}</p>
+                                            <p className="text-sm textColor">{review.role}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -82,9 +81,9 @@ const ArtistSlider: React.FC = () => {
                                     <Image
                                         src={review.image}
                                         alt={review.name}
-                                        width={60}
-                                        height={60}
-                                        className="rounded-full object-cover"
+                                        width={160}
+                                        height={160}
+                                        className="w-[160px] h-[160px] rounded-full  object-cover"
                                     />
                                 )}
                             </div>

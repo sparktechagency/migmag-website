@@ -4,74 +4,61 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const DiscoverVocal: React.FC = () => {
     return (
-        <div style={{fontFamily: 'Favorit'}} className='  mx-auto  '>
+        <div  className='  mx-auto  '>
             <MaxWidth>
                 <div
-                    className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 mt-8 lg:mt-14 '>
-                    <div>
-                        <p className=' lg:rotate-90 textColor lg:text-lg lg:absolute lg:top-14 lg:-ml-20 my-3 lg:my-0  '>JUST
-                            FOR YOU</p>
-                    </div>
+                    className=' flex lg:flex-row flex-col items-center justify-between relative  lg:gap-3'>
+
                     {/* left side  */}
-                    <div className='mx-auto'>
-                        <Image src={"/images/hire/bannerImg/hireBannerImg.png"}
-                               className=' object-cover rounded-lg block mx-auto my-1 ' width={652} height={654}
+                    <div className='   '>
+                        <Image src={"/update-image/tuneM-Artist/banner/work-banner.png"}
+                               className=' object-cover rounded-lg block border w-full mx-auto lg:my-1 ' width={802} height={854}
                                alt='....'/>
                     </div>
                     {/* right side  */}
-                    <div className='mx-auto'>
-                        <div className=' max-w-[411px] '>
+                    <div className=''>
+                        <div className='  '>
                             <h1 className=' text-2xl lg:text-[35px] font-bold headerColor leading-9 '>
-                                Discover vocal that match your tastes
+                                Work With TuneM in 3 Simple Steps
                             </h1>
                         </div>
 
                         <div className=' max-w-[478px] lg:mt-3 mt-3 '>
                             <h1 className=' lg:text-lg textColor leading-6 font-thin '>
-                                We will do advertising for you while you can fully focus on your work – without the need
-                                to actively search for clients. Beautifully simple for you – we handle everything around
-                                your talent.
-                                We distribute your skill throughout our network of companies, individual artists,
-                                marketplaces and record labels. </h1>
+                                Join our curated roster of vocalists — we handle promotion, match you with projects that suit your style, and guarantee payment for every approved delivery.
+                            </h1>
                         </div>
 
 
-                        <div className="max-w-[700px] mx-auto mt-7 space-y-3 ">
+                        <div className="mx-auto mt-7 space-y-3 ">
                             <div className=' flex flex-row gap-5  items-start  '>
-                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
-                                </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="headerColor font-bold lg:text-xl mb-2">We connect your talent</p>
+                                    <p className="headerColor font-bold lg:text-xl mb-2">1. Apply to Join</p>
                                     <p className="textColor font-light  lg:text-lg leading-7">
-                                        We make sure that you get only the best premium quality vocals by only working
-                                        with the industry’s finest artists. This makes us the #1 vocal provider. </p>
+                                        Submit your profile and a few vocal samples. If accepted, you’ll be added to our roster of professional singers.
+                                    </p>
                                 </div>
                             </div>
 
                             <div className=' flex flex-row gap-5  items-start  '>
-                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
-                                </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="headerColor  font-bold lg:text-xl mb-2">Leave the advertising to
-                                        us</p>
+                                    <p className="headerColor  font-bold lg:text-xl mb-2">
+                                        2. Receive Vocal Requests
+                                        </p>
                                     <p className="textColor   font-light  lg:text-lg leading-7">
-                                        You find our vocals only on Vocalfy and nowhere else. We delete our
-                                        Non-Exclusive vocals regularly to make sure you’ll get a rare vocal. </p>
+                                        We’ll assign you vocal projects based on your voice and style — no need to look for work. Just focus on recording.
+                                    </p>
                                 </div>
                             </div>
 
                             <div className=' flex flex-row gap-5  items-start  '>
-                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
-
-                                </div>
                                 <div className=" transition duration-300 w-full ">
-                                    <p className="headerColor  font-bold lg:text-xl mb-2">Distributed through our
-                                        network</p>
+                                    <p className="headerColor  font-bold lg:text-xl mb-2">
+                                        3. Get Paid. No Fees.
+                                    </p>
                                     <p className="textColor  font-light  lg:text-lg leading-7">
-                                        Our contracts are easy to understand without any sketchy clauses. Download your
-                                        license for each of your vocals. Pick a vocal and start without obstacles. </p>
+                                        You earn for each vocal project you complete. No fees, fast payouts we handle the rest.
+                                    </p>
                                 </div>
                             </div>
                         </div>

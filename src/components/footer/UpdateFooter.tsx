@@ -23,7 +23,7 @@ const UpdateFooter: React.FC = () => {
     };
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className="lg:mt-1">
+        <div className="lg:mt-1">
             <MaxWidth>
                 <div className=" ">
                     {/* Logo */}

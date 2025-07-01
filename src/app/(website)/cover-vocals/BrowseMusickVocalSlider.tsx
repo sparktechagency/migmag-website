@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState} from 'react';
+import React, {useRef, useState} from 'react';
 import 'keen-slider/keen-slider.min.css';
 import {useKeenSlider} from 'keen-slider/react';
 import {CiPause1} from 'react-icons/ci';
@@ -71,10 +71,11 @@ const audioData: AudioItem[] = [
 ];
 
 export default function BrowseMusickVocalSlider() {
+    // const audioRef = useRef<HTMLAudioElement | null>(null);
     const [playingUrl, setPlayingUrl] = useState<string | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    console.log(setPlayingUrl);
-    console.log(setIsPlaying);
+    console.log(setPlayingUrl(playingUrl));
+    console.log(setIsPlaying(playingUrl));
 
     const [sliderRef] = useKeenSlider<HTMLDivElement>({
         loop: true,
@@ -150,8 +151,8 @@ export default function BrowseMusickVocalSlider() {
 
 
     return (
-        <MaxWidth>
-            <main className="">
+        <main className="">
+            <MaxWidth>
                 <div style={{fontFamily: 'Favorit'}} ref={sliderRef} className="keen-slider relative lg:mt-9 mt-4">
                     {audioData.map((item) => (
                         <div
@@ -165,14 +166,14 @@ export default function BrowseMusickVocalSlider() {
                                     width={265}
                                     height={265}
                                     alt={item.title}
-                                    className="object-cover rounded-[4px] w-[265px] h-[265px]"
+                                    className="object-cover rounded-[4px]  w-[265px] h-[265px]"
                                 />
                                 {/* Absolutely centered play/pause button */}
                                 <button
                                     onClick={() => {
                                         handleOpenModal(item.id)
                                     }}
-                                    className="w-[50px] h-[50px] rounded-full cursor-pointer bg-black flex justify-center items-center absolute  top-52 right-10 transform -translate-x-1/2 -translate-y-1/2"
+                                    className="w-[50px] h-[50px] rounded-full bg-black flex justify-center items-center absolute top-52 right-10 cursor-pointer transform -translate-x-1/2 -translate-y-1/2"
                                 >
                                     {playingUrl === item.audio && isPlaying ? (
                                         <CiPause1 className="text-[#E7F056] text-xl"/>
@@ -194,7 +195,7 @@ export default function BrowseMusickVocalSlider() {
                             </div>
 
                             <h3 className="lg:text-lg font-bold lg:mt-5 mt-2 text-white">{item.title}</h3>
-                            <div className={`flex flex-row gap-x-2 `}>
+                            <div className={`flex gap-x-5`}>
                                 <p className="lg:text-lg font-bold text-[#E7F056]">{item.name}</p>
                                 <Link href={"/checkout"}>
                                     <p className="text-[#E7F056] lg:text-lg font-bold">{item.price}</p>
@@ -203,20 +204,20 @@ export default function BrowseMusickVocalSlider() {
                         </div>
                     ))}
                 </div>
+            </MaxWidth>
 
 
-                {showModal && currentIndex !== null && (
-                    <MusickPlayer
-                        show={showModal}
-                        onClose={() => setShowModal(false)}
-                        currentTrack={audioData[currentIndex]}
-                        nextTrack={nextTrack}
-                        prevTrack={prevTrack}
-                    />
-                )}
+            {showModal && currentIndex !== null && (
+                <MusickPlayer
+                    show={showModal}
+                    onClose={() => setShowModal(false)}
+                    currentTrack={audioData[currentIndex]}
+                    nextTrack={nextTrack}
+                    prevTrack={prevTrack}
+                />
+            )}
 
 
-            </main>
-        </MaxWidth>
+        </main>
     );
 }

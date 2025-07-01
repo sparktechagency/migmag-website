@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const QuotePage: React.FC = () => {
     return (
-        <div style={{fontFamily: 'Favorit'}}>
+        <div>
             <section className="bg-white lg:mt-20 mt-10 max-w-[1539px] mx-auto lg:px-0 px-4  ">
 
 
