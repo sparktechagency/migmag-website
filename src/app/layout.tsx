@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import { Bayon, } from "next/font/google";
 import "./globals.css";
+import React from "react";
 
-const bayon = Bayon({
-    subsets: ['latin'],
-    weight: '400',
-    variable: '--font-bayon',
-});
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
+
 
 export const metadata: Metadata = {
     title: "Migmag",
@@ -26,7 +18,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={` ${bayon.variable} antialiased`}
+                className={` antialiased`}
             >
 
                 <main className={` w-full `} >

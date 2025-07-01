@@ -6,11 +6,11 @@ import React from 'react'
 
 import ArtistLibraryBanner from './ArtistLibraryBanner'
 import BrowseArtist from './BrowseArtist'
+import BrowseVocalNavbar from "@/app/(website)/cover-vocals/BrowseVocalNavbar";
+import BrowseVocalFooter from "@/app/(website)/cover-vocals/BrowseVocalFooter";
 
 
-import BrowseVocalNavbar from "@/app/(website)/browse-vocal/BrowseVocalNavbar";
 
-import BrowseVocalFooter from "@/app/(website)/browse-vocal/BrowseVocalFooter";
 
 const Page: React.FC = () => {
 

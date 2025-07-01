@@ -333,7 +333,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
             <MaxWidth>
                 {/* profile image  */}
                 <div
-                     className=' flex flex-col lg:flex-row items-center  lg:items-stretch justify-between '>
+                    className=' flex flex-col lg:flex-row items-center  lg:items-stretch justify-between '>
                     {/* left section  */}
                     <div>
                         <div className=' flex flex-col lg:flex-row items-center lg:gap-x-10 '>
@@ -364,7 +364,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
                         <div
                             className=' textColor mt-8 lg:mt-[75px] flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
                             <button
-                                    className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
+                                className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
                             <span><svg width="27" height="25" viewBox="0 0 27 27" fill="none"
                                        xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd"
@@ -400,7 +400,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
                 {/* singer vocal  */}
 
 
-                <div  className="max-w-[1539px] mx-auto px-4  pt-4 lg:pt-10">
+                <div className="max-w-[1539px] mx-auto px-4  pt-4 lg:pt-10">
                     <h1 className="headerColor text-xl lg:text-3xl font-bold">Available <span
                         className='  '>Vocals</span></h1>
 
@@ -434,11 +434,12 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
                         </div>
 
                         {/* Right: Price and Button */}
-                        <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                            <span className="text-sm textColor font-medium"></span>
-                            <button className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
-                                $34
-                            </button>
+                        <div className="flex items-center justify-between cursor-pointer  sm:justify-end gap-4 w-full sm:w-auto">
+                            <Link className={` cursor-pointer`} href={"/checkout"}>
+                                <button className="bg-[#E7F056] cursor-pointer text-black text-sm font-semibold px-4 py-1 rounded">
+                                    $34
+                                </button>
+                            </Link>
                         </div>
                     </div>
 
@@ -555,7 +556,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
 
                 {/* More Singers */}
 
-                <div  className='px-4  '>
+                <div className='px-4  '>
 
                     <div className=' mt-7 '>
                         <p className=' leading-6 textColor text-lg '>*all vocals are royalty free, both
@@ -676,7 +677,9 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
                                     <div className="w-full transition duration-300">
                                         <p className="headerColor font-bold text-lg lg:text-xl">2. Lyrics + License</p>
                                         <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
-                                            Includes a lyrics PDF and a <span className={`font-bold`} >secure agreement</span> confirming your rights and ownership.
+                                            Includes a lyrics PDF and a <span
+                                            className={`font-bold`}>secure agreement</span> confirming your rights and
+                                            ownership.
                                         </p>
                                     </div>
                                 </div>
@@ -712,10 +715,11 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
 
                 {/* Card Section */}
                 <div
-                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
                     <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
                         <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
-                            <Image src={"/update-image/singer-details/icon/free.png"} alt={".."} width={150} height={150} />
+                            <Image src={"/update-image/singer-details/icon/free.png"} alt={".."} width={150}
+                                   height={150}/>
                         </div>
 
                         <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold text-center  ">
@@ -727,19 +731,22 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
                     </div>
                     <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
                         <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
-                            <Image src={"/update-image/singer-details/icon/wave.png"} alt={".."} width={150} height={150} />
+                            <Image src={"/update-image/singer-details/icon/wave.png"} alt={".."} width={150}
+                                   height={150}/>
                         </div>
 
                         <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold text-center  ">
                             Everything You Need
                         </h1>
                         <div className=" text-center mt-4 textColor lg:text-lg leading-6">
-                            <p>Includes dry & wet stems, secure license, and invoice delivered instantly. MIDI available separately. </p>
+                            <p>Includes dry & wet stems, secure license, and invoice delivered instantly. MIDI available
+                                separately. </p>
                         </div>
                     </div>
                     <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
                         <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
-                            <Image src={"/update-image/singer-details/icon/love.png"} alt={".."} width={150} height={150} />
+                            <Image src={"/update-image/singer-details/icon/love.png"} alt={".."} width={150}
+                                   height={150}/>
                         </div>
 
                         <h1 className="text-xl headerColor  text-center lg:text-3xl leading-9 font-bold ">
@@ -750,7 +757,6 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
                         </div>
                     </div>
                 </div>
-
 
 
             </MaxWidth>

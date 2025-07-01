@@ -164,7 +164,7 @@ const TopTenVocal: React.FC = () => {
             </h1>
 
             {/* cover */}
-            <Link href={`/browse-vocal/${item.id}`}>
+            <Link href={`/music-details/${item.id}`}>
                 <Image
                     src={item.img}
                     alt={item.title}

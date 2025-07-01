@@ -17,7 +17,7 @@ const page = ({ params }: PageProps) => {
         <div>
             <Navbar />
             <SingerDetails artistId = {id} />
-            <div style={{ fontFamily: 'Favorit' }} className='px-4'>
+            <div  className='px-4'>
                 <UpdateFooter />
             </div>
         </div>

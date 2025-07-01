@@ -15,12 +15,12 @@ const ArtistLibraryBanner = () => {
                     <div className='  flex flex-col lg:flex-row justify-between '>
                         {/* left side  */}
                         <div className=' max-w-2xl text-white '>
-                            <div style={{fontFamily: 'Bayon'}}
+                            <div
                                  className= {` ${bayon.className}  max-w-[633px] lg:text-[70px] text-4xl lg:leading-24 `}>
                                 <h1>TALENTED ARTISTS AVAILABLE FOR YOUR TRACKS <span className={`text-[#E7F056]`}> - TuneM Artists </span>
                                 </h1>
                             </div>
-                            <div style={{fontFamily: 'Favorit'}}
+                            <div
                                  className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 font-bold '>
                                 <p>
                                     Looking for someone with that something special? Contact us and let us know what
@@ -30,7 +30,7 @@ const ArtistLibraryBanner = () => {
                                 </p>
                             </div>
 
-                            <div style={{fontFamily: 'Favorit'}}
+                            <div
                                  className=' flex gap-3.5 lg:gap-12 items-center mb-6 lg:mt-[68px] mt-8 '>
                                 <Link className=' cursor-pointer ' href={"/contact"}>
                                     <button
@@ -41,9 +41,10 @@ const ArtistLibraryBanner = () => {
                             </div>
                         </div>
                         {/* right side  */}
-                        <div>
+                        <div className={`mt-4
+                        `} >
                             <Image
-                                src="/images/browse-vocal/banner/browse-vocal-banner.jpg"
+                                src="/update-image/artist/banner/artist-banner.png"
                                 width={772}
                                 height={478}
                                 alt="Browse Vocal Banner"

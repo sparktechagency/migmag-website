@@ -9,7 +9,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const VocalPublishLogo: React.FC = () => {
     return (
         <MaxWidth>
-            <div className=" lg:mt-20 mt-8">
+            <div className=" ">
                 <h1 className="text-center headerColor lg:text-4xl text-2xl font-semibold font-favorit">
                     {/*TuneM Vocals Featured In*/}
                 </h1>

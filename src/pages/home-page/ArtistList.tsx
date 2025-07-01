@@ -77,7 +77,7 @@ const ArtistList: React.FC = () => {
         }
     ]
     return (
-        <div style={{fontFamily: 'Favorit'}}
+        <div 
              className="bg-[url('/images/home-page/artist/artistBgImg.png')] bg-no-repeat bg-cover bg-center px-4  w-full">
             <MaxWidth>
                 <div className='   pb-2  mx-auto  '>
