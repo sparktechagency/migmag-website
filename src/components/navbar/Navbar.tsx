@@ -100,14 +100,14 @@ const Navbar: React.FC = () => {
                                               transition-all duration-300 ease-out
     "
                                     >
-                                        <li className="px-4 py-2 hover:bg-gray-100">
+                                        <li className="px-4 py-2 hover:bg-gray-100 text-center ">
                                             <Link className="text-black" href="/cover-vocals">
-                                                Cover Vocals
+                                                Vocals
                                             </Link>
                                         </li>
-                                        <li className="px-4 py-3 hover:bg-gray-100">
+                                        <li className="px-4 py-3 hover:bg-gray-100 text-center ">
                                             <Link className="text-black" href="/browse-vocal">
-                                                Browse Vocal
+                                                Cover Vocals
                                             </Link>
                                         </li>
                                     </ul>

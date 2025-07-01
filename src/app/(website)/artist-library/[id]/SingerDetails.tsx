@@ -83,12 +83,13 @@ const singers: Singer[] = [
         image: "/images/artist-library/artist/artist-4.png",
     },
 ];
+
 interface SingerDetailsProps {
     artistId: string;
 
 }
 
-const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
+const SingerDetails: React.FC<SingerDetailsProps> = ({artistId}) => {
 
 
     console.log(artistId);
@@ -331,7 +332,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
         <div className=' mt-20   '>
             <MaxWidth>
                 {/* profile image  */}
-                <div style={{fontFamily: 'Favorit'}}
+                <div
                      className=' flex flex-col lg:flex-row items-center  lg:items-stretch justify-between '>
                     {/* left section  */}
                     <div>
@@ -362,7 +363,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
 
                         <div
                             className=' textColor mt-8 lg:mt-[75px] flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
-                            <button style={{fontFamily: 'Degular'}}
+                            <button
                                     className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
                             <span><svg width="27" height="25" viewBox="0 0 27 27" fill="none"
                                        xmlns="http://www.w3.org/2000/svg">
@@ -390,12 +391,6 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
                                 </button>
                             </Link>
 
-                            <button
-                                onClick={toggleModal}
-                                className='  cursor-pointer h-8    text-sm    px-3    border border-black rounded-2xl '>
-
-                                Message
-                            </button>
 
                         </div>
                     </div>
@@ -405,7 +400,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
                 {/* singer vocal  */}
 
 
-                <div style={{fontFamily: 'Favorit'}} className="max-w-[1539px] mx-auto px-4  pt-4 lg:pt-10">
+                <div  className="max-w-[1539px] mx-auto px-4  pt-4 lg:pt-10">
                     <h1 className="headerColor text-xl lg:text-3xl font-bold">Available <span
                         className='  '>Vocals</span></h1>
 
@@ -433,16 +428,16 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
 
                         {/* Middle: Genre and License */}
                         <div
-                            className="flex flex-wrap sm:flex-nowrap items-center gap-4 text-sm textColor w-full sm:w-auto justify-start sm:justify-center">
+                            className="flex flex-wrap sm:flex-nowrap items-center  text-sm textColor w-full sm:w-auto justify-start sm:justify-center">
                             <span>Eurodance</span>
                             <span>Non-Exclusive</span>
                         </div>
 
                         {/* Right: Price and Button */}
                         <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
-                            <span className="text-sm textColor font-medium">$34</span>
+                            <span className="text-sm textColor font-medium"></span>
                             <button className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
-                                Get Vocal
+                                $34
                             </button>
                         </div>
                     </div>
@@ -560,7 +555,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
 
                 {/* More Singers */}
 
-                <div style={{fontFamily: 'Favorit'}} className='px-4  '>
+                <div  className='px-4  '>
 
                     <div className=' mt-7 '>
                         <p className=' leading-6 textColor text-lg '>*all vocals are royalty free, both
@@ -615,85 +610,93 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
 
                 {/* contact us browse vocal section  */}
 
-                <div style={{fontFamily: 'Favorit'}}
-                     className=' flex flex-col lg:flex-row justify-between items-center px-4 lg:space-y-0 space-y-4 lg:gap-x-11 mt-[66px] '>
+                <div
+                    className=' flex flex-col lg:flex-row justify-between items-center px-4 lg:space-y-0 space-y-4 lg:gap-x-11 mt-[66px] '>
                 </div>
 
 
-                <div style={{fontFamily: 'Favorit'}} className=' mt-16 px-4 '>
+                <div className=' mt-16 px-4 '>
 
                     <div className=' border border-[#000000] '></div>
                     <div
-                        className=' flex lg:flex-row flex-col items-start justify-between relative lg:gap-5 lg:mt-16 mt-6  '>
-                        <div>
-                            <p className=' lg:rotate-90 textColor lg:text-lg lg:absolute lg:top-14 lg:-ml-20  '>JUST
-                                FOR YOU</p>
-                        </div>
-                        {/* left side  */}
-                        <div>
-                            <Image src={"/images/hire/bannerImg/hireBannerImg.png"}
-                                   className=' object-cover rounded-lg block mx-auto my-1 ' width={652} height={654}
+                        className=' flex lg:flex-row flex-col items-center justify-between relative lg:gap-5 lg:mt-16 mt-6   '>
+
+                        <div className={`w-full`}>
+                            <Image src={"/update-image/singer-details/banner/banner.png"}
+                                   className=' object-cover rounded-lg block mx-auto my-1 ' width={652} height={804}
                                    alt='....'/>
                         </div>
                         {/* right side  */}
-                        <div>
+                        <div className={`w-full`}>
                             <div className=' max-w-[411px] '>
                                 <h1 className=' text-2xl lg:text-[35px] font-bold headerColor leading-9 '>
-                                    What’s included when you buy it?
+                                    Your Vocal Includes
                                 </h1>
                             </div>
 
                             <div className=' max-w-[478px] mt-3 '>
                                 <h1 className=' lg:text-lg textColor leading-6 font-thin '>
-                                    WET mixed vocals (with fx), Multiple DRY Vocal Takes and Lyrics PDF. All files in
-                                    24bit
-                                    WAV.
+
                                 </h1>
                             </div>
 
 
-                            <div className="max-w-[700px] mx-auto mt-4  ">
-                                <div className=' lg:w-[50px] lg:h-[47px]   rounded-full bg-[#D9D9D9] '>
+                            <div className="max-w-[700px] mx-auto">
 
-                                </div>
-                                <div className=' lg:ml-14 -mt-4  '>
 
-                                    <div className=" transition duration-300 w-full ">
-                                        <p className="headerColor font-bold lg:text-xl ">WET Mixed Vocals (with
-                                            FX)</p>
-                                        <p className="textColor font-light mt-4 lg:text-lg leading-7">
-                                            We make sure that you get only the best premium quality vocals by only
-                                            working
-                                            with the industry’s finest artists. This makes us the #1 vocal provider.
+                                <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
+                                    <div className="w-full lg:w-[150px] lg:h-[157px] ">
+                                        <Image
+                                            src="/update-image/singer-details/icon/mic-1.png"
+                                            alt="Mic Icon"
+                                            width={150}
+                                            height={157}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div className="w-full transition duration-300">
+                                        <p className="headerColor font-bold text-lg lg:text-xl">1. WET + DRY Vocals</p>
+                                        <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
+                                            A fully mixed version (with FX) plus 3 raw takes ready to drop into any
+                                            project.
                                         </p>
                                     </div>
                                 </div>
-                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
 
-                                </div>
-                                <div className=' lg:ml-14 -mt-4 '>
-
-                                    <div className=" transition duration-300 w-full ">
-                                        <p className=" headerColor font-bold lg:text-xl mb-4">Multiple DRY Vocal
-                                            Takes</p>
-                                        <p className="textColor font-light mt-4 lg:text-lg leading-7">
-                                            You find our vocals only on Vocalfy and nowhere else. We delete our
-                                            Non-Exclusive vocals regularly to make sure you’ll get a rare vocal. </p>
+                                <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
+                                    <div className="w-full lg:w-[150px] lg:h-[157px] ">
+                                        <Image
+                                            src="/update-image/singer-details/icon/mic-3.png"
+                                            alt="Mic Icon"
+                                            width={150}
+                                            height={157}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div className="w-full transition duration-300">
+                                        <p className="headerColor font-bold text-lg lg:text-xl">2. Lyrics + License</p>
+                                        <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
+                                            Includes a lyrics PDF and a <span className={`font-bold`} >secure agreement</span> confirming your rights and ownership.
+                                        </p>
                                     </div>
                                 </div>
 
-                                <div className=' lg:w-[50px] lg:h-[47px]  rounded-full bg-[#D9D9D9] '>
 
-                                </div>
-                                <div className=' lg:ml-14 -mt-4 '>
-
-                                    <div className=" transition duration-300 w-full ">
-                                        <p className="headerColor font-bold lg:text-xl mb-4">Lyrics PDF</p>
-                                        <p className="textColor font-light mt-4 lg:text-lg leading-7">
-                                            Our contracts are easy to understand without any sketchy clauses. Download
-                                            your
-                                            license for each of your vocals. Pick a vocal and start without
-                                            obstacles. </p>
+                                <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
+                                    <div className="w-full lg:w-[150px] lg:h-[157px] ">
+                                        <Image
+                                            src="/update-image/singer-details/icon/mic-2.png"
+                                            alt="Mic Icon"
+                                            width={150}
+                                            height={157}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div className="w-full transition duration-300">
+                                        <p className="headerColor font-bold text-lg lg:text-xl">3. 24bit WAV Files</p>
+                                        <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
+                                            Top-quality audio in professional format clean, clear, and production-ready.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -708,50 +711,52 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
 
 
                 {/* Card Section */}
-                <div style={{fontFamily: 'Favorit'}}
+                <div
                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
-                    <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
-                        <div className=' lg:w-[50px] lg:h-[47px] mt-4  rounded-full bg-[#D9D9D9] '>
-
+                    <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
+                        <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
+                            <Image src={"/update-image/singer-details/icon/free.png"} alt={".."} width={150} height={150} />
                         </div>
 
-                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold mt-5 ">
-                            100% Royalty free
+                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold text-center  ">
+                            100% Royalty-Free
                         </h1>
-                        <div className="mt-6 textColor lg:text-lg leading-6">
-                            <p>Use your vocals anywhere. No limits. Cleared for release. Keep all royalties..</p>
+                        <div className="mt-4 textColor lg:text-lg text-center leading-6">
+                            <p>Use your vocal anywhere release-ready and yours to keep, with full royalty rights.</p>
                         </div>
                     </div>
-                    <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
-                        <div className=' lg:w-[50px] lg:h-[47px] mt-4   rounded-full bg-[#D9D9D9] '>
-
+                    <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
+                        <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
+                            <Image src={"/update-image/singer-details/icon/wave.png"} alt={".."} width={150} height={150} />
                         </div>
 
-                        <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold mt-5 ">
-                            Yours forever
+                        <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold text-center  ">
+                            Everything You Need
                         </h1>
-                        <div className="mt-6 textColor lg:text-lg leading-6">
-                            <p>Dry vocal stems, Licence and Invoice emailed after purchase. Instrumental at an extra
-                                cost. </p>
+                        <div className=" text-center mt-4 textColor lg:text-lg leading-6">
+                            <p>Includes dry & wet stems, secure license, and invoice delivered instantly. MIDI available separately. </p>
                         </div>
                     </div>
-                    <div className=" p-5  pb-14 rounded-md text-[#000000] border-2 border-black shadow ">
-                        <div className=' lg:w-[50px] lg:h-[47px] mt-4   rounded-full bg-[#D9D9D9] '>
-
+                    <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
+                        <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
+                            <Image src={"/update-image/singer-details/icon/love.png"} alt={".."} width={150} height={150} />
                         </div>
 
-                        <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold mt-5 ">
-                            Vocal love gurantee
+                        <h1 className="text-xl headerColor  text-center lg:text-3xl leading-9 font-bold ">
+                            Trusted Quality, No Surprises
                         </h1>
-                        <div className="mt-6 textColor lg:text-lg leading-6">
-                            <p>Don’t love your existing vocal. We’ll replace it with a new one!</p>
+                        <div className="mt-4 textColor text-center lg:text-lg leading-6">
+                            <p>Every vocal is reviewed for clarity, tone, and performance</p>
                         </div>
                     </div>
                 </div>
 
 
-                <div style={{fontFamily: 'Favorit'}}
-                     className=" my-16 bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
+
+            </MaxWidth>
+            <>
+                <div
+                    className=" my-16 bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16  mt-16 lg:mt-[107px] relative overflow-hidden"
                 >
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
@@ -761,7 +766,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
                             TUNEM FOR ARTISTS
                         </h1>
                         <div className="mx-auto mt-5 lg:mt-16">
-                            <h1 style={{fontFamily: 'Bayon'}}
+                            <h1
                                 className="text-center lg:leading-24 uppercase lg:text-7xl text-3xl text-white font-thin">
                                 do you want to <br/> apply as a vocalist?
                             </h1>
@@ -780,11 +785,11 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({artistId})  => {
                         </div>
                     </div>
                 </div>
-            </MaxWidth>
+            </>
 
             {/* Modal */}
             {chatOpen && (
-                <div style={{fontFamily: "Favorit"}} className="fixed inset-0  flex items-center justify-center z-50">
+                <div className="fixed inset-0  flex items-center justify-center z-50">
                     <div className="bg-white w-[40%] rounded-2xl shadow-xl relative p-4">
                         {/* Close Button */}
                         <button
