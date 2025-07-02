@@ -10,7 +10,7 @@ const VocalPublishLogo: React.FC = () => {
     return (
         <MaxWidth>
             <div className=" ">
-                <h1 className="text-center headerColor lg:text-4xl text-2xl font-semibold font-favorit">
+                <h1 className="text-center headerColor lg:text-4xl text-2xl font-semibold">
                     {/*TuneM Vocals Featured In*/}
                 </h1>
                 <div className="flex md:flex-row flex-col   justify-between items-center gap-4 mx-auto mt-4">

@@ -85,7 +85,7 @@ const UseSound: React.FC = () => {
 
     return (
         <MaxWidth>
-            <div style={{fontFamily: "Favorit"}} className="relative mx-auto py-12 ">
+            <div  className="relative mx-auto py-12 ">
                 <div className="mb-8 ">
                     <h1 className="text-2xl lg:text-4xl headerColor font-bold">Who uses our vocals</h1>
                 </div>
@@ -111,7 +111,7 @@ const UseSound: React.FC = () => {
                                         className="rounded-full w-[208px] h-[208px] object-cover"
                                     />
                                     <p className="font-semibold headerColor lg:text-xl text-sm">{item.name}</p>
-                                    <p className=" textColor lg:text-lg text-sm">{item.role}</p>
+                                    {/*<p className=" textColor lg:text-lg text-sm">{item.role}</p>*/}
                                 </div>
                             </div>
                         ))}

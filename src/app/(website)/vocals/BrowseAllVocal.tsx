@@ -1032,7 +1032,9 @@ const BrowseAllVocal = () => {
                                 <div className="lg:py-4 py-1 px-3 lg:px-6">
                                     <span
                                         className="text-[#000000] font-bold text-[10px] lg:text-lg bg-[#E7F056] text-center rounded-2xl px-2">
-                                        {item.price}
+                                        <Link href={"/checkout"}>
+                                            {item.price}
+                                        </Link>
                                     </span>
                                 </div>
                             </motion.div>

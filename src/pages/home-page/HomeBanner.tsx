@@ -22,9 +22,9 @@ const HomeBanner: React.FC = () => {
                             </p>
 
                             <div  className="mt-8 md:mt-12">
-                                <Link href="/browse-vocal" passHref>
+                                <Link href="/vocals" passHref>
                                     <button
-                                        className="bg-[#000000] w-[194px] text-white py-2 cursor-pointer rounded-2xl text-lg">
+                                        className="cursor-pointer border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  ">
                                         BROWSE VOCALS
                                     </button>
                                 </Link>

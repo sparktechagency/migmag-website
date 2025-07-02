@@ -19,7 +19,7 @@ const QuotePage: React.FC = () => {
                 </p>
 
                 {/* Product tiers */}
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3  mx-auto">
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3  mx-auto">
                     {/* Exclusive */}
                     <div className="border border-gray-300 rounded-xl p-6 shadow-md">
                         <h3 className="lg:text-2xl text-xl font-semibold headerColor flex flex-row items-center   mb-2">
@@ -33,7 +33,7 @@ const QuotePage: React.FC = () => {
 
                     {/* Premium */}
                     <div className="border border-gray-300 rounded-xl p-6 shadow-md">
-                        <h3 className="lg:text-2xl  text-xl font-semibold headerColor flex flex-row items-center mb-2">
+                        <h3 className="lg:text-2xl text-xl font-semibold headerColor flex flex-row items-center   mb-2">
                             Premium Vocals<Image src={"/update-image/home-page/quote/exclusiveLogo.png"} height={30} width={30} className={"object-cover  "} alt={"..."} />  <span className="text-sm">(5 Copies Only)</span>
                         </h3>
                         <p className="textColor lg:text-xl text-sm mb-3">
