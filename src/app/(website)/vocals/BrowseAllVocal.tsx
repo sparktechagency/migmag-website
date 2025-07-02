@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Search } from 'lucide-react';
+import {Play, Search} from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
@@ -947,95 +947,39 @@ const BrowseAllVocal = () => {
                                 className={`cursor-pointer flex  items-center  rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
                                     }`}
                             >
-                                {/* Artwork + play button */}
-                                <div className="lg:py-4 py-1 flex-1 px-3 lg:px-6">
-                                    <div className="relative w-18 h-18 ">
-                                        <Link href={`/browse-vocal/${item?.id}`}>
+                                <div className="flex items-center justify-between w-full bg-white px-4 py-3 rounded shadow-sm hover:bg-gray-50 transition-all">
+                                    {/* Left: Cover and Play */}
+                                    <div className="flex items-center gap-3 w-full max-w-[300px]">
+                                        <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
                                             <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                width={18}
-                                                height={18}
-                                                className="w-full h-full rounded-lg object-cover"
+                                                src="/images/browse-vocal/browse/browse-7.png" // 🔁 Replace with your image
+                                                alt="Do I Cross Your Mind"
+                                                fill
+                                                className="object-cover rounded"
                                             />
-                                        </Link>
+                                        </div>
+                                        <button className="w-6 h-6 flex items-center justify-center text-black hover:text-blue-500">
+                                            <Play size={18} className={`text-black`} />
+                                        </button>
+                                        <div className="flex flex-col">
+                                            <h3 className="text-sm font-semibold text-black">Do I Cross Your Mind</h3>
+                                            <p className="text-xs text-gray-500">Evan ・ 128 BPM ・ A#min</p>
+                                        </div>
+                                    </div>
 
-                                        <button
-                                            onClick={() => handlePlayPause(item.id)}
-                                            className="absolute cursor-pointer top-1/2 -right-16 -translate-x-1/2 -translate-y-1/2  bg-white/80 hover:bg-white rounded-full p-2 shadow-md"
-                                        >
-                                            {playingId === item.id ? (
-                                                // Pause Icon
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black"
-                                                    viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M6 4h4v16H6zm8 0h4v16h-4z" />
-                                                </svg>
-                                            ) : (
-                                                // Play Icon
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black"
-                                                    viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M8 5v14l11-7z" />
-                                                </svg>
-                                            )}
+                                    {/* Center: Genre and License */}
+                                    <div className="hidden md:flex items-center text-sm text-gray-500 gap-10">
+                                        <p>Progressive House</p>
+                                        <p>Non-Exclusive</p>
+                                    </div>
+
+                                    {/* Right: Price and Button */}
+                                    <div className="flex items-center gap-4 min-w-[120px] justify-end">
+                                        <p className="text-sm font-semibold">$34</p>
+                                        <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
+                                            Get Vocal
                                         </button>
                                     </div>
-                                </div>
-
-                                {/* Title */}
-                                <div className="w-full   ml-3 lg:py-4 lg:px-6 px-3">
-                                    <h3 className="text-white text-sm md:text-sm">
-                                        {item.title}
-                                    </h3>
-                                </div>
-
-                                {/* Artist */}
-                                <div className="lg:py-4  w-full lg:px-6 px-3">
-                                    <p className="text-white text-sm">
-                                        {item.artist}
-                                    </p>
-                                </div>
-
-                                {/* Genre */}
-                                <div className="lg:py-4 w-full py-1 px-2 lg:px-6 text-center">
-                                    <p className="text-white text-sm">
-                                        {item.genre}
-                                    </p>
-                                </div>
-
-                                {/* Gender */}
-                                <div className="lg:py-4 py-1 w-full px-2 lg:px-6 text-center">
-                                    <p className="text-white text-sm">
-                                        {item.gender}
-                                    </p>
-                                </div>
-
-                                {/* License badge */}
-                                <div className="lg:py-4  w-full py-1 ">
-                                    <span
-                                        className={`block text-center rounded-2xl py-1 px-3 text-sm
-                                     ${item.license === 'EXCLUSIVE'
-                                                ? 'bg-[#80BC02]'
-                                                : item.license === 'NON-EXCLUSIVE'
-                                                    ? 'bg-[#818080]'
-                                                    : item.license === 'PREMIUM'
-                                                        ? 'bg-[#00C2CE]'
-                                                        : ''
-                                            }`}
-                                    >
-                                        {item.license}
-                                    </span>
-                                </div>
-
-
-
-                                {/* Price */}
-                                <div className="lg:py-4 py-1 px-3 lg:px-6">
-                                    <span
-                                        className="text-[#000000] font-bold text-[10px] lg:text-lg bg-[#E7F056] text-center rounded-2xl px-2">
-                                        <Link href={"/checkout"}>
-                                            {item.price}
-                                        </Link>
-                                    </span>
                                 </div>
                             </motion.div>
                         ))}
