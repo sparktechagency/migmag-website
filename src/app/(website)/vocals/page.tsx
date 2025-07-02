@@ -95,25 +95,25 @@ const Page: React.FC = () => {
                                 <ul className="flex items-center gap-x-8 text-lg">
                                     <li className="relative group">
                                         {/* parent link */}
-                                        <span>
+                                        <span className={`text-white`} >
                                             Vocals
                                         </span>
 
                                         {/* ▼ smooth dropdown */}
                                         <ul
                                             className="
-      absolute left-0 top-full w-52 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+      absolute left-0 top-full w-36 rounded-lg bg-white shadow-lg border border-gray-300 z-50
       overflow-hidden                        /* keeps content clipped during scale */
       opacity-0 translate-y-2 pointer-events-none
       group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
       transition-all duration-300 ease-out
     "
                                         >
-                                            <li className="px-4 py-3 hover:bg-gray-100">
+                                            <li className="px-4 py-2 text-center hover:bg-gray-100">
                                                 <Link className="text-black" href="/vocals">
                                                     Vocals
                                                 </Link>
-                                            </li><li className="px-4 py-3 hover:bg-gray-100">
+                                            </li><li className="px-4 py-2  text-center hover:bg-gray-100">
                                                 <Link className="text-black" href="/cover-vocals">
                                                     Cover Vocals
                                                 </Link>
@@ -207,16 +207,16 @@ const Page: React.FC = () => {
                             <ul className="flex flex-col p-4 gap-4">
                                 <li>
                                     <Link
-                                        href="/ai-data-sets"
-                                        className={` ${pathname === "/ai-data-sets" ? "text-[#E7F056]  " : "text-white"}`}
+                                        href="/vocals"
+                                        className={` ${pathname === "/vocals" ? "text-[#E7F056]  " : "text-white"}`}
                                     >
-                                        Ai Data Sets
+                                        Vocals
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
-                                        href="/browse-vocal"
-                                        className={` ${pathname === "/browse-vocal" ? "text-[#E7F056]  " : "text-white"}`}
+                                        href="/cover-vocals"
+                                        className={` ${pathname === "/cover-vocals" ? "text-[#E7F056]  " : "text-white"}`}
                                     >
                                         Browse Vocals
                                     </Link>

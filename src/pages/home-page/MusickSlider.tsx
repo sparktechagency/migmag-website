@@ -117,9 +117,9 @@ export default function MusicSlider() {
     };
 
     return (
-        <main className="lg:mt-32 mt-8">
+        <main className=" mt-8">
             <MaxWidth>
-                <h1 style={{fontFamily: 'Favorit'}}
+                <h1
                     className="headerColor text-2xl lg:text-4xl font-semibold  -0 mx-auto ">
                     Latest Trending Vocals
                 </h1>
@@ -137,20 +137,20 @@ export default function MusicSlider() {
                                 </button>
                             </div>
 
-                            <h3 style={{fontFamily: 'Favorit'}}
+                            <h3
                                 className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
                             <div className={`flex gap-x-6 `}>
-                                <p style={{fontFamily: 'Favorit'}}
+                                <p
                                    className="textColor lg:text-lg font-bold">{item.name}</p>
                                 <Link href={"/checkout"}>
-                                    <p style={{fontFamily: 'Favorit'}}
+                                    <p
                                        className="textColor lg:text-lg font-bold">{item.price}</p>
                                 </Link>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div style={{fontFamily: 'Favorit'}}
+                <div
                      className="  ">
                     <div className=" lg:mt-[68px] mt-5">
                         <h1 className=" lg:text-2xl text-xl textColor font-semibold px-4 lg:px-0   ">
@@ -160,7 +160,7 @@ export default function MusicSlider() {
                         </h1>
                     </div>
                     <div className="mt-4 md:mt-12">
-                        <Link href="/browse-vocal">
+                        <Link href="/vocals">
                             <button
                                 className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  ">
                                 BROWSE VOCALS

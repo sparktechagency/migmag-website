@@ -101,19 +101,19 @@ const Navbar: React.FC = () => {
     "
                                     >
                                         <li className="px-4 py-2 hover:bg-gray-100 text-center ">
-                                            <Link className="text-black" href="/vocals">
+                                            <Link className={`${pathname === "/vocals" ? "text-[#E7F056]" : "text-black"}`} href="/vocals">
                                                 Vocals
                                             </Link>
                                         </li>
                                         <li className="px-4 py-3 hover:bg-gray-100 text-center ">
-                                            <Link className="text-black" href="/cover-vocals">
+                                            <Link className={` ${pathname==="/cover-vocals" ? "text-[#E7F056]" : "text-black" } `} href="/cover-vocals">
                                                 Cover Vocals
                                             </Link>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><Link className="text-black" href="/artist-library">Artists</Link></li>
-                                <li><Link className="text-black" href="/hire">Hire</Link></li>
+                                <li><Link className={` ${pathname==="/artist-library" ? "text-[#E7F056]" : "text-black" } `} href="/artist-library">Artists</Link></li>
+                                <li><Link className={` ${pathname==="/hire" ? "text-[#E7F056]" : "text-black" } `} href="/hire">Hire</Link></li>
                             </ul>
 
                             <div className="relative">
@@ -195,15 +195,17 @@ const Navbar: React.FC = () => {
                         </div>
                         <ul className="flex flex-col p-4 gap-4">
                             <li>
+                                <Link className={`${pathname === "/vocals" ? "text-[#E7F056]" : " text-black "}`}
+                                      href="/vocals">
+                                    Vocals
+                                </Link>
+                            </li>
+                            <li>
                                 <Link className={` -ml-1 ${pathname === "/cover-vocals" ? "text-[#E7F056]" : " text-black "}`} href="/cover-vocals">
                                     Cover Vocals
                                 </Link>
                             </li>
-                            <li>
-                                <Link className={`${pathname === "/browse-vocal" ? "text-[#E7F056]" : " text-black "}`}
-                                    href="/browse-vocal">Browse Vocals
-                                </Link>
-                            </li>
+
                             <li>
                                 <Link
                                     className={`${pathname === "/artist-library" ? "text-[#E7F056]" : " text-black "}`}

@@ -118,7 +118,7 @@ const ArtistList: React.FC = () => {
                             })
                         }
                     </div>
-                    <div style={{fontFamily: 'Favorit'}} className='  '>
+                    <div  className='  '>
                         <div className="flex flex-row justify-center items-center space-y-4 mb-10">
                             <Link href={"/artist-library"}>
                                 <button

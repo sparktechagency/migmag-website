@@ -98,14 +98,7 @@ const TopTenVocal: React.FC = () => {
             price: "€10",
             img: "/images/home-page/top/top-10.png",
             audio: "/images/home-page/audio-10.mp3"
-        },{
-            id: 11,
-            title: "Fusion Funk",
-            name: "Bondhu Hoye Thako",
-            price: "€10",
-            img: "/images/home-page/top/top-10.png",
-            audio: "/images/home-page/audio-10.mp3"
-        },
+        }
     ];
 
     /* ---------- state ---------- */
@@ -150,6 +143,7 @@ const TopTenVocal: React.FC = () => {
         <div
             key={item.id}
             className={`flex flex-col lg:flex-row items-center justify-between
+            
                   gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px]
                   transition-all duration-300 cursor-pointer
                   ${playingUrl === item.audio && isPlaying
@@ -216,7 +210,7 @@ const TopTenVocal: React.FC = () => {
     return (
         <>
             <MaxWidth>
-                <div style={{fontFamily: "Favorit"}} className=" mx-auto">
+                <div  className=" mx-auto">
                     <div className="border border-black"/>
                     <h2 className="mt-7 text-2xl lg:text-4xl font-semibold headerColor">Top 10 Vocals</h2>
 
@@ -237,14 +231,14 @@ const TopTenVocal: React.FC = () => {
                             {visibleData < audioData.length ? (
                                 <button
                                     onClick={() => setVisibleData(prev => Math.min(prev + 10, audioData.length))}
-                                    className="bg-black border border-white cursor-pointer text-white w-[194px] py-2 rounded-2xl lg:text-lg"
+                                    className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  "
                                 >
                                     SEE ALL
                                 </button>
                             ) : (
                                 <button
                                     onClick={() => setVisibleData(10)}
-                                    className="bg-black border border-white text-white w-[194px] py-2 rounded-2xl cursor-pointer lg:text-lg"
+                                    className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  "
                                 >
                                     SEE LESS
                                 </button>

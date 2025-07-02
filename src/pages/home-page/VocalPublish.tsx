@@ -2,17 +2,13 @@ import Image from 'next/image';
 import React from 'react'
 import QuotePage from "@/pages/home-page/QuotePage";
 import MaxWidth from "@/components/max-width/MaxWidth";
-import {Bayon} from "next/font/google";
-const bayon = Bayon({
-    weight: '400',
-    subsets: ['latin'],
-});
+
 const VocalPublish: React.FC = () => {
 
     return (
         <>
             <MaxWidth>
-                <div style={{fontFamily: 'Favorit'}} className=' max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  '>
+                <div  className=' max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  '>
                     {/*<h1 className=' text-center headerColor lg:text-4xl text-2xl font-semibold   '>TuneM Vocals*/}
                     {/*    Featured In </h1>*/}
                     <div className="flex flex-wrap justify-between items-center gap-4 mx-auto mt-4">
@@ -67,7 +63,7 @@ const VocalPublish: React.FC = () => {
                 <div>
 
                 </div>
-                <div style={{fontFamily: 'Favorit'}}
+                <div
                      className='  mx-auto flex flex-col items-stretch  lg:flex-row  gap-x-14 lg:mt-[110px] md:mt-20  '>
 
                     {/* left section  */}
@@ -167,12 +163,12 @@ const VocalPublish: React.FC = () => {
                 </div>
 
 
-                <div style={{fontFamily: 'Bayon'}} className='mx-auto  '>
+                <div  className='mx-auto  '>
                     <div className=' maw-w-[1116px]  '>
-                        <h1 className={` lg:text-[70px] md:text-4xl text-2xl font-thin lg:mt-32 md:20 mt-7 headerColor ${bayon.className}  `}>“LOVE
+                        <h1 className={` lg:text-[70px] md:text-4xl text-2xl font-thin lg:mt-32 md:20 mt-7 headerColor `}>“LOVE
                             TUNEM
                             - GREAT CHOICE AND EVEN BETTER SERVICE” </h1>
-                        <p style={{fontFamily: 'Favorit'}} className="mt-2 text-lg font-medium  textColor ">Mantas Stinson (Lithuania HQ .Label Manager
+                        <p  className="mt-2 text-lg font-medium  textColor ">Mantas Stinson (Lithuania HQ .Label Manager
                             Godard, London</p>
                     </div>
                 </div>
