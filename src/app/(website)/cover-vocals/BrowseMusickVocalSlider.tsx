@@ -71,11 +71,10 @@ const audioData: AudioItem[] = [
 ];
 
 export default function BrowseMusickVocalSlider() {
-    // const audioRef = useRef<HTMLAudioElement | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
     const [playingUrl, setPlayingUrl] = useState<string | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    console.log(setPlayingUrl(playingUrl));
-    console.log(setIsPlaying(playingUrl));
+  
 
     const [sliderRef] = useKeenSlider<HTMLDivElement>({
         loop: true,

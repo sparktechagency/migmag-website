@@ -12,11 +12,9 @@ const Page: React.FC = () => {
 
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className='  bg-[#000000] '>
+        <div  className='  bg-[#000000] '>
             {/* navbar  */}
-            <>
                 <BrowseVocalNavbar></BrowseVocalNavbar>
-            </>
 
 
             <div className={``} >

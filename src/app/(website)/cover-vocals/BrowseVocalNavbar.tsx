@@ -78,7 +78,7 @@ const BrowseVocalNavbar: React.FC = () => {
                         {/* Mobile Menu Button */}
                         <div className="lg:hidden">
                             <button onClick={toggleDrawer}>
-                                <FiMenu size={23} className={`text-white`} />
+                                <FiMenu size={23} className={`text-white cursor-pointer `} />
                             </button>
                         </div>
 
@@ -96,14 +96,20 @@ const BrowseVocalNavbar: React.FC = () => {
                                     {/* ▼ smooth dropdown */}
                                     <ul
                                         className="
-                                            absolute left-0 top-full w-32 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+                                            absolute left-0 top-full w-40 rounded-lg bg-white shadow-lg border border-gray-300 z-50
                                             overflow-hidden                        /* keeps content clipped during scale */
                                             opacity-0 translate-y-2 pointer-events-none
                                             group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
                                             transition-all duration-300 ease-out
                                             "
                                     >
-                                        <li className="px-4 py-3 hover:bg-gray-100">
+                                        <li className="px-4 py-2 hover:bg-gray-100 text-center ">
+                                            <Link className="text-black" href="/vocals">
+                                                Vocals
+                                            </Link>
+                                        </li>
+
+                                        <li className="px-4 py-2 hover:bg-gray-100 text-center ">
                                             <Link className="text-black" href="/cover-vocals">
                                                 Cover Vocals
                                             </Link>
@@ -190,7 +196,7 @@ const BrowseVocalNavbar: React.FC = () => {
                                 </Link>
                             </span>
                             <button onClick={toggleDrawer}>
-                                <FiX size={24} />
+                                <FiX size={24} className=' cursor-pointer ' />
                             </button>
                         </div>
                         <ul style={{ fontFamily: "Favorit" }} className="flex flex-col p-4 gap-4">
