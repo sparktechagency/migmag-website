@@ -4,7 +4,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const Refund: React.FC = () => {
     return (
-        <div style={{fontFamily: 'Favorit'}}>
+        <div >
             <div className=' bg-[#7F94DA] lg:my-14 my-8 '>
                 <div className='  '>
                     <MaxWidth>

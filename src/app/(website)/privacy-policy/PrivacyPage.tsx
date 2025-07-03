@@ -4,7 +4,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const PrivacyPage: React.FC = () => {
     return (
         <MaxWidth>
-            <div style={{fontFamily: "Favorit"}} className=" py-8 lg:py-14 ">
+            <div className=" py-8 lg:py-14 ">
                 <h1 className="lg:text-4xl headerColor font-bold mb-6">Privacy Policy</h1>
                 <p className="mb-4 textColor text-lg lg:text-xl ">Last Updated: [Insert Date]</p>
 

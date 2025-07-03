@@ -42,7 +42,7 @@ const ReviewSlider: React.FC = () => {
 
     return (
         <MaxWidth>
-            <div className=" mx-auto  lg:mt-14 mt-7 " style={{fontFamily: "Favorit"}}>
+            <div className=" mx-auto  lg:mt-14 mt-7 " >
                 <div className=" text-center">
                     <h1 className=" lg:text-lg text-sm headerColor font-bold">Join 100+ Individuals and Companies that already
                         promote Vocalfy</h1>

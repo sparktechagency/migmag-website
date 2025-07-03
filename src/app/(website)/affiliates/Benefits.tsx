@@ -22,7 +22,7 @@ const benefits = [
 
 const Benefits: React.FC = () => {
     return (
-        <section style={{fontFamily: "Favorit"}} className="bg-[#f9f9f9] py-12">
+        <section className="bg-[#f9f9f9] py-12">
             <MaxWidth>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                     {/* Left Section */}

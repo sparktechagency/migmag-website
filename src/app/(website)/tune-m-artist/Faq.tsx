@@ -87,7 +87,7 @@ const faqs: FaqType[] = [
 const Faq = () => {
     return (
         <MaxWidth>
-            <section style={{fontFamily: 'Favorit'}} className=" mx-auto mb-10   ">
+            <section className=" mx-auto mb-10   ">
                 <h1 className={" headerColor lg:text-3xl text-xl leading-9 font-bold text-center mb-10 lg:mb-24 mt-10 "}>TuneM
                     Vocals – Frequently Asked Questions (FAQ)</h1>
                 <div className="">

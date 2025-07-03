@@ -21,7 +21,7 @@ const dontList = [
 const AffiliateGuidelines: React.FC = () => {
     return (
         <MaxWidth>
-            <section style={{fontFamily: 'Favorit'}} className="bg-gray-50 lg:py-20 py-7 px-4">
+            <section className="bg-gray-50 lg:py-20 py-7 px-4">
                 <div className="max-w-6xl mx-auto text-center mb-4 lg:mb-12">
                     <h2 className="text-2xl md:text-4xl font-bold headerColor  inline-block px-4 py-1 rounded">
                         Guidelines

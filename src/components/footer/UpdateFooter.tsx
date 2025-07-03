@@ -9,9 +9,7 @@ import {BsDiscord} from "react-icons/bs";
 import {ArrowRight} from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
-// import {FaPaypal} from "react-icons/fa6";
-// import { RiVisaLine } from "react-icons/ri";
-// import {SiAmericanexpress} from "react-icons/si";
+
 
 const UpdateFooter: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -111,7 +109,7 @@ const UpdateFooter: React.FC = () => {
                                 </p>
                                 <form
                                     onSubmit={handleSubmit}
-                                    className="flex items-center rounded-full overflow-hidden w-[70%] lg:w-full  border border-black bg-white"
+                                    className="flex items-center rounded-full overflow-hidden w-[70%] lg:w-full  border border-gray bg-white"
                                 >
                                     <input
                                         type="email"
@@ -123,7 +121,7 @@ const UpdateFooter: React.FC = () => {
                                     />
                                     <button
                                         type="submit"
-                                        className="bg-yellow-400 cursor-pointer px-4 py-2 lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
+                                        className="bg-yellow-400 cursor-pointer px-4 py-2  lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
                                     >
                                         <ArrowRight className="w-5 h-5 textColor" />
                                     </button>
@@ -145,7 +143,7 @@ const UpdateFooter: React.FC = () => {
                                             Singer</Link></li>
 
                                         <li><Link className="text-lg textColor leading-9"
-                                                  href="/https://tunemcollective.com/">Courses</Link></li>
+                                                  href="https://tunemcollective.com/">Courses</Link></li>
                                     </ul>
                                 </div>
 
@@ -199,31 +197,7 @@ const UpdateFooter: React.FC = () => {
                             priority // optional: preload if this image is above the fold
                         />
                     </div>
-                    {/*<div className="max-w-6xl mx-auto ">*/}
-                    {/*paypal*/}
-                    {/*<div>*/}
-                    {/*    <span><FaPaypal size={50}  /></span>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <span> <FaCcMastercard size={50}  /> </span>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <span><RiVisaLine size={50}   /></span>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <span>*/}
-                    {/*        <SiAmericanexpress size={50}  />*/}
-                    {/*    </span>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <span><FaApplePay size={50}  /></span>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <span><FaGooglePay size={50}  /></span>*/}
-                    {/*</div>*/}
-
-                    {/*</div>*/}
-                    {/*date time */}
+                    
                     <div>
                         <p className="text-lg textColor">
                             Copyright

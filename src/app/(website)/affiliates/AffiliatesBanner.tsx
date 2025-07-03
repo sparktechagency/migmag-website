@@ -6,7 +6,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const AffiliatesBanner: React.FC = () => {
     return (
         <MaxWidth>
-            <div style={{fontFamily: "Favorit"}} className=" mx-auto   ">
+            <div className=" mx-auto   ">
                 <div>
                     <h1 className={`text-center font-bold text-2xl lg:text-4xl `}>
                         Promote Vocalfy

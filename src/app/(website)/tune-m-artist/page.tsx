@@ -41,7 +41,6 @@ const Page: React.FC = () => {
         setDrawerOpen(false)
     }, [pathname])
     return (
-
         <>
             <div
                 className=" pb-6 md:pb-12 lg:pb-28  "

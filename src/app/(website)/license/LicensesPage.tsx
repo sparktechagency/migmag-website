@@ -40,7 +40,7 @@ const LicensesPage: React.FC = () => {
 
     return (
         <MaxWidth>
-            <div style={{fontFamily: "Favorit"}} className=" mx-auto ">
+            <div  className=" mx-auto ">
                 <h1 className="lg:text-4xl text-2xl headerColor font-bold mb-2">Licenses</h1>
                 <p className="lg:text-xl text-lg  textColor mb-6">
                     All TuneM vocals come with a personalized, royalty-free license. You&apos;re cleared to release and

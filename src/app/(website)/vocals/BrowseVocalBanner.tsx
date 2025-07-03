@@ -6,10 +6,10 @@ const BrowseVocalBanner = () => {
     return (
         <div className=" py-16">
             <MaxWidth>
-                <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
+                <div className="flex flex-col lg:flex-row justify-between  gap-10">
                     {/* Left Side */}
-                    <div className="text-white w-full max-w-2xl">
-                        <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight mb-6">
+                    <div className="text-white w-full max-w-2xl ">
+                        <h1 className="text-4xl lg:text-6xl font-bold  mb-6">
                             Get Studio Quality Acapellas
                         </h1>
                         <p className="text-lg lg:text-xl font-medium text-gray-200 leading-relaxed">
@@ -19,9 +19,9 @@ const BrowseVocalBanner = () => {
                     </div>
 
                     {/* Right Side */}
-                    <div className="w-full max-w-4xl">
+                    <div className="w-full max-w-4xl ">
                         <Image
-                            src="/update-image/cover-vocal/banner/banner-1.png"
+                            src="/update-image/vocal/banner/vocal-banner.png"
                             width={1000}
                             height={1000}
                             alt="Browse Vocal Banner"

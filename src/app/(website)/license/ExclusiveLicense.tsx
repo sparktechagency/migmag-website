@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const ExclusiveLicense = () => {
     return (
-        <div style={{ fontFamily: "Favorit" }} >
+        <div  >
             <motion.div
                 initial={{ opacity: 0, y: -40 }}
                 animate={{ opacity: 1, y: 0 }}
