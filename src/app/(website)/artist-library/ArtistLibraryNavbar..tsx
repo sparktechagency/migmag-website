@@ -75,7 +75,7 @@ const ArtistLibraryNavbar: React.FC = () => {
                     {/* Mobile Menu Button */}
                     <div className="lg:hidden">
                         <button onClick={toggleDrawer}>
-                            <FiMenu size={23} className={`text-black`} />
+                            <FiMenu size={23} className={`text-black cursor-pointer `} />
                         </button>
                     </div>
 
@@ -126,7 +126,7 @@ const ArtistLibraryNavbar: React.FC = () => {
 
                 {/* Backdrop for Drawer */}
                 {drawerOpen && (
-                    <div className="fixed inset-0 bg-black bg-opacity-40 z-40" onClick={toggleDrawer}></div>
+                    <div className="fixed inset-0 bg-black bg-opacity-40 z-40  " onClick={toggleDrawer}></div>
                 )}
 
                 {/* Mobile Drawer */}
@@ -173,7 +173,7 @@ const ArtistLibraryNavbar: React.FC = () => {
                             </Link>
                         </span>
                         <button onClick={toggleDrawer}>
-                            <FiX size={24} />
+                            <FiX size={24} className ="cursor-pointer" />
                         </button>
                     </div>
                     <ul style={{ fontFamily: "Favorit" }} className="flex flex-col p-4 gap-4">

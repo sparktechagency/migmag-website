@@ -2,11 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
-import {Bayon} from "next/font/google";
-const bayon = Bayon({
-    weight: '400',
-    subsets: ['latin'],
-});
+
 const ArtistLibraryBanner = () => {
     return (
         <div className=' mx-auto mt-8   '>
@@ -16,21 +12,23 @@ const ArtistLibraryBanner = () => {
                         {/* left side  */}
                         <div className=' max-w-2xl text-white '>
                             <div
-                                 className= {` ${bayon.className}  max-w-[633px] lg:text-[70px] text-4xl lg:leading-24 `}>
-                                <h1>TALENTED ARTISTS AVAILABLE FOR YOUR TRACKS <span className={`text-[#E7F056]`}> - TuneM Artists </span>
+                                 className= {`  max-w-[633px] lg:text-[70px] text-4xl `}>
+                                <h1>TuneM Artists
+                                </h1>
+                                <h1>
+                                    Top voices, ready to work.
                                 </h1>
                             </div>
                             <div
-                                 className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 font-bold '>
+                                 className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 font-semibold'>
                                 <p>
-                                    Looking for someone with that something special? Contact us and let us know what
-                                    you’re after, and we’ll search the world for you! -
+                                    Stream vocals, hire talent, or start a custom project.
                                 </p>
                                 <p>
                                 </p>
                             </div>
 
-                            <div
+                            {/* <div
                                  className=' flex gap-3.5 lg:gap-12 items-center mb-6 lg:mt-[68px] mt-8 '>
                                 <Link className=' cursor-pointer ' href={"/contact"}>
                                     <button
@@ -38,7 +36,7 @@ const ArtistLibraryBanner = () => {
                                         US
                                     </button>
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
                         {/* right side  */}
                         <div className={`mt-4

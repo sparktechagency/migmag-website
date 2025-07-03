@@ -10,11 +10,10 @@ const BrowseVocalBanner = () => {
                     {/* Left Side */}
                     <div className="text-white w-full max-w-2xl ">
                         <h1 className="text-4xl lg:text-6xl font-bold  mb-6">
-                            Get Studio Quality Acapellas
+                            Studio-Quality Vocals, Ready to Use
                         </h1>
                         <p className="text-lg lg:text-xl font-medium text-gray-200 leading-relaxed">
-                            Spark new ideas today with our royalty-free acapellas made by professional vocalists. Used
-                            by trusted artists and labels.
+                            SRoyalty-free vocals by leading singers & songwriters
                         </p>
                     </div>
 
