@@ -5,11 +5,11 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const ApplayTune: React.FC = () => {
     return (
         <MaxWidth>
-            <div  className='mx-auto mb-[83px]'>
+            <div  className='mx-auto mb-16'>
                 <div className='flex lg:flex-row-reverse flex-col items-center justify-between relative lg:gap-5'>
 
                     {/* Left side */}
-                    <div>
+                    <div className = "   " >
                         <Image
                             src={"/update-image/tuneM-Artist/banner/artistBgBanner.png"}
                             className='object-cover rounded-lg block mx-auto my-1 '
@@ -20,7 +20,7 @@ const ApplayTune: React.FC = () => {
                     </div>
 
                     {/* Right side */}
-                    <div>
+                    <div className = " h-auto    " >
                         <div className='max-w-[450px]'>
                             <h1 className='text-white leading-9 lg:text-4xl text-2xl font-bold headerColor'>
                                 Become Part Of The TuneM Artist Squad

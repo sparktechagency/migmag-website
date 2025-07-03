@@ -7,7 +7,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const DownloadSection = () => {
     return (
         <MaxWidth>
-            <section className="lg:py-20 py-8 px-4 bg-white" style={{fontFamily: 'Favorit'}}>
+            <section className="lg:py-20 py-8 px-4 bg-white" >
                 <div className="max-w-6xl mx-auto text-center mb-12">
                     <h2 className="text-2xl md:text-4xl headerColor font-bold mb-2">Downloads</h2>
                     <p className="lg:text-xl text-lg textColor ">

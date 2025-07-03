@@ -4,7 +4,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const AffiliateQuestions: React.FC = () => {
     return (
         < MaxWidth >
-            <section className="  bg-white lg:my-14 mt-6 " style={{fontFamily: 'Favorit'}}>
+            <section className="  bg-white lg:my-14 mt-6 " >
                 <div className="max-w-6xl mx-auto text-center mb-12">
                     <h2 className=" lg:text-4xl text-2xl headerColor  font-bold">Questions and Answers</h2>
                 </div>

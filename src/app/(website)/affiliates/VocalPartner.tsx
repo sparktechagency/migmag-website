@@ -4,7 +4,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const VocalPartner: React.FC = () => {
     return (
-        <div className={` mt-8 lg:mt-20 mb-4 lg:mb-8 `} style={{fontFamily: "Favorit"}}>
+        <div className={` mt-8 lg:mt-20 mb-4 lg:mb-8 `} >
             <MaxWidth>
                 <div className="max-w-4xl  mx-auto ">
                     <div>

@@ -4,7 +4,7 @@ const ContactFrom: React.FC = () => {
     return (
         <div>
             <div className='bg-white p-6 rounded-3xl max-w-4xl mx-auto my-20 '>
-                <form className="space-y-3" style={{fontFamily: 'Degular'}}>
+                <form className="space-y-3" >
                     <div className=' flex flex-col '>
                         <label className=' text-[#121212] text-[16px] font-semibold  ' htmlFor="email">Email</label>
                         <input type='email' id='email'

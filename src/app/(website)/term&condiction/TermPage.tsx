@@ -3,7 +3,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const TermPage: React.FC = () => {
     return (
-        <div style={{fontFamily: "Favorit"}} className="  lg:py-10    ">
+        <div  className="  lg:py-10    ">
             <MaxWidth>
                 <div className=" mx-auto bg-white  rounded-lg ">
                     <h1 className="headerColor lg:text-4xl text-2xl font-bold mb-6 text-center">TuneM Terms and Conditions</h1>
