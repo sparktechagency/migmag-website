@@ -59,7 +59,7 @@ const ArtistSlider: React.FC = () => {
                                         alt={review.name}
                                         width={160}
                                         height={160}
-                                        className="w-[160px] h-[160px] rounded-full object-cover"
+                                        className="lg:w-[160px] w-16 h-16 lg:h-[160px]  lg:rounded-full object-cover"
                                     />
                                 )}
 
@@ -83,7 +83,7 @@ const ArtistSlider: React.FC = () => {
                                         alt={review.name}
                                         width={160}
                                         height={160}
-                                        className="w-[160px] h-[160px] rounded-full  object-cover"
+                                        className="lg:w-[160px] w-16 h-16 lg:h-[160px]  lg:rounded-full object-cover"
                                     />
                                 )}
                             </div>

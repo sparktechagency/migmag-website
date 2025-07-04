@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import {Play, Search} from 'lucide-react';
+import { Play, Search } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { toast, Toaster } from 'react-hot-toast';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import MaxWidth from "@/components/max-width/MaxWidth";
+import { FaPlay } from 'react-icons/fa';
 
 
 type VocalItem = {
@@ -556,7 +557,7 @@ const BrowseAllVocal = () => {
     return (
         <>
             <MaxWidth>
-                <div  className=" mx-auto  ">
+                <div className=" mx-auto  ">
                     <div className=' mt-12 mb-6 '>
                         <div className=' border border-white '></div>
                     </div>
@@ -628,7 +629,7 @@ const BrowseAllVocal = () => {
                                             <div className="flex justify-between items-center mb-4">
                                                 <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
                                                 <button onClick={() => setOpenBPM(false)}
-                                                        className="cursor-pointer text-white text-2xl">×
+                                                    className="cursor-pointer text-white text-2xl">×
                                                 </button>
                                             </div>
 
@@ -951,21 +952,21 @@ const BrowseAllVocal = () => {
                                     {/* Left: Cover and Play */}
                                     <div className="flex items-center gap-3 w-full max-w-[300px]">
                                         <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
-                                            <Link href = {`/music-details/${item?.id}`} >
-                                            <Image
-                                                src="/images/browse-vocal/browse/browse-7.png" // 🔁 Replace with your image
-                                                alt="Do I Cross Your Mind"
-                                                fill
-                                                className="object-cover rounded"
-                                            />
+                                            <Link href={`/music-details/${item?.id}`} >
+                                                <Image
+                                                    src="/images/browse-vocal/browse/browse-7.png" // 🔁 Replace with your image
+                                                    alt="Do I Cross Your Mind"
+                                                    fill
+                                                    className="object-cover rounded"
+                                                />
                                             </Link>
                                         </div>
                                         <button className="w-6 h-6 flex items-center justify-center text-black hover:text-blue-500">
-                                            <Play size={18} className={`text-black`} />
+                                            <FaPlay onClick={() => handleOpenModal(item.id)} size={28} className="text-gray-800 cursor-pointer " />
                                         </button>
                                         <div className="flex flex-col">
                                             <h3 className="text-sm font-semibold text-black">Do I Cross Your Mind</h3>
-                                            <p className="text-xs text-gray-500">Evan ・ 128 BPM ・ A#min</p>
+                                            <p className="text-xs text-gray-500"><Link href={`/singer-profile/${item.id}`}>Evan</Link> ・ 128 BPM ・ A#min</p>
                                         </div>
                                     </div>
 
@@ -977,7 +978,7 @@ const BrowseAllVocal = () => {
 
                                     {/* Right: Price and Button */}
                                     <div className="flex items-center gap-4 min-w-[120px] justify-end">
-                                        <Link href = {`/checkout`}>
+                                        <Link href={`/checkout`}>
                                             <p className="text-sm font-semibold">$34</p>
                                         </Link>
                                         <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
@@ -1181,7 +1182,7 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-                    <div  className=" space-y-2 w-full   lg:hidden my-8  ">
+                    <div className=" space-y-2 w-full   lg:hidden my-8  ">
                         {filteredData.slice(0, visibleData).map((item, i) => (
                             <motion.div
                                 key={item.id}
@@ -1254,29 +1255,28 @@ const BrowseAllVocal = () => {
                                 {/* License badge */}
                                 <div className="lg:py-4 w-[60%] block mx-auto py-1 px-2">
                                     <span
-                                        className={`block text-center rounded-2xl py-2 px-4 font-bold
-                                     ${item.license === 'EXCLUSIVE'
-                                                ? 'bg-[#80BC02]'
-                                                : item.license === 'NON-EXCLUSIVE'
-                                                    ? 'bg-[#818080]'
-                                                    : item.license === 'PREMIUM'
-                                                        ? 'bg-[#00C2CE]'
-                                                        : ''
+                                        className={`block text-center rounded-2xl py-2 px-4 font-bold ${item.license === 'EXCLUSIVE'
+                                            ? 'bg-[#80BC02]'
+                                            : item.license === 'NON-EXCLUSIVE'
+                                                ? 'bg-[#818080]'
+                                                : item.license === 'PREMIUM'
+                                                    ? 'bg-[#00C2CE]'
+                                                    : ''
                                             }`}
                                     >
                                         {item.license}
                                     </span>
                                 </div>
 
-                                
+
 
                                 {/* Price */}
                                 <div className=" block mx-auto w-[30%]  text-center mb-6 mt-3  ">
-                                    <Link href = {`/checkout`}>
-                                    <span
-                                        className="text-[#000000] px-4 py-2 rounded-2xl font-bold  bg-[#E7F056] ">
-                                        {item.price}
-                                    </span>
+                                    <Link href={`/checkout`}>
+                                        <span
+                                            className="text-[#000000] px-4 py-2 rounded-2xl font-bold  bg-[#E7F056] ">
+                                            {item.price}
+                                        </span>
 
                                     </Link>
                                 </div>
@@ -1330,18 +1330,18 @@ const BrowseAllVocal = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                 <div className="relative z-10 mt-20 ">
-                    <h1  className="text-center text-[#E7F056] font-bold lg:text-4xl text-lg ">
+                    <h1 className="text-center text-[#E7F056] font-bold lg:text-4xl text-lg ">
                         Become a TuneM Artist.
                     </h1>
 
-                    <div  className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+                    <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                         <p className="text-center text-white leading-6 lg:text-xl font-thin ">
                             We work with talented singers and songwriters ready to take their voice further. Expand
                             your audience, get discovered, and join our global music network. </p>
                     </div>
                     <div>
                         <Link href={"/tune-m-artist"}>
-                            <button 
+                            <button
                                 className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                 GET STARTED
                             </button>

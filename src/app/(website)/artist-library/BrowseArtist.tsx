@@ -1139,7 +1139,7 @@ const BrowseArtist = () => {
                         {singers.slice(0, visibleCount).map((singer) => (
                             <div key={singer.id}
                                  className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
-                                <Link href={`/artist-library/${singer.id}`}>
+                                <Link href={`/singer-profile/${singer.id}`}>
                                     <div className="w-full max-w-[357px] rounded-md p-5 bg-[#222222]">
                                         <Image
                                             src={singer.image}

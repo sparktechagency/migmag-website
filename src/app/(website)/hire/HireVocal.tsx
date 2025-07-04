@@ -6,29 +6,29 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const HireVocal: React.FC = () => {
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className=' '>
+        <div style={{ fontFamily: 'Favorit' }} className=' '>
             <MaxWidth>
                 <h1 className=' text-center lg:mt-14 md:mt-7 mt-4 headerColor lg:text-3xl text-lg  font-bold  '>Our Artists Recorded for</h1>
-                <div className="flex flex-wrap justify-between items-center gap-4 mx-auto mt-4">
-                    <div>
+                <div className="flex flex-col  sm:flex-row justify-between items-center gap-4 mx-auto mt-4">
+                    <div className="w-full sm:w-auto flex justify-center">
                         <Image
                             src="/update-image/sponser-logo/logo-1.png"
                             alt="logo"
                             width={145}
                             height={70}
-                            className="object-cover w-full"
+                            className="object-cover"
                         />
                     </div>
-                    <div>
+                    <div className="w-full sm:w-auto flex justify-center">
                         <Image
                             src="/update-image/sponser-logo/sponser-1.png"
                             alt="logo"
                             width={200}
                             height={90}
-                            className="object-cover w-full"
+                            className="object-cover"
                         />
                     </div>
-                    <div>
+                    <div className="w-full sm:w-auto flex justify-center">
                         <Image
                             src="/update-image/sponser-logo/sponser-2.png"
                             alt="logo"
@@ -37,7 +37,7 @@ const HireVocal: React.FC = () => {
                             className="object-cover"
                         />
                     </div>
-                    <div>
+                    <div className="w-full sm:w-auto flex justify-center">
                         <Image
                             src="/update-image/sponser-logo/sponser-3.png"
                             alt="logo"
@@ -46,7 +46,7 @@ const HireVocal: React.FC = () => {
                             className="object-cover"
                         />
                     </div>
-                    <div>
+                    <div className="w-full sm:w-auto flex justify-center">
                         <Image
                             src="/update-image/sponser-logo/sponser-4.png"
                             alt="logo"
@@ -66,8 +66,8 @@ const HireVocal: React.FC = () => {
                         {/* left side  */}
                         <div>
                             <Image src={"/update-image/hire/banner/banner2.png"}
-                                   className=' object-cover rounded-lg block mx-auto my-1  ' width={652} height={754}
-                                   alt='....'/>
+                                className=' object-cover rounded-lg block mx-auto my-1  ' width={652} height={754}
+                                alt='....' />
                         </div>
                         {/* right side  */}
                         <div>
@@ -139,10 +139,10 @@ const HireVocal: React.FC = () => {
 
                         {/* Card Section */}
                         <div
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-7 gap-x-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
                             <div className=" p-5  rounded-md  border border-black shadow ">
                                 <div className={" flex justify-center "} >
-                                    <Image src={"/update-image/hire/icon/hire-1.png"} alt={"logo1"} width={150} height={150} className={`object-cover`}  />
+                                    <Image src={"/update-image/hire/icon/hire-1.png"} alt={"logo1"} width={150} height={150} className={`object-cover`} />
                                 </div>
                                 <h1 className="text-xl lg:text-3xl text-center leading-9 font-bold headerColor ">
                                     Work with Trusted Talent
@@ -154,7 +154,7 @@ const HireVocal: React.FC = () => {
                             </div>
                             <div className=" p-5  rounded-md  border border-black shadow ">
                                 <div className={" flex justify-center "} >
-                                    <Image src={"/update-image/hire/icon/hire-2.png"} alt={"logo1"} width={150} height={150} className={`object-cover`}  />
+                                    <Image src={"/update-image/hire/icon/hire-2.png"} alt={"logo1"} width={150} height={150} className={`object-cover`} />
                                 </div>
                                 <h1 className="text-xl text-center lg:text-3xl leading-9 font-bold headerColor ">
                                     Secure and Verified
@@ -169,7 +169,7 @@ const HireVocal: React.FC = () => {
                             </div>
                             <div className=" p-5  rounded-md  border border-black shadow ">
                                 <div className={" flex justify-center "} >
-                                    <Image src={"/update-image/hire/icon/hire-3.png"} alt={"logo1"} width={150} height={150} className={`object-cover`}  />
+                                    <Image src={"/update-image/hire/icon/hire-3.png"} alt={"logo1"} width={150} height={150} className={`object-cover`} />
                                 </div>
                                 <h1 className="text-xl lg:text-3xl text-center leading-9 font-bold headerColor ">
                                     Delivered Within 3–10 Days

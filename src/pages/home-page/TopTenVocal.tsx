@@ -1,9 +1,9 @@
 "use client";
 import MusickPlayer from "@/components/musick-player/MusickPlayer";
 import Image from "next/image";
-import React, {useRef, useState} from "react";
-import {CiPause1} from "react-icons/ci";
-import {FaPlay} from "react-icons/fa";
+import React, { useRef, useState } from "react";
+import { CiPause1 } from "react-icons/ci";
+import { FaPlay } from "react-icons/fa";
 import Link from "next/link";
 import MaxWidth from "@/components/max-width/MaxWidth";
 
@@ -147,10 +147,10 @@ const TopTenVocal: React.FC = () => {
                   gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px]
                   transition-all duration-300 cursor-pointer
                   ${playingUrl === item.audio && isPlaying
-                ? "bg-black"
-                : globalIndex % 2 === 0
-                    ? "bg-[#F1F1F1]"
-                    : "bg-[#FFFFFF]"}`}
+                    ? "bg-black"
+                    : globalIndex % 2 === 0
+                        ? "bg-[#F1F1F1]"
+                        : "bg-[#FFFFFF]"}`}
         >
             {/* index */}
             <h1 className={`text-3xl  ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"}`}>
@@ -170,13 +170,13 @@ const TopTenVocal: React.FC = () => {
 
             {/* title + artist */}
             <div className="flex flex-col">
-                <Link href={`/artist-library/${item.id}`}>
+                <Link href={`/singer-profile/${item.id}`}>
                     <h3 className={`text-lg font-bold leading-6 hover:underline ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"}`}>
                         {item.title}
                     </h3>
                 </Link>
                 <p className={`text-lg font-bold flex gap-x-2.5 leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "textColor"}`}>
-                    <Link href = {"/artist-library"}>Luna</Link> <span className="">Exclusive</span>
+                    <Link href={"/singer-profile"}>Luna</Link> <span className="">Exclusive</span>
                 </p>
             </div>
 
@@ -188,20 +188,20 @@ const TopTenVocal: React.FC = () => {
                 }}
                 className={`w-[50px] cursor-pointer h-[50px] rounded-full flex justify-center items-center
                     ${playingUrl === item.audio && isPlaying
-                    ? "border border-[#E7F056]"
-                    : "border border-black"}`}
+                        ? "border border-[#E7F056]"
+                        : "border border-black"}`}
                 aria-label="Play or pause"
             >
                 {playingUrl === item.audio && isPlaying
-                    ? <CiPause1 className="text-[#E7F056] text-2xl"/>
-                    : <FaPlay className="text-black text-2xl"/>}
+                    ? <CiPause1 className="text-[#E7F056] text-2xl" />
+                    : <FaPlay className="text-black text-2xl" />}
             </button>
 
             {/* price */}
             <button className={`w-[112px] cursor-pointer rounded-2xl text-lg py-1
                           ${playingUrl === item.audio && isPlaying
-                ? "bg-[#E7F056] text-black"
-                : "bg-black text-white"}`}>
+                    ? "bg-[#E7F056] text-black"
+                    : "bg-black text-white"}`}>
                 {item.price}
             </button>
         </div>
@@ -210,8 +210,8 @@ const TopTenVocal: React.FC = () => {
     return (
         <>
             <MaxWidth>
-                <div  className=" mx-auto">
-                    <div className="border border-black"/>
+                <div className=" mx-auto">
+                    <div className="border border-black" />
                     <h2 className="mt-7 text-2xl lg:text-4xl font-semibold headerColor">Top 10 Vocals</h2>
 
                     {/* ---------- two fixed vertical columns ---------- */}

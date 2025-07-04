@@ -2,11 +2,11 @@
 
 
 import Link from 'next/link'
-import React, {useState} from 'react'
-import { FaFacebook,  FaInstagramSquare} from "react-icons/fa";
-import {FaTiktok} from "react-icons/fa";
-import {BsDiscord} from "react-icons/bs";
-import {ArrowRight} from "lucide-react";
+import React, { useState } from 'react'
+import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
+import { BsDiscord } from "react-icons/bs";
+import { ArrowRight } from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
 
@@ -26,10 +26,10 @@ const UpdateFooter: React.FC = () => {
                 <div className=" ">
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
-                    <span>
-                        <Image src={"/images/logo/TuneMSVG.svg"} alt={"logo"} width={200} height={200}
-                               className={" object-cover "}/>
-                    </span>
+                        <span>
+                            <Image src={"/images/logo/TuneMSVG.svg"} alt={"logo"} width={200} height={200}
+                                className={" object-cover "} />
+                        </span>
                     </div>
 
                     {/* Divider */}
@@ -46,7 +46,7 @@ const UpdateFooter: React.FC = () => {
                             {/*logo*/}
                             <div>
                                 <Image src={"/images/logo/TuneMSVG.svg"} alt={"logo"} width={200} height={200}
-                                       className={" object-cover "}/>
+                                    className={" object-cover "} />
 
                             </div>
                             <div className={`my-5`}>
@@ -63,18 +63,18 @@ const UpdateFooter: React.FC = () => {
                                 <div className="flex gap-x-5  mt-3">
                                     <div className="  rounded-full">
                                         <a target="_blank"
-                                           href="https://www.instagram.com/accounts/login/?hl=en"><FaInstagramSquare
-                                            size={25} className={""}/></a>
+                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaInstagramSquare
+                                                size={25} className={""} /></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
-                                           href="https://www.instagram.com/accounts/login/?hl=en"><FaTiktok
-                                            className={""} size={25}/></a>
+                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaTiktok
+                                                className={""} size={25} /></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
-                                           href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
-                                            className={""} size={25}/></a>
+                                            href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
+                                                className={""} size={25} /></a>
                                     </div>
                                     <div>
                                         <a
@@ -109,7 +109,7 @@ const UpdateFooter: React.FC = () => {
                                 </p>
                                 <form
                                     onSubmit={handleSubmit}
-                                    className="flex items-center rounded-full overflow-hidden w-[70%] lg:w-full  border border-gray bg-white"
+                                    className="flex items-center rounded-full overflow-hidden w-[100%] lg:w-full  border border-gray bg-white"
                                 >
                                     <input
                                         type="email"
@@ -143,7 +143,7 @@ const UpdateFooter: React.FC = () => {
                                             Singer</Link></li>
 
                                         <li><Link className="text-lg textColor leading-9"
-                                                  href="https://tunemcollective.com/">Courses</Link></li>
+                                            href="https://tunemcollective.com/">Courses</Link></li>
                                     </ul>
                                 </div>
 
@@ -163,7 +163,7 @@ const UpdateFooter: React.FC = () => {
                                         <li><Link className="text-lg textColor leading-9" href="/privacy-policy">Privacy
                                             Policy</Link></li>
                                         <li><Link className="text-lg textColor leading-9"
-                                                  href="/license">License</Link>
+                                            href="/license">License</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -197,7 +197,7 @@ const UpdateFooter: React.FC = () => {
                             priority // optional: preload if this image is above the fold
                         />
                     </div>
-                    
+
                     <div>
                         <p className="text-lg textColor">
                             Copyright
