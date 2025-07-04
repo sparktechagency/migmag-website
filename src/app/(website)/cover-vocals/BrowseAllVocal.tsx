@@ -1063,7 +1063,7 @@ const BrowseAllVocal = () => {
                                 <div className="flex items-center gap-3">
                                     {/* Image */}
                                     <div className="relative w-20 h-20 flex-shrink-0">
-                                        <Link href={`/browse-vocal/${item.id}`}>
+                                        <Link href={`/music-details/${item.id}`}>
                                             <Image
                                                 src={item.image}
                                                 alt={item.title}
@@ -1097,7 +1097,7 @@ const BrowseAllVocal = () => {
 
                                     {/* Artist */}
                                     <Link
-                                        href={`/artist-library/${item.id}`}
+                                        href={`/singer-profile/${item.id}`}
                                         className="text-white hover:underline font-medium text-sm truncate"
                                     >
                                         {item.artist}

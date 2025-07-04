@@ -12,10 +12,10 @@ const ArtistLibraryBanner = () => {
                         {/* left side  */}
                         <div className=' max-w-2xl text-white '>
                             <div
-                                 className= {`  max-w-[633px] lg:text-[60px] text-4xl `}>
+                                className={`  max-w-[633px] lg:text-[60px] text-4xl `}>
                                 <h1>TuneM Artists
                                 </h1>
-                                
+
                             </div>
 
                             <div>
@@ -24,7 +24,7 @@ const ArtistLibraryBanner = () => {
                                 </h1>
                             </div>
                             <div
-                                 className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 '>
+                                className=' max-w-[436px] mt-3 lg:mt-10 text-lg leading-6 '>
                                 <p>
                                     Stream vocals, hire talent, or start a custom project.
                                 </p>
@@ -46,7 +46,7 @@ const ArtistLibraryBanner = () => {
                         <div className={`mt-4
                         `} >
                             <Image
-                                src="/update-image/artist/banner/artist-banner.png"
+                                src="/update-image/artist/banner/artist-library-banner.jpg"
                                 width={772}
                                 height={478}
                                 alt="Browse Vocal Banner"
