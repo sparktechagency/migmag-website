@@ -176,7 +176,7 @@ const TopTenVocal: React.FC = () => {
                     </h3>
                 </Link>
                 <p className={`text-lg font-bold flex gap-x-2.5 leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "textColor"}`}>
-                    Luna <span className="">Exclusive</span>
+                    <Link href = {"/artist-library"}>Luna</Link> <span className="">Exclusive</span>
                 </p>
             </div>
 
