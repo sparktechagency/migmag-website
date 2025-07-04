@@ -727,7 +727,63 @@ const BrowseArtist = () => {
                         </div>
 
 
+                        {/* License */}
 
+
+                        {/* Type  */}
+
+
+                        <div className="relative w-full " ref={typeRef}>
+                            <button
+                                type="button"
+                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                onClick={() => setOpenType(!openType)}
+                            >
+                                {openType ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                ) : (
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                )}
+
+                                <span className="w-28 text-white md:text-lg   ">
+                            {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Language"}
+                        </span>
+                            </button>
+
+                            <AnimatePresence>
+                                {openType && (
+                                    <motion.div
+                                        initial={{opacity: 0, y: -10}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -10}}
+                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        style={{top: "calc(100% + 0.5rem)"}}
+                                    >
+                                        {type.map((item) => (
+                                            <label
+                                                key={item}
+                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedType.includes(item)}
+                                                    onChange={(e) => {
+                                                        toggleType(item); // ✅ Efficient toggle
+                                                        handleFilterChange("type", e.target.checked ? item : "");
+                                                    }}
+                                                    className="mr-3 accent-indigo-500 w-5 h-5"
+                                                />
+                                                <span className="text-white md:text-lg  ">{item}</span>
+                                            </label>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+
+                        {/* latest  */}
 
 
                         <div className="relative w-full" ref={latestRef}>

@@ -1,18 +1,27 @@
 import React from 'react';
-import MusickDetails from "@/app/(website)/music-details/[id]/MusickDetails";
 import Navbar from "@/components/navbar/Navbar";
 import UpdateFooter from "@/components/footer/UpdateFooter";
+import MusickDetails from './MusickDetails';
+import VocalInfoSection from './../VocalInfoSection';
+import Folder from '../Folder';
+import MusicReview from '../MusicReview';
+import MoreVocals from '../MoreVocals';
 
-const Page = async ({params}: { params: Promise<{ id: string }> }) => {
-    const {id} = await params;
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
     return (
         <div>
             <div className={'max-w-7xl mx-auto  '}>
                 <Navbar></Navbar>
-                <div className={'my-12'} >
+                <div className={' my-2 lg:my-12'} >
                     <MusickDetails></MusickDetails>
+                    <VocalInfoSection></VocalInfoSection>
+                    <Folder />
+                    <MusicReview></MusicReview>
+                    <MoreVocals></MoreVocals>
                 </div>
                 <UpdateFooter></UpdateFooter>
+
             </div>
 
         </div>

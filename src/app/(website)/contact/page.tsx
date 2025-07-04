@@ -1,7 +1,8 @@
 import React from 'react'
 import ContactFrom from './ContactFrom'
 import Navbar from '@/components/navbar/Navbar'
-import Footer from '@/components/footer/Footer'
+import UpdateFooter from '@/components/footer/UpdateFooter'
+
 
 const page: React.FC = () => {
     return (
@@ -10,7 +11,7 @@ const page: React.FC = () => {
             <div className=' max-w-[1539px] mx-auto ' >
                 <ContactFrom></ContactFrom>
             </div>
-            <Footer></Footer>
+            <UpdateFooter></UpdateFooter>
         </div>
     )
 }
