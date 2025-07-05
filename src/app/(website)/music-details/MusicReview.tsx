@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import MaxWidth from '@/components/max-width/MaxWidth';
@@ -76,22 +76,20 @@ const MusicReview: React.FC = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Auto-slide
-    useEffect(() => {
-        startAutoSlide();
-        return () => stopAutoSlide();
-    }, [currentIndex, visibleSlides]);
-
-    const startAutoSlide = () => {
-        stopAutoSlide(); // Clear previous
+    // Auto-slide setup
+    const startAutoSlide = useCallback(() => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
         intervalRef.current = setInterval(() => {
             setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
         }, 3000);
-    };
+    }, [maxIndex]);
 
-    const stopAutoSlide = () => {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    useEffect(() => {
+        startAutoSlide();
+        return () => {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
+    }, [startAutoSlide]);
 
     const nextSlide = () => {
         setCurrentIndex((prev) => (prev < maxIndex ? prev + 1 : 0));
@@ -105,7 +103,7 @@ const MusicReview: React.FC = () => {
 
     return (
         <MaxWidth>
-            <div className="relative mx-auto bg-[#F6F6F6] my-12 py-8 px-4 overflow-hidden rounded-2xl ">
+            <div className="relative mx-auto bg-[#F6F6F6] my-12 py-8 px-4 overflow-hidden rounded-2xl">
                 <div className="mb-8">
                     <h1 className="text-2xl lg:text-4xl font-bold headerColor">Charles&apos;s Reviews</h1>
                 </div>

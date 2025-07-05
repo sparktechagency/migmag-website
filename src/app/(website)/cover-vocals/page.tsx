@@ -6,6 +6,7 @@ import BrowseVocalMarque from './BrowseVocalMarque'
 import BrowseMusickVocalSlider from './BrowseMusickVocalSlider';
 import BrowseAllVocal from './BrowseAllVocal'
 import BrowseVocalNavbar from "@/app/(website)/cover-vocals/BrowseVocalNavbar";
+import BrowseVocalFooter from './BrowseVocalFooter';
 
 
 const Page: React.FC = () => {
@@ -37,7 +38,7 @@ const Page: React.FC = () => {
 
             {/* footer  */}
 
-            <BrowseVocalNavbar/>
+            <BrowseVocalFooter></BrowseVocalFooter>
 
         </div>
     )

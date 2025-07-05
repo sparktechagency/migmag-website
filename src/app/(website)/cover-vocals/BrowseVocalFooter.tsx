@@ -192,7 +192,7 @@ const BrowseVocalFooter: React.FC = () => {
                     </div>
                     <div className="max-w-6xl mx-auto ">
                         <Image
-                            src="/images/payment/paymentMethod.png"
+                            src="/update-image/footer/Media.jpg"
                             alt="payment-logo"
                             width={600}
                             height={400}

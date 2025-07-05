@@ -1,12 +1,11 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast, Toaster } from 'react-hot-toast';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import { FaPlay } from 'react-icons/fa';
@@ -41,8 +40,6 @@ const BrowseAllVocal = () => {
     const bpmRef = useRef<HTMLDivElement>(null);
     const keyRef = useRef<HTMLDivElement>(null);
     const genderRef = useRef<HTMLDivElement>(null);
-    const licenseRef = useRef<HTMLDivElement>(null);
-    const typeRef = useRef<HTMLDivElement>(null);
     const latestRef = useRef<HTMLDivElement>(null);
 
 
@@ -85,16 +82,20 @@ const BrowseAllVocal = () => {
     const [openBPM, setOpenBPM] = useState<boolean>(false);
 
 
-    function toggleBPM(bpm: string): void {
-        let newBPM: string[];
-        if (selectedBPM.includes(bpm)) {
-            newBPM = selectedBPM.filter((g) => g !== bpm);
-        } else {
-            newBPM = [...selectedBPM, bpm];
-        }
-        setSelectedBPM(newBPM);
-        setOpenBPM(false);  // dropdown close korar jonno
-    }
+    // function toggleBPM(bpm: string): void {
+    //     let newBPM: string[];
+    //     if (selectedBPM.includes(bpm)) {
+    //         newBPM = selectedBPM.filter((g) => g !== bpm);
+    //     } else {
+    //         newBPM = [...selectedBPM, bpm];
+    //     }
+    //     setSelectedBPM(newBPM);
+    //     setOpenBPM(false);  // dropdown close korar jonno
+    // };
+
+    // console.log(toggleBPM())
+
+    console.log(selectedBPM)
 
 
     useEffect(() => {
@@ -134,23 +135,20 @@ const BrowseAllVocal = () => {
     const [selectedKey, setSelectedKey] = useState<string[]>([]);
     const [openKey, setOpenKey] = useState<boolean>(false);
 
-    function toggleKey(keyValue: string, genderValue?: string): void {
-        // Update selected keys
-        const newKey = selectedKey.includes(keyValue)
-            ? selectedKey.filter((g) => g !== keyValue)
-            : [...selectedKey, keyValue];
 
-        setSelectedKey(newKey);
+    function toggleKey(keyValue: string): void {
+        const newGender = selectedGender.includes(keyValue)
+            ? selectedGender.filter((g) => g !== keyValue)
+            : [...selectedGender, keyValue];
+
+        setSelectedKey((prev) =>
+            prev.includes(selectedKey) ? prev.filter((i) => i !== keyValue) : [...prev, keyValue]
+        );
+
+
+        setSelectedKey(newGender);
         setOpenKey(false); // Close dropdown
 
-        // Update selected gender if `genderValue` is provided
-        if (genderValue) {
-            setSelectedGender((prev) =>
-                prev.includes(genderValue)
-                    ? prev.filter((i) => i !== genderValue)
-                    : [...prev, genderValue]
-            );
-        }
     }
 
     useEffect(() => {
@@ -163,6 +161,8 @@ const BrowseAllVocal = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+
 
     // Key end
 
@@ -202,87 +202,7 @@ const BrowseAllVocal = () => {
     // Gender end
 
 
-    // License  start
-    const License: string[] = [
-        "Creative Commons",
-        "Royalty Free",
-        "Public Domain",
-        "All Rights Reserved",
-    ];
 
-    const [selectedLicense, setSelectedLicense] = useState<string[]>([]);
-    const [openLicense, setOpenLicense] = useState<boolean>(false);
-
-    function toggleLicense(licenseValue: string): void {
-        let newLicense: string[];
-        if (selectedLicense.includes(licenseValue)) {
-            newLicense = selectedLicense.filter((g) => g !== licenseValue);
-            setSelectedLicense((prev) =>
-                prev.includes(licenseValue) ? prev.filter((i) => i !== licenseValue) : [...prev, licenseValue]
-            );
-        } else {
-            newLicense = [...selectedLicense, licenseValue];
-        }
-        setSelectedLicense(newLicense); // ✅ Corrected here
-        setOpenLicense(false); // dropdown close
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (licenseRef.current && !licenseRef.current.contains(event.target as Node)) {
-                setOpenLicense(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-
-    // License end
-
-
-    // Type  start
-    const type: string[] = [
-        "Rock",
-        "Pop",
-        "Jazz",
-        "Classical",
-        "Hip Hop",
-        "Electronic",
-        "Country",
-        "Reggae",
-        "Blues",
-        "Folk",
-    ];
-
-    const [selectedType, setSelectedType] = useState<string[]>([]);
-    const [openType, setOpenType] = useState<boolean>(false);
-
-    function toggleType(type: string): void {
-        let newType: string[];
-        if (selectedType.includes(type)) {
-            newType = selectedType.filter((g) => g !== type);
-        } else {
-            newType = [...selectedType, type];
-        }
-        setSelectedType((prev) =>
-            prev.includes(type) ? prev.filter((i) => i !== type) : [...prev, type]
-        );
-        setSelectedType(newType); // ✅ Corrected here
-        setOpenType(false); // dropdown close
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (typeRef.current && !typeRef.current.contains(event.target as Node)) {
-                setOpenType(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
 
     // Type end
@@ -511,10 +431,6 @@ const BrowseAllVocal = () => {
     }
 
 
-    const addToCard = (id: number) => {
-        toast.success('Added to cart successfully');
-        console.log(id)
-    }
 
 
     const [showModal, setShowModal] = useState(false);
@@ -736,7 +652,7 @@ const BrowseAllVocal = () => {
 
                                 {/* Only show selected count */}
                                 <span className="w-28 text-white md:text-lg ">
-                                    {selectGenre.length > 0 ? <>Selected {selectedKey.length}</> : "Key"}
+                                    {selectedKey.length > 0 ? <>Selected {selectedKey.length}</> : "Key"}
                                 </span>
                             </button>
 
@@ -757,9 +673,9 @@ const BrowseAllVocal = () => {
                                             >
                                                 <input
                                                     type="checkbox"
-                                                    checked={selectGenre.includes(key)}
+                                                    checked={selectedKey.includes(key)}
                                                     onChange={(e) => {
-                                                        toggleGenre(key);
+                                                        toggleKey(key);
                                                         handleFilterChange('key', e.target.checked ? key : '');
                                                     }}
                                                     className="mr-3 accent-indigo-500 w-5 h-5"
@@ -1305,10 +1221,7 @@ const BrowseAllVocal = () => {
 
 
 
-                    <Toaster
-                        position="top-center"
-                        reverseOrder={false}
-                    />
+
 
                 </div>
 

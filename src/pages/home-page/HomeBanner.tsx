@@ -8,20 +8,20 @@ const HomeBanner: React.FC = () => {
     return (
         <div className={"bg-[linear-gradient(90deg,rgba(233,244,254,1)_0%,rgba(249,253,255,1)_50%,rgba(238,248,255,1)_100%)]"} >
             <MaxWidth>
-                <div  className=' pt-8 lg:pt-10 pb-10   '>
+                <div className=' pt-8 lg:pt-10 pb-10   '>
                     <div className="flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
                         {/* Left Side */}
-                        <div className="max-w-[658px]   text-center lg:text-left">
+                        <div className="  text-center lg:text-left flex-1 lg:w-1/2 w-full ">
                             <h1
-                                className={`text-[36px] md:text-[46px]  lg:text-[70px] headerColor uppercase   `}>
+                                className={`text-[36px] md:text-[46px]  lg:text-[60px] headerColor uppercase   `}>
                                 Royalty-Free Vocals, Ready for Release
                             </h1>
-                            <p 
-                               className="textColor lg:text-2xl text-lg  mt-4 md:mt-8 leading-6">
+                            <p
+                                className="textColor lg:text-2xl text-lg  mt-4 md:mt-8 leading-6">
                                 Used by producers. Trusted by labels.
                             </p>
 
-                            <div  className="mt-8 md:mt-12">
+                            <div className="mt-8 md:mt-12">
                                 <Link href="/vocals" passHref>
                                     <button
                                         className="cursor-pointer border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  ">
@@ -32,9 +32,9 @@ const HomeBanner: React.FC = () => {
                         </div>
 
                         {/* Right Side */}
-                        <div className="flex justify-center lg:justify-end  ">
+                        <div className="flex justify-center lg:justify-end flex-1 lg:w-1/2 w-full ">
                             <Image
-                                src="/update-image/home-page/banner/banner.png"
+                                src="/update-image/home-page/banner/update-banner.png"
                                 alt="banner-image"
                                 width={600}
                                 height={530}

@@ -83,29 +83,31 @@ const BrowseAllVocal = () => {
     const [selectedBPM, setSelectedBPM] = useState<string[]>([]);
     const [openBPM, setOpenBPM] = useState<boolean>(false);
 
-
-    function toggleBPM(bpm: string): void {
-        let newBPM: string[];
-        if (selectedBPM.includes(bpm)) {
-            newBPM = selectedBPM.filter((g) => g !== bpm);
-        } else {
-            newBPM = [...selectedBPM, bpm];
-        }
-        setSelectedBPM(newBPM);
-        setOpenBPM(false);  // dropdown close korar jonno
-    }
+    console.log(selectedBPM)
 
 
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (bpmRef.current && !bpmRef.current.contains(event.target as Node)) {
-                setOpenBPM(false);
-            }
-        }
+    // function toggleBPM(bpm: string): void {
+    //     let newBPM: string[];
+    //     if (selectedBPM.includes(bpm)) {
+    //         newBPM = selectedBPM.filter((g) => g !== bpm);
+    //     } else {
+    //         newBPM = [...selectedBPM, bpm];
+    //     }
+    //     setSelectedBPM(newBPM);
+    //     setOpenBPM(false);  // dropdown close korar jonno
+    // }
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+
+    // useEffect(() => {
+    //     function handleClickOutside(event: MouseEvent): void {
+    //         if (bpmRef.current && !bpmRef.current.contains(event.target as Node)) {
+    //             setOpenBPM(false);
+    //         }
+    //     }
+
+    //     document.addEventListener("mousedown", handleClickOutside);
+    //     return () => document.removeEventListener("mousedown", handleClickOutside);
+    // }, []);
 
     const minBPM = Math.min(...bpm);
     const maxBPM = Math.max(...bpm);
@@ -488,7 +490,7 @@ const BrowseAllVocal = () => {
         setSearchTerm(e.target.value);
     };
 
-    const handleFilterChange = (key: keyof FilterType, value: string) => {
+    const handleFilterChange = (key: keyof FilterType, value: number) => {
         setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
@@ -769,7 +771,7 @@ const BrowseAllVocal = () => {
                                                     type="checkbox"
                                                     checked={selectGenre.includes(key)}
                                                     onChange={(e) => {
-                                                        toggleGenre(key);
+                                                        toggleKey(key);
                                                         handleFilterChange('key', e.target.checked ? key : '');
                                                     }}
                                                     className="mr-3 accent-indigo-500 w-5 h-5"
@@ -1194,7 +1196,7 @@ const BrowseAllVocal = () => {
                                                     type="checkbox"
                                                     checked={selectGenre.includes(key)}
                                                     onChange={(e) => {
-                                                        toggleGenre(key);
+                                                        toggleKey(key);
                                                         handleFilterChange('key', e.target.checked ? key : '');
                                                     }}
                                                     className="mr-3 accent-indigo-500 w-5 h-5"

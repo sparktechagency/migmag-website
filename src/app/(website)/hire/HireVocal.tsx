@@ -102,7 +102,7 @@ const HireVocal: React.FC = () => {
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">2. Share Your Idea</p>
                                         <p className="textColor font-light  lg:text-lg leading-7">
-                                            Send us your reference track, lyrics, or creative direction. Whether it's a melody you’ve written or just a vibe you’re chasing, we’ll align the vocal to your vision.
+                                            Send us your reference track, lyrics, or creative direction. Whether it&apos;s a melody you’ve written or just a vibe you’re chasing, we’ll align the vocal to your vision.
                                         </p>
                                     </div>
                                 </div>
@@ -138,48 +138,64 @@ const HireVocal: React.FC = () => {
 
 
                         {/* Card Section */}
-                        <div
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-7 gap-x-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
-                            <div className=" p-5  rounded-md  border border-black shadow ">
-                                <div className={" flex justify-center "} >
-                                    <Image src={"/update-image/hire/icon/hire-1.png"} alt={"logo1"} width={150} height={150} className={`object-cover`} />
-                                </div>
-                                <h1 className="text-xl lg:text-3xl text-center leading-9 font-bold headerColor ">
-                                    Work with Trusted Talent
-                                </h1>
-                                <div className="mt-3 lg:text-lg leading-6">
-                                    <p className={` textColor text-center `} >Our singers are hand-selected for their vocal ability, professionalism, and track
-                                        record.</p>
-                                </div>
-                            </div>
-                            <div className=" p-5  rounded-md  border border-black shadow ">
-                                <div className={" flex justify-center "} >
-                                    <Image src={"/update-image/hire/icon/hire-2.png"} alt={"logo1"} width={150} height={150} className={`object-cover`} />
-                                </div>
-                                <h1 className="text-xl text-center lg:text-3xl leading-9 font-bold headerColor ">
-                                    Secure and Verified
-                                </h1>
-                                <div className="mt-3 text-center lg:text-lg leading-6">
-                                    <p className={` textColor `}     >
-                                        TuneM is built for trust with protected payments, verified artists, and real
-                                        customer feedback.
+                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20">
+  {/* Card 1 */}
+  <div className="p-5 rounded-md shadow bg-white">
+    <div className="flex justify-center">
+      <Image
+        src="/update-image/hire/icon/hire-1.png"
+        alt="Trusted Talent"
+        width={150}
+        height={150}
+        className="object-cover"
+      />
+    </div>
+    <h2 className="text-xl lg:text-3xl text-center font-bold headerColor leading-9 mt-4">
+      Work with Trusted Talent
+    </h2>
+    <p className="mt-3 textColor text-center text-base lg:text-lg leading-6">
+      Our singers are hand-selected for their vocal ability, professionalism, and track record.
+    </p>
+  </div>
 
-                                    </p>
-                                </div>
-                            </div>
-                            <div className=" p-5  rounded-md  border border-black shadow ">
-                                <div className={" flex justify-center "} >
-                                    <Image src={"/update-image/hire/icon/hire-3.png"} alt={"logo1"} width={150} height={150} className={`object-cover`} />
-                                </div>
-                                <h1 className="text-xl lg:text-3xl text-center leading-9 font-bold headerColor ">
-                                    Delivered Within 3–10 Days
-                                </h1>
-                                <div className="mt-3 lg:text-lg text-center textColor leading-6">
-                                    <p>Our vocalists deliver your custom vocals within 3–10 days, often sooner.</p>
-                                </div>
-                            </div>
-                        </div>
+  {/* Card 2 */}
+  <div className="p-5 rounded-md shadow bg-white">
+    <div className="flex justify-center">
+      <Image
+        src="/update-image/hire/icon/hire-2.png"
+        alt="Secure and Verified"
+        width={150}
+        height={150}
+        className="object-cover"
+      />
+    </div>
+    <h2 className="text-xl lg:text-3xl text-center font-bold headerColor leading-9 mt-4 h-20 flex items-center justify-center">
+      Secure and Verified
+    </h2>
+    <p className="textColor text-center text-base lg:text-lg leading-6">
+      TuneM is built for trust with protected payments, verified artists, and real customer feedback.
+    </p>
+  </div>
 
+  {/* Card 3 */}
+  <div className="p-5 rounded-md shadow bg-white">
+    <div className="flex justify-center">
+      <Image
+        src="/update-image/hire/icon/hire-3.png"
+        alt="Delivered Fast"
+        width={150}
+        height={150}
+        className="object-cover"
+      />
+    </div>
+    <h2 className="text-xl lg:text-3xl text-center font-bold headerColor leading-9 mt-4 h-20 flex items-center justify-center">
+      Delivered Within 3–10 Days
+    </h2>
+    <p className="textColor text-center text-base lg:text-lg leading-6">
+      Our vocalists deliver your custom vocals within 3–10 days, often sooner.
+    </p>
+  </div>
+</div>
 
                     </div>
                 </div>
