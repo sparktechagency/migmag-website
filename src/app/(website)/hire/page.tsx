@@ -7,12 +7,7 @@ import HireVocal from './HireVocal'
 import { FaCartArrowDown } from "react-icons/fa";
 import UpdateFooter from "@/components/footer/UpdateFooter";
 import MaxWidth from "@/components/max-width/MaxWidth";
-import { Bayon } from "next/font/google";
 
-const bayon = Bayon({
-    weight: '400',
-    subsets: ['latin'],
-});
 
 const Page: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)

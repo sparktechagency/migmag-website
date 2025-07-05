@@ -17,7 +17,6 @@ interface AudioItem {
 }
 
 const TopTenVocal: React.FC = () => {
-    /* ---------- static data ---------- */
     const audioData: AudioItem[] = [
         {
             id: 1,
@@ -25,7 +24,7 @@ const TopTenVocal: React.FC = () => {
             name: "Bujhina Toh Tai",
             price: "€8",
             img: "/images/home-page/top/top-1.png",
-            audio: "/images/audio/audio-1.mp3"
+            audio: "/images/audio/audio-1.mp3",
         },
         {
             id: 2,
@@ -33,7 +32,7 @@ const TopTenVocal: React.FC = () => {
             name: "Tomar Jonno",
             price: "€11",
             img: "/images/home-page/top/top-2.png",
-            audio: "/images/audio/audio-2.mp3"
+            audio: "/images/audio/audio-2.mp3",
         },
         {
             id: 3,
@@ -41,7 +40,7 @@ const TopTenVocal: React.FC = () => {
             name: "Ei Mon Tomake",
             price: "€9",
             img: "/images/home-page/top/top-3.png",
-            audio: "/images/audio/audio-3.mp3"
+            audio: "/images/audio/audio-3.mp3",
         },
         {
             id: 4,
@@ -49,7 +48,7 @@ const TopTenVocal: React.FC = () => {
             name: "Chirokal Tomar",
             price: "€10",
             img: "/images/home-page/top/top-4.png",
-            audio: "/images/audio/audio-4.mp3"
+            audio: "/images/audio/audio-4.mp3",
         },
         {
             id: 5,
@@ -57,7 +56,7 @@ const TopTenVocal: React.FC = () => {
             name: "Ekla Pothe",
             price: "€7",
             img: "/images/home-page/top/top-5.png",
-            audio: "/images/home-page/audio-5.mp3"
+            audio: "/images/home-page/audio-5.mp3",
         },
         {
             id: 6,
@@ -65,7 +64,7 @@ const TopTenVocal: React.FC = () => {
             name: "Alo Chhaya",
             price: "€12",
             img: "/images/home-page/top/top-6.png",
-            audio: "/images/home-page/audio-6.mp3"
+            audio: "/images/home-page/audio-6.mp3",
         },
         {
             id: 7,
@@ -73,7 +72,7 @@ const TopTenVocal: React.FC = () => {
             name: "Mone Pore",
             price: "€9",
             img: "/images/home-page/top/top-7.png",
-            audio: "/images/home-page/audio-7.mp3"
+            audio: "/images/home-page/audio-7.mp3",
         },
         {
             id: 8,
@@ -81,7 +80,7 @@ const TopTenVocal: React.FC = () => {
             name: "Brishtite Tumi",
             price: "€14",
             img: "/images/home-page/top/top-8.png",
-            audio: "/images/home-page/audio-8.mp3"
+            audio: "/images/home-page/audio-8.mp3",
         },
         {
             id: 9,
@@ -89,7 +88,7 @@ const TopTenVocal: React.FC = () => {
             name: "Tumi Nei",
             price: "€6",
             img: "/images/home-page/top/top-9.png",
-            audio: "/images/home-page/audio-9.mp3"
+            audio: "/images/home-page/audio-9.mp3",
         },
         {
             id: 10,
@@ -97,18 +96,15 @@ const TopTenVocal: React.FC = () => {
             name: "Bondhu Hoye Thako",
             price: "€10",
             img: "/images/home-page/top/top-10.png",
-            audio: "/images/home-page/audio-10.mp3"
-        }
+            audio: "/images/home-page/audio-10.mp3",
+        },
     ];
 
-    /* ---------- state ---------- */
-    const [visibleData, setVisibleData] = useState<number>(10);                 // how many to show
+    const [visibleData, setVisibleData] = useState<number>(10);
     const [playingUrl, setPlayingUrl] = useState<string | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [showModal, setShowModal] = useState(false);
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-
-    /* ---------- audio element ---------- */
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const handleTogglePlay = (url: string) => {
@@ -125,39 +121,42 @@ const TopTenVocal: React.FC = () => {
         }
     };
 
-    /* ---------- modal helpers ---------- */
     const handleOpenModal = (globalIndex: number) => {
         setCurrentIndex(globalIndex);
         setShowModal(true);
     };
-    const nextTrack = () => currentIndex !== null && setCurrentIndex((currentIndex + 1) % audioData.length);
-    const prevTrack = () => currentIndex !== null && setCurrentIndex((currentIndex - 1 + audioData.length) % audioData.length);
 
-    /* ---------- split list into two vertical columns ---------- */
+    const nextTrack = () =>
+        currentIndex !== null &&
+        setCurrentIndex((currentIndex + 1) % audioData.length);
+
+    const prevTrack = () =>
+        currentIndex !== null &&
+        setCurrentIndex((currentIndex - 1 + audioData.length) % audioData.length);
+
     const midpoint = Math.ceil(visibleData / 2);
     const leftItems = audioData.slice(0, midpoint);
     const rightItems = audioData.slice(midpoint, visibleData);
 
-    /* ---------- reusable renderer ---------- */
     const renderCard = (item: AudioItem, globalIndex: number) => (
         <div
             key={item.id}
             className={`flex flex-col lg:flex-row items-center justify-between
-            
-                  gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px]
-                  transition-all duration-300 cursor-pointer
-                  ${playingUrl === item.audio && isPlaying
+        gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px]
+        transition-all duration-300 cursor-pointer
+        ${playingUrl === item.audio && isPlaying
                     ? "bg-black"
                     : globalIndex % 2 === 0
                         ? "bg-[#F1F1F1]"
                         : "bg-[#FFFFFF]"}`}
         >
-            {/* index */}
-            <h1 className={`text-3xl  ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"}`}>
+            <h1
+                className={`text-3xl ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"
+                    }`}
+            >
                 {globalIndex + 1}
             </h1>
 
-            {/* cover */}
             <Link href={`/music-details/${item.id}`}>
                 <Image
                     src={item.img}
@@ -168,41 +167,57 @@ const TopTenVocal: React.FC = () => {
                 />
             </Link>
 
-            {/* title + artist */}
             <div className="flex flex-col">
                 <Link href={`/singer-profile/${item.id}`}>
-                    <h3 className={`text-lg font-bold leading-6 hover:underline ${playingUrl === item.audio && isPlaying ? "text-white" : "headerColor"}`}>
+                    <h3
+                        className={`text-lg font-bold leading-6 hover:underline ${playingUrl === item.audio && isPlaying
+                                ? "text-white"
+                                : "headerColor"
+                            }`}
+                    >
                         {item.title}
                     </h3>
                 </Link>
-                <p className={`text-lg font-bold flex gap-x-2.5 leading-6 ${playingUrl === item.audio && isPlaying ? "text-white" : "textColor"}`}>
-                    <Link href={"/singer-profile"}>Luna</Link> <span className="">Exclusive</span>
+                <p
+                    className={`text-lg font-bold flex gap-x-2.5 leading-6 ${playingUrl === item.audio && isPlaying
+                            ? "text-white"
+                            : "textColor"
+                        }`}
+                >
+                    <Link href={`/singer-profile/`}>Luna</Link>{" "}
+                    <span className="">Exclusive</span>
                 </p>
             </div>
 
-            {/* play / pause */}
             <button
                 onClick={() => {
                     handleTogglePlay(item.audio);
                     handleOpenModal(globalIndex);
                 }}
                 className={`w-[50px] cursor-pointer h-[50px] rounded-full flex justify-center items-center
-                    ${playingUrl === item.audio && isPlaying
+          ${playingUrl === item.audio && isPlaying
                         ? "border border-[#E7F056]"
-                        : "border border-black"}`}
+                        : "border border-black"
+                    }`}
                 aria-label="Play or pause"
             >
-                {playingUrl === item.audio && isPlaying
-                    ? <CiPause1 className="text-[#E7F056] text-2xl" />
-                    : <FaPlay className="text-black text-2xl" />}
+                {playingUrl === item.audio && isPlaying ? (
+                    <CiPause1 className="text-[#E7F056] text-2xl" />
+                ) : (
+                    <FaPlay className="text-black text-2xl" />
+                )}
             </button>
 
-            {/* price */}
-            <button className={`w-[112px] cursor-pointer rounded-2xl text-lg py-1
-                          ${playingUrl === item.audio && isPlaying
-                    ? "bg-[#E7F056] text-black"
-                    : "bg-black text-white"}`}>
+            <button
+                className={`w-[112px] cursor-pointer rounded-2xl text-lg py-1
+        ${playingUrl === item.audio && isPlaying
+                        ? "bg-[#E7F056] text-black"
+                        : "bg-black text-white"
+                    }`}
+            >
+                <Link href = "/checkout">
                 {item.price}
+                </Link>
             </button>
         </div>
     );
@@ -210,35 +225,43 @@ const TopTenVocal: React.FC = () => {
     return (
         <>
             <MaxWidth>
-                <div className=" mx-auto">
+                <div className="mx-auto">
                     <div className="border border-black" />
-                    <h2 className="mt-7 text-2xl lg:text-4xl font-semibold headerColor">Top 10 Vocals</h2>
+                    <h2 className="mt-7 text-2xl lg:text-4xl font-semibold headerColor">
+                        Top 10 Vocals
+                    </h2>
 
-                    {/* ---------- two fixed vertical columns ---------- */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 w-[100%]  ">
-                        {/* left column (1-5) */}
-                        <div className="flex flex-col">{leftItems.map((item, i) => renderCard(item, i))}</div>
+                    {/* Two Columns */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 w-full">
+                        {/* Left Column with Margin Right */}
+                        <div className="flex flex-col md:mr-10">
+                            {leftItems.map((item, i) => renderCard(item, i))}
+                        </div>
 
-                        {/* right column (6-10) */}
+                        {/* Right Column */}
                         <div className="flex flex-col mt-4 md:mt-0">
                             {rightItems.map((item, i) => renderCard(item, i + midpoint))}
                         </div>
                     </div>
 
-                    {/* see-all / see-less controls */}
+                    {/* See All / See Less */}
                     {audioData.length > 10 && (
                         <div className="flex justify-center mb-4 mt-10">
                             {visibleData < audioData.length ? (
                                 <button
-                                    onClick={() => setVisibleData(prev => Math.min(prev + 10, audioData.length))}
-                                    className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  "
+                                    onClick={() =>
+                                        setVisibleData((prev) =>
+                                            Math.min(prev + 10, audioData.length)
+                                        )
+                                    }
+                                    className="cursor-pointer block mx-auto border bg-black text-white rounded-2xl px-3 py-1.5 text-[15px]"
                                 >
                                     SEE ALL
                                 </button>
                             ) : (
                                 <button
                                     onClick={() => setVisibleData(10)}
-                                    className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  "
+                                    className="cursor-pointer block mx-auto border bg-black text-white rounded-2xl px-3 py-1.5 text-[15px]"
                                 >
                                     SEE LESS
                                 </button>
@@ -247,7 +270,7 @@ const TopTenVocal: React.FC = () => {
                     )}
                 </div>
 
-                {/* modal player */}
+                {/* Modal */}
                 {showModal && currentIndex !== null && (
                     <MusickPlayer
                         show={showModal}

@@ -1,9 +1,9 @@
 "use client"
 
-import React, {useState, useEffect, useRef} from 'react';
-import {ArrowRight, Search} from 'lucide-react';
-import {motion, AnimatePresence} from "framer-motion";
-import {HiChevronDown, HiChevronUp} from "react-icons/hi";
+import React, { useState, useEffect, useRef } from 'react';
+import { Search } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidth from "@/components/max-width/MaxWidth";
@@ -25,11 +25,8 @@ type VocalItem = {
 
 type FilterType = {
     genre: string;
-    bpm: string;
-    key: string;
     gender: string;
-    license: string;
-    type: string;
+    language: string;
     latest: string
 };
 
@@ -147,8 +144,6 @@ const singers: Singer[] = [
 
 const BrowseArtist = () => {
     const genreRef = useRef<HTMLDivElement>(null);
-    const bpmRef = useRef<HTMLDivElement>(null);
-    const keyRef = useRef<HTMLDivElement>(null);
     const genderRef = useRef<HTMLDivElement>(null);
     const licenseRef = useRef<HTMLDivElement>(null);
     const typeRef = useRef<HTMLDivElement>(null);
@@ -182,85 +177,17 @@ const BrowseArtist = () => {
     }, []);
 
 
-    // BPM  start
 
 
-    const bpm: number[] | string[] = [60, 80, 100, 120, 140, 16];
 
 
-    const [selectedBPM, setSelectedBPM] = useState<number[]>([]);
-    const [openBPM, setOpenBPM] = useState<boolean>(false);
 
 
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (bpmRef.current && !bpmRef.current.contains(event.target as Node)) {
-                setOpenBPM(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
 
 
-    const minBPM = Math.min(...bpm);
-    const maxBPM = Math.max(...bpm);
-
-    const [minValue, setMinValue] = useState(minBPM);
-    const [maxValue, setMaxValue] = useState(maxBPM);
-
-    const rangeWidth = 100; // in percent
-
-    const getPercent = (value) =>
-        ((value - minBPM) / (maxBPM - minBPM)) * rangeWidth;
-
-    const getTrackBackground = () => {
-        const minPercent = getPercent(minValue);
-        const maxPercent = getPercent(maxValue);
-        return `linear-gradient(to right, white 0%, white ${minPercent}%, yellow ${minPercent}%, yellow ${maxPercent}%, white ${maxPercent}%, white 100%)`;
-    };
-
-    // BPM  end
 
 
-    // Key  start
-    const keys: string[] = ["60", "80", "100", "120", "140", "160"];
 
-    const [selectedKey, setSelectedKey] = useState<string[]>([]);
-    const [openKey, setOpenKey] = useState<boolean>(false);
-
-    function toggleKey(keyValue: string, genderValue?: string): void {
-        // Update selected keys
-        const newKey = selectedKey.includes(keyValue)
-            ? selectedKey.filter((g) => g !== keyValue)
-            : [...selectedKey, keyValue];
-
-        setSelectedKey(newKey);
-        setOpenKey(false); // Close dropdown
-
-        // Update selected gender if `genderValue` is provided
-        if (genderValue) {
-            setSelectedGender((prev) =>
-                prev.includes(genderValue)
-                    ? prev.filter((i) => i !== genderValue)
-                    : [...prev, genderValue]
-            );
-        }
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (keyRef.current && !keyRef.current.contains(event.target as Node)) {
-                setOpenKey(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-    // Key end
 
 
     // Gender  start
@@ -400,7 +327,6 @@ const BrowseArtist = () => {
 
         setselectLatest(newLatest);
         setOpenLatest(false)
-        setOpenKey(false); // Close dropdown
     }
 
     useEffect(() => {
@@ -420,14 +346,12 @@ const BrowseArtist = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [filter, setFilter] = useState<FilterType>({
         genre: '',
-        bpm: '',
-        key: '',
         gender: '',
-        license: '',
-        type: '',
+        language: '',
         latest: "",
     });
     const [data, setData] = useState<VocalItem[]>([]);
+    console.log(filter, data)
 
     useEffect(() => {
         setData([
@@ -441,8 +365,8 @@ const BrowseArtist = () => {
                 gender: 'Female',
                 license: 'EXCLUSIVE',
                 price: '€120',
-                typeSinger: 'exclusive',
-                image: "/images/artist-library/artist/artist-1.png",
+                type: 'exclusive',
+                image: "/images/artist-library/artist/artist-2.png",
             },
             {
                 id: 2,
@@ -545,8 +469,8 @@ const BrowseArtist = () => {
     };
 
     const handleFilterChange = (key: keyof FilterType, value: number | string) => {
-        // setOpenBPM(false)
-        setFilter((prev) => ({...prev, [key]: value}));
+
+        setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
     // const filteredData = data.filter((item) =>
@@ -565,23 +489,12 @@ const BrowseArtist = () => {
     }
 
 
-    useEffect(() => {
-        if (openBPM) {
-            document.body.style.overflow = "hidden"; // 🔒 disable scroll
-        } else {
-            document.body.style.overflow = "auto"; // 🔓 enable scroll
-        }
 
-        // Cleanup just in case
-        return () => {
-            document.body.style.overflow = "auto";
-        };
-    }, [openBPM]);
 
     return (
         <>
             <MaxWidth>
-                <div style={{fontFamily: 'Favorit'}} className=" mt-16 mx-auto lg:mb-16 mb-8    ">
+                <div style={{ fontFamily: 'Favorit' }} className=" mt-16 mx-auto lg:mb-16 mb-8    ">
                     <div className=' mt-12 mb-6 '>
                         <div className=' border border-white '></div>
                     </div>
@@ -594,7 +507,7 @@ const BrowseArtist = () => {
                         <div className='  flex-1 lg:flex flex-col md:flex-row gap-14 relative   '>
                             <div className='   '>
                                 <button onClick={clearSearch}
-                                        className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
+                                    className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
                                     filters
                                 </button>
                             </div>
@@ -615,7 +528,7 @@ const BrowseArtist = () => {
                                 value={searchTerm}
                                 onChange={handleSearch}
                             />
-                            <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white"/>
+                            <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white" />
 
 
                         </div>
@@ -631,26 +544,26 @@ const BrowseArtist = () => {
                             >
                                 {/* Icon on RIGHT side */}
                                 {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 {/* Only show selected count */}
                                 <span className="w-28 text-white md:text-lg ">
-                            {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
-                        </span>
+                                    {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {open && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {genres.map((genre) => (
                                             <label
@@ -684,25 +597,25 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenGender(!openGender)}
                             >
                                 {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg  ">
-                            {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
-                        </span>
+                                    {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {openGender && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {gender.map((gender) => (
                                             <label
@@ -727,10 +640,10 @@ const BrowseArtist = () => {
                         </div>
 
 
-                        {/* License */}
 
 
-                        {/* Type  */}
+
+                        {/* Language  */}
 
 
                         <div className="relative w-full " ref={typeRef}>
@@ -740,25 +653,25 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenType(!openType)}
                             >
                                 {openType ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
-                            {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Language"}
-                        </span>
+                                    {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Language"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {openType && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {type.map((item) => (
                                             <label
@@ -793,25 +706,25 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenLatest(!openLatest)}
                             >
                                 {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
-                            {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
-                        </span>
+                                    {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {openLatest && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {
                                             latest.map((item) => (
@@ -853,7 +766,7 @@ const BrowseArtist = () => {
                                 onChange={handleSearch}
                             />
                             <Search size={16}
-                                    className="absolute top-[50%] right-5 transform -translate-y-1/2 text-white "/>
+                                className="absolute top-[50%] right-5 transform -translate-y-1/2 text-white " />
 
 
                         </div>
@@ -869,26 +782,26 @@ const BrowseArtist = () => {
                             >
                                 {/* Icon on RIGHT side */}
                                 {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 {/* Only show selected count */}
                                 <span className="w-28 text-white text-sm ">
-                            {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
-                        </span>
+                                    {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {open && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {genres.map((genre) => (
                                             <label
@@ -922,25 +835,25 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenGender(!openGender)}
                             >
                                 {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white text-sm ">
-                            {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
-                        </span>
+                                    {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {openGender && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {gender.map((gender) => (
                                             <label
@@ -965,7 +878,7 @@ const BrowseArtist = () => {
                         </div>
 
 
-                        {/* License */}
+                        {/* Language */}
 
                         <div className="relative w-full" ref={licenseRef}>
                             <button
@@ -974,26 +887,26 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenLicense(!openLicense)}
                             >
                                 {openLicense ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
                                 <span className="w-28 text-white text-sm">
-                            {selectedLicense.length > 0
-                                ? <>Selected {selectedLicense.length}</>
-                                : 'License'}
-                        </span>
+                                    {selectedLicense.length > 0
+                                        ? <>Selected {selectedLicense.length}</>
+                                        : 'Language'}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {openLicense && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: 'easeInOut'}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: 'easeInOut' }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: 'calc(100% + 0.5rem)'}}
+                                        style={{ top: 'calc(100% + 0.5rem)' }}
                                     >
                                         {License.map((license) => (
                                             <label
@@ -1021,57 +934,6 @@ const BrowseArtist = () => {
                         </div>
 
 
-                        {/* Type  */}
-
-
-                        <div className="relative w-full " ref={typeRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenType(!openType)}
-                            >
-                                {openType ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
-                                )}
-
-                                <span className="w-28 text-white text-sm  ">
-                            {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Type"}
-                        </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openType && (
-                                    <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
-                                    >
-                                        {type.map((item) => (
-                                            <label
-                                                key={item}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedType.includes(item)}
-                                                    onChange={(e) => {
-                                                        toggleType(item); // ✅ Efficient toggle
-                                                        handleFilterChange("type", e.target.checked ? item : "");
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg  ">{item}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
 
 
                         {/* latest  */}
@@ -1084,25 +946,25 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenLatest(!openLatest)}
                             >
                                 {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white text-sm   ">
-                            {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
-                        </span>
+                                    {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
+                                </span>
                             </button>
 
                             <AnimatePresence>
                                 {openLatest && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {
                                             latest.map((item) => (
@@ -1138,7 +1000,7 @@ const BrowseArtist = () => {
                     <div className="mt-6 lg:mt-14 grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12">
                         {singers.slice(0, visibleCount).map((singer) => (
                             <div key={singer.id}
-                                 className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
+                                className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
                                 <Link href={`/singer-profile/${singer.id}`}>
                                     <div className="w-full max-w-[357px] rounded-md p-5 bg-[#222222]">
                                         <Image
@@ -1179,7 +1041,7 @@ const BrowseArtist = () => {
                             </div>
 
                             {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)}
-                                                                       className=' w-[37%] rounded-2xl border text-sm border-white text-white  px-3 py-2 lg:py-3 cursor-pointer   '>LOAD
+                                className=' w-[37%] rounded-2xl border text-sm border-white text-white  px-3 py-2 lg:py-3 cursor-pointer   '>LOAD
                                 MORE ARTISTS</button>)}
 
                         </div>
@@ -1206,12 +1068,12 @@ const BrowseArtist = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
 
                 <div className="relative z-10 mt-20 ">
-                    <h1 style={{fontFamily: 'Favorit'}}
+                    <h1 style={{ fontFamily: 'Favorit' }}
                         className="text-center text-[#E7F056] font-bold lg:text-3xl text-xl">
                         Become a TuneM Artist.
                     </h1>
 
-                    <div style={{fontFamily: 'Favorit'}} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
+                    <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
                         <p className="text-center text-white leading-6 lg:text-xl font-thin ">
                             We work with talented singers and songwriters ready to take their voice further. Expand
                             your
@@ -1219,8 +1081,8 @@ const BrowseArtist = () => {
                     </div>
                     <div>
                         <Link href={"/tune-m-artist"}>
-                            <button style={{fontFamily: 'Favorit'}}
-                                    className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
+                            <button style={{ fontFamily: 'Favorit' }}
+                                className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
                                 GET STARTED
                             </button>
                         </Link>

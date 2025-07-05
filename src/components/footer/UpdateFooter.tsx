@@ -189,11 +189,11 @@ const UpdateFooter: React.FC = () => {
                     </div>
                     <div className="max-w-6xl mx-auto ">
                         <Image
-                            src="/images/payment/paymentMethod.png"
+                            src="/update-image/footer/Media.jpg"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover bg-gray-400 " // center the image horizontally
+                            className="mx-auto object-cover  " // center the image horizontally
                             priority // optional: preload if this image is above the fold
                         />
                     </div>

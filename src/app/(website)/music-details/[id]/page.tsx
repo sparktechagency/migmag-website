@@ -9,6 +9,7 @@ import MoreVocals from '../MoreVocals';
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
+    console.log(id);
     return (
         <div>
             <div className={'max-w-7xl mx-auto  '}>

@@ -1,20 +1,32 @@
-import React from 'react'
-import SingerDetails from '../../artist-library/[id]/SingerDetails';
+// src/app/(website)/singer-profile/[id]/page.tsx
+
+import React from 'react';
 import Navbar from '@/components/navbar/Navbar';
 import UpdateFooter from '@/components/footer/UpdateFooter';
+import SingerDetails from '../SingerDetails';
 
-const Page = async ({ params }: { params: { id: string } }) => {
+type Props = {
+    params: {
+        id: string;
+    };
+};
+
+const Page = async ({ params }: Props) => {
     const { id } = params;
 
-    console.log(id);
+    console.log('Singer ID:', id);
+
+    if (typeof id !== 'string') {
+        throw new Error('Invalid ID: expected a string');
+    }
 
     return (
         <div>
-            <Navbar></Navbar>
-            <SingerDetails></SingerDetails>
-            <UpdateFooter></UpdateFooter>
+            <Navbar />
+            <SingerDetails id={id} />
+            <UpdateFooter />
         </div>
-    )
-}
+    );
+};
 
 export default Page;

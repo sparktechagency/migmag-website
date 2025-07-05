@@ -1,5 +1,3 @@
-import {FaAsterisk, FaHandshake, FaCloudDownloadAlt} from 'react-icons/fa';
-import React, {ReactElement} from 'react';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
 
