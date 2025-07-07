@@ -8,53 +8,7 @@ const VocalPublish: React.FC = () => {
     <>
       <MaxWidth>
         <div className=" max-w-[1315px] mx-auto px-4 lg:mt-20 mt-8  ">
-          <div className="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-6 mt-4">
-            <div className="w-full sm:w-auto flex justify-center">
-              <Image
-                src="/update-image/sponser-logo/logo-1.png"
-                alt="logo"
-                width={145}
-                height={70}
-                className="object-contain"
-              />
-            </div>
-            <div className="w-full sm:w-auto flex justify-center">
-              <Image
-                src="/update-image/sponser-logo/sponser-1.png"
-                alt="logo"
-                width={200}
-                height={85}
-                className="object-contain"
-              />
-            </div>
-            <div className="w-full sm:w-auto flex justify-center">
-              <Image
-                src="/update-image/sponser-logo/sponser-2.png"
-                alt="logo"
-                width={175}
-                height={85}
-                className="object-contain"
-              />
-            </div>
-            <div className="w-full sm:w-auto flex justify-center">
-              <Image
-                src="/update-image/sponser-logo/sponser-3.png"
-                alt="logo"
-                width={175}
-                height={85}
-                className="object-contain"
-              />
-            </div>
-            <div className="w-full sm:w-auto flex justify-center">
-              <Image
-                src="/update-image/sponser-logo/sponser-4.png"
-                alt="logo"
-                width={120}
-                height={70}
-                className="object-contain"
-              />
-            </div>
-          </div>
+          
         </div>
         <div></div>
         <div className="  mx-auto flex flex-col items-stretch  lg:flex-row  gap-x-14 lg:mt-[110px] md:mt-20  ">
@@ -85,10 +39,10 @@ const VocalPublish: React.FC = () => {
             </div>
             <div>
               <div className=" flex flex-col lg:flex-row md:flex-row  items-center lg:gap-x-10 md:gap-10 ">
-                <span>
+                <span className="  " >  
                   <svg
-                    width="25"
-                    height="25"
+                    width="44"
+                    height="44"
                     viewBox="0 0 44 45"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +74,7 @@ const VocalPublish: React.FC = () => {
                     alt={"download"}
                     width={30}
                     height={35}
-                    className={"object-cover w-full "}
+                    className={"object-cover w-11 h-11 w-full "}
                   />
                 </span>
                 <div className="  ">
@@ -144,7 +98,7 @@ const VocalPublish: React.FC = () => {
                     alt={"download"}
                     width={35}
                     height={35}
-                    className={"object-cover"}
+                    className={"object-cover w-11 h-11 "}
                   />
                 </span>
                 <div className="  ">

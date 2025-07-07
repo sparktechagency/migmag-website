@@ -916,7 +916,7 @@ const BrowseAllVocal = () => {
                             className="  text-[#E7F056] text-[10px] md:text-[16px]">
                             <div className="relative md:mt-0  ">
                                 <input
-                                    className="border border-white focus:outline-0 w-full  py-2.5 px-3 rounded-2xl text-white  bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:ml-3.5  "
+                                    className="border border-white focus:outline-0 w-full  py-2.5 px-3 rounded-2xl text-white  bg-transparent placeholder-gray-400 placeholder:text-[16px] placeholder:text-sm lg:placeholder:text-xl  placeholder:ml-3.5  "
                                     placeholder="SEARCH"
                                     value={searchTerm}
                                     onChange={handleSearch}
@@ -938,7 +938,7 @@ const BrowseAllVocal = () => {
                                     <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
-                                <span className="w-28 text-white md:text-lg   ">
+                                <span className="w-28 text-white md:text-lg  text-sm  ">
                                     {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
                                 </span>
                             </button>

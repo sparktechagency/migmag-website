@@ -100,7 +100,7 @@ const Review: React.FC = () => {
 
     return (
         <MaxWidth>
-            <div  className="relative   mx-auto py-12 ">
+            <div  className="relative   mx-auto pb-12 ">
                 <div className="mb-8">
                     <h1 className="text-2xl lg:text-4xl font-bold headerColor ">Reviews</h1>
                     <p className="lg:text-xl text-lg mt-2 textColor ">4.7 Stars – 200+ Reviews</p>
