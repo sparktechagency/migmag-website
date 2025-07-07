@@ -14,11 +14,11 @@ const Coverd: React.FC = () => {
 
           <div className="flex flex-col lg:flex-row items-center justify-between gap-5 mt-8 lg:mt-2 w-full">
             {/* Left Content */}
-            <article className="bg-black flex-1 p-5 lg:w-[40%] w-full rounded-md">
-              <h1 className="text-2xl lg:text-[35px] font-bold text-white leading-9">
+            <article className=" flex-1 p-5 lg:w-[40%] w-full rounded-md">
+              <h1 className="text-2xl headerColor lg:text-[35px] font-bold text-white leading-9">
                 Vocals from the Industry’s Best
               </h1>
-              <p className="lg:text-lg text-white leading-6 font-thin mt-3 lg:mt-8 max-w-[478px]">
+              <p className="lg:text-lg textColor leading-6 font-thin mt-3 lg:mt-8 max-w-[478px]">
                 Get access to top featured artists and rising voices, professionally recorded in studio environments. All vocals come from credited singers behind major releases — trusted by producers and labels worldwide.
               </p>
 
@@ -38,8 +38,8 @@ const Coverd: React.FC = () => {
                   }
                 ].map((item, index) => (
                   <div key={index} className="transition duration-300">
-                    <p className="text-white font-bold text-xl mb-4">{item.title}</p>
-                    <p className="text-white font-light lg:text-lg leading-7">{item.desc}</p>
+                    <p className="text-white font-bold text-xl headerColor mb-4">{item.title}</p>
+                    <p className="text-white font-light lg:text-lg textColor leading-7">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -52,7 +52,7 @@ const Coverd: React.FC = () => {
                 alt="Become TuneM - Vocals and Music Platform"
                 width={1200}
                 height={800}
-                className="rounded-lg lg:h-[725px] w-full h-auto object-cover"
+                className="rounded-lg lg:h-[710px] w-full h-auto "
               />
             </div>
           </div>

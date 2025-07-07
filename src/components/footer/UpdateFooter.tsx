@@ -187,7 +187,7 @@ const UpdateFooter: React.FC = () => {
                     <div>
                         <h1 className={`lg:text-lg text-sm textColor text-center  `}>Payment Methods</h1>
                     </div>
-                    <div className="max-w-6xl mx-auto ">
+                    <div className="max-w-6xl mx-auto bg-white ">
                         <Image
                             src="/update-image/footer/Media.jpg"
                             alt="payment-logo"
