@@ -4,7 +4,7 @@ import React from 'react'
 const CoreValue: React.FC = () => {
     return (
         <div className='  mx-auto '>
-            <div style={{fontFamily: 'Favorit'}}
+            <div 
                  className="bg-[url('/images/home-page/tunemImg.png')] mb-10  bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
             >
                 {/* Gradient Overlay */}
@@ -15,7 +15,7 @@ const CoreValue: React.FC = () => {
                         TUNEM FOR ARTISTS
                     </h1>
                     <div className="mx-auto mt-5 lg:mt-16">
-                        <h1 style={{fontFamily: 'Favorit'}}
+                        <h1 
                             className="text-center lg:text-7xl text-3xl text-white font-thin">
                             GROW YOUR <br/>
                             REACH & AUDIENCE

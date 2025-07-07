@@ -21,7 +21,7 @@ const UpdateFooter: React.FC = () => {
     };
 
     return (
-        <div className="lg:mt-1">
+        <div className="lg:mt-1 bg-white ">
             <MaxWidth>
                 <div className=" ">
                     {/* Logo */}
@@ -189,7 +189,7 @@ const UpdateFooter: React.FC = () => {
                     </div>
                     <div className="max-w-6xl mx-auto bg-white ">
                         <Image
-                            src="/update-image/footer/Media.jpg"
+                            src="/update-image/footer/payment-3.jpeg"
                             alt="payment-logo"
                             width={600}
                             height={400}

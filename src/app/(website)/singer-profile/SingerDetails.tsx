@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import { FiSend } from "react-icons/fi";
+import CtaSection from '@/components/cta/CtaSection';
 
 
 
@@ -418,36 +419,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
             </MaxWidth>
             <>
-                <div
-                    className=" my-16 bg-[url('/images/home-page/tunemImg.png')] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16  mt-16 lg:mt-[107px] relative overflow-hidden"
-                >
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
-
-                    <div className="relative z-10">
-                        <h1 className="text-center text-[#E7F056] font-bold text-xl lg:text-3xl">
-                            TUNEM FOR ARTISTS
-                        </h1>
-                        <div className="mx-auto mt-5 lg:mt-16">
-                            <h1
-                                className="text-center lg:leading-24 uppercase lg:text-7xl text-3xl text-white font-thin">
-                                do you want to <br /> apply as a vocalist?
-                            </h1>
-                        </div>
-                        <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
-                            <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                                We are very selective with who we work with as we value quality the most.Apply today and
-                                start earning money from your vocals.
-                            </p>
-                        </div>
-                        <div>
-                            <button
-                                className="text-[#E7F056]  text-sm px-4 py-2 border border-[#E7F056] rounded-2xl block mx-auto mt-4 lg:mt-13">
-                                <Link href={""}>GET STARTED</Link>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <CtaSection></CtaSection>
             </>
 
             {/* Modal */}

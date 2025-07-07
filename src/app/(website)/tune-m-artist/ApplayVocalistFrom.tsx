@@ -106,7 +106,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                     </label>
                                     <textarea
                                         id='aboutUs'
-                                        placeholder='What makes you a great fit for TUNEM? Feel free to introduce yourself and include social media links if you want to.'
+                                        placeholder='What makes you a great fit for TUNEM?'
                                         className='hover:outline-0 focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
                                         rows={4} // You can adjust the number of rows if needed
                                     />
@@ -142,7 +142,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                     </label>
                                     <textarea
                                         id='otherGenre'
-                                        placeholder='What makes  you a great fit for TUNEM? Feel free to introduce yourself and include social media links if you want to.'
+                                        
                                         className='hover:outline-0 placeholder:text-[#818080] placeholder:text-lg placeholder:leading-6 focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
                                         rows={4} // You can adjust the number of rows if needed
                                     />

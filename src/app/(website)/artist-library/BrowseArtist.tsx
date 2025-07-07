@@ -7,6 +7,7 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidth from "@/components/max-width/MaxWidth";
+import CtaSection from '@/components/cta/CtaSection';
 
 
 type VocalItem = {
@@ -141,6 +142,8 @@ const singers: Singer[] = [
         image: "/images/artist-library/artist/artist-4.png",
     },
 ];
+
+CtaSection
 
 const BrowseArtist = () => {
     const genreRef = useRef<HTMLDivElement>(null);
@@ -1034,17 +1037,18 @@ const BrowseArtist = () => {
 
                     <div>
 
-                        <div className='  mt-14 mb-20 grid lg:grid-cols-2 items-center lg:space-y-0 space-y-4  '>
-                            <div>
-                                {/* <h1 className=' text-[#818080] text-sm lg:text-lg ' >*New Vocals Added Monthly</h1>
-                        <h1 className=' lg:text-3xl text-xl text-[#E7F056] leading-9 font-thin ' >Notify me</h1> */}
-                            </div>
+                        <div className='  mt-14 mb-20 flex justify-center  '>
+                            
 
                             {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)}
-                                className=' w-[37%] rounded-2xl border text-sm border-white text-white  px-3 py-2 lg:py-3 cursor-pointer   '>LOAD
+                                className=' rounded-2xl border text-sm border-white text-white  px-3 py-2 lg:py-3 cursor-pointer   '>LOAD
                                 MORE ARTISTS</button>)}
 
                         </div>
+                        
+
+
+                        
 
                     </div>
 
@@ -1061,34 +1065,8 @@ const BrowseArtist = () => {
 
                 </div>
             </MaxWidth>
-            <div
-                className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] mb-10 lg:mb-16 relative overflow-hidden"
-            >
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
-
-                <div className="relative z-10 mt-20 ">
-                    <h1 style={{ fontFamily: 'Favorit' }}
-                        className="text-center text-[#E7F056] font-bold lg:text-3xl text-xl">
-                        Become a TuneM Artist.
-                    </h1>
-
-                    <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
-                        <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            We work with talented singers and songwriters ready to take their voice further. Expand
-                            your
-                            audience, get discovered, and join our global music network. </p>
-                    </div>
-                    <div>
-                        <Link href={"/tune-m-artist"}>
-                            <button style={{ fontFamily: 'Favorit' }}
-                                className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
-                                GET STARTED
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <CtaSection></CtaSection>
+        
         </>
     );
 };
