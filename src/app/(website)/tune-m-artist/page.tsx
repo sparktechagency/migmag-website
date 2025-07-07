@@ -15,6 +15,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 import FeatureSection from "@/app/(website)/tune-m-artist/FeatureSection";
 import UpdateFooter from "@/components/footer/UpdateFooter";
 import Image from "next/image";
+import CtaSection from '@/components/cta/CtaSection'
 
 const Page: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -321,7 +322,8 @@ const Page: React.FC = () => {
             <ApplayTune></ApplayTune>
             <ApplayVocalistFrom></ApplayVocalistFrom>
             <FeatureSection></FeatureSection>
-            <CoreValue></CoreValue>
+            {/* <CoreValue></CoreValue> */}
+            <CtaSection></CtaSection>
 
 
             <UpdateFooter></UpdateFooter>

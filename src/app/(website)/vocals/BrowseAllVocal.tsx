@@ -9,6 +9,7 @@ import Link from 'next/link';
 import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import { FaPlay } from 'react-icons/fa';
+import CtaSection from '@/components/cta/CtaSection';
 
 
 type VocalItem = {
@@ -857,14 +858,14 @@ const BrowseAllVocal = () => {
                     </div>
 
 
-                    <div className=" space-y-2 w-full lg:block hidden  ">
+                    <div className=" space-y-2 w-full lg:block hidden   ">
                         {filteredData.slice(0, visibleData).map((item, i) => (
                             <motion.div
                                 key={item.id}
                                 className={`cursor-pointer flex  items-center  rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
                                     }`}
                             >
-                                <div className="flex items-center justify-between w-full bg-white px-4 py-3 rounded shadow-sm hover:bg-gray-50 transition-all">
+                                <div className="flex items-center justify-between w-full  px-4 py-3 rounded shadow-sm transition-all">
                                     {/* Left: Cover and Play */}
                                     <div className="flex items-center gap-3 w-full max-w-[300px]">
                                         <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
@@ -877,17 +878,17 @@ const BrowseAllVocal = () => {
                                                 />
                                             </Link>
                                         </div>
-                                        <button className="w-6 h-6 flex items-center justify-center text-black hover:text-blue-500">
-                                            <FaPlay onClick={() => handleOpenModal(item.id)} size={28} className="text-gray-800 cursor-pointer " />
+                                        <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
+                                            <FaPlay onClick={() => handleOpenModal(item.id)} size={28} className="text-white cursor-pointer " />
                                         </button>
                                         <div className="flex flex-col">
-                                            <h3 className="text-sm font-semibold text-black">Do I Cross Your Mind</h3>
-                                            <p className="text-xs text-gray-500"><Link href={`/singer-profile/${item.id}`}>Evan</Link> ・ 128 BPM ・ A#min</p>
+                                            <h3 className="text-sm font-semibold text-white ">Do I Cross Your Mind</h3>
+                                            <p className="text-xs textColor "><Link href={`/singer-profile/${item.id}`}>Evan</Link> ・ 128 BPM ・ A#min</p>
                                         </div>
                                     </div>
 
                                     {/* Center: Genre and License */}
-                                    <div className="hidden md:flex items-center text-sm text-gray-500 gap-10">
+                                    <div className="hidden md:flex items-center text-sm textColor  gap-10">
                                         <p>Progressive House</p>
                                         <p>Non-Exclusive</p>
                                     </div>
@@ -895,7 +896,7 @@ const BrowseAllVocal = () => {
                                     {/* Right: Price and Button */}
                                     <div className="flex items-center gap-4 min-w-[120px] justify-end">
                                         <Link href={`/checkout`}>
-                                            <p className="text-sm font-semibold">$34</p>
+                                            <p className="text-sm text-white  font-semibold">$34</p>
                                         </Link>
                                         <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
                                             Get Vocal
@@ -1236,32 +1237,7 @@ const BrowseAllVocal = () => {
                     />
                 )}
             </MaxWidth>
-            <div
-                className="bg-[url('/images/home-page/tunemImg.png')] h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
-            >
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
-
-                <div className="relative z-10 mt-20 ">
-                    <h1 className="text-center text-[#E7F056] font-bold lg:text-4xl text-lg ">
-                        Become a TuneM Artist.
-                    </h1>
-
-                    <div className="max-w-[482px] mx-auto mt-3 lg:mt-9">
-                        <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            We work with talented singers and songwriters ready to take their voice further. Expand
-                            your audience, get discovered, and join our global music network. </p>
-                    </div>
-                    <div>
-                        <Link href={"/tune-m-artist"}>
-                            <button
-                                className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
-                                GET STARTED
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <CtaSection></CtaSection>
         </>
     )
 

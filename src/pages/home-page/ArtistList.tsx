@@ -83,13 +83,13 @@ const ArtistList: React.FC = () => {
                 <div className='   pb-2  mx-auto  '>
                     <h1 className="text-white text-2xl lg:text-4xl font-semibold lg:pt-9 pt-3 mx-auto ">Top Artists</h1>
                     <div
-                        className=' lg:my-10 my-4 grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     '>
+                        className=' lg:my-10 my-4   grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     '>
                         {
                             singerData.slice(0, 6).map((item, i) => {
                                 return (
                                     <div
                                         key={i}
-                                        className={`bg-[#c5c1bf] p-2 rounded-lg   `}
+                                        className={`bg-[#c5c1bf] p-2 rounded-lg h-64   `}
                                     >
                                         <Link href={"/artist-library"}>
 

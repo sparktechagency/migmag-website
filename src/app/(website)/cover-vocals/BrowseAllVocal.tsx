@@ -10,6 +10,7 @@ import MusickPlayer from '@/components/musick-player/MusickPlayer';
 import { FaPause } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa6";
 import MaxWidth from "@/components/max-width/MaxWidth";
+import CtaSection from '@/components/cta/CtaSection';
 
 type VocalItem = {
     id: number;
@@ -1056,93 +1057,49 @@ const BrowseAllVocal = () => {
                     <div className=" lg:block hidden space-y-4">
                         {filteredData.slice(0, visibleData).map((item, i) => (
                             <motion.div
-                                key={item.id}
-                                className={`cursor-pointer rounded-md p-4
-        ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'}
-        flex flex-col lg:flex-row lg:items-center gap-4`}
-                            >
-                                {/* ─────────── Image + Play/Pause (side-by-side) ─────────── */}
-                                <div className="flex items-center gap-3">
-                                    {/* Image */}
-                                    <div className="relative w-20 h-20 flex-shrink-0">
-                                        <Link href={`/music-details/${item.id}`}>
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                width={80}
-                                                height={80}
-                                                className="w-full h-full rounded-lg object-cover"
-                                            />
-                                        </Link>
-                                    </div>
-
-                                    {/* Play / Pause button — now to the right of image */}
-                                    <button
-                                        onClick={() => handleOpenModal(item.id)}
-                                        aria-label="Play or pause"
-                                        className="p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur"
-                                    >
-                                        {playingId === item.id ? (
-                                            <FaPause className="text-white text-2xl" />
-                                        ) : (
-                                            <FaPlay className="text-white text-2xl" />
-                                        )}
-                                    </button>
-                                </div>
-
-                                {/* ─────────── Info Row ─────────── */}
-                                <div className="grid md:grid-cols-3 lg:grid-cols-6 justify-between  w-full gap-x-10 items-center">
-                                    {/* Title */}
-                                    <h3 className="text-white text-sm    truncate">
-                                        {item.title}
-                                    </h3>
-
-                                    {/* Artist */}
-                                    <Link
-                                        href={`/singer-profile/${item.id}`}
-                                        className="text-white hover:underline font-medium text-sm truncate"
-                                    >
-                                        {item.artist}
-                                    </Link>
-
-                                    {/* Genre */}
-                                    <p className="text-white text-sm truncate">
-                                        {item.genre}
-                                    </p>
-
-                                    {/* Gender */}
-                                    <p className="text-white text-sm truncate">
-                                        {item.gender}
-                                    </p>
-
-                                    {/* License Badge */}
-                                    <span
-                                        className={`inline-block rounded-2xl text-center font-bold px-3 py-1  text-xs
-            ${item.license === 'EXCLUSIVE'
-                                                ? 'bg-[#80BC02]'
-                                                : item.license === 'NON-EXCLUSIVE'
-                                                    ? 'bg-[#818080]'
-                                                    : item.license === 'PREMIUM'
-                                                        ? 'bg-[#00C2CE]'
-                                                        : 'bg-gray-600'}`}
-                                    >
-                                        {item.license}
-                                    </span>
-
-                                    {/* Price + Cart */}
-                                    <div className="flex items-center gap-x-12">
-
-
-                                        {/* Price */}
-                                        <span
-                                            className="bg-[#E7F056] text-black font-bold rounded-2xl text-xs md:text-sm lg:text-base px-2">
-                                            <Link href={"/checkout"}>
-                                                {item.price}
-                                            </Link>
-                                        </span>
-                                    </div>
-                                </div>
-                            </motion.div>
+                                                            key={item.id}
+                                                            className={`cursor-pointer flex  items-center  rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
+                                                                }`}
+                                                        >
+                                                            <div className="flex items-center justify-between w-full  px-4 py-3 rounded shadow-sm transition-all">
+                                                                {/* Left: Cover and Play */}
+                                                                <div className="flex items-center gap-3 w-full max-w-[300px]">
+                                                                    <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
+                                                                        <Link href={`/music-details/${item?.id}`} >
+                                                                            <Image
+                                                                                src="/images/browse-vocal/browse/browse-7.png" // 🔁 Replace with your image
+                                                                                alt="Do I Cross Your Mind"
+                                                                                fill
+                                                                                className="object-cover rounded"
+                                                                            />
+                                                                        </Link>
+                                                                    </div>
+                                                                    <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
+                                                                        <FaPlay onClick={() => handleOpenModal(item.id)} size={28} className="text-white cursor-pointer " />
+                                                                    </button>
+                                                                    <div className="flex flex-col">
+                                                                        <h3 className="text-sm font-semibold text-white ">Do I Cross Your Mind</h3>
+                                                                        <p className="text-xs textColor "><Link href={`/singer-profile/${item.id}`}>Evan</Link> ・ 128 BPM ・ A#min</p>
+                                                                    </div>
+                                                                </div>
+                            
+                                                                {/* Center: Genre and License */}
+                                                                <div className="hidden md:flex items-center text-sm textColor  gap-10">
+                                                                    <p>Progressive House</p>
+                                                                    <p>Non-Exclusive</p>
+                                                                </div>
+                            
+                                                                {/* Right: Price and Button */}
+                                                                <div className="flex items-center gap-4 min-w-[120px] justify-end">
+                                                                    <Link href={`/checkout`}>
+                                                                        <p className="text-sm text-white  font-semibold">$34</p>
+                                                                    </Link>
+                                                                    <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
+                                                                        Get Vocal
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </motion.div>
                         ))}
                     </div>
 
@@ -1711,17 +1668,6 @@ const BrowseAllVocal = () => {
                             }
                         </div>
                     </div>
-
-
-                   
-
-
-                    
-
-
-
-
-
                 </div>
 
 
@@ -1735,33 +1681,7 @@ const BrowseAllVocal = () => {
                     />
                 )}
             </MaxWidth>
-            <div
-                className="bg-[url('/images/home-page/tunemImg.png')] lg:h-[503px] bg-no-repeat bg-cover bg-center py-6 lg:pt-11 lg:pb-16 rounded-lg mt-16 lg:mt-[107px] relative overflow-hidden"
-            >
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black to-black/30 z-0"></div>
-
-                <div className="relative z-10 mt-8 lg:mt-20 ">
-                    <h1 style={{ fontFamily: 'Favorit' }}
-                        className="text-center text-[#E7F056] font-bold lg:text-3xl  text-lg">
-                        Become a TuneM Artist.
-                    </h1>
-
-                    <div style={{ fontFamily: 'Favorit' }} className="max-w-[482px] mx-auto mt-3 lg:mt-9">
-                        <p className="text-center text-white leading-6 lg:text-xl font-thin ">
-                            We work with talented singers and songwriters ready to take their voice further. Expand
-                            your audience, get discovered, and join our global music network. </p>
-                    </div>
-                    <div>
-                        <Link href={"/tune-m-artist"}>
-                            <button style={{ fontFamily: 'Favorit' }}
-                                className="cursor-pointer text-[#E7F056] text-sm  px-4 py-2 border border-white rounded-2xl block mx-auto mt-4 lg:mt-13">
-                                GET STARTED
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+            <CtaSection/>
         </>
     );
 };
