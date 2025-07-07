@@ -6,10 +6,10 @@ const BrowseVocalBanner = () => {
     return (
         <div className=" lg:py-16">
             <MaxWidth>
-                <div className="flex flex-col lg:flex-row justify-between  gap-10">
+                <div className="flex flex-col lg:flex-row justify-between  ">
                     {/* Left Side */}
                     <div className="text-white w-full max-w-2xl ">
-                        <h1 className="text-4xl lg:text-6xl font-bold  mb-6">
+                        <h1 className="text-4xl lg:text-5xl font-bold  mb-6">
                             Studio-Quality Vocals, Ready to Use
                         </h1>
                         <p className="text-lg lg:text-xl font-medium text-gray-200 leading-relaxed">
