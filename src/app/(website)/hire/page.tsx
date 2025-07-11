@@ -40,7 +40,7 @@ const Page: React.FC = () => {
                 className="bg-gradient-to-r from-black/10 to-transparent  bg-[url('/update-image/hire/banner/banner.png')] h-screen bg-cover object-cover bg-center w-full  pb-28 "
             >
                 <MaxWidth>
-                    <div style={{ fontFamily: 'Favorit' }} className="  mx-auto py-5  bg-opacity-90 ">
+                    <div  className="  mx-auto py-5  bg-opacity-90 ">
                         <div className='flex items-center justify-between  max-w-[1549px]  mx-auto '>
                             {/* Logo */}
                             <Link href="/">

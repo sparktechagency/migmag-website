@@ -129,7 +129,7 @@ export default function BrowseMusickVocalSlider() {
     return (
         <MaxWidth>
             <main className="">
-                <div style={{fontFamily: 'Favorit'}} ref={sliderRef} className="keen-slider relative lg:mt-9 mt-4">
+                <div  ref={sliderRef} className="keen-slider relative lg:mt-9 mt-4">
                     {audioData.map((item) => (
                         <div
                             key={item.id}

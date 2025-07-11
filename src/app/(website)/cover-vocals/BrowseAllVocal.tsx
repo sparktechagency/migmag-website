@@ -565,7 +565,7 @@ const BrowseAllVocal = () => {
     return (
         <>
             <MaxWidth>
-                <div style={{ fontFamily: 'Favorit' }} className="  mx-auto   ">
+                <div  className="  mx-auto   ">
                     <div className=' mt-12 mb-6 '>
                         <div className=' border border-white '></div>
                     </div>

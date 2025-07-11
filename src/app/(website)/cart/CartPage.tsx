@@ -263,12 +263,12 @@ const CartPage = () => {
         <div className="bg-[#f5fff8] min-h-screen">
             <MaxWidth>
                 <div className="max-w-[1539px] mx-auto  pt-10">
-                    <h1 style={{fontFamily: 'Degular'}} className="text-[#121212] text-3xl font-bold">My cart</h1>
-                    <p style={{fontFamily: 'Degular'}} className="text-[#3A3A3A] font-medium mt-2 text-[16px]">
+                    <h1  className="text-[#121212] text-3xl font-bold">My cart</h1>
+                    <p  className="text-[#3A3A3A] font-medium mt-2 text-[16px]">
                         List of songs that you selected for the cart section.
                     </p>
 
-                    <div style={{fontFamily: 'Favorit'}} className="mt-10">
+                    <div  className="mt-10">
                         <div className="overflow-x-auto w-full lg:block hidden ">
                             {currentTracks.map((track) => (
                                 <div
@@ -407,7 +407,7 @@ const CartPage = () => {
 
                     {/* player  */}
 
-                    <div style={{fontFamily: 'Favorit'}} className='px-4'>
+                    <div  className='px-4'>
                         <Transition appear show={isOpen} as={Fragment}>
                             <Dialog as="div" className="relative z-50" onClose={closeModal}>
                                 <Transition.Child
