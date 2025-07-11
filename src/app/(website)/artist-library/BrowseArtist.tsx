@@ -497,7 +497,7 @@ const BrowseArtist = () => {
     return (
         <>
             <MaxWidth>
-                <div style={{ fontFamily: 'Favorit' }} className=" mt-16 mx-auto lg:mb-16 mb-8    ">
+                <div className=" mt-16 mx-auto lg:mb-16 mb-8    ">
                     <div className=' mt-12 mb-6 '>
                         <div className=' border border-white '></div>
                     </div>

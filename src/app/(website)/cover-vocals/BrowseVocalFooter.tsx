@@ -2,11 +2,11 @@
 
 
 import Link from 'next/link'
-import React, {useState} from 'react'
-import { FaFacebook, FaInstagramSquare} from "react-icons/fa";
-import {FaTiktok} from "react-icons/fa";
-import {BsDiscord} from "react-icons/bs";
-import {ArrowRight} from "lucide-react";
+import React, { useState } from 'react'
+import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa";
+import { BsDiscord } from "react-icons/bs";
+import { ArrowRight } from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
 
@@ -20,15 +20,15 @@ const BrowseVocalFooter: React.FC = () => {
     };
 
     return (
-        <div style={{fontFamily: 'Favorit'}} className="lg:mt-1">
+        <div className="lg:mt-1">
             <MaxWidth>
                 <div className=" ">
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
-                    <span>
-                        <Image src={"/images/logo/WhiteLogo.png"} alt={"logo"} width={200} height={200}
-                               className={" object-cover "}/>
-                    </span>
+                        <span>
+                            <Image src={"/images/logo/WhiteLogo.png"} alt={"logo"} width={200} height={200}
+                                className={" object-cover "} />
+                        </span>
                     </div>
 
                     {/* Divider */}
@@ -45,7 +45,7 @@ const BrowseVocalFooter: React.FC = () => {
                             {/*logo*/}
                             <div>
                                 <Image src={"/images/logo/WhiteLogo.png"} alt={"logo"} width={200} height={200}
-                                       className={" object-cover "}/>
+                                    className={" object-cover "} />
 
                             </div>
                             <div className={`my-5`}>
@@ -62,18 +62,18 @@ const BrowseVocalFooter: React.FC = () => {
                                 <div className="flex gap-x-5  mt-3">
                                     <div className="  rounded-full">
                                         <a target="_blank"
-                                           href="https://www.instagram.com/accounts/login/?hl=en"><FaInstagramSquare
-                                            size={25} className={"text-white"}/></a>
+                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaInstagramSquare
+                                                size={25} className={"text-white"} /></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
-                                           href="https://www.instagram.com/accounts/login/?hl=en"><FaTiktok
-                                            className={"text-white"} size={25}/></a>
+                                            href="https://www.instagram.com/accounts/login/?hl=en"><FaTiktok
+                                                className={"text-white"} size={25} /></a>
                                     </div>
                                     <div className="  rounded-full">
                                         <a target="_blank"
-                                           href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
-                                            className={"text-white"} size={25}/></a>
+                                            href="https://www.instagram.com/accounts/login/?hl=en"><BsDiscord
+                                                className={"text-white"} size={25} /></a>
                                     </div>
                                     {/*face book*/}
 
@@ -126,7 +126,7 @@ const BrowseVocalFooter: React.FC = () => {
                                         type="submit"
                                         className="bg-yellow-400 cursor-pointer px-4 py-3 lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
                                     >
-                                        <ArrowRight className="w-5 h-5 text-white"/>
+                                        <ArrowRight className="w-5 h-5 text-white" />
                                     </button>
                                 </form>
 
@@ -146,7 +146,7 @@ const BrowseVocalFooter: React.FC = () => {
                                             Singer</Link></li>
 
                                         <li><Link className="text-lg text-white leading-9"
-                                                  href="/https://tunemcollective.com/">Courses</Link></li>
+                                            href="/https://tunemcollective.com/">Courses</Link></li>
                                     </ul>
                                 </div>
 
@@ -166,7 +166,7 @@ const BrowseVocalFooter: React.FC = () => {
                                         <li><Link className="text-lg text-white leading-9" href="/privacy-policy">Privacy
                                             Policy</Link></li>
                                         <li><Link className="text-lg text-white leading-9"
-                                                  href="/license">License</Link>
+                                            href="/license">License</Link>
                                         </li>
                                     </ul>
                                 </div>

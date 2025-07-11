@@ -6,7 +6,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 const HireVocal: React.FC = () => {
 
     return (
-        <div style={{ fontFamily: 'Favorit' }} className=' '>
+        <div  className=' '>
             <MaxWidth>
                 <h1 className=' text-center lg:mt-14 md:mt-7 mt-4 headerColor lg:text-3xl text-lg  font-bold  '>Our Artists Recorded for</h1>
                 <div className="flex flex-col  sm:flex-row justify-between items-center gap-4 mx-auto mt-4">
