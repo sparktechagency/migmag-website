@@ -1063,7 +1063,7 @@ const BrowseAllVocal = () => {
                                                         >
                                                             <div className="flex items-center justify-between w-full  px-4 py-3 rounded shadow-sm transition-all">
                                                                 {/* Left: Cover and Play */}
-                                                                <div className="flex items-center gap-3 w-full max-w-[300px]">
+                                                                <div className="flex items-center gap-3 w-full max-w-[300px]  ">
                                                                     <div className="relative w-14 h-14 rounded overflow-hidden flex-shrink-0">
                                                                         <Link href={`/music-details/${item?.id}`} >
                                                                             <Image
@@ -1084,7 +1084,7 @@ const BrowseAllVocal = () => {
                                                                 </div>
                             
                                                                 {/* Center: Genre and License */}
-                                                                <div className="hidden md:flex items-center text-sm textColor  gap-10">
+                                                                <div className="hidden md:flex items-center w-[400px] justify-between text-sm textColor gap-x-10   gap-10">
                                                                     <p>Progressive House</p>
                                                                     <p>Non-Exclusive</p>
                                                                 </div>

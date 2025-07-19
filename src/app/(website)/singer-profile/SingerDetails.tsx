@@ -12,17 +12,6 @@ import CtaSection from '@/components/cta/CtaSection';
 
 
 
-// const licenseColors: Record<Track['license'], string> = {
-//     PREMIUM: 'bg-[#00C2CE] text-white',
-//     EXCLUSIVE: 'bg-[#80BC02] text-white',
-//     'NON-EXCLUSIVE': 'bg-[#818080] text-white',
-// };
-// const licenseColorsText: Record<Track['license'], string> = {
-//     PREMIUM: 'text-[#00C2CE] ',
-//     EXCLUSIVE: 'text-[#80BC02]',
-//     'NON-EXCLUSIVE': 'text-[#818080] ',
-// };
-
 type Singer = {
     id: number;
     name: string;
@@ -189,7 +178,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
                         {/* Middle: Genre and License */}
                         <div
-                            className="flex flex-wrap sm:flex-nowrap items-center  text-sm textColor w-full sm:w-auto justify-start sm:justify-center">
+                            className="flex flex-wrap sm:flex-nowrap items-center k gap-x-24 text-sm textColor w-full sm:w-auto justify-start sm:justify-center">
                             <span>Eurodance</span>
                             <span>Non-Exclusive</span>
                         </div>
@@ -304,7 +293,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
 
                                 <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
-                                    <div className="w-full lg:w-[150px] lg:h-[157px] ">
+                                    <div className="w-full lg:w-[120px] lg:h-[130px] ">
                                         <Image
                                             src="/update-image/singer-details/icon/mic-1.png"
                                             alt="Mic Icon"
@@ -323,7 +312,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                 </div>
 
                                 <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
-                                    <div className="w-full lg:w-[150px] lg:h-[157px] ">
+                                    <div className="w-full lg:w-[120px] lg:h-[130px]  ">
                                         <Image
                                             src="/update-image/singer-details/icon/mic-3.png"
                                             alt="Mic Icon"
@@ -344,7 +333,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
 
                                 <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
-                                    <div className="w-full lg:w-[150px] lg:h-[157px] ">
+                                    <div className="w-full lg:w-[120px] lg:h-[130px]  ">
                                         <Image
                                             src="/update-image/singer-details/icon/mic-2.png"
                                             alt="Mic Icon"

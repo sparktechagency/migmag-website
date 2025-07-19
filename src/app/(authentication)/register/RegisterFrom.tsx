@@ -36,18 +36,18 @@ const RegisterFrom: React.FC = () => {
         console.log("Form Data Submitted:", formData);
     };
     return (
-        <div style={{ fontFamily: 'Decular' }} className=' max-w-[1539px] mx-auto px-4 pb-10 lg:pb-[200px] ' >
+        <div  className=' max-w-[1539px] mx-auto px-4 pb-10 lg:pb-[200px] ' >
             <div className=' flex lg:flex-row flex-col justify-between items-center ' >
                 <div className=' max-w-[584px] bg-white p-6 rounded-3xl shadow-md mt-10 lg:mt-[113px] ' >
                     <div>
                         <h1 className=' text-center headerColor text-2xl lg:text-[40px] font-semibold ' >Welcome!</h1>
                         <p className=' mt-2 textColor text-sm text-center ' >Please register with valid information for create account.</p>
                     </div>
-                    <div style={{ fontFamily: 'Decular' }} className='lg:mt-16 mt-4 ' >
-                        <form style={{ fontFamily: 'Decular' }} onSubmit={handleSubmit} className='space-y-4 ' >
+                    <div  className='lg:mt-16 mt-4 ' >
+                        <form  onSubmit={handleSubmit} className='space-y-4 ' >
                             {/* name  */}
                             <div className="relative">
-                                <label style={{ fontFamily: 'Decular' }} htmlFor='name' className="mb-2 headerColor font-semibold text-[16px] block ">Name</label>
+                                <label  htmlFor='name' className="mb-2 headerColor font-semibold text-[16px] block ">Name</label>
 
                                 <span className="absolute left-3 top-12" >
                                     <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ const RegisterFrom: React.FC = () => {
 
                                 </span>
                                 <input
-                                    style={{ fontFamily: 'Decular' }}
+
                                     type="text"
                                     name="name"
                                     id='name'
@@ -67,7 +67,7 @@ const RegisterFrom: React.FC = () => {
                                 />
                             </div>
                             {/* email  */}
-                            <div style={{ fontFamily: 'Decular' }}  className="relative">
+                            <div   className="relative">
                                 <label htmlFor='email' className="mb-2 headerColor font-semibold text-[16px] block ">Email</label>
 
                                 <span className="absolute left-3 top-[44px] " >
@@ -91,7 +91,7 @@ const RegisterFrom: React.FC = () => {
 
                             {/* password  */}
 
-                            <div style={{ fontFamily: 'Decular' }}  className="relative">
+                            <div   className="relative">
                                 <label htmlFor='password' className="mb-2 headerColor font-semibold text-[16px] block ">Password</label>
                                 <span className="absolute left-3 top-[43px] " >
                                     <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +116,7 @@ const RegisterFrom: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div  style={{ fontFamily: 'Decular' }}  className="relative">
+                            <div    className="relative">
                                 <label htmlFor='confirmPassword' className="mb-2 headerColor font-semibold text-[16px] block ">Confirm Password</label>
                                 <span className="absolute left-3 top-[43px] " >
                                     <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +142,7 @@ const RegisterFrom: React.FC = () => {
                             </div>
 
 
-                            <div style={{ fontFamily: 'Decular' }}  className="flex items-center space-x-2">
+                            <div   className="flex items-center space-x-2">
                                 <input
                                     type="checkbox"
                                     name="terms"
@@ -150,7 +150,7 @@ const RegisterFrom: React.FC = () => {
                                     onChange={handleChange}
                                     className="w-4 h-4 cursor-pointer"
                                 />
-                                <span style={{ fontFamily: 'Decular' }}  className=' text-[#818080] text-sm font-thin ' >By creating this account, you are agree to our <span className=' font-bold headerColor ' >terms of use</span> &  <span className=' font-bold headerColor ' > privacy policy.</span></span>
+                                <span   className=' text-[#818080] text-sm font-thin ' >By creating this account, you are agree to our <span className=' font-bold headerColor ' >terms of use</span> &  <span className=' font-bold headerColor ' > privacy policy.</span></span>
                             </div>
                             <button
                                 type="submit"
