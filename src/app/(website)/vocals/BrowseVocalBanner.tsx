@@ -13,7 +13,7 @@ const BrowseVocalBanner = () => {
                             Studio-Quality Vocals, Ready to Use
                         </h1>
                         <p className="text-lg lg:text-xl font-medium text-gray-200 leading-relaxed">
-                            SRoyalty-free vocals by leading singers & songwriters
+                            Royalty-free vocals by leading singers & songwriters
                         </p>
                     </div>
 

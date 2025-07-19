@@ -39,7 +39,6 @@ export default function MusickPlayer({
             progressColor: '#E7F056',
             height: 40,
             barWidth: 2,
-            responsive: true,
         });
 
         wavesurferRef.current.load(currentTrack.audio);

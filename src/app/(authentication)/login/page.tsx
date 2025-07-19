@@ -1,11 +1,13 @@
-import React from 'react'
-import LoginPage from './LoginPage'
+"use client"
+
+import React from "react";
+import LoginPage from "@/app/(authentication)/login/LoginPage";
 
 const page : React.FC = () => {
     return (
 
             <div>
-                <LoginPage></LoginPage>
+               <LoginPage></LoginPage>
             </div>
 
     )

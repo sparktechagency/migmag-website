@@ -429,7 +429,9 @@ const BrowseAllVocal = () => {
     const clearSearch = () => {
         setFilter("")
         setSearchTerm("")
-    }
+    };
+
+    console.log(`filter data is ${filteredData}`)
 
 
 
@@ -888,7 +890,7 @@ const BrowseAllVocal = () => {
                                     </div>
 
                                     {/* Center: Genre and License */}
-                                    <div className="hidden md:flex items-center text-sm textColor  gap-10">
+                                    <div className="hidden w-[400px] justify-between md:flex items-center text-sm textColor  gap-10">
                                         <p>Progressive House</p>
                                         <p>Non-Exclusive</p>
                                     </div>
@@ -898,7 +900,7 @@ const BrowseAllVocal = () => {
                                         <Link href={`/checkout`}>
                                             <p className="text-sm text-white  font-semibold">$34</p>
                                         </Link>
-                                        <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
+                                        <button className="px-4 py-1 cursor-pointer text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
                                             Get Vocal
                                         </button>
                                     </div>
@@ -1120,7 +1122,7 @@ const BrowseAllVocal = () => {
                                             />
                                         </Link>
                                         <button
-                                            onClick={() => handlePlayPause(item.id)}
+                                            onClick={() => handleOpenModal(item.id)}
                                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
                                                 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg"
                                         >
@@ -1170,7 +1172,7 @@ const BrowseAllVocal = () => {
                                 </div>
 
                                 {/* License badge */}
-                                <div className="lg:py-4 w-[60%] block mx-auto py-1 px-2">
+                                <div className="w-[70%] block mx-auto    ">
                                     <span
                                         className={`block text-center rounded-2xl py-2 px-4 font-bold ${item.license === 'EXCLUSIVE'
                                             ? 'bg-[#80BC02]'
