@@ -137,41 +137,41 @@ const VocalPublish: React.FC = () => {
               {/* img 1 */}
               <div className="flex justify-center">
                 <Image
-                  src="/update-image/tune/spotify-1.png"
-                  alt="logo"
-                  width={300}
-                  height={200}
-                  className="object-contain"
+                    src="/update-image/tune/spotify-1.png"
+                    alt="logo"
+                    width={200}
+                    height={200}
+                    className="w-[200px] h-[200px] object-contain"
                 />
               </div>
               {/* img 2 */}
               <div className="flex justify-center">
                 <Image
-                  src="/update-image/tune/spotify-2.png"
-                  alt="logo"
-                  width={300}
-                  height={200}
-                  className="object-contain"
+                    src="/update-image/tune/spotify-2.png"
+                    alt="logo"
+                    width={200}
+                    height={200}
+                    className="w-[200px] h-[200px] object-contain"
                 />
               </div>
               {/* img 3 */}
               <div className="flex justify-center">
                 <Image
-                  src="/update-image/tune/spotify-3.png"
-                  alt="logo"
-                  width={300}
-                  height={200}
-                  className="object-contain"
+                    src="/update-image/tune/spotify-3.png"
+                    alt="logo"
+                    width={200}
+                    height={200}
+                    className="w-[200px] h-[200px] object-contain"
                 />
               </div>
               {/* img 4 */}
               <div className="flex justify-center">
                 <Image
-                  src="/update-image/tune/spotify-4.png"
-                  alt="logo"
-                  width={300}
-                  height={200}
-                  className="object-contain"
+                    src="/update-image/tune/spotify-4.png"
+                    alt="logo"
+                    width={200}
+                    height={200}
+                    className="w-[200px] h-[200px] object-contain"
                 />
               </div>
             </div>

@@ -3,12 +3,16 @@ import Image from 'next/image'
 import React, {useState} from 'react'
 import {useRouter} from 'next/navigation';
 import MaxWidth from "@/components/max-width/MaxWidth";
+import {useResendOtpMutation} from "@/redux/api/authApi/authApi";
+import Swal from "sweetalert2";
 
 const EmailVerify: React.FC = () => {
+    const [resendOtp, {isLoading}] = useResendOtpMutation()
     const router = useRouter();
     const [formData, setFormData] = useState({
         email: "",
     });
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value, type, checked} = e.target;
@@ -18,21 +22,54 @@ const EmailVerify: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+
+    const {email} = formData;
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        router.push("/otp-verify")
 
 
-        console.log("Form Data Submitted:", formData);
+        try {
+            const res = await resendOtp(email).unwrap();
+            router.push(`/forget-otp-verify?email=${encodeURIComponent(email)}`)
+            if(res.success){
+                setFormData({
+                    email: ""
+                })
+            }
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: res.message,
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        } catch (error: unknown) {
+            console.log(error)
+            let errorMessage = "Otp send failed";
+
+            if (error && typeof error === "object" && "message" in error) {
+                errorMessage = String((error as { message: string }).message);
+            }
+            Swal.fire({
+                position: "top-center",
+                icon: "error",
+                title: errorMessage,
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        }
+
+
     };
     return (
         <div>
-            <div style={{fontFamily: 'Decular'}} className=' pb-10 lg:pb-[200px]  mt-10 h-[100vh]  '>
+            <div className=' pb-10 lg:pb-[285px]  mt-10  '>
                 <MaxWidth>
                     <div className=' flex lg:flex-row flex-col justify-between items-center '>
                         <div className=' max-w-[584px] bg-white p-6 rounded-3xl shadow-md  '>
                             <div>
-                                <h1 style={{fontFamily: 'Decular'}}
+                                <h1
                                     className=' text-center headerColor  text-2xl lg:text-[40px] font-semibold '>Forgot
                                     password</h1>
                                 <p className=' mt-2 text-[#818080] text-sm text-center '>Give your email which was used
@@ -60,6 +97,7 @@ const EmailVerify: React.FC = () => {
                                             type="email"
                                             name="email"
                                             id='email'
+                                            required
                                             placeholder="Enter your email..."
                                             value={formData.email}
                                             onChange={handleChange}
@@ -69,10 +107,13 @@ const EmailVerify: React.FC = () => {
 
 
                                     <button
+                                        disabled={isLoading}
                                         type="submit"
                                         className="w-full font-bold cursor-pointer text-[#3A3A3A] bg-[#E7F056] text-xl py-3 px-9 rounded-2xl transition mt-4 lg:mt-16 "
                                     >
-                                        Send
+                                        {
+                                            isLoading ? <> <span>Loading...</span> </> : <><span>Send</span> </>
+                                        }
                                     </button>
                                 </form>
 

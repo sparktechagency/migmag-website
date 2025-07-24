@@ -1,19 +1,26 @@
-import React, {useState} from 'react';
+"use client";
+
+import React, {useState} from "react";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
-import Link from "next/link";
 import {MdEmail, MdLock} from "react-icons/md";
 import {FaUser} from "react-icons/fa";
+import {useRegisterUserMutation} from "@/redux/api/authApi/authApi";
+import {RegisterPayload} from "@/utility/api-type/auth-api-type";
+import Swal from "sweetalert2";
+import {useRouter} from "next/navigation";
 
-const RegisterFrom = () => {
+const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [formData, setFormData] = useState({
-        name: "",
+    const router = useRouter();
+    const [formData, setFormData] = useState<RegisterPayload>({
+        full_name: "",
         email: "",
         password: "",
-        confirmPassword: "",
-        terms: false,
+        password_confirmation: "",
     });
+
+    const [registerUser, {isLoading, reset}] = useRegisterUserMutation();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value, type, checked} = e.target;
@@ -23,151 +30,241 @@ const RegisterFrom = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+
+    const {
+        full_name,
+        email,
+        password,
+        password_confirmation,
+    } = formData;
+
+
+    const payload = {
+        full_name,
+        email,
+        password,
+        password_confirmation,
+    }
+
+    console.log(payload)
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.terms) {
-            alert("Please accept the Terms and Conditions.");
+
+
+        if (password !== password_confirmation) {
+            Swal.fire({
+                position: "top-center",
+                icon: "warning",
+                title: "Passwords do not match",
+                showConfirmButton: false,
+                timer: 1500
+            });
             return;
         }
-        if (formData.password !== formData.confirmPassword) {
-            alert("Passwords do not match.");
-            return;
+
+
+        try {
+            const res = await registerUser(payload).unwrap();
+            console.log(res)
+
+            if (res.success) {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: res.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                reset();
+                router.push(`/otp-verify?email=${encodeURIComponent(email)}`);
+                setFormData({
+                    full_name: "",
+                    email: "",
+                    password: "",
+                    password_confirmation: "",
+                })
+            }
+
+        } catch (error: unknown) {
+            console.error("Registration failed:", error);
+
+            let errorMessage = "Registration failed. Try again.";
+
+            if (error && typeof error === "object" && "message" in error) {
+                errorMessage = String((error as { message: string }).message);
+            }
+
+            Swal.fire({
+                position: "top-center",
+                icon: "error",
+                title: errorMessage,
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
-        console.log("Form Data Submitted:", formData);
     };
+
     return (
-        <div>
-            <div className=' max-w-[584px]   rounded-3xl shadow-md '>
-                <div>
-                    <h1 className=' text-center  text-2xl lg:text-[40px] font-semibold '>Welcome!</h1>
-                    <p className=' mt-2 text-white text-sm text-center '>Please register with valid information for
-                        create account.</p>
+        <div className="max-w-[584px] mx-auto p-6 rounded-3xl shadow-md bg-[#1a1a1a] text-white">
+            <div className="text-center">
+                <h1 className="text-2xl lg:text-[40px] font-semibold">Welcome!</h1>
+                <p className="mt-2 text-sm">Please register with valid information to create an account.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5 mt-7">
+                {/* Name */}
+                <div className="relative">
+                    <label htmlFor="name" className="block mb-2 font-semibold text-[16px]">
+                        Name
+                    </label>
+                    <span className="absolute left-3 top-11">
+            <FaUser className="text-white text-[17px]"/>
+          </span>
+                    <input
+                        type="text"
+                        name="full_name"
+                        id="name"
+                        required
+                        placeholder="Enter your full name..."
+                        value={full_name}
+                        onChange={handleChange}
+                        className="w-full py-3 px-10 rounded-lg border border-white placeholder:text-white placeholder:text-[16px] bg-transparent focus:outline-none"
+                    />
                 </div>
-                <div className='lg:mt-7 mt-4 '>
-                    <form onSubmit={handleSubmit} className='space-y-4  '>
-                        {/* name  */}
-                        <div className="relative">
-                            <label htmlFor='name'
-                                   className="mb-2  font-semibold text-[16px] block text-white ">Name</label>
 
-                            <span className="absolute left-3 top-12">
+                {/* Email */}
+                <div className="relative">
+                    <label htmlFor="email" className="block mb-2 font-semibold text-[16px]">
+                        Email
+                    </label>
+                    <span className="absolute left-3 top-11">
+            <MdEmail className="text-white text-xl"/>
+          </span>
+                    <input
+                        type="email"
+                        name="email"
+                        required
+                        id="email"
+                        placeholder="Enter your email..."
+                        value={email}
+                        onChange={handleChange}
+                        className="w-full py-3 px-10 rounded-lg border border-white placeholder:text-white placeholder:text-[16px] bg-transparent focus:outline-none"
+                    />
+                </div>
 
-                                    <FaUser className="text-white  text-[17px]  "/>
-                                </span>
-                            <input
-
-                                type="text"
-                                name="name"
-                                id='name'
-                                placeholder="Enter your full name..."
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="w-full py-3 placeholder:text-white  border border-white placeholder:text-[16px] px-10 rounded-lg  focus:outline-none "
-                            />
-                        </div>
-                        {/* email  */}
-                        <div className="relative">
-                            <label htmlFor='email'
-                                   className="mb-2  font-semibold text-[16px] block ">Email</label>
-
-                            <span className="absolute left-3 top-[44px] ">
-                                    <MdEmail className="text-white mt-0.5 text-xl"/>
-
-                                </span>
-
-                            <input
-                                type="email"
-                                name="email"
-                                id='email'
-                                placeholder="Enter your email..."
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="w-full py-3 placeholder:text-white  border placeholder:text-[16px] px-10 rounded-lg  focus:outline-none "
-                            />
-                        </div>
-
-
-                        {/* password  */}
-
-                        <div className="relative">
-                            <label htmlFor='password'
-                                   className="mb-2  font-semibold text-[16px] block ">Password</label>
-                            <span className="absolute left-3 top-[43px] ">
-                                    <MdLock className="text-white mt-1 text-xl"/>
-
-
-                                </span>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                placeholder="Password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className="w-full py-3 placeholder:text-white  border placeholder:text-[16px] px-10 rounded-lg  focus:outline-none"
-                            />
-                            <div
-                                className="absolute right-3 top-[58%] cursor-pointer"
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? <AiOutlineEyeInvisible className='  text-lg text-white '/> :
-                                    <AiOutlineEye className='  text-lg '/>}
-                            </div>
-                        </div>
-
-                        <div className="relative">
-                            <label htmlFor='confirmPassword'
-                                   className="mb-2  font-semibold text-[16px] block ">Confirm
-                                Password</label>
-                            <span className="absolute left-3 top-[43px] ">
-                                    <MdLock className="text-white mt-1 text-xl"/>
-
-
-                                </span>
-                            <input
-                                type={showConfirmPassword ? "text" : "password"}
-                                name="confirmPassword"
-                                placeholder="Confirm Password"
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                className="w-full py-3 placeholder:text-white   placeholder:text-[16px] px-10 rounded-lg border border-white  focus:outline-none"
-                            />
-                            <div
-                                className="absolute right-3 top-[58%] cursor-pointer"
-                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            >
-                                {showConfirmPassword ? <AiOutlineEyeInvisible className='  text-lg '/> :
-                                    <AiOutlineEye className=' text-lg '/>}
-                            </div>
-                        </div>
-
-
-                        <div className="flex items-center space-x-2">
-                            <input
-                                type="checkbox"
-                                name="terms"
-                                checked={formData.terms}
-                                onChange={handleChange}
-                                className="w-4 h-4 cursor-pointer"
-                            />
-                            <span className=' text-white   text-sm font-thin '>By creating this account, you are agree to our <span
-                                className=' font-bold  '>terms of use</span> &  <span
-                                className=' font-bold  '> privacy policy.</span></span>
-                        </div>
-                        <button
-                            type="submit"
-                            className="w-full cursor-pointer font-bold text-[#3A3A3A] bg-[#E7F056] text-xl py-3 px-9 rounded-2xl transition mt-4 lg:mt-16 "
-                        >
-                            Register
-                        </button>
-                    </form>
-                    <div>
-                        <p className=' text-center mt-6 text-white   text-sm '>Have an account? <Link
-                            className=' font-bold underline  ' href={"/login"}>Sign in</Link></p>
+                {/* Password */}
+                <div className="relative">
+                    <label htmlFor="password" className="block mb-2 font-semibold text-[16px]">
+                        Password
+                    </label>
+                    <span className="absolute left-3 top-11">
+            <MdLock className="text-white text-xl"/>
+          </span>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        id="password"
+                        required
+                        placeholder="Password"
+                        value={password}
+                        onChange={handleChange}
+                        className="w-full py-3 px-10 rounded-lg border border-white placeholder:text-white placeholder:text-[16px] bg-transparent focus:outline-none"
+                    />
+                    <div
+                        className="absolute right-3 top-[52px] cursor-pointer"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? (
+                            <AiOutlineEyeInvisible className="text-white text-lg"/>
+                        ) : (
+                            <AiOutlineEye className="text-white text-lg"/>
+                        )}
                     </div>
                 </div>
-            </div>
+
+                {/* Confirm Password */}
+                <div className="relative">
+                    <label htmlFor="confirmPassword" className="block mb-2 font-semibold text-[16px]">
+                        Confirm Password
+                    </label>
+                    <span className="absolute left-3 top-11">
+            <MdLock className="text-white text-xl"/>
+          </span>
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="password_confirmation"
+                        id="confirmPassword"
+                        placeholder="Confirm Password"
+                        value={password_confirmation}
+                        required
+                        onChange={handleChange}
+                        className="w-full py-3 px-10 rounded-lg border border-white placeholder:text-white placeholder:text-[16px] bg-transparent focus:outline-none"
+                    />
+                    <div
+                        className="absolute right-3 top-[52px] cursor-pointer"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                        {showConfirmPassword ? (
+                            <AiOutlineEyeInvisible className="text-white text-lg"/>
+                        ) : (
+                            <AiOutlineEye className="text-white text-lg"/>
+                        )}
+                    </div>
+                </div>
+
+                {/* Terms */}
+                <div className="flex items-center space-x-2">
+                    <input
+                        type="checkbox"
+                        name="terms"
+                        // checked={terms}
+                        onChange={handleChange}
+                        className="w-4 h-4 cursor-pointer"
+                    />
+                    <span className="text-sm font-thin">
+            By creating this account, you agree to our{" "}
+                        <span className="font-bold underline cursor-pointer">terms of use</span> &{" "}
+                        <span className="font-bold underline cursor-pointer">privacy policy</span>.
+          </span>
+                </div>
+
+                {/* Submit */}
+                <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full cursor-pointer font-bold flex justify-center items-center gap-2 text-[#3A3A3A] bg-[#E7F056] text-xl py-3 px-9 rounded-2xl transition hover:opacity-90 disabled:opacity-60"
+                >
+                    {isLoading ? (
+                        <svg
+                            className="animate-spin h-5 w-5 text-black"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                        >
+                            <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                            />
+                            <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"
+                            />
+                        </svg>
+                    ) : (
+                        "Register"
+                    )}
+                </button>
+            </form>
+
+
         </div>
     );
 };
 
-export default RegisterFrom;
+export default RegisterForm;

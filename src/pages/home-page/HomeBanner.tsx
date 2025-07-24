@@ -34,11 +34,11 @@ const HomeBanner: React.FC = () => {
                         {/* Right Side */}
                         <div className="flex justify-center lg:justify-end flex-1 lg:w-1/2 w-full ">
                             <Image
-                                src="/update-image/home-page/banner/update-banner.png"
+                                src="/update-image/home-page/banner/home-banner.png"
                                 alt="banner-image"
                                 width={600}
                                 height={530}
-                                className=" w-full   object-cover  "
+                                className=" w-full   rounded-2xl  "
                             />
                         </div>
                     </div>
