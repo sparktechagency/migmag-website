@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
+import ProviderWrapper from "@/components/ProviderWrapper/ProviderWrapper";
 
 
 
@@ -23,7 +24,11 @@ export default function RootLayout({
             >
 
                 <main className={` w-full `} >
-                    {children}
+                    <ProviderWrapper>
+                        {
+                            children
+                        }
+                    </ProviderWrapper>
                 </main>
             </body>
         </html>

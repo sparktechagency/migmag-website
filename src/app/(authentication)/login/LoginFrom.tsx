@@ -4,18 +4,18 @@ import React, {useState} from "react";
 import {MdEmail, MdLock} from "react-icons/md";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
+import {LoginPayload} from "@/utility/api-type/auth-api-type";
+import {useLoginUserMutation, useRegisterUserMutation} from "@/redux/api/authApi/authApi";
+import Swal from "sweetalert2";
 
-type LoginFormData = {
-    email: string;
-    password: string;
-    terms: boolean;
-};
 
 const LoginForm: React.FC = () => {
-    const [formData, setFormData] = useState<LoginFormData>({
+    const router = useRouter();
+    const [loginUser, {isLoading}] = useLoginUserMutation();
+    const [formData, setFormData] = useState<LoginPayload>({
         email: "",
         password: "",
-        terms: false,
     });
 
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -30,11 +30,66 @@ const LoginForm: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+
+    const {email, password} = formData;
+    const payload = {
+        email,
+        password,
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Login Data:", formData);
-        // Here you can integrate API call
+
+        try {
+            const res = await loginUser(payload).unwrap();
+
+            if (res.success) {
+                // Save token before navigation
+                localStorage.setItem("token", res.data.token);
+
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: res.message,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+
+                // Reset form
+                setFormData({
+                    email: "",
+                    password: "",
+                });
+
+                // Navigate after short delay to allow Swal to show
+                setTimeout(() => {
+                    window.location.href = "/dashboard";
+                }, 1500);
+            }
+
+        } catch (error: unknown) {
+            let errorMessage = "Login failed. Please try again.";
+
+            // Handle error response from RTK Query
+            if (
+                error &&
+                typeof error === "object" &&
+                "data" in error &&
+                (error as any).data?.message
+            ) {
+                errorMessage = (error as any).data.message;
+            }
+
+            Swal.fire({
+                position: "top-center",
+                icon: "error",
+                title: errorMessage,
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        }
     };
+
 
     return (
         <div className="flex flex-col items-center  ">
@@ -67,7 +122,7 @@ const LoginForm: React.FC = () => {
                                     id="email"
                                     name="email"
                                     placeholder="Enter your email..."
-                                    value={formData.email}
+                                    value={email}
                                     onChange={handleChange}
                                     className="w-full py-3 placeholder:text-[#fff] text-white border shadow-2xl placeholder:text-[16px] px-10 rounded-lg bg-[#13171E] focus:outline-none"
                                     required
@@ -90,7 +145,7 @@ const LoginForm: React.FC = () => {
                                     id="password"
                                     name="password"
                                     placeholder="Password"
-                                    value={formData.password}
+                                    value={password}
                                     onChange={handleChange}
                                     className="w-full py-3 placeholder:text-[#fff] text-white placeholder:text-[16px] px-10 rounded-lg border shadow-2xl bg-[#13171E] focus:outline-none"
                                     required
@@ -114,7 +169,6 @@ const LoginForm: React.FC = () => {
                                     <input
                                         type="checkbox"
                                         name="terms"
-                                        checked={formData.terms}
                                         onChange={handleChange}
                                         className="w-4 h-4 appearance-none mt-1.5 bg-black checked:bg-white border border-gray-300 rounded-sm cursor-pointer"
                                     />
@@ -129,22 +183,31 @@ const LoginForm: React.FC = () => {
 
                             {/* Submit Button */}
                             <button
+                                disabled={isLoading}
                                 type="submit"
-                                className="w-full cursor-pointer font-bold text-[#3A3A3A] bg-[#E7F056] text-xl py-3 px-9 rounded-2xl transition mt-4 lg:mt-16"
+                                className="w-full cursor-pointer font-bold text-[#3A3A3A] bg-[#E7F056] text-xl py-3 px-9 rounded-2xl transition mt-4 "
                             >
-                                Login
+                                {isLoading ? (
+                                    <>
+                                        <span>
+                                            Submitting...
+                                        </span>
+                                    </>
+                                ) : (
+                                    "Login"
+                                )}
                             </button>
                         </form>
 
                         {/* Register Link */}
-                        <div>
-                            <p className="text-center mt-6 text-white text-sm">
-                                Don’t have an account?{" "}
-                                <Link className="font-bold underline text-white" href="/register">
-                                    Register
-                                </Link>
-                            </p>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <p className="text-center mt-6 text-white text-sm">*/}
+                        {/*        Don’t have an account?{" "}*/}
+                        {/*        <span className="font-bold underline text-white" >*/}
+                        {/*            Register*/}
+                        {/*        </span>*/}
+                        {/*    </p>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ const ArtistSlider: React.FC = () => {
     return (
         <div className="lg:mt-24 lg:mb-28 mx-auto">
             <MaxWidth>
-                <div className="lg:py-16">
+                <div className="lg:py-16  ">
                     <h2 className="lg:text-4xl text-2xl font-bold mb-6 headerColor lg:mb-12">
                         Our Artists Reviews
                     </h2>
@@ -48,20 +48,22 @@ const ArtistSlider: React.FC = () => {
                         return (
                             <div
                                 key={review.name}
-                                className={`flex items-start lg:gap-6 gap-3 mb-6 lg:mb-12 ${
+                                className={`flex items-start lg:gap-6 gap-3 mb-6 lg:mb-12  ${
                                     isRight ? "justify-end text-right" : "text-left"
                                 }`}
                             >
                                 {/* Avatar left */}
-                                {!isRight && (
-                                    <Image
-                                        src={review.image}
-                                        alt={review.name}
-                                        width={160}
-                                        height={160}
-                                        className="lg:w-[100px] w-16 h-16 lg:h-[100px]  lg:rounded-full "
-                                    />
-                                )}
+                                <div className={``} >
+                                    {!isRight && (
+                                        <Image
+                                            src={review.image}
+                                            alt={review.name}
+                                            width={300}
+                                            height={500}
+                                            className={` rounded-full w-20 h-20  `}
+                                        />
+                                    )}
+                                </div>
 
                                 {/* Text block */}
                                 <div className="max-w-3xl">
@@ -76,16 +78,18 @@ const ArtistSlider: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Avatar right */}
-                                {isRight && (
-                                    <Image
-                                        src={review.image}
-                                        alt={review.name}
-                                        width={160}
-                                        height={160}
-                                        className="lg:w-[100px] w-14 h-14 lg:h-[100px]  lg:rounded-full "
-                                    />
-                                )}
+                                <div className={" "} >
+                                    {/* Avatar right */}
+                                    {isRight && (
+                                        <Image
+                                            src={review.image}
+                                            alt={review.name}
+                                            width={300}
+                                            height={500}
+                                            className=" rounded-full w-20 h-20  "
+                                        />
+                                    )}
+                                </div>
                             </div>
                         );
                     })}

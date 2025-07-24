@@ -4,14 +4,18 @@ import React, {useState} from 'react'
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import {useRouter} from "next/navigation";
+import {useCreateNewPasswordMutation} from "@/redux/api/authApi/authApi";
+import Swal from "sweetalert2";
 
 const SetNewPassword: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [formData, setFormData] = useState({
         password: "",
-        confirmPassword: "",
+        password_confirmation: "",
     });
+
+    const [createNewPassword, {isLoading}] = useCreateNewPasswordMutation();
 
     const router = useRouter();
 
@@ -23,17 +27,60 @@ const SetNewPassword: React.FC = () => {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+
+    const {password, password_confirmation} = formData;
+
+    const payload = {
+        password,
+        password_confirmation,
+    };
+
+    console.log("payload is ", password ,  password_confirmation);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        router.push("/");
-        if (formData.password !== formData.confirmPassword) {
+        // router.push("/");
+
+
+        if (formData.password !== formData.password_confirmation) {
             alert("Passwords do not match.");
             return;
         }
+
+        try {
+            const res = await createNewPassword (payload).unwrap();
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: res.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (error: unknown) {
+            console.error("Registration failed:", error);
+
+            let errorMessage = "Password set fail";
+
+            if (error && typeof error === "object" && "message" in error) {
+                errorMessage = String((error as { message: string }).message);
+            }
+
+            Swal.fire({
+                position: "top-center",
+                icon: "error",
+                title: errorMessage,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+
         console.log("Form Data Submitted:", formData);
     };
+
+
     return (
-        <div style={{fontFamily: 'Decular'}} className='  mx-auto h-screen '>
+        <div className='  mx-auto h-screen '>
             <MaxWidth>
                 <div className=' flex lg:flex-row md:flex-row flex-col justify-between items-center mt-[7%] '>
                     <div className=' max-w-[584px] bg-white p-6 rounded-3xl shadow-md  '>
@@ -66,7 +113,7 @@ const SetNewPassword: React.FC = () => {
                                         type={showPassword ? "text" : "password"}
                                         name="password"
                                         placeholder="Password"
-                                        value={formData.password}
+                                        value={password}
                                         onChange={handleChange}
                                         className="w-full py-3 placeholder:text-[#818080] placeholder:text-[16px] px-10 rounded-lg border-none bg-[#F5F5F5] focus:outline-none"
                                     />
@@ -95,9 +142,9 @@ const SetNewPassword: React.FC = () => {
                                 </span>
                                     <input
                                         type={showConfirmPassword ? "text" : "password"}
-                                        name="confirmPassword"
+                                        name="password_confirmation"
                                         placeholder="Confirm Password"
-                                        value={formData.confirmPassword}
+                                        value={password_confirmation}
                                         onChange={handleChange}
                                         className="w-full py-3 placeholder:text-[#818080] placeholder:text-[16px] px-10 rounded-lg border-none bg-[#F5F5F5] focus:outline-none"
                                     />

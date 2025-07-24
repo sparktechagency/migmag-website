@@ -63,7 +63,7 @@ const OtpVerifyPage: React.FC = () => {
             return;
         }
 
-        console.log(`OTP send again: ${email}`);
+
 
         try {
             const res = await resendOtp(email).unwrap();
@@ -103,8 +103,8 @@ const OtpVerifyPage: React.FC = () => {
         try {
             const res = await registerOtpVerify(payload).unwrap();
             if (res.success) {
-                router.push("/dashboard");
-                localStorage.setItem("token", res.data.token);
+                router.push("/set-new-password");
+                localStorage.setItem("forget-token", res.data.token);
 
                 Swal.fire({
                     position: "top-center",
