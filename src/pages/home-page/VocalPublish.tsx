@@ -38,11 +38,11 @@ const VocalPublish: React.FC = () => {
               </h1>
             </div>
             <div>
-              <div className=" flex flex-col lg:flex-row md:flex-row  items-center lg:gap-x-10 md:gap-10 ">
-                <span className="  " >  
+              <div className=" flex flex-col lg:flex-row md:flex-row  lg:items-center justify-center lg:gap-x-10 md:gap-10 ">
+                <span className=" block ml-1   " >
                   <svg
-                    width="44"
-                    height="44"
+                    width="32"
+                    height="32"
                     viewBox="0 0 44 45"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +74,7 @@ const VocalPublish: React.FC = () => {
                     alt={"download"}
                     width={30}
                     height={35}
-                    className={"object-cover w-11 h-11 w-full "}
+                    className={" object-cover w-11 h-11  "}
                   />
                 </span>
                 <div className="  ">
@@ -130,7 +130,7 @@ const VocalPublish: React.FC = () => {
               “LOVE TUNEM - GREAT CHOICE AND EVEN BETTER SERVICE”{" "}
             </h1>
             <p className="mt-2 text-lg font-medium  textColor ">
-              Mantas Stinson (Lithuania HQ .Label Manager Godard, London
+              Mantas Stinson (Lithuania HQ .Label Manager)
             </p>
 
             <div className="flex flex-col md:flex-row justify-center items-center gap-6 my-10">

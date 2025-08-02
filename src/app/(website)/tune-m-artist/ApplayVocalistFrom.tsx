@@ -1,5 +1,10 @@
-import React from 'react'
+"use client"
+import React, {useState} from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
+import Swal from "sweetalert2";
+import {useApplyForArtistRequestMutation} from "@/redux/api/home-api/homeApi";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import {ApplyForArtistApiPayload} from "@/utility/api-type/homeApiType";
 
 
 const ApplayVocalistFrom: React.FC = () => {
@@ -13,10 +18,81 @@ const ApplayVocalistFrom: React.FC = () => {
         'OTHER'
     ];
 
+
+    const [name, setName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [socialLink, setSocialLink] = useState<string>('');
+    const [about, setAbout] = useState<string>('');
+    const [genree, setGenre] = useState<string[]>([]);
+    const [other_genre, setOther_genre] = useState<string>('');
+    const [audio, setAudio] = useState<File | null>(null);
+
+    const handleGenreChange = (genre: string) => {
+        if (genree.includes(genre)) {
+            setGenre(genree.filter((g) => g !== genre));
+        } else {
+            setGenre([...genree, genre]);
+        }
+    };
+
+    const [applyForArtistRequest, {isLoading}] = useApplyForArtistRequestMutation()
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('social_link', socialLink);
+        formData.append('about', about);
+
+        genree.forEach((genre) => {
+            formData.append('genres[]', JSON.stringify(genre));
+        });
+
+        formData.append('other_genre', other_genre);
+
+        if (audio instanceof File) {
+            formData.append('file', audio);
+        }
+
+        try {
+            const res = await applyForArtistRequest(formData).unwrap();
+            console.log(res);
+            if (res) {
+                setName('');
+                setEmail('');
+                setSocialLink('');
+                setAbout('');
+                setGenre([]);
+                setOther_genre('');
+                setAudio(null); // reset to null if audio is File | null
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Submitted successfully!',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        } catch (err) {
+            console.error(err);
+            const error = err as FetchBaseQueryError & { data?: { message?: string } };
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: error?.data?.message || 'Something went wrong',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    };
+
+
     return (
         <div className=' bg-black '>
             <MaxWidth>
-                <div  className=' max-w-[1366px] mx-auto py-8 lg:py-[60px] px-4 '>
+                <div className=' max-w-[1366px] mx-auto py-8 lg:py-[60px] px-4 '>
                     <div className=' flex lg:flex-row flex-col items-start gap-y-8 lg:gap-y-0 relative lg:gap-5 '>
 
                         {/* left side  */}
@@ -60,72 +136,83 @@ const ApplayVocalistFrom: React.FC = () => {
                                 </div>
 
 
-
-
                             </div>
 
                         </div>
                         {/* right side  */}
                         <div className='  w-full '>
 
-                            <form>
-                                {/* name  */}
-                                <div className=' flex flex-col '>
-                                    <label className=' text-white text-lg font-bold leading-6  '
-                                           htmlFor="name">Name</label>
-                                    <input id='name'
-                                           className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
-                                           type="text"/>
-                                </div>
-
-                                {/* email  */}
-
-                                <div className=' flex flex-col mt-5 text-lg font-bold leading-6  '>
-                                    <label className=' text-white  ' htmlFor="email">Email</label>
-                                    <input id='email'
-                                           className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
-                                           type="email"/>
-                                </div>
-
-                                {/* Social link(optional) */}
-
-                                <div className=' flex flex-col mt-5  '>
-                                    <label className=' text-white text-lg font-bold leading-6  ' htmlFor="stageName">Social
-                                        link </label>
-                                    <input id='stageName' placeholder={"Instagram Or Tiktok"}
-                                           className='hover:outline-0  focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium '
-                                           type="text"/>
-                                </div>
-
-
-                                {/* Tell us about you */}
-
-                                <div className='flex flex-col mt-5'>
-                                    <label className='text-white text-lg font-bold leading-6' htmlFor="aboutUs">
-                                        Tell us about you
-                                    </label>
-                                    <textarea
-                                        id='aboutUs'
-                                        placeholder='What makes you a great fit for TUNEM?'
-                                        className='hover:outline-0 focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
-                                        rows={4} // You can adjust the number of rows if needed
+                            <form onSubmit={handleSubmit}>
+                                {/* Name */}
+                                <div className='flex flex-col'>
+                                    <label htmlFor="name"
+                                           className='text-white text-lg font-bold leading-6'>Name</label>
+                                    <input
+                                        id='name'
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
+                                        type="text"
                                     />
                                 </div>
 
-                                {/* genre  */}
+                                {/* Email */}
+                                <div className='flex flex-col mt-5'>
+                                    <label htmlFor="email"
+                                           className='text-white text-lg font-bold leading-6'>Email</label>
+                                    <input
+                                        id='email'
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
+                                        type="email"
+                                    />
+                                </div>
 
-                                <div className='bg-black mt-5 text-white max-w-5xl mx-auto'>
+                                {/* Social Link */}
+                                <div className='flex flex-col mt-5'>
+                                    <label htmlFor="socialLink" className='text-white text-lg font-bold leading-6'>Social
+                                        link</label>
+                                    <input
+                                        id='socialLink'
+                                        placeholder="Instagram or TikTok"
+                                        value={socialLink}
+                                        onChange={(e) => setSocialLink(e.target.value)}
+                                        className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
+                                        type="text"
+                                    />
+                                </div>
+
+                                {/* About */}
+                                <div className='flex flex-col mt-5'>
+                                    <label htmlFor="about" className='text-white text-lg font-bold leading-6'>Tell us
+                                        about you</label>
+                                    <textarea
+                                        id='about'
+                                        value={about}
+                                        onChange={(e) => setAbout(e.target.value)}
+                                        placeholder='What makes you a great fit for TUNEM?'
+                                        className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
+                                        rows={4}
+                                    />
+                                </div>
+
+                                {/* Genre */}
+                                <div className='bg-black mt-5 text-white'>
                                     <h3 className='text-lg font-bold mb-4'>
                                         What genre do you work with the most? (multiple choice)
                                     </h3>
-                                    <div className='flex flex-wrap gap-6  '>
+                                    <div className='flex flex-wrap gap-6'>
                                         {genres.map((genre, index) => (
-                                            <div key={index} className='flex items-center gap-2 cursor-pointer '>
+                                            <div key={index} className='flex items-center gap-2 cursor-pointer'>
                                                 <input
-                                                    type='checkbox'
+                                                    type="checkbox"
                                                     id={genre}
-                                                    name='genre'
-                                                    className='appearance-none cursor-pointer w-6 h-6 rounded-full border-2 border-white checked:bg-yellow-400 checked:border-yellow-400'
+                                                    name="genre"
+                                                    value={genre}
+                                                    onChange={() => handleGenreChange(genre)}
+                                                    checked={genree.includes(genre)}
+                                                    className="appearance-none cursor-pointer w-6 h-6 rounded-full border-2 border-white checked:bg-yellow-400 checked:border-yellow-400"
                                                 />
                                                 <label htmlFor={genre} className='text-white cursor-pointer'>
                                                     {genre}
@@ -135,46 +222,52 @@ const ApplayVocalistFrom: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* other genre  */}
+                                {/* Other Genre */}
                                 <div className='flex flex-col mt-5'>
-                                    <label className='text-white text-lg font-bold leading-6' htmlFor="otherGenre">
-                                        If you choose other, which genre?
+                                    <label htmlFor="otherGenre" className='text-white text-lg font-bold leading-6'>
+                                        If you chose "Other", which genre?
                                     </label>
                                     <textarea
                                         id='otherGenre'
-                                        
-                                        className='hover:outline-0 placeholder:text-[#818080] placeholder:text-lg placeholder:leading-6 focus:outline-0 hover:ring-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
-                                        rows={4} // You can adjust the number of rows if needed
+                                        value={other_genre}
+                                        onChange={(e) => setOther_genre(e.target.value)}
+                                        className='hover:outline-0 placeholder:text-[#818080] placeholder:text-lg focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
+                                        rows={2}
                                     />
                                 </div>
 
-
-                                {/* upload file  */}
+                                {/* Audio Upload */}
                                 <div className='flex flex-col mt-5'>
-                                    <label
-                                        className='text-white text-lg font-bold leading-6'
-                                        htmlFor='fileUpload'
-                                    >
+                                    <label htmlFor='fileUpload' className='text-white text-lg font-bold leading-6'>
                                         Upload Your File
                                     </label>
-                                    <div>
-                                        <input
-                                            id='fileUpload'
-                                            type='file'
-                                            className='hover:outline-0 focus:outline-0 hover:ring-0 mt-5 border border-[#818080] px-10 rounded-2xl w-full lg:w-[45%] bg-black text-white py-2 text-lg font-medium cursor-pointer'
-                                        />
-                                    </div>
+                                    <input
+                                        id='fileUpload'
+                                        type='file'
+                                        accept='audio/*'
+                                        onChange={(e) => {
+                                            if (e.target.files && e.target.files[0]) {
+                                                setAudio(e.target.files[0]);
+                                            }
+                                        }}
+                                        className='hover:outline-0 focus:outline-0 mt-5 border border-[#818080] px-10 rounded-2xl w-full lg:w-[45%] bg-black text-white py-2 text-lg font-medium cursor-pointer'
+                                    />
                                 </div>
 
-
-                                <div className=' mt-9 '>
+                                {/* Submit */}
+                                <div className='mt-9'>
                                     <button
-                                        className=' cursor-pointer text-center text-lg font-medium bg-[#D9D9D9] w-full py-1.5 rounded-2xl   '>SEND
-                                        NOW
+                                        type="submit"
+                                        className='cursor-pointer text-center text-lg font-medium bg-[#D9D9D9] w-full py-1.5 rounded-2xl'>
+                                        {
+                                            isLoading ? <>
+                                                Loading...
+                                            </> : <>
+                                                SEND NOW
+                                            </>
+                                        }
                                     </button>
                                 </div>
-
-
                             </form>
 
 

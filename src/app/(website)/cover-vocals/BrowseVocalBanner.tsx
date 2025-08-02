@@ -15,21 +15,21 @@ const BrowseVocalBanner: React.FC = () => {
                         <p className="text-lg lg:text-xl font-medium leading-relaxed text-white/90 mb-8 max-w-lg">
                             Pro cover vocals, ready to use. Secure your license and release with confidence.
                         </p>
-                        <div className="rounded-lg overflow-hidden shadow-lg flex flex-row gap-x-5 ">
+                        <div className="rounded-lg overflow-hidden shadow-lg flex flex-row gap-x-12 ">
                             <Image
                                 src="/update-image/cover-vocal/icon/icon-1.png"
                                 width={77}
-                                height={27}
+                                height={77}
                                 alt="Sub Banner"
-                                className="w-28 h-auto object-cover"
+                                className="w-28 h-auto "
                                 priority
                             />
                             <Image
                                 src="/update-image/cover-vocal/icon/icon-2.png"
                                 width={77}
-                                height={27}
+                                height={77}
                                 alt="Sub Banner"
-                                className="w-40 h-auto object-cover"
+                                className="w-28 h-auto "
                                 priority
                             />
                             <Image
@@ -37,7 +37,7 @@ const BrowseVocalBanner: React.FC = () => {
                                 width={77}
                                 height={27}
                                 alt="Sub Banner"
-                                className="w-36 h-auto object-cover"
+                                className="w-28 h-aut "
                                 priority
                             />
                         </div>

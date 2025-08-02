@@ -1,7 +1,16 @@
+"use client"
 import UserDashboard from '@/pages/user-dashboard/UserDashboard'
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useRouter} from "next/navigation";
 
-const page: React.FC = () => {
+const Page: React.FC = () => {
+    const router = useRouter();
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            router.push("/login");
+        }
+    }, [router]);
     return (
         <div>
             <UserDashboard></UserDashboard>
@@ -10,4 +19,4 @@ const page: React.FC = () => {
     )
 }
 
-export default page
+export default Page

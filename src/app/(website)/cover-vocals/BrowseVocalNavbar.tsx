@@ -6,8 +6,19 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import { FaCartArrowDown } from "react-icons/fa";
 import MaxWidth from "@/components/max-width/MaxWidth";
+import {useUserProfileQuery} from "@/redux/api/authApi/authApi";
+import Image from "next/image";
+import {imgUrl} from "@/utility/img/imgUrl";
 
 const BrowseVocalNavbar: React.FC = () => {
+    const [token, setToken] = useState<string | null>(null);
+    const {data} = useUserProfileQuery(undefined);
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        setToken(storedToken);
+    }, []);
+
     const [drawerOpen, setDrawerOpen] = useState(false)
     const pathname = usePathname()
 
@@ -138,12 +149,30 @@ const BrowseVocalNavbar: React.FC = () => {
                                 </Link>
                             </div>
 
-                            <Link href="/login">
-                                <button
-                                    className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
-                                    Log in
-                                </button>
-                            </Link>
+
+                            <div className={"  "}>
+                                {
+                                    token && (
+                                        <Image
+                                            src={`${imgUrl}/${data?.data?.avatar}`}
+                                            alt={data?.full_name || "User Avatar"}
+                                            width={40}
+                                            height={40}
+                                            className="rounded-full border w-14 h-14  "
+                                        />
+                                    )
+                                }
+                                {
+                                    !token && (
+                                        <Link href="/login">
+                                            <button
+                                                className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
+                                                Log in
+                                            </button>
+                                        </Link>
+                                    )
+                                }
+                            </div>
                         </nav>
                     </div>
 

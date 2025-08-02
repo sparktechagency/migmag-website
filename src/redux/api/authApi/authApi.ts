@@ -4,15 +4,20 @@ import {
     CreateNewPasswordResponse,
     LoginApiResponse,
     LoginPayload,
-    ProfileUpdatePayload,
-    ProfileUpdateResponse,
+
     RegisterOtpVerifyPayload,
     RegisterOtpVerifyResponse,
     RegisterPayload,
     RegisterUserResponse,
     ResendOtpPayload,
-    ResendOtpVerifyResponse, UserProfileApiResponse,
+    ResendOtpVerifyResponse,
 } from "@/utility/api-type/auth-api-type";
+import {
+    FollowApiResponse, FollowListApiResponse, OrderApiResponse,
+    UnfollowApiResponse, UserProfileApiResponse,
+    WishListApiResponse, WishListDetailsApiResponse,
+    wishRemoveApiResponse
+} from "@/utility/api-type/homeApiType";
 
 const authApi = createApi({
     reducerPath: 'userApi',
@@ -22,8 +27,9 @@ const authApi = createApi({
             const token = localStorage.getItem('token');
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
+                headers.set('Accept', `*/*`);
             }
-            headers.set('Content-Type', 'application/json');
+
             return headers;
         },
     }),
@@ -34,7 +40,7 @@ const authApi = createApi({
             query: (payload) => ({
                 url: "/register",
                 method: "POST",
-                body: JSON.stringify(payload),
+                body: payload  ,
             }),
             invalidatesTags: ['User'],
         }),
@@ -44,7 +50,7 @@ const authApi = createApi({
             query: (payload) => ({
                 url: "/otp-verify",
                 method: "POST",
-                body: JSON.stringify(payload),
+                body: payload,
             }),
             invalidatesTags: ['User'],
         }),
@@ -73,25 +79,123 @@ const authApi = createApi({
             query: (payload) => ({
                 url: "/login",
                 method: "POST",
-                body: JSON.stringify(payload),
+                body: payload,
             }),
             invalidatesTags: ['User'],
         }),
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------------------------------------------UPDATEPRoFile__________________
         // update profile
-        updateProfile: builder.mutation<ProfileUpdateResponse, ProfileUpdatePayload>({
-            query: (payload) => ({
-                url: "/update-profile?_method=PUT",
-                method: "POST",
-                body: JSON.stringify(payload),
+        updateProfile: builder.mutation({
+            query: (formData) => ({
+                url: "/update-profile",
+                method: "POST",  // or "PUT" if your API expects PUT
+                body: formData,
+                // Remove the Content-Type header - let the browser set it automatically
             }),
-            invalidatesTags: ['User'],
         }),
+// ----------------------------------------------------------UPDATEPRoFile__________________
+
+
+
+
+
+
+
+
+
+
+
 
         // profile
         userProfile: builder.query({
             query: () => "/profile"
         }),
+        addWishList : builder.mutation<WishListApiResponse,{songId:number}>({
+           query : (songId)=>({
+               url : `/create-wishlist/${songId}`,
+               method : "POST",
+           }),
+            invalidatesTags: ['User'],
+        }),
+        removeWish : builder.mutation<wishRemoveApiResponse,{songId:number}>({
+            query : (songId)=>({
+                url : `/remove-wishlist/${songId}`,
+                method : "POST"
+            })
+        }),
+
+        wishList : builder.query({
+           query : ()=>({
+               url : `/wishlist`,
+               method : "GET"
+           })
+        }),
+
+        addFollow : builder.mutation<FollowApiResponse,{id:string}>({
+            query : (id)=>({
+                url : `/follow/${id}`,
+                method : "POST"
+            })
+        }),
+        unFollow : builder.mutation<UnfollowApiResponse,{id:string}>({
+            query : (id)=>({
+                url : `/unfollow/${id}`,
+                method : "PATCH"
+            })
+        }),
+        followList : builder.query<FollowListApiResponse,void>({
+           query : ()=>({
+               url : "/follow",
+               method : "GET"
+           })
+        }),
+        support : builder.mutation({
+            query : (payload)=>({
+                url : "/support",
+                method : "POST",
+                body : JSON.stringify(payload)
+            })
+        }),
+        // checkout api
+        createPaymentIntent : builder.mutation({
+            query : (payload)=>({
+                url : `/create-payment-intent`,
+                method : "POST",
+                body : JSON.stringify(payload)
+            })
+        }),
+        paymentSuccessApi : builder.mutation<OrderApiResponse,void>({
+            query : (payload)=>({
+                url : "/create-order",
+                method : "POST",
+                body : JSON.stringify(payload)
+            })
+        }),
+        userOrderApi : builder.query({
+            query : ()=>({
+                url : "/user-orders",
+                method : "GET"
+            })
+        }),
+        userProfileApi: builder.query<UserProfileApiResponse, void>({
+            query: () => "/profile" // shortcut syntax
+        })
     }),
 });
 
@@ -103,6 +207,17 @@ export const {
     useCreateNewPasswordMutation,
     useUpdateProfileMutation,
     useUserProfileQuery,
+    useAddWishListMutation,
+    useRemoveWishMutation,
+    useAddFollowMutation,
+    useUnFollowMutation,
+    useWishListQuery,
+    useFollowListQuery,
+    useSupportMutation,
+    useCreatePaymentIntentMutation,
+    usePaymentSuccessApiMutation,
+    useUserOrderApiQuery,
+    useUserProfileApiQuery
 } = authApi;
 
 export default authApi;

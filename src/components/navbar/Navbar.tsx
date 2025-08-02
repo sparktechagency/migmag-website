@@ -40,8 +40,8 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         setDrawerOpen(false)
     }, [pathname])
-    const {data, isLoading, isError} = useUserProfileQuery();
 
+    const {data} = useUserProfileQuery(undefined);
 
 
 
@@ -163,7 +163,7 @@ const Navbar: React.FC = () => {
                                             alt={data?.full_name || "User Avatar"}
                                             width={40}
                                             height={40}
-                                            className="rounded-full"
+                                            className="rounded-full border w-14 h-14  "
                                         />
                                     )
                                 }

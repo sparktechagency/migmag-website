@@ -20,7 +20,7 @@ const reviews: Review[] = [
     {
         name: "Kimberly",
         role: "Vocalist at TuneM",
-        image: "/update-image/tuneM-Artist/review/kimberly.png",
+        image: "/update-image/tuneM-Artist/review/kimberly.webp",
         review:
             "Working with TuneM for over five years has been a steady part of my growth as an artist. It’s opened up a lot of opportunities, and over time, it’s helped me build a career where I can support myself through music",
     },
@@ -60,7 +60,7 @@ const ArtistSlider: React.FC = () => {
                                             alt={review.name}
                                             width={300}
                                             height={500}
-                                            className={` rounded-full w-20 h-20  `}
+                                            className={` rounded-full  w-20 h-20  `}
                                         />
                                     )}
                                 </div>
@@ -78,7 +78,7 @@ const ArtistSlider: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className={" "} >
+                                <div className={"   "} >
                                     {/* Avatar right */}
                                     {isRight && (
                                         <Image
@@ -86,7 +86,7 @@ const ArtistSlider: React.FC = () => {
                                             alt={review.name}
                                             width={300}
                                             height={500}
-                                            className=" rounded-full w-20 h-20  "
+                                            className=" object-bottom rounded-full  w-20 h-20  "
                                         />
                                     )}
                                 </div>

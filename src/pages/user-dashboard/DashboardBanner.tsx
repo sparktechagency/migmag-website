@@ -17,7 +17,7 @@ export default function Banner() {
                 {/* Overlay Content at Top-Left */}
                 <div className="absolute inset-0 text-white flex flex-col items-start justify-start p-4 md:p-6 bg-gradient-to-b from-black/70 via-black/30 to-transparent">
                     <h1  className="text-lg md:text-xl lg:text-2xl text-[#E7F056] font-bold leading-snug">New artist entry</h1>
-                    <h2 style={{ fontFamily: 'Bayon' }} className="text-3xl md:text-4xl lg:text-5xl leading-tight uppercase mt-1">chemical solo</h2>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight uppercase mt-1">chemical solo</h2>
 
                     {/* Location */}
                     <div className="flex items-center gap-2 mt-3 md:mt-4">

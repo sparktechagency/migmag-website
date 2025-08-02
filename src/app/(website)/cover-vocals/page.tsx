@@ -3,10 +3,10 @@
 import React from 'react'
 import BrowseVocalBanner from './BrowseVocalBanner'
 import BrowseVocalMarque from './BrowseVocalMarque'
-import BrowseMusickVocalSlider from './BrowseMusickVocalSlider';
 import BrowseAllVocal from './BrowseAllVocal'
 import BrowseVocalNavbar from "@/app/(website)/cover-vocals/BrowseVocalNavbar";
 import BrowseVocalFooter from './BrowseVocalFooter';
+import BrowseMusickVocalSlider from "@/app/(website)/vocals/BrowseMusickVocalSlider";
 
 
 const Page: React.FC = () => {
@@ -28,7 +28,9 @@ const Page: React.FC = () => {
                 </div>
 
                 <div>
-                    <BrowseMusickVocalSlider/>
+
+                    <BrowseMusickVocalSlider></BrowseMusickVocalSlider>
+
                 </div>
                 <div className=' pb-12 '>
                     <BrowseAllVocal/>

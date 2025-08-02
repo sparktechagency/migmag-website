@@ -3,79 +3,34 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
+import {useTopArtistListQuery} from "@/redux/api/home-api/homeApi";
+import {imgUrl} from "@/utility/img/imgUrl";
 
 const ArtistList: React.FC = () => {
 
-    interface SingerInterface {
-        image: string;
-        name: string;
-        singer: string;
-        genre: string
-    }
 
-    const singerData: SingerInterface[] = [
-        {
-            image: "/images/home-page/artist/singer-3.png",
-            name: "Blinding Lights",
-            singer: "The Weeknd",
-            genre: "Pop"
-        },
-        {
-            image: "/images/home-page/artist/singer-4.png",
 
-            name: "Shape of You",
-            singer: "Ed Sheeran",
-            genre: "Pop"
-        },
-        {
-            image: "/images/home-page/artist/singer-5.png",
-            name: "Levitating",
-            singer: "Dua Lipa",
-            genre: "Disco-Pop"
-        },
-        {
-            image: "/images/home-page/artist/singer-6.png",
-            name: "Bad Guy",
-            singer: "Billie Eilish",
-            genre: "Electropop"
-        },
-        {
-            image: "/images/home-page/artist/singer-1.png",
-            name: "Lose Yourself",
-            singer: "Eminem",
-            genre: "Hip-Hop"
-        },
-        {
-            image: "/images/home-page/artist/singer-2.png",
-            name: "Peaches",
-            singer: "Justin Bieber",
-            genre: "R&B"
-        },
-        {
-            image: "/images/home-page/artist/singer-3.png",
-            name: "Stay",
-            singer: "The Kid LAROI & Justin Bieber",
-            genre: "Pop"
-        },
-        {
-            image: "/images/home-page/artist/singer-4.png",
-            name: "Uptown Funk",
-            singer: "Mark Ronson ft. Bruno Mars",
-            genre: "Funk"
-        },
-        {
-            image: "/images/home-page/artist/singer-5.png",
-            name: "Thinking Out Loud",
-            singer: "Ed Sheeran",
-            genre: "Soul"
-        },
-        {
-            image: "/images/home-page/artist/singer-6.png",
-            name: "Happier Than Ever",
-            singer: "Billie Eilish",
-            genre: "Alternative"
-        }
-    ]
+
+    const { data} = useTopArtistListQuery();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div 
              className="bg-[url('/images/home-page/artist/artistBgImg.png')] bg-no-repeat bg-cover bg-center px-4  w-full">
@@ -85,7 +40,7 @@ const ArtistList: React.FC = () => {
                     <div
                         className=' lg:my-10 my-4   grid lg:grid-cols-6 md:grid-cols-4 grid-cols-1  flex-col mx-auto lg:flex-row items-center justify-between gap-3 lg:gap-7     '>
                         {
-                            singerData.slice(0, 6).map((item, i) => {
+                            data?.data?.data.slice(0, 6).map((item , i) => {
                                 return (
                                     <div
                                         key={i}
@@ -94,11 +49,11 @@ const ArtistList: React.FC = () => {
                                         <Link href={"/artist-library"}>
 
                                             <Image
-                                                src={item.image}
+                                                src={`${imgUrl}/${item.profile}`}
                                                 width={213}
                                                 height={163}
                                                 alt={item.name}
-                                                className="object-cover mx-auto w-full "
+                                                className="  h-40  mx-auto w-full "
                                             />
                                             <div className='mt-2'>
                                                 <h1 className=' headerColor lg:text-xl leading-6  '>

@@ -1,5 +1,7 @@
 // registration types
 
+import {appendFile} from "node:fs";
+
 export interface RegisterUserResponse {
     success: boolean;
     message: string;
@@ -115,16 +117,19 @@ export interface CreateNewPasswordResponse {
 }
 // update profile
 
-export interface ProfileUpdatePayload {
-    full_name : string;
-    avatar : string;
-}
-
-export interface ProfileUpdateResponse {
-    success : boolean;
-    message : string;
-
-}
+// export interface ProfileUpdatePayload {
+//     full_name : string;
+//     email : string;
+//     contact : string | null;
+//     location : null | string ;
+//     // avatar : File | null;
+// }
+//
+// export interface ProfileUpdateResponse {
+//     success : boolean;
+//     message : string;
+//
+// }
 
 
 // user profile
@@ -144,11 +149,11 @@ export type UserProfile = {
 
 
 
-export type UserProfileApiResponse = {
-    success: boolean;
-    data: UserProfile;
-    message: string;
-};
+// export type UserProfileApiResponse = {
+//     success: boolean;
+//     data: UserProfile;
+//     message: string;
+// };
 
 
 

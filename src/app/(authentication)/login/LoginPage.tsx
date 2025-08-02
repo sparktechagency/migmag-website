@@ -7,6 +7,7 @@ import {motion, AnimatePresence} from "framer-motion";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import RegisterFrom from "@/app/(authentication)/login/RegisterFrom";
 import LoginForm from "@/app/(authentication)/login/LoginFrom";
+import Image from "next/image";
 
 const LoginPage: React.FC = () => {
     const [activeForm, setActiveForm] = useState<"login" | "register">("login");
@@ -14,9 +15,14 @@ const LoginPage: React.FC = () => {
     return (
         <div className="bg-gradient-to-br from-[#0C1520] via-[#101A26] to-[#0C1520] text-white  pb-10">
             <MaxWidth>
-                <div className="flex lg:flex-row flex-col justify-between items-center  gap-10 pt-10 pb-10">
+                <div className="flex lg:flex-row flex-col justify-between items-center   gap-10 pt-10 pb-10">
                     {/* ✅ Completely Static Left Side */}
+
                     <div className="lg:w-1/2 px-4">
+                        <div>
+                            <Image src={"/update-image/logo/logo.png"} alt={"logo"} width={200} height={400}
+                                   className={` mb-10 `}/>
+                        </div>
                         <h1 className="text-5xl font-bold leading-tight">
                             Get <span className="text-yellow-400">Vocals</span>
                             <br/>
@@ -28,7 +34,7 @@ const LoginPage: React.FC = () => {
                     </div>
 
                     {/* ✅ Right Side */}
-                    <div className="lg:w-1/2 w-full    max-w-md px-4">
+                    <div className="lg:w-1/2 w-full   mt-10  max-w-md px-4">
                         {/* Toggle Buttons */}
                         <div className="flex justify-center mb-6 rounded-md overflow-hidden shadow-lg">
                             <button
@@ -54,7 +60,7 @@ const LoginPage: React.FC = () => {
                         </div>
 
                         {/* ✅ Fixed height and animated only inner form */}
-                        <div className="relative bg-[#13181E] rounded-xl p-6 shadow-xl  h-[750px] overflow-hidden">
+                        <div className="relative bg-[#13181E] rounded-xl p-6 shadow-xl  h-[700px] overflow-hidden">
                             <AnimatePresence mode="wait">
                                 {activeForm === "login" ? (
                                     <motion.div
@@ -86,6 +92,12 @@ const LoginPage: React.FC = () => {
 
                 {/* Footer */}
                 <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm mt-20 px-4">
+                    <Link href={"/"}>
+
+                        <Image src={"/update-image/logo/logo.png"} alt={"logo"} width={200} height={400}
+                               className={` mb-10 `}/>
+
+                    </Link>
                     <Link href="/refund-policy" className="text-white hover:text-yellow-400 transition">
                         Refund Policy
                     </Link>

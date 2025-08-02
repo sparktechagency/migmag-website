@@ -4,14 +4,12 @@ import React, {useState} from "react";
 import {MdEmail, MdLock} from "react-icons/md";
 import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
 import {LoginPayload} from "@/utility/api-type/auth-api-type";
-import {useLoginUserMutation, useRegisterUserMutation} from "@/redux/api/authApi/authApi";
+import {useLoginUserMutation} from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 
 
 const LoginForm: React.FC = () => {
-    const router = useRouter();
     const [loginUser, {isLoading}] = useLoginUserMutation();
     const [formData, setFormData] = useState<LoginPayload>({
         email: "",
@@ -68,22 +66,14 @@ const LoginForm: React.FC = () => {
             }
 
         } catch (error: unknown) {
-            let errorMessage = "Login failed. Please try again.";
+            console.log(error);
 
-            // Handle error response from RTK Query
-            if (
-                error &&
-                typeof error === "object" &&
-                "data" in error &&
-                (error as any).data?.message
-            ) {
-                errorMessage = (error as any).data.message;
-            }
+
 
             Swal.fire({
                 position: "top-center",
                 icon: "error",
-                title: errorMessage,
+                title: error.message,
                 showConfirmButton: false,
                 timer: 2000,
             });

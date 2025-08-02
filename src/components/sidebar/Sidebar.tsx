@@ -1,18 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
+import {useFollowListQuery, useUserProfileQuery, useWishListQuery} from "@/redux/api/authApi/authApi";
+import Image from "next/image";
+import {imgUrl} from "@/utility/img/imgUrl";
 
-const navItems = [
-    { label: "Dashboard", href: "/dashboard", badge: null },
-    { label: "My Purchases", href: "/dashboard/purchase", badge: null },
-    { label: "Following", href: "/dashboard/following", badge: 17 },
-    { label: "Wishlist", href: "/dashboard/wishlist", badge: 105 },
-    { label: "Support", href: "/dashboard/support", badge: null },
-    { label: "Account", href: "/dashboard/account", badge: null },
-];
 
 const Sidebar: React.FC = () => {
     const pathName = usePathname();
@@ -21,18 +16,50 @@ const Sidebar: React.FC = () => {
     const handleLinkClick = () => {
         setIsOpen(false);
     };
-
     const router = useRouter();
 
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            router.push("/login");
+        }
+    }, [router]);
+
     const handleSignOut = () => {
-        router.push("/")
-    }
+        localStorage.removeItem("token");
+        router.push("/"); // Navigate first
+        window.location.reload(); // Then reload if needed
+    };
+
+    const {data} = useWishListQuery(undefined);
+    const {data:followData} = useFollowListQuery();
+    const artistList = followData?.data?.data.length || [];
+
+    const totalWishList = data?.data?.data.length || [];
+
+    const navItems = [
+        { label: "Dashboard", href: "/dashboard", badge: null },
+        { label: "My Purchases", href: "/dashboard/purchase", badge: null },
+        { label: "Following", href: "/dashboard/following", badge: artistList },
+        { label: "Wishlist", href: "/dashboard/wishlist", badge: totalWishList },
+        { label: "Support", href: "/dashboard/support", badge: null },
+        { label: "Account", href: "/dashboard/account", badge: null },
+    ];
+
+    // user profile
+
+    const {data:userProfile} = useUserProfileQuery(undefined);
+
+    const userData = userProfile?.data || [] ;
+
+    console.log(userData);
+
 
     return (
         <>
             {/* Hamburger button - visible only on mobile */}
             <button
-                className="fixed top-20 left-4 z-50 2xl:hidden p-2 cursor-pointer rounded-md text-white bg-gray-800"
+                className="fixed  left-4 z-50 2xl:hidden p-2 cursor-pointer rounded-md text-white bg-gray-800"
                 onClick={() => setIsOpen(true)}
                 aria-label="Open sidebar menu"
             >
@@ -60,7 +87,9 @@ const Sidebar: React.FC = () => {
                     <h2 className="text-lg font-semibold">
                         Welcome back
                         <br />
-                        Jenny!
+                        {
+                            userData?.full_name
+                        }
                     </h2>
                     <button
                         className="p-2 rounded-md cursor-pointer text-white bg-gray-800"
@@ -76,7 +105,9 @@ const Sidebar: React.FC = () => {
                     <h2 className="text-lg font-semibold">
                         Welcome back
                         <br />
-                        Jenny!
+                        {
+                            userData?.full_name
+                        }
                     </h2>
                 </div>
 
@@ -117,8 +148,10 @@ const Sidebar: React.FC = () => {
 
                 {/* User info */}
                 <div className="text-center mt-auto">
-                    <div className="w-[104px] h-[104px] mx-auto rounded-full bg-white mb-2" />
-                    <p className="font-medium text-lg">Jenny Drake</p>
+                    <div className="w-[104px] h-[104px] mx-auto rounded-full bg-white mb-2" >
+                         <Image src={`${imgUrl}/${userData?.avatar}`} alt={`${userData?.full_name}`}  className={` rounded-full  `} width={500} height={400} />
+                    </div>
+                    <p className="font-medium text-lg">{userData?.full_name}</p>
                     <p onClick={handleSignOut} className="text-sm text-[#818080] mt-1 cursor-pointer hover:underline">
                         Sign out
                     </p>

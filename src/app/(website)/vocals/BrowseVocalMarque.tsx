@@ -29,7 +29,7 @@ const BrowseVocalMarque: React.FC = () => {
                         <h1   className=" headerColor  text-2xl lg:text-5xl leading-24 " >Want to Hire singers Royalty Free?</h1>
                     </div>
                     <div>
-                        <button ><button className=" cursor-pointer  headerColor textHeader text-lg border border-[#000000] rounded-[17px] py-3 px-6 " >VIEW  OUR SINGERS</button></button>
+                        <button className=" cursor-pointer  headerColor textHeader text-lg border border-[#000000] rounded-[17px] py-3 px-6 " >VIEW  OUR SINGERS</button>
                     </div>
                 </div>
 
