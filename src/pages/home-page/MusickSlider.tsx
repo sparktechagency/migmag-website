@@ -1,190 +1,209 @@
 'use client';
 
-import React, {useState,} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import 'keen-slider/keen-slider.min.css';
-import {useKeenSlider} from 'keen-slider/react';
-import {FiPlay} from 'react-icons/fi';
-import MusickPlayer from '@/components/musick-player/MusickPlayer';
-import MaxWidth from "@/components/max-width/MaxWidth";
+import { FiPlay, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
+import MaxWidth from '@/components/max-width/MaxWidth';
+import { imgUrl } from '@/utility/img/imgUrl';
 
-interface AudioItem {
-    id: number;
-    title: string;
+interface Artist {
     name: string;
-    price: string;
-    img: string;
-    audio: string;
 }
 
-const audioData: AudioItem[] = [
-    {
-        id: 1,
-        title: 'Lost In The Night',
-        name: 'Luna',
-        price: '€120',
-        img: '/images/home-page/latest/latest-1.png',
-        audio: '/images/home-page/audio-1.mp3',
-    },
-    {
-        id: 2,
-        title: 'Lost In The Night',
-        name: 'Luna',
-        price: '€120',
-        img: '/images/home-page/latest/latest-2.png',
-        audio: '/images/home-page/audio-2.mp3',
-    },
-    {
-        id: 3,
-        title: 'Lost In The Night',
-        name: 'Luna',
-        price: '€120',
-        img: '/images/home-page/latest/latest-3.png',
-        audio: '/images/home-page/trending-img/audio-3.mp3',
-    },
-    {
-        id: 4,
-        title: 'Lost In The Night',
-        name: 'Luna',
-        price: '€120',
-        img: '/images/home-page/latest/latest-4.png',
-        audio: '/images/home-page/audio-4.mp3',
-    },
-    {
-        id: 5,
-        title: 'Lost In The Night',
-        name: 'Luna',
-        price: '€120',
-        img: '/images/home-page/latest/latest-5.png',
-        audio: '/images/home-page/audio-4.mp3',
-    },
-    {
-        id: 6,
-        title: 'Lost In The Night',
-        name: 'Luna',
-        price: '€120',
-        img: '/images/home-page/latest/latest-3.png',
-        audio: '/images/home-page/audio-4.mp3',
-    },
-];
+interface Track {
+    id: number;
+    title: string;
+    artist: Artist;
+    song_poster: string;
+    song: string;
+    price: string;
+}
 
 export default function MusicSlider() {
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
-        loop: true,
-        mode: 'free-snap',
-        slides: {
-            origin: 'auto',
-            perView: 5,
-            spacing: 15,
-        },
-        breakpoints: {
-            '(max-width: 340px)': {
-                slides: {perView: 1, spacing: 29},
-            },
-            '(min-width: 340px)': {
-                slides: {perView: 2, spacing: 0},
-            },
-            '(min-width: 640px)': {
-                slides: {perView: 3, spacing: 15},
-            },
-            '(min-width: 1024px)': {
-                slides: {perView: 4, spacing: 24},
-            },
-        },
-    });
+    const [tracks, setTracks] = useState<Track[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     const [showModal, setShowModal] = useState(false);
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const [cardsPerView, setCardsPerView] = useState(5);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        const fetchTrendingVocals = async () => {
+            try {
+                const res = await fetch('http://103.186.20.110:8002/api/latest-trending');
+                const json = await res.json();
+
+                if (json.success) {
+                    setTracks(json.data);
+                } else {
+                    setError('Failed to load data');
+                }
+            } catch (err) {
+                console.error(err);
+                setError('Something went wrong');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTrendingVocals();
+    }, []);
+
+    // Responsive cards per view
+    useEffect(() => {
+        function updateCardsPerView() {
+            const width = window.innerWidth;
+            if (width < 340) setCardsPerView(1);
+            else if (width < 640) setCardsPerView(2);
+            else if (width < 1024) setCardsPerView(3);
+            else setCardsPerView(5);
+        }
+
+        updateCardsPerView();
+        window.addEventListener('resize', updateCardsPerView);
+        return () => window.removeEventListener('resize', updateCardsPerView);
+    }, []);
+
+    // Slide width and max slides
+    const slideWidth = 240; // px, card + margin approx
+    const maxSlide = Math.max(0, tracks.length - cardsPerView);
+
+    // Scroll to slide
+    const scrollToSlide = (slide: number) => {
+        if (!sliderRef.current) return;
+        const scrollPosition = slide * slideWidth;
+        sliderRef.current.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth',
+        });
+        setCurrentSlide(slide);
+    };
+
+    const prevSlide = () => {
+        scrollToSlide(Math.max(0, currentSlide - 1));
+    };
+
+    const nextSlide = () => {
+        scrollToSlide(Math.min(maxSlide, currentSlide + 1));
+    };
 
     const handleOpenModal = (index: number) => {
         setCurrentIndex(index);
         setShowModal(true);
     };
 
-    const nextTrack = () => {
-        if (currentIndex !== null) {
-            const nextIndex = (currentIndex + 1) % audioData.length;
-            setCurrentIndex(nextIndex);
-        }
-    };
 
-    const prevTrack = () => {
-        if (currentIndex !== null) {
-            const prevIndex = (currentIndex - 1 + audioData.length) % audioData.length;
-            setCurrentIndex(prevIndex);
-        }
-    };
+
+
 
     return (
-        <main className=" mt-8">
+        <main className="mt-8">
             <MaxWidth>
-                <h1
-                    className="headerColor text-2xl lg:text-4xl font-semibold  -0 mx-auto ">
+                <h1 className="headerColor text-2xl lg:text-4xl font-semibold mx-auto mb-6">
                     Latest Trending Vocals
                 </h1>
-                <div ref={sliderRef} className="keen-slider relative w-full lg:mt-9 mt-4">
-                    {audioData.map((item, index) => (
-                        <div key={item.id} className="keen-slider__slide w-full px-4 lg:px-0">
-                            <div className="relative w-full h-[260px] overflow-hidden">
-                                <Image src={item.img} fill alt={item.title} className=" rounded-[4px] object-cover"/>
 
-                                <button
-                                    onClick={() => handleOpenModal(index)}
-                                    className="w-[50px] h-[50px] rounded-full bg-[#000000] flex justify-center items-center absolute bottom-4 right-4 z-10"
+                {loading && <p className="text-center text-gray-400 mt-6">Loading...</p>}
+                {error && <p className="text-center text-red-500 mt-6">{error}</p>}
+
+                <div className="relative">
+                    {/* Left arrow */}
+                    <button
+                        onClick={prevSlide}
+                        disabled={currentSlide === 0}
+                        aria-label="Previous"
+                        className={`absolute left-0 top-[42%] cursor-pointer -translate-y-1/2 z-20 p-2 bg-white bg-opacity-60 rounded-full text-black hover:bg-opacity-90 transition ${
+                            currentSlide === 0 ? 'opacity-30 cursor-not-allowed' : ''
+                        }`}
+                    >
+                        <FiChevronLeft size={28} />
+                    </button>
+
+                    {/* Slider container */}
+                    <div
+                        ref={sliderRef}
+                        className="overflow-hidden"
+                        style={{ scrollBehavior: 'smooth' }}
+                    >
+                        <div className="flex gap-4" style={{ width: `${tracks.length * slideWidth}px` }}>
+                            {tracks.map((item, index) => (
+                                <div
+                                    key={item.id}
+                                    className="min-w-[220px] max-w-[220px] flex-shrink-0 cursor-pointer"
                                 >
-                                    <FiPlay className="text-[#E7F056]" size={24}/>
-                                </button>
-                            </div>
-
-                            <h3
-                                className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
-                            <div className={`flex gap-x-6 `}>
-                                <p
-                                   className="textColor lg:text-lg font-bold">{item.name}</p>
-                                <Link href={"/checkout"}>
-                                    <p
-                                       className="textColor lg:text-lg font-bold">{item.price}</p>
-                                </Link>
-                            </div>
+                                    <div className="relative w-full h-[260px] overflow-hidden rounded-md">
+                                        <Image
+                                            src={`${imgUrl}/${item.song_poster}`}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover rounded-md"
+                                        />
+                                        <button
+                                            onClick={() => handleOpenModal(index)}
+                                            className="w-[50px] h-[50px] rounded-full  bg-black bg-opacity-70 flex justify-center items-center cursor-pointer absolute bottom-4 right-4 z-10"
+                                        >
+                                            <FiPlay className="text-[#E7F056]" size={24} />
+                                        </button>
+                                    </div>
+                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
+                                    <div className="flex gap-x-6">
+                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name}</p>
+                                        <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
+                                            <p className="textColor lg:text-lg font-bold">{item.price}</p>
+                                        </Link>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Right arrow */}
+                    <button
+                        onClick={nextSlide}
+                        disabled={currentSlide === maxSlide}
+                        aria-label="Next"
+                        className={`absolute right-0 cursor-pointer top-[42%]  -translate-y-1/2 z-20 p-2 bg-white bg-opacity-60 rounded-full text-black hover:bg-opacity-90 transition ${
+                            currentSlide === maxSlide ? 'opacity-30 cursor-not-allowed' : ''
+                        }`}
+                    >
+                        <FiChevronRight size={28} />
+                    </button>
                 </div>
-                <div
-                     className="  ">
-                    <div className=" lg:mt-[68px] mt-5">
-                        <h1 className=" lg:text-2xl text-xl textColor font-semibold px-4 lg:px-0   ">
-                            Updated every Friday with new royalty-free vocals curated for music producers looking to
-                            elevate
-                            their sound and stand out.
-                        </h1>
-                    </div>
-                    <div className="mt-4 md:mt-12">
-                        <Link href="/vocals">
-                            <button
-                                className="cursor-pointer  block mx-auto   border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]  ">
-                                BROWSE VOCALS
-                            </button>
-                        </Link>
-                    </div>
+
+                <div className="lg:mt-[68px] mt-5">
+                    <h1 className="lg:text-2xl text-xl textColor font-semibold px-4 lg:px-0">
+                        Updated every Friday with new royalty-free vocals curated for music producers looking to
+                        elevate their sound and stand out.
+                    </h1>
+                </div>
+
+                <div className="mt-4 md:mt-12">
+                    <Link href="/vocals">
+                        <button className="cursor-pointer block mx-auto border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]">
+                            BROWSE VOCALS
+                        </button>
+                    </Link>
                 </div>
             </MaxWidth>
-
 
             {showModal && currentIndex !== null && (
                 <MusickPlayer
                     show={showModal}
                     onClose={() => setShowModal(false)}
-                    currentTrack={audioData[currentIndex]}
-                    nextTrack={nextTrack}
-                    prevTrack={prevTrack}
+                    currentTrack={{
+                        title: tracks[currentIndex].title,
+                        name: tracks[currentIndex].artist.name,
+                        song_poster: tracks[currentIndex].song_poster,
+                        song: `${imgUrl}/${tracks[currentIndex].song}`,
+                    }}
                 />
             )}
         </main>
     );
 }
-
-
-
-
-

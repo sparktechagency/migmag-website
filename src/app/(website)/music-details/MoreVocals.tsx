@@ -2,104 +2,73 @@
 
 import MaxWidth from '@/components/max-width/MaxWidth';
 import Image from 'next/image';
-import { FaPlay } from 'react-icons/fa';
+import Link from "next/link";
+import {imgUrl} from "@/utility/img/imgUrl";
+import React from "react";
+import {useArtistDetailsQuery} from "@/redux/api/artistApi/artistApi";
 
-type VocalTrack = {
-    title: string;
-    artist: string;
-    image: string;
-    genre: string;
-    bpm: number;
-    key: string;
-    price: number;
-};
 
-const vocals: VocalTrack[] = [
-    {
-        title: "Need Your Lovin'",
-        artist: 'Elianne',
-        image: '/images/artist-library/artist/artist-1.png',
-        genre: 'House',
-        bpm: 124,
-        key: 'G#min',
-        price: 34,
-    },
-    {
-        title: 'Tell Me',
-        artist: 'Gulsah',
-        image: '/images/artist-library/artist/artist-2.png',
-        genre: 'House',
-        bpm: 128,
-        key: 'C#maj',
-        price: 34,
-    },
-    {
-        title: 'Never Looking Back',
-        artist: 'Damian',
-        image: '/images/artist-library/artist/artist-3.png',
-        genre: 'Progressive House',
-        bpm: 127,
-        key: 'Amaj',
-        price: 34,
-    },
-];
 
-const MoreVocals = () => {
+
+
+const MoreVocals = ({id}:{id:string}) => {
+    const {data} = useArtistDetailsQuery({id});
+
+    const songs = data?.data?.songs ?? [];
+    console.log(songs.length);
     return (
         <MaxWidth>
-            <div className="bg-white rounded-md shadow-sm p-4">
-                {/* Header */}
-                <div className="flex justify-between items-center border-b pb-2 mb-4">
-                    <h2 className="text-md font-semibold">More vocals</h2>
-                    <button className="text-blue-600 text-sm font-medium hover:underline">SEE ALL</button>
-                </div>
-
-                {/* Track List */}
-                <div className="space-y-2">
-                    {vocals.map((track, index) => (
+            <div className="w-full max-w-4xl mx-auto mt-2 flex flex-col gap-4">
+                {songs.length > 0 ? (
+                    songs.map((item, i) => (
                         <div
-                            key={index}
-                            className="flex flex-col md:flex-row md:items-center md:justify-between hover:bg-gray-50 px-2 py-3 rounded-lg transition"
+                            key={i}
+                            className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white rounded-md shadow p-4"
                         >
-                            {/* Left: Image + Play + Info */}
-                            <div className="flex items-center gap-5 md:w-1/3">
-                                {/* Image */}
-                                <div className="w-20 h-20 rounded overflow-hidden">
+                            {/* Left: Image & Play */}
+                            <div className="flex items-center gap-4 w-full sm:w-auto">
+                                <Link href={`/music-details/${item.id}`}>
                                     <Image
-                                        src={track.image}
-                                        alt={track.title}
-                                        width={80}
-                                        height={80}
-                                        className="object-cover w-full h-full rounded"
+                                        src={`${imgUrl}/${item?.song_poster}`}
+                                        alt={item.title || "Album Cover"}
+                                        className="w-14 h-14 object-cover rounded"
+                                        width={56}
+                                        height={56}
                                     />
-                                </div>
-
-                                {/* Play Button */}
-                                <FaPlay size={28} className="text-gray-800 cursor-pointer " />
-
-                                {/* Info */}
+                                </Link>
+                                <button
+                                    className="w-0 h-0 border-l-[10px] cursor-pointer border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"/>
                                 <div>
-                                    <p className="text-sm font-medium text-gray-900">{track.title}</p>
-                                    <p className="text-xs text-gray-500">{track.artist}</p>
+                                    <p className="font-semibold text-sm">{item.title || "Untitled"}</p>
+                                    <p className="text-xs textColor">
+                                        {item?.artist.name || "Unknown"} · {item.bpm || "N/A"} BPM
+                                        · {item.key?.name || "N/A"}
+                                    </p>
                                 </div>
                             </div>
 
-                            {/* Center: Genre, BPM, Key */}
-                            <div className="hidden md:flex items-center justify-center gap-6 text-xs text-gray-500 md:w-1/3">
-                                <p>{track.genre}</p>
-                                <p>{track.bpm} BPM</p>
-                                <p>{track.key}</p>
+                            {/* Middle: Genre and License */}
+                            <div
+                                className="flex flex-wrap sm:flex-nowrap items-center gap-x-24 text-sm textColor w-full sm:w-auto justify-start sm:justify-center">
+                                <span>{item?.type.name || "Genre"}</span>
+                                <span>{item.license?.name || "License"}</span>
                             </div>
 
-                            {/* Right: Price Button */}
-                            <div className="mt-2 md:mt-0 md:w-1/3 flex justify-end">
-                                <button className="bg-blue-600 text-white px-4 py-1.5 rounded text-sm font-semibold hover:bg-blue-700">
-                                    ${track.price}
-                                </button>
+                            {/* Right: Price and Button */}
+                            <div
+                                className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
+                                <Link href="/checkout">
+                                    <button
+                                        className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
+                                        ${item.price || 0}
+                                    </button>
+                                </Link>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    ))
+                ) : (
+                    <p className="text-center text-gray-500">No songs found.</p>
+                )}
             </div>
         </MaxWidth>
     );

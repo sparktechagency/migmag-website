@@ -3,7 +3,6 @@ import Image from 'next/image';
 import React, {useState} from 'react'
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai';
 import MaxWidth from "@/components/max-width/MaxWidth";
-import {useRouter} from "next/navigation";
 import {useCreateNewPasswordMutation} from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 
@@ -15,9 +14,9 @@ const SetNewPassword: React.FC = () => {
         password_confirmation: "",
     });
 
-    const [createNewPassword, {isLoading}] = useCreateNewPasswordMutation();
+    const [createNewPassword ] = useCreateNewPasswordMutation();
 
-    const router = useRouter();
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value, type, checked} = e.target;

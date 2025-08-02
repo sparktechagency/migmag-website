@@ -38,6 +38,8 @@ const RegisterForm = () => {
         password_confirmation,
     } = formData;
 
+    console.log(`formData is ${formData}`)
+
 
     const payload = {
         full_name,
@@ -87,6 +89,8 @@ const RegisterForm = () => {
             }
 
         } catch (error: unknown) {
+
+
             console.error("Registration failed:", error);
 
             let errorMessage = "Registration failed. Try again.";
@@ -106,7 +110,7 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="max-w-[584px] mx-auto p-6 rounded-3xl shadow-md bg-[#1a1a1a] text-white">
+        <div className="max-w-[584px] mx-auto p-6 rounded-3xl shadow-md bg-[#1a1a1a] text-white  ">
             <div className="text-center">
                 <h1 className="text-2xl lg:text-[40px] font-semibold">Welcome!</h1>
                 <p className="mt-2 text-sm">Please register with valid information to create an account.</p>

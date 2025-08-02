@@ -1,193 +1,37 @@
-"use client"
-
-import React, { useState, useEffect, useRef } from 'react';
-import { Search } from 'lucide-react';
-import { motion, AnimatePresence } from "framer-motion";
-import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import React, {useState, useEffect, useRef} from 'react';
+import {Search} from 'lucide-react';
+import {motion, AnimatePresence} from "framer-motion";
+import {HiChevronDown, HiChevronUp} from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import CtaSection from '@/components/cta/CtaSection';
+import {useTopArtistListQuery} from "@/redux/api/home-api/homeApi";
+import {imgUrl} from "@/utility/img/imgUrl";
 
 
-type VocalItem = {
-    id: number;
-    title: string;
-    artist: string;
-    genre: string;
-    bpm: string;
-    key: string;
-    gender: string;
-    license: string;
-    price: string;
-    type: string;
-    image: string;
-};
 
 type FilterType = {
-    genre: string;
-    gender: string;
-    language: string;
-    latest: string
+    genre: string,
+    gender: string,
+    language: string,
+    latest: string,
+
 };
 
 
-type Singer = {
-    id: number;
-    name: string;
-    role: string;
-    genre: string;
-    description: string;
-    image: string;
-};
-
-const singers: Singer[] = [
-    {
-        id: 1,
-        name: "Ethan Levi",
-        role: "Singer - Songwriter",
-        genre: "Hip Hop",
-        description:
-            "A 28 year old singer-songwriter currently attending the Berklee School of Music in Boston, MA. He pulls inspiration from R&B and Neo Soul and has a powerful voice that’s perfect for any track.",
-        image: "/images/artist-library/artist/artist-1.png",
-    },
-    {
-        id: 2,
-        name: "Sophia Grace",
-        role: "Vocalist",
-        genre: "Pop",
-        description:
-            "Sophia is a professional vocalist known for her clean high notes and engaging performance style, featured in over 30 commercial tracks worldwide.",
-        image: "/images/artist-library/artist/artist-2.png",
-    },
-    {
-        id: 3,
-        name: "Jackson Cole",
-        role: "Rapper - Lyricist",
-        genre: "Trap",
-        description:
-            "Jackson brings powerful lyrical depth and rhythm, blending real-life experiences into catchy, hard-hitting verses with strong hooks.",
-        image: "/images/artist-library/artist/artist-3.png",
-    },
-    {
-        id: 4,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-4.png",
-    },
-    {
-        id: 5,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-5.png",
-    },
-    {
-        id: 6,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-6.png",
-    },
-    {
-        id: 7,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-7.png",
-    },
-    {
-        id: 8,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-8.png",
-    },
-    {
-        id: 9,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-4.png",
-    },
-    {
-        id: 10,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-4.png",
-    },
-    {
-        id: 11,
-        name: "Aria Moon",
-        role: "Neo Soul Artist",
-        genre: "R&B",
-        description:
-            "With a velvet voice and heartfelt lyrics, Aria Moon creates a soulful vibe that resonates with deep emotions and chill melodies.",
-        image: "/images/artist-library/artist/artist-4.png",
-    },
-];
-
-CtaSection
+// CtaSection
 
 const BrowseArtist = () => {
-    const genreRef = useRef<HTMLDivElement>(null);
+
+    const {data} = useTopArtistListQuery();
+    const artistList = data?.data?.data ?? [];
+
+
     const genderRef = useRef<HTMLDivElement>(null);
-    const licenseRef = useRef<HTMLDivElement>(null);
-    const typeRef = useRef<HTMLDivElement>(null);
+    const languageRef = useRef<HTMLDivElement>(null);
     const latestRef = useRef<HTMLDivElement>(null);
     const [visibleCount, setVisibleCount] = useState(8);
-
-
-    // Genre 
-
-    const genres: string[] = ['Rock', 'Pop', 'Jazz', 'Classical'];
-    const [open, setOpen] = useState<boolean>(false);
-    const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
-
-    function toggleGenre(genre: string): void {
-        setSelectedGenre((prevSelected) =>
-            prevSelected.includes(genre)
-                ? prevSelected.filter((g) => g !== genre)
-                : [...prevSelected, genre]
-        );
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (genreRef.current && !genreRef.current.contains(event.target as Node)) {
-                setOpen(false);
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -195,6 +39,8 @@ const BrowseArtist = () => {
 
     // Gender  start
     const gender: string[] = ["male", "female"];
+
+
     const [selectedGender, setSelectedGender] = useState<string[]>([]);
     const [openGender, setOpenGender] = useState<boolean>(false);
 
@@ -228,46 +74,10 @@ const BrowseArtist = () => {
     // Gender end
 
 
-    // License  start
-    const License: string[] = [
-        'Creative Commons',
-        'Royalty Free',
-        'Public Domain',
-        'All Rights Reserved',
-    ];
-
-    const [selectedLicense, setSelectedLicense] = useState<string[]>([]);
-    const [openLicense, setOpenLicense] = useState<boolean>(false);
-
-    function toggleLicense(licenseValue: string): void {
-
-        setSelectedLicense((prev) =>
-            prev.includes(licenseValue)
-                ? prev.filter((item) => item !== licenseValue)
-                : [...prev, licenseValue]
-        );
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (
-                licenseRef.current &&
-                !licenseRef.current.contains(event.target as Node)
-            ) {
-                setOpenLicense(false);
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+    // language start
 
 
-    // License end
-
-
-    // Type  start
-    const type: string[] = [
+    const language: string[] = [
         "Rock",
         "Pop",
         "Jazz",
@@ -280,27 +90,28 @@ const BrowseArtist = () => {
         "Folk",
     ];
 
-    const [selectedType, setSelectedType] = useState<string[]>([]);
-    const [openType, setOpenType] = useState<boolean>(false);
+
+    const [selectedLanguage, setSelectedLanguage] = useState<string[]>([]);
+    const [openLanguage, setOpenLanguage] = useState<boolean>(false);
 
     function toggleType(type: string): void {
         let newType: string[];
-        if (selectedType.includes(type)) {
-            newType = selectedType.filter((g) => g !== type);
+        if (selectedLanguage.includes(type)) {
+            newType = selectedLanguage.filter((g) => g !== type);
         } else {
-            newType = [...selectedType, type];
+            newType = [...selectedLanguage, type];
         }
-        setSelectedType((prev) =>
+        setSelectedLanguage((prev) =>
             prev.includes(type) ? prev.filter((i) => i !== type) : [...prev, type]
         );
-        setSelectedType(newType); // ✅ Corrected here
-        setOpenType(false); // dropdown close
+        setSelectedLanguage(newType); // ✅ Corrected here
+        setOpenLanguage(false); // dropdown close
     }
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent): void {
-            if (typeRef.current && !typeRef.current.contains(event.target as Node)) {
-                setOpenType(false);
+            if (languageRef.current && !languageRef.current.contains(event.target as Node)) {
+                setOpenLanguage(false);
             }
         }
 
@@ -309,14 +120,13 @@ const BrowseArtist = () => {
     }, []);
 
 
-    // Type end
+    // Language end
 
 
-    // Latest  start
+// Latest  start
+
     const latest: string[] = ["60", "80", "100", "120", "140", "160"];
-
-
-    const [selectLatest, setselectLatest] = useState<string[]>([]);
+    const [selectLatest, setSelectedLatest] = useState<string[]>([]);
     const [openLatest, setOpenLatest] = useState<boolean>(false);
 
     function toggleLatest(latestValue: string): void {
@@ -324,12 +134,8 @@ const BrowseArtist = () => {
             ? selectLatest.filter((g) => g !== latestValue)
             : [...selectLatest, latestValue];
 
-        setselectLatest((prev) =>
-            prev.includes(latestValue) ? prev.filter((i) => i !== latestValue) : [...prev, latestValue]
-        );
-
-        setselectLatest(newLatest);
-        setOpenLatest(false)
+        setSelectedLatest(newLatest);
+        setOpenLatest(false);
     }
 
     useEffect(() => {
@@ -342,130 +148,18 @@ const BrowseArtist = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+// Latest end
 
-    // Latest end
 
-
-    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [searchTerm, setSearchTerm] = useState("");
     const [filter, setFilter] = useState<FilterType>({
-        genre: '',
-        gender: '',
-        language: '',
+        genre: "",
+        gender: "",
+        language: "",
         latest: "",
     });
-    const [data, setData] = useState<VocalItem[]>([]);
-    console.log(filter, data)
 
-    useEffect(() => {
-        setData([
-            {
-                id: 1,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'Cminor',
-                gender: 'Female',
-                license: 'EXCLUSIVE',
-                price: '€120',
-                type: 'exclusive',
-                image: "/images/artist-library/artist/artist-2.png",
-            },
-            {
-                id: 2,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'Cminor',
-                gender: 'Female',
-                license: 'EXCLUSIVE',
-                price: '€120',
-                type: 'exclusive',
-                image: "/images/artist-library/artist/artist-2.png",
-            },
-            {
-                id: 3,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'G#major',
-                gender: 'Male',
-                license: 'PREMIUM',
-                price: '€120',
-                type: 'premium',
-                image: "/images/artist-library/artist/artist-3.png",
-            },
-            {
-                id: 4,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'Cminor',
-                gender: 'Female',
-                license: 'NON-EXCLUSIVE',
-                price: '€120',
-                type: 'non-exclusive',
-                image: "/images/artist-library/artist/artist-4.png",
-            },
-            {
-                id: 5,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'Cminor',
-                gender: 'Female',
-                license: 'EXCLUSIVE',
-                price: '€120',
-                type: 'exclusive',
-                image: "/images/artist-library/artist/artist-5.png",
-            },
-            {
-                id: 6,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'G#major',
-                gender: 'Male',
-                license: 'PREMIUM',
-                price: '€120',
-                type: 'premium',
-                image: "/images/artist-library/artist/artist-6.png",
-            },
-            {
-                id: 7,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'Cminor',
-                gender: 'Female',
-                license: 'NON-EXCLUSIVE',
-                price: '€120',
-                type: 'non-exclusive',
-                image: "/images/artist-library/artist/artist-7.png",
-            },
-            {
-                id: 8,
-                title: 'Lost In The Night',
-                artist: 'Barbie Mack',
-                genre: 'Cover',
-                bpm: '128BMP',
-                key: 'Cminor',
-                gender: 'Female',
-                license: 'EXCLUSIVE',
-                price: '€120',
-                type: 'exclusive',
-                image: "/images/artist-library/artist/artist-8.png",
-            },
-
-
-        ]);
-    }, []);
+    console.log(filter);
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
@@ -473,25 +167,28 @@ const BrowseArtist = () => {
 
     const handleFilterChange = (key: keyof FilterType, value: number | string) => {
 
-        setFilter((prev) => ({ ...prev, [key]: value }));
+        setFilter((prev) => ({...prev, [key]: value}));
     };
 
-    // const filteredData = data.filter((item) =>
-    //     item.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    //     (filter.genre ? item.genre === filter.genre : true) &&
-    //     (filter.bpm ? item.bpm === filter.bpm : true) &&
-    //     (filter.key ? item.key === filter.key : true) &&
-    //     (filter.gender ? item.gender === filter.gender : true) &&
-    //     (filter.license ? item.license === filter.license : true) &&
-    //     (filter.type ? item.type === filter.type : true)
-    // );
+
+    const filteredArtists = artistList.filter((item) => {
+        console.log(`item is `, item);
+        // const matchGenre = filter.genre ? filter.genre.split(",").includes(item.genre) : true;
+        // const matchGender = filter.gender ? filter.gender.split(",").includes(item.gender) : true;
+        // const matchLanguage = filter.language ? filter.language.split(",").includes(item.language) : true;
+        // const matchLatest = filter.latest ? filter.latest.split(",").includes(String(item.latest)) : true;
+        //
+        // return  matchGenre && matchGender && matchLanguage && matchLatest;
+    });
+
+    console.log("filteredArtists ", filteredArtists);
 
     const clearSearch = () => {
-        setFilter("")
-        setSearchTerm("")
-    }
-
-
+        setSearchTerm("");
+        setFilter({genre: "", gender: "", language: "", latest: ""});
+        setSelectedGender([]);
+        setSelectedLanguage([]);
+    };
 
 
     return (
@@ -510,7 +207,7 @@ const BrowseArtist = () => {
                         <div className='  flex-1 lg:flex flex-col md:flex-row gap-14 relative   '>
                             <div className='   '>
                                 <button onClick={clearSearch}
-                                    className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
+                                        className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
                                     filters
                                 </button>
                             </div>
@@ -531,63 +228,7 @@ const BrowseArtist = () => {
                                 value={searchTerm}
                                 onChange={handleSearch}
                             />
-                            <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white" />
-
-
-                        </div>
-
-
-                        {/* genre  */}
-
-                        <div className="relative w-full  " ref={genreRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white md:px-5 px-3 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpen(!open)}
-                            >
-                                {/* Icon on RIGHT side */}
-                                {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                )}
-
-                                {/* Only show selected count */}
-                                <span className="w-28 text-white md:text-lg ">
-                                    {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {open && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
-                                    >
-                                        {genres.map((genre) => (
-                                            <label
-                                                key={genre}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedGenre.includes(genre)}
-                                                    onChange={(e) => {
-                                                        toggleGenre(genre);
-                                                        handleFilterChange('genre', e.target.checked ? genre : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg   ">{genre}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white"/>
                         </div>
 
 
@@ -600,9 +241,9 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenGender(!openGender)}
                             >
                                 {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                                 )}
 
                                 <span className="w-28 text-white md:text-lg  ">
@@ -613,12 +254,12 @@ const BrowseArtist = () => {
                             <AnimatePresence>
                                 {openGender && (
                                     <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        initial={{opacity: 0, y: -10}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -10}}
+                                        transition={{duration: 0.4, ease: "easeInOut"}}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
+                                        style={{top: "calc(100% + 0.5rem)"}}
                                     >
                                         {gender.map((gender) => (
                                             <label
@@ -643,50 +284,47 @@ const BrowseArtist = () => {
                         </div>
 
 
-
-
-
                         {/* Language  */}
 
 
-                        <div className="relative w-full " ref={typeRef}>
+                        <div className="relative w-full " ref={languageRef}>
                             <button
                                 type="button"
                                 className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenType(!openType)}
+                                onClick={() => setOpenLanguage(!openLanguage)}
                             >
-                                {openType ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                                {openLanguage ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
-                                    {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Language"}
+                                    {selectedLanguage.length > 0 ? <>Selected {selectedLanguage.length}</> : "Language"}
                                 </span>
                             </button>
 
                             <AnimatePresence>
-                                {openType && (
+                                {openLanguage && (
                                     <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        initial={{opacity: 0, y: -10}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -10}}
+                                        transition={{duration: 0.4, ease: "easeInOut"}}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
+                                        style={{top: "calc(100% + 0.5rem)"}}
                                     >
-                                        {type.map((item) => (
+                                        {language.map((item) => (
                                             <label
                                                 key={item}
                                                 className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
                                             >
                                                 <input
                                                     type="checkbox"
-                                                    checked={selectedType.includes(item)}
+                                                    checked={selectedLanguage.includes(item)}
                                                     onChange={(e) => {
                                                         toggleType(item); // ✅ Efficient toggle
-                                                        handleFilterChange("type", e.target.checked ? item : "");
+                                                        handleFilterChange("language", e.target.checked ? item : "");
                                                     }}
                                                     className="mr-3 accent-indigo-500 w-5 h-5"
                                                 />
@@ -709,9 +347,9 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenLatest(!openLatest)}
                             >
                                 {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -722,12 +360,12 @@ const BrowseArtist = () => {
                             <AnimatePresence>
                                 {openLatest && (
                                     <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        initial={{opacity: 0, y: -10}}
+                                        animate={{opacity: 1, y: 0}}
+                                        exit={{opacity: 0, y: -10}}
+                                        transition={{duration: 0.4, ease: "easeInOut"}}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
+                                        style={{top: "calc(100% + 0.5rem)"}}
                                     >
                                         {
                                             latest.map((item) => (
@@ -737,247 +375,7 @@ const BrowseArtist = () => {
                                                 >
                                                     <input
                                                         type="checkbox"
-                                                        checked={selectedType.includes(item)}
-                                                        onChange={(e) => {
-                                                            toggleLatest(item);
-                                                            handleFilterChange('latest', e.target.checked ? item : '');
-                                                        }}
-                                                        className="mr-3 accent-indigo-500 w-5 h-5"
-                                                    />
-                                                    <span className="text-white md:text-lg  ">{item}</span>
-                                                </label>
-                                            ))
-                                        }
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                    </div>
-
-                    <div
-                        className="  lg:hidden items-center grid md:grid-cols-3 grid-cols-2  gap-x-12 space-y-3.5  max-w-[1539px]  mx-auto   mb-6  ">
-
-
-                        <div className="relative   ">
-
-                            <input
-                                className="border border-white focus:outline-0 w-full  lg:py-2.5 py-1 md:w-[250px] px-4  rounded-2xl text-white  bg-transparent placeholder-gray-400 placeholder:text-[10px] lg:placeholder:ml-3.5  "
-                                placeholder="SEARCH"
-                                value={searchTerm}
-                                onChange={handleSearch}
-                            />
-                            <Search size={16}
-                                className="absolute top-[50%] right-5 transform -translate-y-1/2 text-white " />
-
-
-                        </div>
-
-
-                        {/* genre  */}
-
-                        <div className="relative w-full  " ref={genreRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpen(!open)}
-                            >
-                                {/* Icon on RIGHT side */}
-                                {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                )}
-
-                                {/* Only show selected count */}
-                                <span className="w-28 text-white text-sm ">
-                                    {selectedGenre.length > 0 ? <>Selected {selectedGenre.length}</> : "Genre"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {open && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
-                                    >
-                                        {genres.map((genre) => (
-                                            <label
-                                                key={genre}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedGenre.includes(genre)}
-                                                    onChange={(e) => {
-                                                        toggleGenre(genre);
-                                                        handleFilterChange('genre', e.target.checked ? genre : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg   ">{genre}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        {/* Gender */}
-
-                        <div className="relative w-full " ref={genderRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenGender(!openGender)}
-                            >
-                                {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                )}
-
-                                <span className="w-28 text-white text-sm ">
-                                    {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openGender && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
-                                    >
-                                        {gender.map((gender) => (
-                                            <label
-                                                key={gender}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedGender.includes(gender)}
-                                                    onChange={(e) => {
-                                                        toggleGender(gender);
-                                                        handleFilterChange('gender', e.target.checked ? gender : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg ">{gender}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        {/* Language */}
-
-                        <div className="relative w-full" ref={licenseRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenLicense(!openLicense)}
-                            >
-                                {openLicense ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                )}
-                                <span className="w-28 text-white text-sm">
-                                    {selectedLicense.length > 0
-                                        ? <>Selected {selectedLicense.length}</>
-                                        : 'Language'}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openLicense && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: 'calc(100% + 0.5rem)' }}
-                                    >
-                                        {License.map((license) => (
-                                            <label
-                                                key={license}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedLicense.includes(license)}
-                                                    onChange={(e) => {
-                                                        toggleLicense(license);
-                                                        handleFilterChange(
-                                                            'license',
-                                                            e.target.checked ? license : ''
-                                                        );
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg">{license}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-
-
-                        {/* latest  */}
-
-
-                        <div className="relative w-full -mt-2.5 " ref={latestRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white px-3 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenLatest(!openLatest)}
-                            >
-                                {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
-                                )}
-
-                                <span className="w-28 text-white text-sm   ">
-                                    {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openLatest && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
-                                    >
-                                        {
-                                            latest.map((item) => (
-                                                <label
-                                                    key={item}
-                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                                >
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectedType.includes(item)}
+                                                        checked={selectLatest.includes(item)}
                                                         onChange={(e) => {
                                                             toggleLatest(item);
                                                             handleFilterChange('latest', e.target.checked ? item : '');
@@ -1000,18 +398,18 @@ const BrowseArtist = () => {
                     {/* artist list  */}
 
 
-                    <div className="mt-6 lg:mt-14 grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12">
-                        {singers.slice(0, visibleCount).map((singer) => (
+                    <div className="mt-6 lg:mt-14 grid lg:grid-cols-3 sm:grid-cols-2 gap-x-10 grid-cols-1 gap-12">
+                        {artistList.slice(0, visibleCount).map((singer) => (
                             <div key={singer.id}
-                                className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
+                                 className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
                                 <Link href={`/singer-profile/${singer.id}`}>
-                                    <div className="w-full max-w-[357px] rounded-md p-5 bg-[#222222]">
+                                    <div className="w-full max-w-[300px] rounded-md gap-x-12 p-5 bg-[#222222]">
                                         <Image
-                                            src={singer.image}
+                                            src={`${imgUrl}/${singer.profile}`}
                                             width={340}
                                             height={219}
                                             alt={`${singer.name} Image`}
-                                            className="object-cover w-[340px] h-[219px] rounded-md"
+                                            className="object-cover w-[300px] h-[219px] rounded-md"
                                         />
 
                                         <div className="flex flex-row items-center justify-between mt-3.5">
@@ -1020,10 +418,13 @@ const BrowseArtist = () => {
                                         </div>
 
                                         <div className="mt-2">
-                                            <p className="text-[#818080] text-lg leading-6">{singer.role}</p>
+                                            <p className="text-[#818080] text-lg leading-6">{singer.singer}</p>
                                         </div>
                                         <div className="mt-2">
-                                            <p className="text-[#818080] text-lg leading-6">Genre : {singer.genre}</p>
+                                            <p className="text-[#818080] text-lg leading-6">English</p>
+                                        </div>
+                                        <div className="mt-2">
+                                            <p className="text-[#818080] text-lg leading-6">Male</p>
                                         </div>
 
 
@@ -1037,18 +438,17 @@ const BrowseArtist = () => {
 
                     <div>
 
-                        <div className='  mt-14 mb-20 flex justify-center  '>
-                            
-
-                            {visibleCount < singers.length && (<button onClick={() => setVisibleCount(prev => prev + 8)}
-                                className=' rounded-2xl border text-sm border-white text-white  px-3 py-2 lg:py-3 cursor-pointer   '>LOAD
-                                MORE ARTISTS</button>)}
-
+                        <div className="mt-14 mb-20 flex justify-center">
+                            {Array.isArray(data?.data?.data) && visibleCount < data.data.data.length && (
+                                <button
+                                    onClick={() => setVisibleCount(prev => prev + 8)}
+                                    className="rounded-2xl border border-white text-white text-sm px-4 py-2 lg:px-6 lg:py-3  cursor-pointer  transition"
+                                >
+                                    LOAD MORE ARTISTS
+                                </button>
+                            )}
                         </div>
-                        
 
-
-                        
 
                     </div>
 
@@ -1060,13 +460,10 @@ const BrowseArtist = () => {
                     {/* Want to hire our singers? */}
 
 
-
-
-
                 </div>
             </MaxWidth>
             <CtaSection></CtaSection>
-        
+
         </>
     );
 };

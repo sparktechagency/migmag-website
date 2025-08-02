@@ -9,17 +9,17 @@ import MoreVocals from '../MoreVocals';
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
-    console.log(id);
+    console.log( typeof id);
     return (
         <div>
             <div className={'max-w-7xl mx-auto  '}>
                 <Navbar></Navbar>
                 <div className={' my-2 lg:my-12'} >
-                    <MusickDetails></MusickDetails>
+                    <MusickDetails id = {id} ></MusickDetails>
                     <VocalInfoSection></VocalInfoSection>
                     <Folder />
                     <MusicReview></MusicReview>
-                    <MoreVocals></MoreVocals>
+                    <MoreVocals id = {id} ></MoreVocals>
                 </div>
                 <UpdateFooter></UpdateFooter>
 

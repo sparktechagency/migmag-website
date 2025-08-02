@@ -16,9 +16,6 @@ const Page = async ({ params }: Props) => {
 
     console.log('Singer ID:', id);
 
-    if (typeof id !== 'string') {
-        throw new Error('Invalid ID: expected a string');
-    }
 
     return (
         <div>

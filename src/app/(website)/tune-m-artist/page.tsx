@@ -7,7 +7,6 @@ import DiscoverVocal from './DiscoverVocal'
 import ArtistSlider from './ArtistSlider'
 import ApplayTune from './ApplayTune'
 import ApplayVocalistFrom from './ApplayVocalistFrom'
-import CoreValue from './CoreValue'
 import Link from 'next/link'
 
 import {FaCartArrowDown} from "react-icons/fa";
@@ -16,8 +15,19 @@ import FeatureSection from "@/app/(website)/tune-m-artist/FeatureSection";
 import UpdateFooter from "@/components/footer/UpdateFooter";
 import Image from "next/image";
 import CtaSection from '@/components/cta/CtaSection'
+import {imgUrl} from "@/utility/img/imgUrl";
+import {useUserProfileQuery} from "@/redux/api/authApi/authApi";
 
 const Page: React.FC = () => {
+    const {data} = useUserProfileQuery(undefined);
+    const [token, setToken] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        setToken(storedToken);
+    }, []);
+
     const [drawerOpen, setDrawerOpen] = useState(false)
     const pathname = usePathname();
 
@@ -148,12 +158,30 @@ const Page: React.FC = () => {
                                     </Link>
                                 </div>
 
-                                <Link href="/login">
-                                    <button
-                                        className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
-                                        Log in
-                                    </button>
-                                </Link>
+
+                                <div className={"  "}>
+                                    {
+                                        token && (
+                                            <Image
+                                                src={`${imgUrl}/${data?.data?.avatar}`}
+                                                alt={data?.full_name || "User Avatar"}
+                                                width={40}
+                                                height={40}
+                                                className="rounded-full border w-14 h-14  "
+                                            />
+                                        )
+                                    }
+                                    {
+                                        !token && (
+                                            <Link href="/login">
+                                                <button
+                                                    className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
+                                                    Log in
+                                                </button>
+                                            </Link>
+                                        )
+                                    }
+                                </div>
                             </nav>
                         </div>
 

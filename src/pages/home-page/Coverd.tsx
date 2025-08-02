@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Review from "@/pages/home-page/Review";
@@ -48,11 +47,11 @@ const Coverd: React.FC = () => {
             {/* Right Content */}
             <div className="w-full flex-1 lg:w-[60%]">
               <Image
-                src="/update-image/home-page/quote/cote.png"
+                src="/update-image/home-page/quote/becomeTuneM.png"
                 alt="Become TuneM - Vocals and Music Platform"
                 width={1200}
                 height={800}
-                className="rounded-lg  w-full h-auto "
+                className="rounded-lg  w-full h-auto  "
               />
             </div>
           </div>
