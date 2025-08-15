@@ -15,7 +15,7 @@ import {
 import {
     FollowApiResponse, FollowListApiResponse, OrderApiResponse,
     UnfollowApiResponse, UserProfileApiResponse,
-    WishListApiResponse, WishListDetailsApiResponse,
+    WishListApiResponse,
     wishRemoveApiResponse
 } from "@/utility/api-type/homeApiType";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import React, {useEffect, useRef, useState} from 'react';
-import {FaPlay, FaPause} from 'react-icons/fa';
+import React, {useEffect, useRef, useState} from "react";
+import {FaPlay, FaPause} from "react-icons/fa";
 import {SongDetailsApiResponse} from "@/utility/api-type/homeApiType";
 import {imgUrl} from "@/utility/img/imgUrl";
 
@@ -12,44 +12,49 @@ const CustomAudioPlayer = ({data}: { data: SongDetailsApiResponse }) => {
     const [currentTime, setCurrentTime] = useState(0);
 
     const togglePlay = () => {
-        if (!audioRef.current) return;
+        const audio = audioRef.current; // লোকাল কপি
+        if (!audio) return;
         if (isPlaying) {
-            audioRef.current.pause();
+            audio.pause();
         } else {
-            audioRef.current.play();
+            audio.play();
         }
         setIsPlaying(!isPlaying);
     };
 
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newTime = parseFloat(e.target.value);
-        if (audioRef.current) {
-            audioRef.current.currentTime = newTime;
+        const audio = audioRef.current; // লোকাল কপি
+        if (audio) {
+            audio.currentTime = newTime;
             setCurrentTime(newTime);
         }
     };
 
     const updateTime = () => {
-        if (audioRef.current) {
-            setCurrentTime(audioRef.current.currentTime);
+        const audio = audioRef.current; // লোকাল কপি
+        if (audio) {
+            setCurrentTime(audio.currentTime);
         }
     };
 
     useEffect(() => {
-        if (audioRef.current) {
-            const handleLoadedMetadata = () => {
-                setDuration(audioRef.current!.duration);
-            };
+        const audio = audioRef.current; // ✅ লোকাল কপি
+        if (!audio) return;
 
-            audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
-            return () => {
-                audioRef.current?.removeEventListener('loadedmetadata', handleLoadedMetadata);
-            };
-        }
+        const handleLoadedMetadata = () => {
+            setDuration(audio.duration);
+        };
+
+        audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+
+        return () => {
+            audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+        };
     }, []);
 
     return (
-        <div className="">
+        <div>
             <audio
                 ref={audioRef}
                 src={`${imgUrl}/${data?.data?.song}`}
@@ -71,13 +76,13 @@ const CustomAudioPlayer = ({data}: { data: SongDetailsApiResponse }) => {
 
                 {/* Seek Bar */}
                 <div className="relative w-full h-2 rounded-full bg-gray-200 overflow-hidden group">
-                    {/* Played Progress */}
                     <div
-                        className={`absolute top-0 left-0 h-full rounded-full transition-all duration-300 ${isPlaying ? "bg-[#ff5e57]" : "bg-gray-400"}`}
+                        className={`absolute top-0 left-0 h-full rounded-full transition-all duration-300 ${
+                            isPlaying ? "bg-[#ff5e57]" : "bg-gray-400"
+                        }`}
                         style={{width: `${(currentTime / duration) * 100}%`}}
                     ></div>
 
-                    {/* Invisible Input */}
                     <input
                         type="range"
                         min="0"

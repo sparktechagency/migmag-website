@@ -494,13 +494,13 @@ export interface TypeApiResponse {
 
 // error response
 
-export type ApiError = {
-    status: number;
-    data: {
-        message?: string;
-        [key: string]: any;
-    };
-};
+// export type ApiError = {
+//     status: number;
+//     data: {
+//         message?: string;
+//         [key: string]: any;
+//     };
+// };
 
 
 // browse vocal api type
@@ -698,11 +698,11 @@ export interface ApplyForArtistApiPayload {
     file: File;               // uploaded file
 }
 
-export interface ApplyForArtistApiResponse {
-    success: boolean;
-    data: [];              // replace `any` with your actual data type if known
-    message: string;
-}
+// export interface ApplyForArtistApiResponse {
+//     success: boolean;
+//     data: [];              // replace `any` with your actual data type if known
+//     message: string;
+// }
 
 
 

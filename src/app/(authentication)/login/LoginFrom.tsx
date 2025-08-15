@@ -7,6 +7,7 @@ import Link from "next/link";
 import {LoginPayload} from "@/utility/api-type/auth-api-type";
 import {useLoginUserMutation} from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 
 const LoginForm: React.FC = () => {
@@ -65,15 +66,16 @@ const LoginForm: React.FC = () => {
                 }, 1500);
             }
 
-        } catch (error: unknown) {
-            console.log(error);
-
+        } catch (err) {
+            const error = err as FetchBaseQueryError & {
+                data?: { message?: string };
+            };
 
 
             Swal.fire({
                 position: "top-center",
                 icon: "error",
-                title: error.message,
+                title: error?.data?.message || "Something went wrong",
                 showConfirmButton: false,
                 timer: 2000,
             });

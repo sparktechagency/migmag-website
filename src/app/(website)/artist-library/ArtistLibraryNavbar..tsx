@@ -31,7 +31,7 @@ const ArtistLibraryNavbar: React.FC = () => {
     return (
         <div className={`fixed  top-0 w-full  z-50 `}>
             <>
-                <div style={{ fontFamily: 'Favorit' }}
+                <div
                     className='flex items-center justify-between   max-w-[1549px] py-5   mx-auto px-4 '>
                     {/* Logo */}
                     <Link href="/">

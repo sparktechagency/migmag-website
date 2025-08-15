@@ -11,7 +11,7 @@ const HomeBanner: React.FC = () => {
                 <div className=' pt-8 lg:pt-10 pb-10   '>
                     <div className="flex flex-col-reverse lg:flex-row  justify-between gap-x-10 lg:gap-0">
                         {/* Left Side */}
-                        <div className="  text-center lg:text-left flex-1 lg:w-1/2 w-full ">
+                        <div className="  text-center lg:text-left flex-1 lg:w-[20%] w-full ">
                             <h1
                                 className={`text-[40px] font-semibold headerColor uppercase   `}>
                                 Royalty-Free Vocals, Ready for Release
@@ -32,11 +32,11 @@ const HomeBanner: React.FC = () => {
                         </div>
 
                         {/* Right Side */}
-                        <div className="flex justify-center lg:justify-end flex-1 lg:w-1/2 w-full ">
+                        <div className="flex justify-center lg:justify-end flex-1 lg:w-[90%] w-full ">
                             <Image
-                                src="/update-image/home-page/banner/home-banner.png"
+                                src="/update-image/home-page/banner/UpdateBannerImage.png"
                                 alt="banner-image"
-                                width={600}
+                                width={2000}
                                 height={530}
                                 className=" w-full   rounded-2xl  "
                             />

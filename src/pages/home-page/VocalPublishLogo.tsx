@@ -18,9 +18,9 @@ const VocalPublishLogo: React.FC = () => {
                         <Image
                             src="/update-image/sponser-logo/logo-1.png"
                             alt="logo"
-                            width={145}
-                            height={70}
-                            className="object-cover w-full"
+                            width={130}
+                            height={30}
+                            className="object-cover w-36 "
                         />
                     </div>
                     <div>
@@ -29,7 +29,7 @@ const VocalPublishLogo: React.FC = () => {
                             alt="logo"
                             width={200}
                             height={90}
-                            className="object-cover w-full"
+                            className="object-cover w-36 "
                         />
                     </div>
                     <div>
@@ -38,7 +38,7 @@ const VocalPublishLogo: React.FC = () => {
                             alt="logo"
                             width={175}
                             height={85}
-                            className="object-cover"
+                            className="object-cover w-36 "
                         />
                     </div>
                     <div>
@@ -47,7 +47,7 @@ const VocalPublishLogo: React.FC = () => {
                             alt="logo"
                             width={175}
                             height={85}
-                            className="object-cover"
+                            className="object-cover w-36 "
                         />
                     </div>
                     <div>
@@ -56,7 +56,7 @@ const VocalPublishLogo: React.FC = () => {
                             alt="logo"
                             width={120}
                             height={70}
-                            className="object-cover"
+                            className="object-cover w-24 "
                         />
                     </div>
                 </div>
