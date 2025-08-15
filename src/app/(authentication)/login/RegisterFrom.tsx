@@ -1,13 +1,14 @@
 "use client";
 
-import React, {useState} from "react";
-import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
-import {MdEmail, MdLock} from "react-icons/md";
-import {FaUser} from "react-icons/fa";
-import {useRegisterUserMutation} from "@/redux/api/authApi/authApi";
-import {RegisterPayload} from "@/utility/api-type/auth-api-type";
+import React, { useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { MdEmail, MdLock } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { useRegisterUserMutation } from "@/redux/api/authApi/authApi";
+import { RegisterPayload } from "@/utility/api-type/auth-api-type";
 import Swal from "sweetalert2";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 
 const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -20,10 +21,10 @@ const RegisterForm = () => {
         password_confirmation: "",
     });
 
-    const [registerUser, {isLoading, reset}] = useRegisterUserMutation();
+    const [registerUser, { isLoading, reset }] = useRegisterUserMutation();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value, type, checked} = e.target;
+        const { name, value, type, checked } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: type === "checkbox" ? checked : value,
@@ -88,21 +89,17 @@ const RegisterForm = () => {
                 })
             }
 
-        } catch (error: unknown) {
+        } catch (err) {
 
 
-            console.error("Registration failed:", error);
-
-            let errorMessage = "Registration failed. Try again.";
-
-            if (error && typeof error === "object" && "message" in error) {
-                errorMessage = String((error as { message: string }).message);
-            }
+            const error = err as FetchBaseQueryError & {
+                data?: { message?: string };
+            };
 
             Swal.fire({
                 position: "top-center",
                 icon: "error",
-                title: errorMessage,
+                title: error?.data?.message || "Something went wrong",
                 showConfirmButton: false,
                 timer: 1500
             });
@@ -123,8 +120,8 @@ const RegisterForm = () => {
                         Name
                     </label>
                     <span className="absolute left-3 top-11">
-            <FaUser className="text-white text-[17px]"/>
-          </span>
+                        <FaUser className="text-white text-[17px]" />
+                    </span>
                     <input
                         type="text"
                         name="full_name"
@@ -143,8 +140,8 @@ const RegisterForm = () => {
                         Email
                     </label>
                     <span className="absolute left-3 top-11">
-            <MdEmail className="text-white text-xl"/>
-          </span>
+                        <MdEmail className="text-white text-xl" />
+                    </span>
                     <input
                         type="email"
                         name="email"
@@ -163,8 +160,8 @@ const RegisterForm = () => {
                         Password
                     </label>
                     <span className="absolute left-3 top-11">
-            <MdLock className="text-white text-xl"/>
-          </span>
+                        <MdLock className="text-white text-xl" />
+                    </span>
                     <input
                         type={showPassword ? "text" : "password"}
                         name="password"
@@ -180,9 +177,9 @@ const RegisterForm = () => {
                         onClick={() => setShowPassword(!showPassword)}
                     >
                         {showPassword ? (
-                            <AiOutlineEyeInvisible className="text-white text-lg"/>
+                            <AiOutlineEyeInvisible className="text-white text-lg" />
                         ) : (
-                            <AiOutlineEye className="text-white text-lg"/>
+                            <AiOutlineEye className="text-white text-lg" />
                         )}
                     </div>
                 </div>
@@ -193,8 +190,8 @@ const RegisterForm = () => {
                         Confirm Password
                     </label>
                     <span className="absolute left-3 top-11">
-            <MdLock className="text-white text-xl"/>
-          </span>
+                        <MdLock className="text-white text-xl" />
+                    </span>
                     <input
                         type={showConfirmPassword ? "text" : "password"}
                         name="password_confirmation"
@@ -210,9 +207,9 @@ const RegisterForm = () => {
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     >
                         {showConfirmPassword ? (
-                            <AiOutlineEyeInvisible className="text-white text-lg"/>
+                            <AiOutlineEyeInvisible className="text-white text-lg" />
                         ) : (
-                            <AiOutlineEye className="text-white text-lg"/>
+                            <AiOutlineEye className="text-white text-lg" />
                         )}
                     </div>
                 </div>
@@ -227,10 +224,10 @@ const RegisterForm = () => {
                         className="w-4 h-4 cursor-pointer"
                     />
                     <span className="text-sm font-thin">
-            By creating this account, you agree to our{" "}
+                        By creating this account, you agree to our{" "}
                         <span className="font-bold underline cursor-pointer">terms of use</span> &{" "}
                         <span className="font-bold underline cursor-pointer">privacy policy</span>.
-          </span>
+                    </span>
                 </div>
 
                 {/* Submit */}

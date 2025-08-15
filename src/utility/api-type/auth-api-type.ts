@@ -1,6 +1,6 @@
 // registration types
 
-import {appendFile} from "node:fs";
+
 
 export interface RegisterUserResponse {
     success: boolean;

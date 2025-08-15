@@ -1,12 +1,12 @@
 "use client"
 
-import React, {useState, useEffect, useRef} from 'react';
-import {Search} from 'lucide-react';
-import {motion, AnimatePresence} from "framer-motion";
-import {HiChevronDown, HiChevronUp} from "react-icons/hi";
+import React, { useState, useEffect, useRef } from 'react';
+import { Search } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
-import {FaPlay} from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa6";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import CtaSection from '@/components/cta/CtaSection';
 import {
@@ -16,9 +16,8 @@ import {
     useAllTypeQuery,
     useBrowseCoverVocalApiQuery
 } from "@/redux/api/home-api/homeApi";
-import {imgUrl} from "@/utility/img/imgUrl";
-import {MusickPlayer} from "@/components/musick-player/MusickPlayer";
-import {UpdateMusickPlayer} from "@/pages/home-page/UpdateMusickPlayer";
+import { imgUrl } from "@/utility/img/imgUrl";
+import { UpdateMusickPlayer } from "@/pages/home-page/UpdateMusickPlayer";
 
 type VocalItem = {
     title: number;
@@ -27,7 +26,7 @@ type VocalItem = {
     song: string;
 };
 
-type VocalItemOrEmpty = VocalItem | "";
+
 
 type FilterType = {
     genre: string;
@@ -51,7 +50,7 @@ const BrowseAllVocal = () => {
 
     // Genre
 
-    const {data: genres} = useAllGenreQuery(undefined);
+    const { data: genres } = useAllGenreQuery(undefined);
     const genreData = genres?.data || [];
 
 
@@ -98,7 +97,7 @@ const BrowseAllVocal = () => {
 
     const rangeWidth = 100; // in percent
 
-    const getPercent = (value) =>
+    const getPercent = (value: number) =>
         ((value - minBPM) / (maxBPM - minBPM)) * rangeWidth;
 
     const getTrackBackground = () => {
@@ -112,7 +111,7 @@ const BrowseAllVocal = () => {
 
 
     // Key  start
-    const {data: keys} = useAllKeyQuery(undefined);
+    const { data: keys } = useAllKeyQuery(undefined);
 
     const keyData = keys?.data || [];
 
@@ -179,7 +178,7 @@ const BrowseAllVocal = () => {
     // License  start
 
 
-    const {data: license} = useAllLicenseQuery(undefined);
+    const { data: license } = useAllLicenseQuery(undefined);
 
     const licenseData = license?.data || [];
 
@@ -215,7 +214,7 @@ const BrowseAllVocal = () => {
     // Type  start
 
 
-    const {data: typeData} = useAllTypeQuery(undefined);
+    const { data: typeData } = useAllTypeQuery(undefined);
 
     const allTypeData = typeData?.data || [];
 
@@ -296,7 +295,7 @@ const BrowseAllVocal = () => {
     });
 
     console.log(`filter is ${filter}`)
-    const [globalSearch,setGlobalSearch] = useState<string>('');
+    const [globalSearch, setGlobalSearch] = useState<string>('');
 
     console.log(`globalSearch is ${globalSearch}`)
 
@@ -304,10 +303,10 @@ const BrowseAllVocal = () => {
 
     const [tracks, setTracks] = useState<VocalItem[]>([]);
 
-// Log API response (raw)
+    // Log API response (raw)
 
 
-// Update `data` state only when API data changes
+    // Update `data` state only when API data changes
     useEffect(() => {
         if (browseVocalData?.data?.data) {
             setTracks(browseVocalData.data.data); // assuming data.data is an array of VocalItem
@@ -323,10 +322,10 @@ const BrowseAllVocal = () => {
 
 
 
-    const handleFilterChange = (key: keyof FilterType, value: number) => {
-            console.log(typeof value);
+    const handleFilterChange = (key: keyof FilterType, value: number | string) => {
+        console.log(typeof value);
 
-        setFilter((prev) => ({...prev, [key]: value}));
+        setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
 
@@ -339,15 +338,15 @@ const BrowseAllVocal = () => {
     const [visibleData, setVisibleData] = useState(10)
 
     const clearSearch = () => {
-        setFilter("");
-        setSelectedGender("");
-        setSelectedLicense("");
+        // setFilter();
+        setSelectedGender([]);
+        setSelectedLicense([]);
         setSearchTerm("");
-        setSelectedType("");
-        setSelectGenre("");
-        setSelectedKey("");
-        setSelectedBPM("");
-        setselectLatest("");
+        setSelectedType([]);
+        setSelectGenre([]);
+        setSelectedKey([]);
+        setSelectedBPM([]);
+        setselectLatest([]);
         setGlobalSearch("");
     }
 
@@ -356,7 +355,7 @@ const BrowseAllVocal = () => {
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
 
-    console.log("current index is",currentIndex);
+    console.log("current index is", currentIndex);
 
     const handleOpenModal = (index: number) => {
         console.log("handleOpen modal", index);
@@ -383,7 +382,7 @@ const BrowseAllVocal = () => {
                         {/* Title Section */}
                         <div className='flex-1 w-full'>
                             <h1 className='lg:text-3xl md:text-2xl text-xl font-bold leading-9 text-white'>
-                                Browse Cover <span className='text-[#818080]'>Vocals</span>
+                                Cover <span className='text-[#818080]'>Vocals</span>
                             </h1>
                         </div>
 
@@ -425,9 +424,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenBPM(!openBPM)}
                             >
                                 {openBPM ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -438,10 +437,10 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openBPM && (
                                     <motion.div
-                                        initial={{opacity: 0, scale: 0.9}}
-                                        animate={{opacity: 1, scale: 1}}
-                                        exit={{opacity: 0, scale: 0.9}}
-                                        transition={{duration: 0.3, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
                                         className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50"
                                     >
                                         <div
@@ -451,7 +450,7 @@ const BrowseAllVocal = () => {
                                             <div className="flex justify-between items-center mb-4">
                                                 <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
                                                 <button onClick={() => setOpenBPM(false)}
-                                                        className="cursor-pointer text-white text-2xl">×
+                                                    className="cursor-pointer text-white text-2xl">×
                                                 </button>
                                             </div>
 
@@ -464,13 +463,13 @@ const BrowseAllVocal = () => {
                                                         {/* Number Labels */}
                                                         <div
                                                             className="absolute  -top-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                            style={{left: `calc(${getPercent(minValue)}% - 20px)`}}
+                                                            style={{ left: `calc(${getPercent(minValue)}% - 20px)` }}
                                                         >
                                                             {minValue.toFixed(2)}
                                                         </div>
                                                         <div
                                                             className="absolute  -top-4  -ml-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                            style={{left: `calc(${getPercent(maxValue)}% - 20px)`}}
+                                                            style={{ left: `calc(${getPercent(maxValue)}% - 20px)` }}
                                                         >
                                                             {maxValue.toFixed(2)}
                                                         </div>
@@ -478,7 +477,7 @@ const BrowseAllVocal = () => {
                                                         {/* Track */}
                                                         <div
                                                             className="w-full h-2 rounded-full"
-                                                            style={{background: getTrackBackground()}}
+                                                            style={{ background: getTrackBackground() }}
                                                         />
 
                                                         {/* Left Thumb */}
@@ -551,9 +550,9 @@ const BrowseAllVocal = () => {
                             >
                                 {/* Icon on RIGHT side */}
                                 {openKey ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 {/* Only show selected count */}
@@ -565,12 +564,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openKey && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {
                                             keyData.map((key, index) => (
@@ -605,9 +604,9 @@ const BrowseAllVocal = () => {
                             >
                                 {/* Icon on RIGHT side */}
                                 {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 {/* Only show selected count */}
@@ -619,12 +618,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {open && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {genreData.map((genre) => (
                                             <label
@@ -658,9 +657,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenGender(!openGender)}
                             >
                                 {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg  ">
@@ -671,12 +670,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openGender && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {gender.map((gender) => (
                                             <label
@@ -708,9 +707,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenLicense(!openLicense)}
                             >
                                 {openLicense ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -721,12 +720,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openLicense && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {licenseData.map((license) => (
                                             <label
@@ -761,9 +760,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenType(!openType)}
                             >
                                 {openType ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -774,12 +773,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openType && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {allTypeData.map((item) => (
                                             <label
@@ -814,9 +813,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenLatest(!openLatest)}
                             >
                                 {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -827,12 +826,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openLatest && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {
                                             latest.map((item) => (
@@ -877,9 +876,9 @@ const BrowseAllVocal = () => {
                             >
                                 {/* Icon on RIGHT side */}
                                 {openKey ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 {/* Only show selected count */}
@@ -891,12 +890,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openKey && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {keyData.map((key, index) => (
                                             <label
@@ -930,9 +929,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenBPM(!openBPM)}
                             >
                                 {openBPM ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white  text-sm   ">
@@ -943,10 +942,10 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openBPM && (
                                     <motion.div
-                                        initial={{opacity: 0, scale: 0.9}}
-                                        animate={{opacity: 1, scale: 1}}
-                                        exit={{opacity: 0, scale: 0.9}}
-                                        transition={{duration: 0.3, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
                                         className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50"
                                     >
                                         <div
@@ -956,7 +955,7 @@ const BrowseAllVocal = () => {
                                             <div className="flex justify-between items-center mb-4">
                                                 <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
                                                 <button onClick={() => setOpenBPM(false)}
-                                                        className="cursor-pointer text-white text-2xl">×
+                                                    className="cursor-pointer text-white text-2xl">×
                                                 </button>
                                             </div>
 
@@ -969,13 +968,13 @@ const BrowseAllVocal = () => {
                                                         {/* Number Labels */}
                                                         <div
                                                             className="absolute  -top-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                            style={{left: `calc(${getPercent(minValue)}% - 20px)`}}
+                                                            style={{ left: `calc(${getPercent(minValue)}% - 20px)` }}
                                                         >
                                                             {minValue.toFixed(2)}
                                                         </div>
                                                         <div
                                                             className="absolute  -top-4  -ml-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                            style={{left: `calc(${getPercent(maxValue)}% - 20px)`}}
+                                                            style={{ left: `calc(${getPercent(maxValue)}% - 20px)` }}
                                                         >
                                                             {maxValue.toFixed(2)}
                                                         </div>
@@ -983,7 +982,7 @@ const BrowseAllVocal = () => {
                                                         {/* Track */}
                                                         <div
                                                             className="w-full h-2 rounded-full"
-                                                            style={{background: getTrackBackground()}}
+                                                            style={{ background: getTrackBackground() }}
                                                         />
 
                                                         {/* Left Thumb */}
@@ -1054,9 +1053,9 @@ const BrowseAllVocal = () => {
                             >
                                 {/* Icon on RIGHT side */}
                                 {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 {/* Only show selected count */}
@@ -1068,12 +1067,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {open && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}} // better margin than mt-20
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {genreData.map((genre) => (
                                             <label
@@ -1107,9 +1106,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenGender(!openGender)}
                             >
                                 {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg  ">
@@ -1120,12 +1119,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openGender && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {gender.map((gender) => (
                                             <label
@@ -1157,9 +1156,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenLicense(!openLicense)}
                             >
                                 {openLicense ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -1170,12 +1169,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openLicense && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {licenseData.map((license) => (
                                             <label
@@ -1210,9 +1209,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenType(!openType)}
                             >
                                 {openType ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -1223,12 +1222,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openType && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {allTypeData.map((item) => (
                                             <label
@@ -1263,9 +1262,9 @@ const BrowseAllVocal = () => {
                                 onClick={() => setOpenLatest(!openLatest)}
                             >
                                 {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -1276,12 +1275,12 @@ const BrowseAllVocal = () => {
                             <AnimatePresence>
                                 {openLatest && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {
                                             latest.map((item) => (
@@ -1316,9 +1315,8 @@ const BrowseAllVocal = () => {
                         {tracks.slice(0, visibleData).map((item, i) => (
                             <motion.div
                                 key={item?.id}
-                                className={`cursor-pointer flex items-center rounded-md ${
-                                    i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
-                                }`}
+                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
+                                    }`}
                             >
                                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
                                     {/* Left: Cover and Play */}
@@ -1384,7 +1382,7 @@ const BrowseAllVocal = () => {
                                     <button onClick={() => {
                                         setVisibleData(prev => prev + 10)
                                     }}
-                                            className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-3 text-lg cursor-pointer   '>LOAD
+                                        className=' mt-4 lg:mt-0 rounded-2xl border border-white text-white px-6 py-3 text-lg cursor-pointer   '>LOAD
                                         MORE VOCALS</button>
                                 )
                             }
@@ -1397,11 +1395,11 @@ const BrowseAllVocal = () => {
                     <UpdateMusickPlayer
                         show={showModal}
                         onClose={() => setShowModal(false)}
-                        currentIndex = {currentIndex}
+                        currentIndex={currentIndex}
                     />
                 )}
             </MaxWidth>
-            <CtaSection/>
+            <CtaSection />
         </>
     );
 };

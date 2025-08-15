@@ -135,7 +135,7 @@ export default function BrowseMusickVocalSlider() {
                                     key={item.id}
                                     className="min-w-[220px] max-w-[220px] flex-shrink-0 cursor-pointer"
                                 >
-                                    <div className="relative w-full h-[260px] overflow-hidden rounded-md">
+                                    <div className="relative w-full h-[260px] overflow-hidden ">
                                         <Image
                                             src={`${imgUrl}/${item.song_poster}`}
                                             alt={item.title}
@@ -174,12 +174,7 @@ export default function BrowseMusickVocalSlider() {
                     </button>
                 </div>
 
-                <div className="lg:mt-[68px] mt-5">
-                    <h1 className="lg:text-2xl text-xl textColor font-semibold px-4 lg:px-0">
-                        Updated every Friday with new royalty-free vocals curated for music producers looking to
-                        elevate their sound and stand out.
-                    </h1>
-                </div>
+
 
                 <div className="mt-4 md:mt-12">
                     <Link href="/vocals">

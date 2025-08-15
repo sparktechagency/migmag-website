@@ -56,7 +56,7 @@ export default function StripeForm() {
         };
 
         createIntent();
-    }, [createPaymentIntent,price]);
+    }, [createPaymentIntent,price,payload]);
 
     const appearance = { theme: 'stripe' };
     const options = { clientSecret, appearance };

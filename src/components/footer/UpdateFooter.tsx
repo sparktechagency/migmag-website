@@ -57,8 +57,8 @@ const UpdateFooter: React.FC = () => {
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
                         <span>
-                            <Image src={"/images/logo/TuneMSVG.svg"} alt={"logo"} width={200} height={200}
-                                   className={" object-cover "}/>
+                            <Image src={"/update-image/footer/footer-logo.svg"} alt={"logo"} width={200} height={200}
+                            className={" object-cover "}/>
                         </span>
                     </div>
 
@@ -191,8 +191,8 @@ const UpdateFooter: React.FC = () => {
                                             a
                                             Singer</Link></li>
 
-                                        <li><Link className="text-lg textColor leading-9"
-                                                  href="https://tunemcollective.com/">Courses</Link></li>
+                                        <li><a target={`_blank`} className="text-lg textColor leading-9"
+                                                  href="https://tunemcollective.com/">Courses</a></li>
                                     </ul>
                                 </div>
 

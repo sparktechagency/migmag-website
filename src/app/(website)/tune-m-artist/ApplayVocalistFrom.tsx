@@ -4,7 +4,6 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 import Swal from "sweetalert2";
 import {useApplyForArtistRequestMutation} from "@/redux/api/home-api/homeApi";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
-import {ApplyForArtistApiPayload} from "@/utility/api-type/homeApiType";
 
 
 const ApplayVocalistFrom: React.FC = () => {
@@ -225,7 +224,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                 {/* Other Genre */}
                                 <div className='flex flex-col mt-5'>
                                     <label htmlFor="otherGenre" className='text-white text-lg font-bold leading-6'>
-                                        If you chose "Other", which genre?
+                                        If you chose Other which genre?
                                     </label>
                                     <textarea
                                         id='otherGenre'

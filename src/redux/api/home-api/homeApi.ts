@@ -1,10 +1,9 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {
-    ApplyForArtistApiPayload,
-    ApplyForArtistApiResponse,
+
     ContactApiPayloadType,
     ContactApiResponse, GenreApiResponse, KeyApiResponse, LicenseApiResponse,
-    SongDetailsApiResponse, SongPayload, SubscriberApiPayload, SubscriberApiResponse,
+    SongDetailsApiResponse, SubscriberApiPayload, SubscriberApiResponse,
     TopArtistListApiResponse,
     TrendingSongsResponse, TypeApiResponse
 } from "@/utility/api-type/homeApiType";

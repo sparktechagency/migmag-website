@@ -1,8 +1,8 @@
 "use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import {motion, AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 import MaxWidth from "@/components/max-width/MaxWidth";
 import RegisterFrom from "@/app/(authentication)/login/RegisterFrom";
@@ -21,11 +21,11 @@ const LoginPage: React.FC = () => {
                     <div className="lg:w-1/2 px-4">
                         <div>
                             <Image src={"/update-image/logo/logo.png"} alt={"logo"} width={200} height={400}
-                                   className={` mb-10 `}/>
+                                className={` mb-10 `} />
                         </div>
                         <h1 className="text-5xl font-bold leading-tight">
                             Get <span className="text-yellow-400">Vocals</span>
-                            <br/>
+                            <br />
                             That <span className="text-yellow-400">Stand</span> Out
                         </h1>
                         <p className="text-xl mt-6 text-gray-300">
@@ -39,21 +39,19 @@ const LoginPage: React.FC = () => {
                         <div className="flex justify-center mb-6 rounded-md overflow-hidden shadow-lg">
                             <button
                                 onClick={() => setActiveForm("login")}
-                                className={`w-1/2 cursor-pointer py-2 font-semibold transition-all duration-300 ${
-                                    activeForm === "login"
+                                className={`w-1/2 cursor-pointer py-2 font-semibold transition-all duration-300 ${activeForm === "login"
                                         ? "bg-yellow-400 text-black"
                                         : "bg-gray-800 text-white hover:bg-gray-700"
-                                }`}
+                                    }`}
                             >
                                 Login
                             </button>
                             <button
                                 onClick={() => setActiveForm("register")}
-                                className={`w-1/2 cursor-pointer py-2 font-semibold transition-all duration-300 ${
-                                    activeForm === "register"
+                                className={`w-1/2 cursor-pointer py-2 font-semibold transition-all duration-300 ${activeForm === "register"
                                         ? "bg-yellow-400 text-black"
                                         : "bg-gray-800 text-white hover:bg-gray-700"
-                                }`}
+                                    }`}
                             >
                                 Register
                             </button>
@@ -65,24 +63,24 @@ const LoginPage: React.FC = () => {
                                 {activeForm === "login" ? (
                                     <motion.div
                                         key="login"
-                                        initial={{opacity: 0, y: 20}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -20}}
-                                        transition={{duration: 0.4}}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: 0.4 }}
                                         className="absolute inset-0"
                                     >
-                                        <LoginForm/>
+                                        <LoginForm />
                                     </motion.div>
                                 ) : (
                                     <motion.div
                                         key="register"
-                                        initial={{opacity: 0, y: 20}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -20}}
-                                        transition={{duration: 0.4}}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: 0.4 }}
                                         className="absolute inset-0"
                                     >
-                                        <RegisterFrom/>
+                                        <RegisterFrom />
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -95,7 +93,7 @@ const LoginPage: React.FC = () => {
                     <Link href={"/"}>
 
                         <Image src={"/update-image/logo/logo.png"} alt={"logo"} width={200} height={400}
-                               className={` mb-10 `}/>
+                            className={` mb-10 `} />
 
                     </Link>
                     <Link href="/refund-policy" className="text-white hover:text-yellow-400 transition">

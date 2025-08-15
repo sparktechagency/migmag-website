@@ -53,7 +53,8 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({id}) => {
                     timer: 1500,
                 });
             }
-        } catch (e: any) {
+        } catch (e: unknown) {
+
             if (e?.status === 400) {
                 Swal.fire({
                     icon: "warning",

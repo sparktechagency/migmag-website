@@ -31,7 +31,6 @@ const TopTenVocal: React.FC = () => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [showModal, setShowModal] = useState(false);
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const imgUrl = "http://103.186.20.110:8002"; // Base URL for images and audio
 
@@ -57,19 +56,7 @@ const TopTenVocal: React.FC = () => {
         fetchTrendingVocals();
     }, []);
 
-    const handleTogglePlay = (url: string) => {
-        if (playingUrl === url && isPlaying) {
-            audioRef.current?.pause();
-            setIsPlaying(false);
-        } else {
-            audioRef.current?.pause();
-            const audio = new Audio(url);
-            audioRef.current = audio;
-            audio.play();
-            setPlayingUrl(url);
-            setIsPlaying(true);
-        }
-    };
+
 
     const handleOpenModal = (index: number) => {
         setCurrentIndex(index);
@@ -89,7 +76,7 @@ const TopTenVocal: React.FC = () => {
             <div
                 key={item.id}
                 className={`flex flex-col lg:flex-row items-center justify-between 
-        gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px]
+        gap-y-2 lg:gap-y-0 lg:py-2 border border-black py-3 px-10 my-2 rounded-lg max-w-[713px] 
         transition-all duration-300 cursor-pointer
         ${isCurrent ? "bg-black  " : index % 2 === 0 ? "bg-[#F1F1F1]" : "bg-[#FFFFFF]"}`}
             >
@@ -107,7 +94,7 @@ const TopTenVocal: React.FC = () => {
                     />
                 </Link>
 
-                <div className="flex    flex-col">
+                <div className="flex     flex-col">
                     <Link href={`/singer-profile/${item.id}`}>
                         <h3 className={`text-lg font-bold leading-6 hover:underline ${isCurrent ? "text-white" : "headerColor"}`}>
                             {item.title}
@@ -120,9 +107,8 @@ const TopTenVocal: React.FC = () => {
                 </div>
 
                 <button
-                    onClick={() => {
-                        handleTogglePlay(audioPath);
-                        handleOpenModal(index);
+                    onClick={()=>{
+                        handleOpenModal(index)
                     }}
                     className={`w-[50px] h-[50px] rounded-full flex justify-center items-center ${isCurrent ? "border border-[#E7F056]" : "border border-black"}`}
                     aria-label="Play or pause"
@@ -153,8 +139,8 @@ const TopTenVocal: React.FC = () => {
                 {loading && <p className="text-gray-400 mt-4">Loading...</p>}
                 {error && <p className="text-red-500 mt-4">{error}</p>}
 
-                <div className="grid grid-cols-1 md:grid-cols-2  w-full">
-                    <div className="flex flex-col md:mr-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6  w-full">
+                    <div className="flex flex-col   ">
                         {leftItems.map((item, i) => renderCard(item, i))}
                     </div>
 

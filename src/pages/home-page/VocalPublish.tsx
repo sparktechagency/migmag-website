@@ -38,8 +38,8 @@ const VocalPublish: React.FC = () => {
               </h1>
             </div>
             <div>
-              <div className=" flex flex-col lg:flex-row md:flex-row  lg:items-center justify-center lg:gap-x-10 md:gap-10 ">
-                <span className=" block ml-1   " >
+              <div className=" flex flex-col lg:flex-row md:flex-row  lg:items-start justify-center lg:gap-x-10 md:gap-10 ">
+                <span className=" block ml-1 mt-10  " >
                   <svg
                     width="32"
                     height="32"
@@ -67,8 +67,8 @@ const VocalPublish: React.FC = () => {
                 </div>
               </div>
 
-              <div className=" flex flex-col lg:flex-row md:flex-row  items-center lg:gap-x-10 md:gap-10   ">
-                <span>
+              <div className=" flex flex-col lg:flex-row md:flex-row  items-start lg:gap-x-10 md:gap-10   ">
+                <span className={`mt-10`} >
                   <Image
                     src={"/update-image/home-page/vocal-relase/relese2Logo.png"}
                     alt={"download"}
@@ -91,8 +91,8 @@ const VocalPublish: React.FC = () => {
                 </div>
               </div>
 
-              <div className=" flex flex-col lg:flex-row md:flex-row  items-center lg:gap-x-10 md:gap-10   ">
-                <span>
+              <div className=" flex flex-col lg:flex-row md:flex-row  items-start lg:gap-x-10 md:gap-10   ">
+                <span className={`mt-10`} >
                   <Image
                     src={"/update-image/home-page/vocal-relase/relese3Logo.png"}
                     alt={"download"}
@@ -130,48 +130,48 @@ const VocalPublish: React.FC = () => {
               “LOVE TUNEM - GREAT CHOICE AND EVEN BETTER SERVICE”{" "}
             </h1>
             <p className="mt-2 text-lg font-medium  textColor ">
-              Mantas Stinson (Lithuania HQ .Label Manager)
+              Mantas Stinson (Lithuania HQ Label Manager)
             </p>
 
             <div className="flex flex-col md:flex-row justify-center items-center gap-6 my-10">
               {/* img 1 */}
               <div className="flex justify-center">
                 <Image
-                    src="/update-image/tune/spotify-1.png"
+                    src="/update-image/home-page/spotify/spotify1.png"
                     alt="logo"
-                    width={200}
-                    height={200}
-                    className="w-[200px] h-[200px] object-contain"
+                    width={400}
+                    height={400}
+                    className=""
                 />
               </div>
               {/* img 2 */}
               <div className="flex justify-center">
                 <Image
-                    src="/update-image/tune/spotify-2.png"
+                    src="/update-image/home-page/spotify/spotify2.png"
                     alt="logo"
-                    width={200}
-                    height={200}
-                    className="w-[200px] h-[200px] object-contain"
+                    width={400}
+                    height={400}
+                    className=""
                 />
               </div>
               {/* img 3 */}
               <div className="flex justify-center">
                 <Image
-                    src="/update-image/tune/spotify-3.png"
+                    src="/update-image/home-page/spotify/spotify3.png"
                     alt="logo"
-                    width={200}
-                    height={200}
-                    className="w-[200px] h-[200px] object-contain"
+                    width={400}
+                    height={400}
+                    className=""
                 />
               </div>
               {/* img 4 */}
               <div className="flex justify-center">
                 <Image
-                    src="/update-image/tune/spotify-4.png"
+                    src="/update-image/home-page/spotify/spotify4.png"
                     alt="logo"
-                    width={200}
-                    height={200}
-                    className="w-[200px] h-[200px] object-contain"
+                    width={400}
+                    height={400}
+                    className=""
                 />
               </div>
             </div>
