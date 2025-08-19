@@ -1,11 +1,11 @@
 'use client';
 
 import Image from 'next/image';
-import React, {ChangeEvent, useEffect, useState, useRef} from 'react';
-import {FaUser, FaPhoneAlt, FaMapMarkerAlt} from 'react-icons/fa';
-import {CgMail} from 'react-icons/cg';
+import React, { ChangeEvent, useEffect, useState, useRef } from 'react';
+import { FaUser, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { CgMail } from 'react-icons/cg';
 
-import {imgUrl} from '@/utility/img/imgUrl';
+import { imgUrl } from '@/utility/img/imgUrl';
 import {
     useUpdateProfileMutation,
     useUserProfileApiQuery,
@@ -16,8 +16,8 @@ const AccountFromPage: React.FC = () => {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-    const {data, refetch} = useUserProfileApiQuery();
-    const [updateProfile, {isLoading: isUpdating}] = useUpdateProfileMutation();
+    const { data, refetch } = useUserProfileApiQuery();
+    const [updateProfile, { isLoading: isUpdating }] = useUpdateProfileMutation();
 
     // Use a ref so we only load initial data once
     const loadedRef = useRef(false);
@@ -45,7 +45,7 @@ const AccountFromPage: React.FC = () => {
 
     // Handle input changes properly updating formData state
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setformdata((prev) => ({
             ...prev,
             [name]: value,
@@ -55,7 +55,7 @@ const AccountFromPage: React.FC = () => {
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
 
-        console.log("image file is",file);
+        console.log("image file is", file);
 
         if (file) {
             setImageFile(file);
@@ -133,7 +133,7 @@ const AccountFromPage: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-14">
                     <div className="relative">
-                        <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
+                        <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <input
                             type="text"
                             name="full_name"
@@ -145,7 +145,7 @@ const AccountFromPage: React.FC = () => {
                     </div>
 
                     <div className="relative">
-                        <CgMail size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
+                        <CgMail size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                         <input
                             type="email"
                             name="email"
@@ -157,7 +157,7 @@ const AccountFromPage: React.FC = () => {
                 </div>
 
                 <div className="relative mt-4">
-                    <FaPhoneAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
+                    <FaPhoneAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
                         name="contact"
@@ -169,7 +169,7 @@ const AccountFromPage: React.FC = () => {
                 </div>
 
                 <div className="relative mt-4">
-                    <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"/>
+                    <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
                         name="location"

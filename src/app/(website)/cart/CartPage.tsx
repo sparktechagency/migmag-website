@@ -30,7 +30,7 @@ const licenseColors: Record<Track['license'], string> = {
 
 const CartPage = () => {
     const [cart, setCart] = useState<Track[]>([]);
-    console.log(cart)
+    
 
     // ✅ Load cart from localStorage once
     useEffect(() => {
@@ -138,7 +138,7 @@ const CartPage = () => {
                             </div>
                             <button
                                 onClick={handleCheckout}
-                                className="mt-4 bg-yellow-400 text-black font-bold px-6 py-2 rounded-lg w-full"
+                                className="mt-4 cursor-pointer bg-yellow-400 text-black font-bold px-6 py-2 rounded-lg w-full"
                             >
                                 Checkout
                             </button>

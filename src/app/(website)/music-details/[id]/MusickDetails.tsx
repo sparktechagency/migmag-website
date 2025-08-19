@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Image from 'next/image'
 import {
     Info,
@@ -23,7 +23,6 @@ import { ApiError } from "@/utility/api-type/homeApiType";
 
 
 
-
 const MusickDetails = ({ id }: { id: string }) => {
     const [showModal, setShowModal] = useState(false);
     const songId = Number(id);
@@ -34,7 +33,7 @@ const MusickDetails = ({ id }: { id: string }) => {
     const [addWishList] = useAddWishListMutation();
     const [removeWish] = useRemoveWishMutation()
 
-    console.log(data?.data?.song_poster)
+
 
 
 
@@ -115,50 +114,81 @@ const MusickDetails = ({ id }: { id: string }) => {
 
 
 
+interface CartItem {
+  id: number;
+  title: string;
+  name: string; // artist name
+  gender?: string;
+  bpm?: string;
+  genre?: string;
+  key?: string;
+  license?: string;
+  price: number;
+  image?: string;
+}
 
-    // Define cart item type
-    interface CartItem {
-        id: number;
-        title: string;
-        name: string;   // artist name
-        gender: string;
-        bpm: number;
-        genre: string;
-        key: string;
-        license: string;
-        price: string;
-        image: string;
+const [cart, setCart] = useState<CartItem[]>([]);
+
+// Load cart from localStorage once
+useEffect(() => {
+  const cartData = localStorage.getItem("cart");
+  if (cartData) {
+    try {
+      const parsedCart: CartItem[] = JSON.parse(cartData).map((item: any) => ({
+        ...item,
+        price: Number(item.price),
+      }));
+      setCart(parsedCart);
+    } catch (error) {
+      console.error("Failed to parse cart:", error);
     }
+  }
+}, []);
 
-    const handleAddToCart = (data: any) => {
-        // Create cart item
-        const cartItem: CartItem = {
-            id: data?.data?.id,
-            title: data?.data?.title,
-            name: data?.data?.artist?.name,
-            gender: data?.data?.artist?.gender,
-            bpm: data?.data?.bpm,
-            genre: data?.data?.genre?.name,
-            key: data?.data?.key?.name,
-            license: data?.data?.license?.name,
-            price: data?.data?.price,
-            image: data?.data?.song_poster
-        };
+const handleAddToCart = (data: any) => {
+  if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
+    return alert("Invalid song data");
+  }
 
-        // Get existing cart
-        let cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cartItem: CartItem = {
+    id: data.data.id,
+    title: data.data.title,
+    name: data.data.artist?.name || "",
+    gender: data.data.artist?.gender,
+    bpm: data.data.bpm,
+    genre: data.data.genre?.name,
+    key: data.data.key?.name,
+    license: data.data.license?.name,
+    price: Number(data.data.price),
+    image: data.data.song_poster
+  };
 
-        // ✅ Prevent duplicate by song ID
-        const alreadyInCart = cart.some((item) => item.id === cartItem.id);
+  // Prevent duplicates
+  const alreadyInCart = cart.some(item => item.id === cartItem.id);
 
-        if (!alreadyInCart) {
-            cart.push(cartItem);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            console.log("✅ Added to cart:", cartItem);
-        } else {
-            alert(` Already add to cart `)
-        }
-    }
+  if (!alreadyInCart) {
+    const updatedCart = [...cart, cartItem];
+    setCart(updatedCart); // ✅ update React state
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Song added to cart successfully",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  } else {
+    Swal.fire({
+      position: "top-end",
+      icon: "warning",
+      title: "Song already added to cart",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+};
+
 
 
 
