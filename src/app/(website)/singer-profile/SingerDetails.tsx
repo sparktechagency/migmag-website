@@ -14,7 +14,6 @@ import MoreSinger from "@/app/(website)/singer-profile/MoreSinger";
 import {useAddFollowMutation, useUnFollowMutation} from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 import {useRouter} from "next/navigation";
-import {ApiError} from "@/utility/api-type/homeApiType";
 
 
 type SingerDetailsProps = {

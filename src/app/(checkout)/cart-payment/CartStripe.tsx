@@ -3,56 +3,49 @@
 import { useEffect, useState } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import CheckoutForm from './CheckoutForm';
 import { useCreatePaymentIntentMutation } from "@/redux/api/authApi/authApi";
-import { useSearchParams } from "next/navigation";
+import CartCheckout from './CartCheckout';
+import { useSearchParams } from 'next/navigation';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-export default function StripeForm() {
+export default function CartStripe() {
+    const searchParams = useSearchParams();
+    const totalParam = searchParams?.get('total') || null;
     const [clientSecret, setClientSecret] = useState<string | null>(null);
     const [createPaymentIntent] = useCreatePaymentIntentMutation();
-    const searchParams = useSearchParams();
 
-    const priceParam = searchParams.get('price');
-    const songIdParam = searchParams.get('songId');
-
-    const price = priceParam ? parseFloat(priceParam) : null;
-    const songId = songIdParam ? parseInt(songIdParam) : null;
-
-    console.log(`songId ${typeof songId} `)
+    const price = totalParam ? Number(totalParam) : 0;
 
     useEffect(() => {
         const createIntent = async () => {
-            try {
-                if (!price) return;
+            if (!price || isNaN(price)) return;
 
+            try {
                 const payload = {
-                    amount: price, // Ensure backend expects the same unit
-                    payment_method: "pm_card_visa"
+                    amount: price * 100, // Stripe expects cents
+                    payment_method: "pm_card_visa",
                 };
 
                 const res = await createPaymentIntent(payload);
-
                 const secret = res?.data?.data?.client_secret;
                 if (secret) setClientSecret(secret);
-
             } catch (err) {
                 console.error('Error creating payment intent:', err);
             }
         };
 
         createIntent();
-    }, [createPaymentIntent, price]);
+    }, [price, createPaymentIntent]);
 
     const appearance = { theme: 'stripe' };
-    const options = { clientSecret, appearance };
+    const options = clientSecret ? { clientSecret, appearance } : undefined;
 
     return (
-        <div className="">
+        <div>
             {clientSecret ? (
                 <Elements options={options} stripe={stripePromise}>
-                    <CheckoutForm songId={songId} price={price} clientSecret={clientSecret} />
+                    <CartCheckout clientSecret={clientSecret} />
                 </Elements>
             ) : (
                 <p>Loading payment...</p>

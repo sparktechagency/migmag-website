@@ -1,6 +1,6 @@
 'use client'
 
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import {
     Info,
@@ -12,27 +12,29 @@ import {
     X, Facebook, Twitter
 } from 'lucide-react'
 
-import {useSongDetailsQuery} from "@/redux/api/home-api/homeApi";
-import {imgUrl} from "@/utility/img/imgUrl";
-import {useAddWishListMutation, useRemoveWishMutation} from "@/redux/api/authApi/authApi";
+import { useSongDetailsQuery } from "@/redux/api/home-api/homeApi";
+import { imgUrl } from "@/utility/img/imgUrl";
+import { useAddWishListMutation, useRemoveWishMutation } from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 import AudioPlay from "@/app/(website)/music-details/[id]/AudioPlay";
-import {FaHeart} from "react-icons/fa";
-import {useRouter} from "next/navigation";
-import {ApiError} from "@/utility/api-type/homeApiType";
+import { FaHeart } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import { ApiError } from "@/utility/api-type/homeApiType";
 
 
 
 
-const MusickDetails = ({id}: { id: string }) => {
+const MusickDetails = ({ id }: { id: string }) => {
     const [showModal, setShowModal] = useState(false);
     const songId = Number(id);
 
 
     const router = useRouter()
-    const {data,refetch} = useSongDetailsQuery({songId});
+    const { data, refetch } = useSongDetailsQuery({ songId });
     const [addWishList] = useAddWishListMutation();
-    const [removeWish]  = useRemoveWishMutation()
+    const [removeWish] = useRemoveWishMutation()
+
+    console.log(data?.data?.song_poster)
 
 
 
@@ -72,7 +74,7 @@ const MusickDetails = ({id}: { id: string }) => {
     const removeFromWishlist = async () => {
         try {
             const res = await removeWish(songId).unwrap();
-            if(res){
+            if (res) {
                 refetch();
                 Swal.fire({
                     position: "top-end",
@@ -82,19 +84,21 @@ const MusickDetails = ({id}: { id: string }) => {
                     timer: 1500
                 });
             }
-        }catch (e) {
+        } catch (e) {
             console.log(e)
             router.push("/login");
             // console.error(e);
             Swal.fire({
                 position: "top-end",
                 icon: "error",
+
                 title: "Something went wrong",
                 showConfirmButton: false,
                 timer: 1500
             });
         }
     }
+
 
 
 
@@ -111,6 +115,55 @@ const MusickDetails = ({id}: { id: string }) => {
 
 
 
+
+    // Define cart item type
+    interface CartItem {
+        id: number;
+        title: string;
+        name: string;   // artist name
+        gender: string;
+        bpm: number;
+        genre: string;
+        key: string;
+        license: string;
+        price: string;
+        image: string;
+    }
+
+    const handleAddToCart = (data: any) => {
+        // Create cart item
+        const cartItem: CartItem = {
+            id: data?.data?.id,
+            title: data?.data?.title,
+            name: data?.data?.artist?.name,
+            gender: data?.data?.artist?.gender,
+            bpm: data?.data?.bpm,
+            genre: data?.data?.genre?.name,
+            key: data?.data?.key?.name,
+            license: data?.data?.license?.name,
+            price: data?.data?.price,
+            image: data?.data?.song_poster
+        };
+
+        // Get existing cart
+        let cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+
+        // ✅ Prevent duplicate by song ID
+        const alreadyInCart = cart.some((item) => item.id === cartItem.id);
+
+        if (!alreadyInCart) {
+            cart.push(cartItem);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            console.log("✅ Added to cart:", cartItem);
+        } else {
+            alert(` Already add to cart `)
+        }
+    }
+
+
+
+
+
     return (
         <>
             {/* Main Music Card */}
@@ -120,7 +173,7 @@ const MusickDetails = ({id}: { id: string }) => {
                     <>
                         {data?.data?.is_wishlisted == 1 && (
                             <span>
-                              <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer "/>
+                                <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer " />
                             </span>
                         )}
 
@@ -165,19 +218,19 @@ const MusickDetails = ({id}: { id: string }) => {
                             <span>•</span>
                             <span className="bg-gray-100 px-2 py-0.5 rounded text-xs">{data?.data?.license?.name}</span>
                             <span className="bg-blue-100 text-blue-600 px-2 py-0.5 rounded text-xs">
-              {data?.data?.type?.name}
-            </span>
+                                {data?.data?.type?.name}
+                            </span>
                         </div>
 
                         {/* Play Button */}
                         {/*<div className="my-4">*/}
                         {/*    <FaPlay size={30} className="cursor-pointer text-gray-700 hover:text-black transition"/>*/}
                         {/*</div>*/}
-                        <AudioPlay data = {data}  ></AudioPlay>
+                        <AudioPlay data={data}  ></AudioPlay>
 
                         {/* Info Text */}
                         <div className="text-sm text-gray-500 flex items-center gap-1">
-                            <Info className="w-4 h-4"/>
+                            <Info className="w-4 h-4" />
                             <span>Only available to subscribed users</span>
                         </div>
 
@@ -186,21 +239,19 @@ const MusickDetails = ({id}: { id: string }) => {
                             <p className="text-black font-semibold">1 Credit</p>
                             <p className="text-sm text-gray-500">Includes</p>
                             <div className="flex gap-2 mt-1 flex-wrap">
-              <span className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded-full">
-                WET Vocals
-              </span>
+                                <span className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded-full">
+                                    WET Vocals
+                                </span>
                                 <span className="text-xs px-2 py-1 bg-gray-100 text-gray-700 rounded-full">
-                3x DRY Vocals Takes
-              </span>
+                                    3x DRY Vocals Takes
+                                </span>
                             </div>
                         </div>
 
                         {/* Buttons */}
                         <div className="mt-4 flex gap-4">
-                            {/* <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded hover:bg-blue-700">
-              Download Now (1 Credit)
-            </button> */}
-                            <button
+
+                            <button onClick={() => { handleAddToCart(data) }}
                                 className="border border-blue-600 text-blue-600 px-4 py-2 cursor-pointer text-sm rounded hover:bg-blue-50">
 
                                 Add To Cart
@@ -220,8 +271,8 @@ const MusickDetails = ({id}: { id: string }) => {
                         className="fixed top-1/2 left-1/2 z-50 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-md px-6 py-5 w-[95%] max-w-md">
                         {/* Close Button */}
                         <button onClick={() => setShowModal(false)}
-                                className="absolute top-3 right-4 text-gray-400 hover:text-black cursor-pointer ">
-                            <X size={18}/>
+                            className="absolute top-3 right-4 text-gray-400 hover:text-black cursor-pointer ">
+                            <X size={18} />
                         </button>
 
                         {/* Modal Heading */}
@@ -238,7 +289,7 @@ const MusickDetails = ({id}: { id: string }) => {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 bg-[#3b5998] hover:brightness-110 text-white text-sm px-4 py-2 rounded-md"
                             >
-                                <Facebook size={16}/>
+                                <Facebook size={16} />
                                 Facebook
                             </a>
 
@@ -248,7 +299,7 @@ const MusickDetails = ({id}: { id: string }) => {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 bg-[#1da1f2] hover:brightness-110 text-white text-sm px-4 py-2 rounded-md"
                             >
-                                <Twitter size={16}/>
+                                <Twitter size={16} />
                                 Twitter
                             </a>
 
@@ -258,7 +309,7 @@ const MusickDetails = ({id}: { id: string }) => {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 bg-[#25d366] hover:brightness-110 text-white text-sm px-4 py-2 rounded-md"
                             >
-                                <MessageCircle size={16}/>
+                                <MessageCircle size={16} />
                                 WhatsApp
                             </a>
 
@@ -266,7 +317,7 @@ const MusickDetails = ({id}: { id: string }) => {
                                 onClick={handleCopy}
                                 className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-4 py-2 rounded-md"
                             >
-                                <Copy size={16}/>
+                                <Copy size={16} />
                                 Copy link
                             </button>
                         </div>
