@@ -162,12 +162,13 @@ const authApi = createApi({
         body: payload,
       }),
     }),
-    paymentSuccessApi: builder.mutation<OrderApiResponse, void>({
-      query: (payload) => ({
-        url: "/create-order",
-        method: "POST",
-        body: JSON.stringify(payload),
-      }),
+    paymentSuccessApi: builder.mutation<any, { songs: { song_id: number; price: number; }[], payment_method: string }>({
+            query: (payload) => ({
+                url: 'create-order',
+                method: 'POST',
+                body: payload,
+            }),
+        
     }),
     userOrderApi: builder.query({
       query: () => ({

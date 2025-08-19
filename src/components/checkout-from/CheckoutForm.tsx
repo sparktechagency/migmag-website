@@ -8,19 +8,19 @@ import {
     CardExpiryElement,
     CardCvcElement,
 } from '@stripe/react-stripe-js';
-import {useRouter} from 'next/navigation';
-import {useState} from 'react';
-import toast, {Toaster} from 'react-hot-toast';
-import {usePaymentSuccessApiMutation} from "@/redux/api/authApi/authApi";
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { usePaymentSuccessApiMutation } from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 
 type CheckoutFormProps = {
     clientSecret: string;
-    songId: string;
-    price: number;
+    songId?: number; // optional
+    price?: number;  // optional
 };
 
-export default function CheckoutForm({clientSecret, songId, price}: CheckoutFormProps) {
+export default function CheckoutForm({ clientSecret, songId, price }: CheckoutFormProps) {
     const stripe = useStripe();
     const elements = useElements();
     const router = useRouter();
@@ -30,7 +30,7 @@ export default function CheckoutForm({clientSecret, songId, price}: CheckoutForm
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    const [paymentSuccessApi] = usePaymentSuccessApiMutation()
+    const [paymentSuccessApi] = usePaymentSuccessApiMutation();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -42,48 +42,55 @@ export default function CheckoutForm({clientSecret, songId, price}: CheckoutForm
             return;
         }
 
-        
+        if (!songId || !price) {
+            setLoading(false);
+            return toast.error('Invalid song or price');
+        }
 
-        const result = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: elements.getElement(CardNumberElement)!,
-                billing_details: {
-                    name,
-                    email,
+        try {
+            // 1️⃣ Confirm Stripe payment
+            const result = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: elements.getElement(CardNumberElement)!,
+                    billing_details: {
+                        name,
+                        email,
+                    },
                 },
-            },
-        });
+            });
 
-        if (result.error) {
-            setErrorMessage(result.error.message ?? 'Payment failed');
-        } else if (result.paymentIntent?.status === 'succeeded') {
-            try {
+            if (result.error) {
+                setErrorMessage(result.error.message ?? 'Payment failed');
+            } else if (result.paymentIntent?.status === 'succeeded') {
+                // 2️⃣ Call backend API to record order
                 const res = await paymentSuccessApi({
                     songs: [
-                        {song_id: songId, price: price},
-                        {song_id: songId, price: 0},
+                        {
+                            song_id: songId,
+                            price: price,
+                        }
                     ],
                     payment_method: "card"
-                })
+                });
 
-                console.log(res)
-
+                console.log(res);
 
                 if (!res) throw new Error(res.message || 'Failed to record payment');
 
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: res?.data?.message,
+                    title: res?.data?.message || 'Payment Successful!',
                     showConfirmButton: false,
                     timer: 1500
                 });
-                router.push('/');
 
-            } catch (err: any) {
-                console.error(err);
-                toast.error(err.message || 'Something went wrong');
+                router.push('/');
             }
+
+        } catch (err: any) {
+            console.error(err);
+            toast.error(err.message || 'Something went wrong');
         }
 
         setLoading(false);
@@ -94,13 +101,9 @@ export default function CheckoutForm({clientSecret, songId, price}: CheckoutForm
             base: {
                 fontSize: '16px',
                 color: '#32325d',
-                '::placeholder': {
-                    color: '#a0aec0',
-                },
+                '::placeholder': { color: '#a0aec0' },
             },
-            invalid: {
-                color: '#e53e3e',
-            },
+            invalid: { color: '#e53e3e' },
         },
     };
 
@@ -134,21 +137,21 @@ export default function CheckoutForm({clientSecret, songId, price}: CheckoutForm
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-medium">Card Number</label>
                         <div className="px-4 py-2 border border-gray-300 rounded-md">
-                            <CardNumberElement options={inputStyle}/>
+                            <CardNumberElement options={inputStyle} />
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-medium">Expiry Date</label>
                         <div className="px-4 py-2 border border-gray-300 rounded-md">
-                            <CardExpiryElement options={inputStyle}/>
+                            <CardExpiryElement options={inputStyle} />
                         </div>
                     </div>
 
                     <div className="flex flex-col gap-1">
                         <label className="text-sm font-medium">CVC</label>
                         <div className="px-4 py-2 border border-gray-300 rounded-md">
-                            <CardCvcElement options={inputStyle}/>
+                            <CardCvcElement options={inputStyle} />
                         </div>
                     </div>
 
@@ -165,7 +168,7 @@ export default function CheckoutForm({clientSecret, songId, price}: CheckoutForm
                     </button>
                 </form>
             </div>
-            <Toaster position="top-center"/>
+            <Toaster position="top-center" />
         </div>
     );
 }

@@ -40,6 +40,25 @@ const BrowseVocalNavbar: React.FC = () => {
         setDrawerOpen(false)
     }, [pathname])
 
+        const [cart, setCart] = useState<Track[]>([]);
+    
+    
+        // ✅ Load cart from localStorage once
+        useEffect(() => {
+            const cartData = localStorage.getItem("cart");
+            if (cartData) {
+                try {
+                    const parsedCart: Track[] = JSON.parse(cartData).map((item: any) => ({
+                        ...item,
+                        price: Number(item.price), // ensure price is number
+                    }));
+                    setCart(parsedCart);
+                } catch (error) {
+                    console.error("Failed to parse cart:", error);
+                }
+            }
+        }, []);
+
     return (
         <div className={` `}>
             <MaxWidth>
@@ -143,7 +162,10 @@ const BrowseVocalNavbar: React.FC = () => {
                                         </span>
                                         <span
                                             className="absolute -top-1 -right-1 bg-[#E7F056] text-black text-xs w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                                            0
+                                            {
+
+                                                cart.length
+                                            }
                                         </span>
                                     </div>
                                 </Link>
@@ -153,14 +175,16 @@ const BrowseVocalNavbar: React.FC = () => {
                             <div className={"  "}>
                                 {
                                     token && (
-                                        <Image
-                                            src={`${imgUrl}/${data?.data?.avatar}`}
-                                            alt={data?.full_name || "User Avatar"}
-                                            width={40}
-                                            height={40}
-                                            className="rounded-full border w-14 h-14  "
-                                        />
-                                    )
+                                                                        <Link href = "/dashboard">
+                                                                            <Image
+                                                                            src={`${imgUrl}/${data?.data?.avatar}`}
+                                                                            alt={data?.full_name || "User Avatar"}
+                                                                            width={40}
+                                                                            height={40}
+                                                                            className="rounded-full cursor-pointer border w-14 h-14  "
+                                                                        />
+                                                                        </Link>
+                                                                    )
                                 }
                                 {
                                     !token && (
@@ -238,11 +262,36 @@ const BrowseVocalNavbar: React.FC = () => {
                             <li><Link className={`${pathname === "/hire" ? "text-[#E7F056]" : 'text-black'}`}
                                 href="/hire">Hire</Link></li>
                             <li><Link className={`${pathname === "/cart" ? "text-[#E7F056]" : 'text-black'}`}
-                                href="/cart">Cart (0)</Link></li>
+                                href="/cart">Cart ({
+
+                                                cart.length
+                                            })</Link></li>
                             <li>
-                                <button className="bg-black text-white px-6 py-2 rounded-full w-full">
-                                    <Link href={"/login"}>Log in</Link>
-                                </button>
+                                <div className={"  "}>
+                                                                {
+                                                                    token && (
+                                                                        <Link href = "/dashboard">
+                                                                            <Image
+                                                                            src={`${imgUrl}/${data?.data?.avatar}`}
+                                                                            alt={data?.full_name || "User Avatar"}
+                                                                            width={40}
+                                                                            height={40}
+                                                                            className="rounded-full cursor-pointer border w-14 h-14  "
+                                                                        />
+                                                                        </Link>
+                                                                    )
+                                                                }
+                                                                {
+                                                                    !token && (
+                                                                        <Link href="/login">
+                                                                            <button
+                                                                                className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
+                                                                                Log in
+                                                                            </button>
+                                                                        </Link>
+                                                                    )
+                                                                }
+                                                            </div>
                             </li>
                         </ul>
                     </div>

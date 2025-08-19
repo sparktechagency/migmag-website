@@ -14,26 +14,25 @@ export default function StripeForm() {
     const [createPaymentIntent] = useCreatePaymentIntentMutation();
     const searchParams = useSearchParams();
 
-    const priceParam = searchParams.get('price');
-    const songIdParam = searchParams.get('songId');
+    const priceParam = searchParams?.get('price') || null;
+    const songIdParam = searchParams?.get('songId') || null;
 
     const price = priceParam ? parseFloat(priceParam) : null;
     const songId = songIdParam ? parseInt(songIdParam) : null;
 
-    console.log(`songId ${typeof songId} `)
+    console.log(`songId ${typeof songId} `);
 
     useEffect(() => {
         const createIntent = async () => {
-            try {
-                if (!price) return;
+            if (!price) return; // wait until price exists
 
+            try {
                 const payload = {
-                    amount: price, // Ensure backend expects the same unit
+                    amount: price * 100, // Stripe expects cents
                     payment_method: "pm_card_visa"
                 };
 
                 const res = await createPaymentIntent(payload);
-
                 const secret = res?.data?.data?.client_secret;
                 if (secret) setClientSecret(secret);
 
@@ -46,7 +45,7 @@ export default function StripeForm() {
     }, [createPaymentIntent, price]);
 
     const appearance = { theme: 'stripe' };
-    const options = { clientSecret, appearance };
+    const options = clientSecret ? { clientSecret, appearance } : undefined;
 
     return (
         <div className="">
