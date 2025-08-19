@@ -155,7 +155,7 @@ export default function MusicSlider() {
                                     <div className="flex gap-x-6">
                                         <p className="textColor lg:text-lg font-bold">{item.artist?.name}</p>
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
-                                            <p className="textColor lg:text-lg font-bold">{item.price}</p>
+                                            <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">{item.price}</p>
                                         </Link>
                                     </div>
                                 </div>

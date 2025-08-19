@@ -59,7 +59,7 @@ const MoreVocals = ({id}:{id:string}) => {
                                 className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
                                 <Link href="/checkout">
                                     <button
-                                        className="bg-[#E7F056] text-black text-sm font-semibold px-4 py-1 rounded">
+                                        className="bg-[#E7F056] cursor-pointer text-black text-sm font-semibold px-4 py-1 rounded">
                                         ${item.price || 0}
                                     </button>
                                 </Link>

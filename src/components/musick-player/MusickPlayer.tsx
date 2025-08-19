@@ -1,19 +1,19 @@
 "use client";
 
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import Image from "next/image";
-import {FiPlay, FiHeart} from "react-icons/fi";
-import {CiPause1} from "react-icons/ci";
-import {AnimatePresence, motion} from "framer-motion";
+import { FiPlay, FiHeart } from "react-icons/fi";
+import { CiPause1 } from "react-icons/ci";
+import { AnimatePresence, motion } from "framer-motion";
 import MaxWidth from "@/components/max-width/MaxWidth";
-import {imgUrl} from "@/utility/img/imgUrl";
+import { imgUrl } from "@/utility/img/imgUrl";
 
 export function MusickPlayer({
-                                 show,
-                                 onClose,
-                                 currentTrack,
-                             }: {
+    show,
+    onClose,
+    currentTrack,
+}: {
     show: boolean;
     onClose: () => void;
     currentTrack: {
@@ -127,20 +127,20 @@ export function MusickPlayer({
                     <>
                         {/* Backdrop */}
                         <motion.div
-                            initial={{opacity: 0}}
-                            animate={{opacity: 1}}
-                            exit={{opacity: 0}}
-                            transition={{duration: 0.3}}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
                             className="fixed inset-0 bg-black/40 z-40"
                             onClick={onClose}
                         />
 
                         {/* Modal */}
                         <motion.div
-                            initial={{y: "100%"}}
-                            animate={{y: 0}}
-                            exit={{y: "100%"}}
-                            transition={{type: "spring", stiffness: 300, damping: 30}}
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            exit={{ y: "100%" }}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             className="fixed max-w-[1539px] mx-auto bottom-0 left-0 right-0 z-50 bg-[#1b1b1b] px-4 py-2 shadow-xl border-t-2 border-[#E7F056]"
                         >
                             <div className="flex items-center justify-between gap-4 text-white">
@@ -166,15 +166,14 @@ export function MusickPlayer({
                                     <button
                                         onClick={togglePlay}
                                         disabled={!isReady}
-                                        className={`text-[#E7F056] hover:scale-110 cursor-pointer transition ${
-                                            !isReady ? "opacity-50 cursor-not-allowed" : ""
-                                        }`}
+                                        className={`text-[#E7F056] hover:scale-110 cursor-pointer transition ${!isReady ? "opacity-50 cursor-not-allowed" : ""
+                                            }`}
                                     >
-                                        {isPlaying ? <CiPause1 size={24}/> : <FiPlay size={24}/>}
+                                        {isPlaying ? <CiPause1 size={24} /> : <FiPlay size={24} />}
                                     </button>
                                     <span className="text-xs w-10 text-right">{currentTime}</span>
                                     <div className="w-full">
-                                        <div ref={waveformRef} className="w-full h-10"/>
+                                        <div ref={waveformRef} className="w-full h-10" />
                                     </div>
                                     <span className="text-xs w-12 text-left">{timeLeft}</span>
                                 </div>
