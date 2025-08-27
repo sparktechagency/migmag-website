@@ -381,7 +381,7 @@ const BrowseAllVocal = () => {
                         {/* Title Section */}
                         <div className='flex-1 w-full'>
                             <h1 className='lg:text-3xl md:text-2xl text-xl font-bold leading-9 text-white'>
-                                Cover <span className='text-[#818080]'>Vocals</span>
+                                 <span className='text-[#818080]'>Vocals</span>
                             </h1>
                         </div>
 

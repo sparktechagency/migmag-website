@@ -34,7 +34,7 @@ const VocalPublishLogo: React.FC = () => {
                     </div>
                     <div>
                         <Image
-                            src="/update-image/sponser-logo/sponser-2.png"
+                            src="/update-image/sponser-logo/sponser-3.png"
                             alt="logo"
                             width={175}
                             height={85}
@@ -43,13 +43,14 @@ const VocalPublishLogo: React.FC = () => {
                     </div>
                     <div>
                         <Image
-                            src="/update-image/sponser-logo/sponser-3.png"
+                            src="/update-image/sponser-logo/sponser-2.png"
                             alt="logo"
                             width={175}
                             height={85}
                             className="object-cover w-36 "
                         />
                     </div>
+
                     <div>
                         <Image
                             src="/update-image/sponser-logo/sponser-4.png"

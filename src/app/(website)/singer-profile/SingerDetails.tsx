@@ -197,15 +197,19 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                 <div className='lg:mt-3 mt-1.5 text-white text-xl lg:space-x-4 space-x-3 '>
                                     <button
                                         className=' bg-[#E7F0FB] font-bold textColor cursor-pointer px-3 py-1 rounded-2xl text-sm '>
-                                        {
+                                        {/* {
                                             artistData?.singer
-                                        }
+                                        } */}
+                                        <p>
+                                            Singer</p>
                                     </button>
                                     <button
                                         className=' bg-[#FBEBFF]  font-bold textColor cursor-pointer px-3 py-1 rounded-2xl  text-sm '>
-                                        {
+                                        {/* {
                                             artistData?.singer_writer
-                                        }
+                                        } */}
+                                        <p>Singer writer</p>
+
                                     </button>
                                 </div>
 
@@ -427,7 +431,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                             alt="Mic Icon"
                                             width={150}
                                             height={157}
-                                            className="h-28 w-28 object-cover"
+                                            className="h-20 w-20 ml-2 mt-3 object-cover"
                                         />
                                     </div>
                                     <div className="w-full transition duration-300">
@@ -448,7 +452,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                             alt="Mic Icon"
                                             width={150}
                                             height={157}
-                                            className="h-28 w-28   object-cover"
+                                            className="h-24 w-24 mt-2 ml-1  object-cover"
                                         />
                                     </div>
                                     <div className="w-full transition duration-300">
@@ -472,7 +476,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                 {/* Card Section */}
                 <div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
-                    <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
+                    <div className=" p-5   rounded-md text-[#000000] border  shadow ">
                         <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
                             <Image src={"/update-image/singer-details/icon/free.png"} alt={".."} width={150}
                                 height={150} />
@@ -485,7 +489,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                             <p>Use your vocal anywhere release-ready and yours to keep, with full royalty rights.</p>
                         </div>
                     </div>
-                    <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
+                    <div className=" p-5   rounded-md text-[#000000] border  shadow ">
                         <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
                             <Image src={"/update-image/singer-details/icon/wave.png"} alt={".."} width={150}
                                 height={150} />
@@ -499,7 +503,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                 separately. </p>
                         </div>
                     </div>
-                    <div className=" p-5   rounded-md text-[#000000] border-2 border-black shadow ">
+                    <div className=" p-5   rounded-md text-[#000000] border  shadow ">
                         <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
                             <Image src={"/update-image/singer-details/icon/love.png"} alt={".."} width={150}
                                 height={150} />
