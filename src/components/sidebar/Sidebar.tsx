@@ -1,12 +1,12 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { HiMenu, HiX } from "react-icons/hi";
-import {useFollowListQuery, useUserProfileQuery, useWishListQuery} from "@/redux/api/authApi/authApi";
 import Image from "next/image";
-import {imgUrl} from "@/utility/img/imgUrl";
+import { imgUrl } from "@/utility/img/imgUrl";
+import { useTotalWishListQuery, useTotalFollowListQuery, useUserProfileQuery } from "@/app/api/authApi/authApi";
 
 
 const Sidebar: React.FC = () => {
@@ -31,8 +31,8 @@ const Sidebar: React.FC = () => {
         window.location.reload(); // Then reload if needed
     };
 
-    const {data} = useWishListQuery(undefined);
-    const {data:followData} = useFollowListQuery();
+    const { data } = useTotalWishListQuery(undefined);
+    const { data: followData } = useTotalFollowListQuery(undefined);
     const artistList = followData?.data?.data.length || [];
 
     const totalWishList = data?.data?.data.length || [];
@@ -48,11 +48,13 @@ const Sidebar: React.FC = () => {
 
     // user profile
 
-    const {data:userProfile} = useUserProfileQuery(undefined);
+    const { data: userProfile } = useUserProfileQuery(undefined);
+    console.log(`userProfile ${userProfile} `)
 
-    const userData = userProfile?.data || [] ;
+    const userData = userProfile?.data;
 
-    console.log(userData);
+    console.log(userData)
+
 
 
     return (
@@ -103,11 +105,13 @@ const Sidebar: React.FC = () => {
                 {/* Desktop header */}
                 <div className="hidden 2xl:block mb-8">
                     <h2 className="text-lg font-semibold">
-                        Welcome back
-                        <br />
-                        {
-                            userData?.full_name
-                        }
+                        <Link href={"/"}>
+                            Welcome back
+                            <br />
+                            {
+                                userData?.full_name
+                            }
+                        </Link>
                     </h2>
                 </div>
 
@@ -149,7 +153,7 @@ const Sidebar: React.FC = () => {
                 {/* User info */}
                 <div className="text-center mt-auto">
                     <div className="w-[104px] h-[104px] mx-auto rounded-full bg-white mb-2" >
-                         <Image src={`${imgUrl}/${userData?.avatar}`} alt={`${userData?.full_name}`}  className={` rounded-full  `} width={500} height={400} />
+                        <Image src={`${imgUrl}/${userData?.avatar}`} alt={`${userData?.full_name}`} className={` rounded-full w-[104px] h-[104px]  `} width={500} height={400} />
                     </div>
                     <p className="font-medium text-lg">{userData?.full_name}</p>
                     <p onClick={handleSignOut} className="text-sm text-[#818080] mt-1 cursor-pointer hover:underline">
@@ -162,3 +166,4 @@ const Sidebar: React.FC = () => {
 };
 
 export default Sidebar;
+

@@ -6,13 +6,30 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import { FaCartArrowDown } from "react-icons/fa";
 import MaxWidth from "@/components/max-width/MaxWidth";
-import {useUserProfileQuery} from "@/redux/api/authApi/authApi";
 import Image from "next/image";
-import {imgUrl} from "@/utility/img/imgUrl";
+import { imgUrl } from "@/utility/img/imgUrl";
+import { UserProfile } from '@/utility/type/authType'
+import axios, { AxiosError } from 'axios'
+
+type CartTrack = {
+    id: number;
+    title: string;
+    artist: {
+        id?: number;
+        name: string;
+        gender?: string;
+    };
+    genre?: string;
+    bpm?: number | string;
+    key?: string | number;
+    license?: "PREMIUM" | "EXCLUSIVE" | "NON-EXCLUSIVE";
+    price: number;
+    song?: string;        // URL or path to the audio file
+    song_poster?: string; // URL or path to the image
+};
 
 const BrowseVocalNavbar: React.FC = () => {
     const [token, setToken] = useState<string | null>(null);
-    const {data} = useUserProfileQuery(undefined);
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
@@ -40,24 +57,63 @@ const BrowseVocalNavbar: React.FC = () => {
         setDrawerOpen(false)
     }, [pathname])
 
-        const [cart, setCart] = useState<Track[]>([]);
-    
-    
-        // ✅ Load cart from localStorage once
-        useEffect(() => {
-            const cartData = localStorage.getItem("cart");
-            if (cartData) {
-                try {
-                    const parsedCart: Track[] = JSON.parse(cartData).map((item: any) => ({
-                        ...item,
-                        price: Number(item.price), // ensure price is number
-                    }));
+    const [cart, setCart] = useState<CartTrack[]>([]);
+
+    // ✅ Load cart from localStorage once
+    useEffect(() => {
+        const cartData = localStorage.getItem("cart");
+        if (cartData) {
+            try {
+                const parsed: unknown = JSON.parse(cartData);
+
+                if (Array.isArray(parsed)) {
+                    const parsedCart: CartTrack[] = parsed.map((item: unknown) => {
+                        if (typeof item === "object" && item !== null) {
+                            const track = item as CartTrack;
+                            return { ...track, price: Number(track.price) }; // ensure price is number
+                        }
+                        throw new Error("Invalid item in cart");
+                    });
+
                     setCart(parsedCart);
-                } catch (error) {
-                    console.error("Failed to parse cart:", error);
                 }
+            } catch (error) {
+                console.error("Failed to parse cart:", error);
             }
-        }, []);
+        }
+    }, []);
+
+
+      const [userData, setUserData] = useState<UserProfile | null>(null);
+  const url = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  useEffect(() => {
+  const fetchUserProfile = async () => {
+    try {
+      const storedToken = localStorage.getItem("token");
+      if (!storedToken) return; // token না থাকলে কল করো না
+
+      const res = await axios.get<{ success: boolean; data: UserProfile; message: string }>(
+        `${url}/profile`,
+        {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        setUserData(res.data.data);
+      }
+    } catch (err) {
+      console.log(err);
+      const error = err as AxiosError<{ message: string }>;
+      console.log(error)
+    }
+  };
+
+  fetchUserProfile();
+}, [url]);
 
     return (
         <div className={` `}>
@@ -175,16 +231,16 @@ const BrowseVocalNavbar: React.FC = () => {
                             <div className={"  "}>
                                 {
                                     token && (
-                                                                        <Link href = "/dashboard">
-                                                                            <Image
-                                                                            src={`${imgUrl}/${data?.data?.avatar}`}
-                                                                            alt={data?.full_name || "User Avatar"}
-                                                                            width={40}
-                                                                            height={40}
-                                                                            className="rounded-full cursor-pointer border w-14 h-14  "
-                                                                        />
-                                                                        </Link>
-                                                                    )
+                                        <Link href="/dashboard">
+                                            <Image
+                                                src={`${imgUrl}/${userData?.avatar}`}
+                                                alt={userData?.full_name || "User Avatar"}
+                                                width={40}
+                                                height={40}
+                                                className="rounded-full cursor-pointer border w-14 h-14  "
+                                            />
+                                        </Link>
+                                    )
                                 }
                                 {
                                     !token && (
@@ -264,34 +320,34 @@ const BrowseVocalNavbar: React.FC = () => {
                             <li><Link className={`${pathname === "/cart" ? "text-[#E7F056]" : 'text-black'}`}
                                 href="/cart">Cart ({
 
-                                                cart.length
-                                            })</Link></li>
+                                    cart.length
+                                })</Link></li>
                             <li>
                                 <div className={"  "}>
-                                                                {
-                                                                    token && (
-                                                                        <Link href = "/dashboard">
-                                                                            <Image
-                                                                            src={`${imgUrl}/${data?.data?.avatar}`}
-                                                                            alt={data?.full_name || "User Avatar"}
-                                                                            width={40}
-                                                                            height={40}
-                                                                            className="rounded-full cursor-pointer border w-14 h-14  "
-                                                                        />
-                                                                        </Link>
-                                                                    )
-                                                                }
-                                                                {
-                                                                    !token && (
-                                                                        <Link href="/login">
-                                                                            <button
-                                                                                className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
-                                                                                Log in
-                                                                            </button>
-                                                                        </Link>
-                                                                    )
-                                                                }
-                                                            </div>
+                                    {
+                                        token && (
+                                            <Link href="/dashboard">
+                                                <Image
+                                                    src={`${imgUrl}/${userData?.avatar}`}
+                                                    alt={userData?.full_name || "User Avatar"}
+                                                    width={40}
+                                                    height={40}
+                                                    className="rounded-full cursor-pointer border w-14 h-14  "
+                                                />
+                                            </Link>
+                                        )
+                                    }
+                                    {
+                                        !token && (
+                                            <Link href="/login">
+                                                <button
+                                                    className="bg-black text-white px-6 py-2 cursor-pointer rounded-full font-medium hover:bg-gray-900">
+                                                    Log in
+                                                </button>
+                                            </Link>
+                                        )
+                                    }
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -302,3 +358,5 @@ const BrowseVocalNavbar: React.FC = () => {
 }
 
 export default BrowseVocalNavbar
+
+

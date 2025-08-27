@@ -105,10 +105,8 @@ const ResentSearch: React.FC = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    console.log(`selectedTrack is ${selectedTrack}`)
 
     const openModal = (track: Song) => {
-        console.log(`track is ${track}`)
         setSelectedTrack(track);
         setIsOpen(true);
     };
@@ -122,7 +120,6 @@ const ResentSearch: React.FC = () => {
         setDuration(0);
     };
 
-    console.log(`selectedTrack is ${JSON.stringify(selectedTrack, null, 2)}`);
 
     useEffect(() => {
         if (selectedTrack && waveformRef.current) {
@@ -136,8 +133,6 @@ const ResentSearch: React.FC = () => {
                 barWidth: 2,
                 barRadius: 2,
                 cursorColor: '#facc15',
-                backgroundColor: 'transparent',
-                responsive: true,
                 normalize: true,
             });
 
@@ -153,7 +148,8 @@ const ResentSearch: React.FC = () => {
                 setCurrentTime(wavesurfer.current?.getCurrentTime() || 0);
             });
 
-            wavesurfer.current.on('seek', () => {
+            // Listen for the 'interaction' event to update current time (WaveSurfer.js v7+)
+            wavesurfer.current.on('interaction', () => {
                 setCurrentTime(wavesurfer.current?.getCurrentTime() || 0);
             });
 

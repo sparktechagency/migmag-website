@@ -1,18 +1,48 @@
 "use client"
+
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import React from 'react';
-import UserPurchases from './UserPurchases';
-import ResentSearch from './ResentSearch';
-import {useFollowListQuery} from "@/redux/api/authApi/authApi";
-import {imgUrl} from "@/utility/img/imgUrl";
+// import UserPurchases from './UserPurchases';
+// import ResentSearch from './ResentSearch';
+import { imgUrl } from '@/utility/img/imgUrl';
+import { ArtistRelation } from '@/utility/type/authType';
+import axios from 'axios';
 
 const Hero: React.FC = () => {
-    const {data} = useFollowListQuery();
+    const [artistList, setArtistList] = useState<ArtistRelation[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
+    useEffect(() => {
+        const fetchArtists = async () => {
+            try {
+                setIsLoading(true);
+                const token = localStorage.getItem("token"); // get token from local storage
 
-    const artistList = data?.data?.data || [];
+                const response = await axios.get(
+                    `${process.env.NEXT_PUBLIC_API_BASE_URL}/follow`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                            Accept: "application/json",
+                        },
+                    }
+                );
 
-    const totalArtist = data?.data?.data.length || [];
+                const data: ArtistRelation[] = response.data?.data?.data ?? [];
+                setArtistList(data);
+            } catch (err) {
+                console.error("Failed to fetch following artists:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchArtists();
+    }, []);
+
+    const totalArtist = artistList.length;
+
+    if (isLoading) return <div>Loading...</div>;
 
     return (
         <div className="p-4">
@@ -31,97 +61,65 @@ const Hero: React.FC = () => {
             {/* Main Flex Section */}
             <div className="flex flex-col gap-6 2xl:flex-row justify-between">
                 {/* Left Section: Stats Cards */}
-                <>
-                    <div className="flex flex-col md:flex-row gap-6  lg:max-w-[895px]">
-                        {/* Card 1 */}
-                        <div className="bg-[#E7F056] w-full md:w-[271px] rounded-md p-6">
-                            <h1 className="text-[#222222] text-[23px] leading-6 font-bold">
-                                All-time tracks downloaded by you.
-                            </h1>
-                            <h1 className="text-[#222222] text-8xl mt-6 mb-14">15</h1>
-                            <div className="flex justify-end">
-                                <div className="flex gap-x-3 items-center">
-                                    <p className="text-[#222222] text-sm">View Services</p>
-                                    <div
-                                        className="bg-[#222222] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
-                                </div>
+                <div className="flex flex-col md:flex-row gap-6 lg:max-w-[895px]">
+                    {/* Card 1 */}
+                    <div className="bg-[#E7F056] w-full md:w-[271px] rounded-md p-6">
+                        <h1 className="text-[#222222] text-[23px] leading-6 font-bold">
+                            All-time tracks downloaded by you.
+                        </h1>
+                        <h1 className="text-[#222222] text-8xl mt-6 mb-14">15</h1>
+                        <div className="flex justify-end">
+                            <div className="flex gap-x-3 items-center">
+                                <p className="text-[#222222] text-sm">View Services</p>
+                                <div className="bg-[#222222] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
                             </div>
                         </div>
-
-                        {/* Card 2 */}
-                        <div className="bg-[#333333] w-full md:w-[271px] rounded-md p-6 flex flex-col justify-between">
-                            <h1 className="text-[#222222] text-[23px] leading-6 font-bold">
-                                No on-going projects at the moment?
-                            </h1>
-                            <div className="flex justify-end mt-10 md:mt-[146px]">
-                                <div className="flex gap-x-3 items-center">
-                                    <p className="text-white text-sm">View Services</p>
-                                    <div
-                                        className="bg-[#E7F056] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        {/* Card 3 */}
-                        <div className="bg-[#333333] w-full md:w-[271px] rounded-md p-6"></div>
                     </div>
 
-                </>
+                    {/* Card 2 */}
+                    <div className="bg-[#333333] w-full md:w-[271px] rounded-md p-6 flex flex-col justify-between">
+                        <h1 className="text-[#222222] text-[23px] leading-6 font-bold">
+                            No on-going projects at the moment?
+                        </h1>
+                        <div className="flex justify-end mt-10 md:mt-[146px]">
+                            <div className="flex gap-x-3 items-center">
+                                <p className="text-white text-sm">View Services</p>
+                                <div className="bg-[#E7F056] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div className="bg-[#333333] w-full md:w-[271px] rounded-md p-6"></div>
+                </div>
 
                 {/* Right Section: Followed Artist */}
-                <div className="bg-[#333333] rounded-md p-6 md:p-8 w-full space-y-10  ">
-                    <h1 className="text-white text-lg mb-4">Artists you are following  <span
-                        className="text-[#E7F056]">({totalArtist})</span></h1>
-                    {artistList.slice(0,3).map((song) => (
-                        <div key={song.id}
-                             className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+                <div className="bg-[#333333] rounded-md p-6 md:p-8 w-full space-y-10">
+                    <h1 className="text-white text-lg mb-4">
+                        Artists you are following <span className="text-[#E7F056]">({totalArtist})</span>
+                    </h1>
+                    {artistList.slice(0, 3).map((song) => (
+                        <div key={song.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
                             <Image
                                 src={`${imgUrl}/${song.artist?.profile}`}
                                 width={200}
                                 height={200}
                                 alt="Artist"
-                                className=" h-20 w-20 rounded-md"
+                                className="h-20 w-20 rounded-md"
                             />
                             <div className="flex-1">
                                 <h2 className="text-sm text-[#818080] leading-6">{song.artist?.name}</h2>
                                 <h1 className="text-base font-bold underline text-white">{song.artist?.singer}</h1>
-                                <h1 className="text-base font-bold  text-white">{song.artist?.gender}</h1>
+                                <h1 className="text-base font-bold text-white">{song.artist?.gender}</h1>
                             </div>
-                            {/*<button*/}
-                            {/*    className="w-10 h-10 cursor-pointer rounded-full border border-[#E7F056] flex items-center justify-center">*/}
-                            {/*    <svg*/}
-                            {/*        width="18"*/}
-                            {/*        height="22"*/}
-                            {/*        viewBox="0 0 18 22"*/}
-                            {/*        fill="none"*/}
-                            {/*        xmlns="http://www.w3.org/2000/svg"*/}
-                            {/*    >*/}
-                            {/*        <g clipPath="url(#clip0_1_470)">*/}
-                            {/*            <path*/}
-                            {/*                d="M0.399433 2.22635V19.7739C0.398038 20.0647 0.474641 20.3504 0.621196 20.6012C0.76775 20.852 0.978852 21.0586 1.23236 21.1992C1.48587 21.3399 1.77245 21.4095 2.06201 21.4008C2.35157 21.392 2.63344 21.3052 2.87805 21.1495L17.2437 11.3472C17.4753 11.2015 17.6662 10.9992 17.7985 10.7591C17.9308 10.5191 18.0003 10.2492 18.0003 9.97492C18.0003 9.7006 17.9308 9.43079 17.7985 9.19076C17.6662 8.95073 17.4753 8.74833 17.2437 8.6026L2.87805 0.857247C2.6339 0.701793 2.35261 0.615034 2.06361 0.606009C1.77461 0.596984 1.48851 0.666013 1.2352 0.805932C0.981888 0.945852 0.770679 1.15152 0.623658 1.40139C0.476638 1.65126 0.39919 1.93617 0.399433 2.22635Z"*/}
-                            {/*                fill="#E7F056"*/}
-                            {/*            />*/}
-                            {/*        </g>*/}
-                            {/*        <defs>*/}
-                            {/*            <clipPath id="clip0_1_470">*/}
-                            {/*                <rect*/}
-                            {/*                    width="17.6"*/}
-                            {/*                    height="20.8"*/}
-                            {/*                    fill="white"*/}
-                            {/*                    transform="translate(0.399414 0.600098)"*/}
-                            {/*                />*/}
-                            {/*            </clipPath>*/}
-                            {/*        </defs>*/}
-                            {/*    </svg>*/}
-                            {/*</button>*/}
                         </div>
                     ))}
                 </div>
             </div>
-            <div className='2xl:max-w-[860px] w-full  '>
-                <UserPurchases></UserPurchases>
-                <ResentSearch></ResentSearch>
+
+            <div className="2xl:max-w-[860px] w-full">
+                {/* <UserPurchases /> */}
+                {/* <ResentSearch /> */}
             </div>
         </div>
     );

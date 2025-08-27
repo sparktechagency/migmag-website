@@ -2,8 +2,8 @@
 
 import React, {useEffect, useRef, useState} from "react";
 import {FaPlay, FaPause} from "react-icons/fa";
-import {SongDetailsApiResponse} from "@/utility/api-type/homeApiType";
 import {imgUrl} from "@/utility/img/imgUrl";
+import { SongDetailsApiResponse } from "@/utility/type/websiteApiType";
 
 const CustomAudioPlayer = ({data}: { data: SongDetailsApiResponse }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -53,6 +53,14 @@ const CustomAudioPlayer = ({data}: { data: SongDetailsApiResponse }) => {
         };
     }, []);
 
+
+    
+
+
+
+
+
+
     return (
         <div>
             <audio
@@ -99,3 +107,5 @@ const CustomAudioPlayer = ({data}: { data: SongDetailsApiResponse }) => {
 };
 
 export default CustomAudioPlayer;
+
+

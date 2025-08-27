@@ -1,12 +1,14 @@
-import React from 'react'
-import FollowingPage from './FollowingPage'
+'use client';
 
-const page : React.FC = () => {
+import React from 'react';
+import FollowingPage from './FollowingPage';
+
+const FollowingPageWrapper: React.FC = () => {
   return (
     <div>
-      <FollowingPage/>
+      <FollowingPage />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default FollowingPageWrapper;

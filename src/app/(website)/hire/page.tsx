@@ -1,4 +1,3 @@
-"use client"
 
 import React from 'react'
 
@@ -22,8 +21,6 @@ const Page: React.FC = () => {
                 <Navbar></Navbar>
 
                 <HireBanner></HireBanner>
-
-
 
 
 

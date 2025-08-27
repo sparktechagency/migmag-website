@@ -4,22 +4,20 @@ import Image from 'next/image';
 import React, { ChangeEvent, useEffect, useState, useRef } from 'react';
 import { FaUser, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import { CgMail } from 'react-icons/cg';
+import Swal from "sweetalert2";
 
 import { imgUrl } from '@/utility/img/imgUrl';
-import {
-    useUpdateProfileMutation,
-    useUserProfileApiQuery,
-} from '@/redux/api/authApi/authApi';
-import toast from 'react-hot-toast';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { useUserProfileUpdateMutation, useUserProfileQuery } from '@/app/api/authApi/authApi';
 
 const AccountFromPage: React.FC = () => {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewImage, setPreviewImage] = useState<string | null>(null);
 
-    const { data, refetch } = useUserProfileApiQuery();
-    const [updateProfile, { isLoading: isUpdating }] = useUpdateProfileMutation();
+    const { data, refetch } = useUserProfileQuery();
+    const [updateProfile, { isLoading: isUpdating }] = useUserProfileUpdateMutation();
 
-    // Use a ref so we only load initial data once
+    // To avoid overwriting user input after first load
     const loadedRef = useRef(false);
 
     const [formdata, setformdata] = useState({
@@ -29,7 +27,7 @@ const AccountFromPage: React.FC = () => {
         location: '',
     });
 
-    // Load initial data only once when API data arrives
+    // Load initial profile data only once
     useEffect(() => {
         if (data?.data && !loadedRef.current) {
             setformdata({
@@ -42,8 +40,7 @@ const AccountFromPage: React.FC = () => {
         }
     }, [data]);
 
-
-    // Handle input changes properly updating formData state
+    // Handle text input changes
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setformdata((prev) => ({
@@ -52,18 +49,16 @@ const AccountFromPage: React.FC = () => {
         }));
     };
 
+    // Handle image upload preview
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-
-        console.log("image file is", file);
-
         if (file) {
             setImageFile(file);
             setPreviewImage(URL.createObjectURL(file));
         }
     };
 
-
+    // Submit form
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -71,26 +66,41 @@ const AccountFromPage: React.FC = () => {
         formData.append("full_name", formdata.full_name);
         formData.append("contact", formdata.contact);
         formData.append("location", formdata.location);
-        // formData.append("email", formdata.email);
-
 
         if (imageFile) {
             formData.append("avatar", imageFile);
         }
-        for (const [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
 
         try {
             const res = await updateProfile(formData).unwrap();
-            console.log("Update response:", res);
-            toast.success(res.message || "Profile updated successfully");
-            refetch(); // Refresh the profile data
+
+            // ✅ Success alert
+            Swal.fire({
+                position: "top",
+                icon: "success",
+                title: res?.message || "Profile updated successfully!",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+
+            refetch(); // Refresh profile data
         } catch (err: unknown) {
             console.error("Update error:", err);
-            toast.error(err.data?.message || "Failed to update profile");
+
+            // Properly typed error
+            const error = err as FetchBaseQueryError & { data?: { message?: string } };
+
+            // ❌ Error alert
+            Swal.fire({
+                position: "top",
+                icon: "error",
+                title: "Update failed",
+                text: error?.data?.message || "Something went wrong!",
+                showConfirmButton: true,
+            });
         }
     };
+
     return (
         <>
             <div className="bg-[#FFFFFF] p-6 rounded-2xl">
@@ -151,6 +161,7 @@ const AccountFromPage: React.FC = () => {
                             name="email"
                             placeholder="Enter your email"
                             value={formdata.email}
+                            readOnly
                             className="w-full pl-8 pr-4 py-2 bg-gray-100 cursor-not-allowed border border-[#E7E7E9] placeholder:text-[#60606A] rounded-[8px] focus:outline-none"
                         />
                     </div>

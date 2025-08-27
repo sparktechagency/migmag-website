@@ -14,13 +14,13 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 import BrowseVocalFooter from "@/app/(website)/cover-vocals/BrowseVocalFooter";
 import Image from "next/image";
 import { imgUrl } from "@/utility/img/imgUrl";
-import { useUserProfileQuery } from "@/redux/api/authApi/authApi";
+import { UserProfile } from '@/utility/type/authType'
+import axios, { AxiosError } from 'axios'
 
 const Page: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const pathname = usePathname();
     const [token, setToken] = useState<string | null>(null);
-    const { data } = useUserProfileQuery(undefined);
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
@@ -40,30 +40,79 @@ const Page: React.FC = () => {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+    const [cart, setCart] = useState<Track[]>([]);
+
     // Auto-close drawer on route change
     useEffect(() => {
         setDrawerOpen(false)
     }, [pathname])
 
+    interface Track {
+        id: number;
+        title: string;
+        artist: {
+            id: number;
+            name: string;
+        };
+        price: number;
+        song: string;
+        song_poster: string;
+    }
 
-    const [cart, setCart] = useState<Track[]>([]);
-
-
-    // ✅ Load cart from localStorage once
     useEffect(() => {
         const cartData = localStorage.getItem("cart");
         if (cartData) {
             try {
-                const parsedCart: Track[] = JSON.parse(cartData).map((item: any) => ({
-                    ...item,
-                    price: Number(item.price), // ensure price is number
-                }));
-                setCart(parsedCart);
+                const parsed: unknown = JSON.parse(cartData);
+
+                if (Array.isArray(parsed)) {
+                    const parsedCart: Track[] = parsed.map((item: unknown) => {
+                        if (typeof item === "object" && item !== null) {
+                            const t = item as Track;
+                            return { ...t, price: Number(t.price) }; // ensure price is number
+                        }
+                        throw new Error("Invalid item in cart");
+                    });
+
+                    setCart(parsedCart);
+                }
             } catch (error) {
                 console.error("Failed to parse cart:", error);
             }
         }
     }, []);
+
+
+
+    const [userData, setUserData] = useState<UserProfile | null>(null);
+    const url = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const res = await axios.get<{ success: boolean; data: UserProfile; message: string }>(
+                    `${url}/profile`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+
+                if (res.data.success) {
+                    setUserData(res.data.data);
+                }
+            } catch (err) {
+                const error = err as AxiosError<{ message: string }>;
+                console.error("Failed to fetch user profile:", error.response?.data?.message || error.message);
+            }
+        };
+
+        fetchUserProfile();
+    }, [url, token]);
+
+
+
 
     return (
         <div className=' bg-[#000000] '>
@@ -187,8 +236,8 @@ const Page: React.FC = () => {
                                         token && (
                                             <Link href="/dashboard">
                                                 <Image
-                                                    src={`${imgUrl}/${data?.data?.avatar}`}
-                                                    alt={data?.full_name || "User Avatar"}
+                                                    src={`${imgUrl}/${userData?.avatar}`}
+                                                    alt={userData?.full_name || "User Avatar"}
                                                     width={40}
                                                     height={40}
                                                     className="rounded-full cursor-pointer border w-14 h-14  "
@@ -295,8 +344,8 @@ const Page: React.FC = () => {
                                             token && (
                                                 <Link href="/dashboard">
                                                     <Image
-                                                        src={`${imgUrl}/${data?.data?.avatar}`}
-                                                        alt={data?.full_name || "User Avatar"}
+                                                        src={`${imgUrl}/${userData?.avatar}`}
+                                                        alt={userData?.full_name || "User Avatar"}
                                                         width={40}
                                                         height={40}
                                                         className="rounded-full cursor-pointer border w-14 h-14  "
@@ -347,4 +396,5 @@ const Page: React.FC = () => {
     )
 }
 
-export default Page 
+export default Page
+

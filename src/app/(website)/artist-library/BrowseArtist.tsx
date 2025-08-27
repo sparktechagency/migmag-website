@@ -1,18 +1,17 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {Search} from 'lucide-react';
-import {motion, AnimatePresence} from "framer-motion";
-import {HiChevronDown, HiChevronUp} from "react-icons/hi";
+import React, { useState, useEffect, useRef } from 'react';
+import { Search } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
+import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidth from "@/components/max-width/MaxWidth";
 import CtaSection from '@/components/cta/CtaSection';
-import {useTopArtistListQuery} from "@/redux/api/home-api/homeApi";
-import {imgUrl} from "@/utility/img/imgUrl";
+import { imgUrl } from "@/utility/img/imgUrl";
+import { useTopArtistListQuery } from '@/app/api/websiteApi/websiteApi';
 
 
 
 type FilterType = {
-    genre: string,
     gender: string,
     language: string,
     latest: string,
@@ -24,7 +23,7 @@ type FilterType = {
 
 const BrowseArtist = () => {
 
-    const {data} = useTopArtistListQuery();
+    const { data } = useTopArtistListQuery();
     const artistList = data?.data?.data ?? [];
 
 
@@ -123,19 +122,14 @@ const BrowseArtist = () => {
     // Language end
 
 
-// Latest  start
-
-    const latest: string[] = ["60", "80", "100", "120", "140", "160"];
-    const [selectLatest, setSelectedLatest] = useState<string[]>([]);
+    // Latest  start
+    const latest: number[] = [5, 10, 15, 20, 30];
+    const [selectLatest, setSelectedLatest] = useState<number | null>(null);
     const [openLatest, setOpenLatest] = useState<boolean>(false);
 
-    function toggleLatest(latestValue: string): void {
-        const newLatest = selectLatest.includes(latestValue)
-            ? selectLatest.filter((g) => g !== latestValue)
-            : [...selectLatest, latestValue];
-
-        setSelectedLatest(newLatest);
-        setOpenLatest(false);
+    function toggleLatest(latestValue: number): void {
+        setSelectedLatest(latestValue); // সরাসরি value set করবো
+        setOpenLatest(false); // dropdown বন্ধ
     }
 
     useEffect(() => {
@@ -148,47 +142,63 @@ const BrowseArtist = () => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-// Latest end
+    // Latest end
 
 
     const [searchTerm, setSearchTerm] = useState("");
     const [filter, setFilter] = useState<FilterType>({
-        genre: "",
         gender: "",
         language: "",
         latest: "",
     });
 
-    console.log(filter);
+    console.log(JSON.stringify(filter));
+
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
 
     const handleFilterChange = (key: keyof FilterType, value: number | string) => {
+        console.log(value)
 
-        setFilter((prev) => ({...prev, [key]: value}));
+        setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
+    
 
-    const filteredArtists = artistList.filter((item) => {
-        console.log(`item is `, item);
-        // const matchGenre = filter.genre ? filter.genre.split(",").includes(item.genre) : true;
-        // const matchGender = filter.gender ? filter.gender.split(",").includes(item.gender) : true;
-        // const matchLanguage = filter.language ? filter.language.split(",").includes(item.language) : true;
-        // const matchLatest = filter.latest ? filter.latest.split(",").includes(String(item.latest)) : true;
-        //
-        // return  matchGenre && matchGender && matchLanguage && matchLatest;
+
+    const filteredArtists = artistList.filter((artist) => {
+        console.log(`artist is ${artist}`)
+        const matchGender =
+            !filter.gender || artist.gender?.toLowerCase() === filter.gender.toLowerCase();
+
+        const matchLanguage =
+            !filter.language || artist.language?.toLowerCase() === filter.language.toLowerCase();
+
+        // latest কে শুধু "limit number of artists" হিসেবে ব্যবহার করবো
+        const matchSearch =
+            !searchTerm ||
+            artist.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            artist.singer?.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return matchGender && matchLanguage && matchSearch;
     });
 
-    console.log("filteredArtists ", filteredArtists);
+    // latest value থাকলে সেটাই use হবে, নাহলে visibleCount use হবে
+    const limit = filter.latest ? Number(filter.latest) : visibleCount;
+
+
+
 
     const clearSearch = () => {
         setSearchTerm("");
-        setFilter({genre: "", gender: "", language: "", latest: ""});
+        setFilter({ gender: "", language: "", latest: "" });
         setSelectedGender([]);
         setSelectedLanguage([]);
+        setSelectedLatest(null);
     };
+
 
 
     return (
@@ -207,7 +217,7 @@ const BrowseArtist = () => {
                         <div className='  flex-1 lg:flex flex-col md:flex-row gap-14 relative   '>
                             <div className='   '>
                                 <button onClick={clearSearch}
-                                        className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
+                                    className='  border-none text-[#FFFFFF] text-lg underline mt-4  cursor-pointer   '>Clear
                                     filters
                                 </button>
                             </div>
@@ -228,7 +238,7 @@ const BrowseArtist = () => {
                                 value={searchTerm}
                                 onChange={handleSearch}
                             />
-                            <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white"/>
+                            <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-white" />
                         </div>
 
 
@@ -241,9 +251,9 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenGender(!openGender)}
                             >
                                 {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg  ">
@@ -254,12 +264,12 @@ const BrowseArtist = () => {
                             <AnimatePresence>
                                 {openGender && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {gender.map((gender) => (
                                             <label
@@ -294,9 +304,9 @@ const BrowseArtist = () => {
                                 onClick={() => setOpenLanguage(!openLanguage)}
                             >
                                 {openLanguage ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
                                 <span className="w-28 text-white md:text-lg   ">
@@ -307,12 +317,12 @@ const BrowseArtist = () => {
                             <AnimatePresence>
                                 {openLanguage && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {language.map((item) => (
                                             <label
@@ -343,49 +353,48 @@ const BrowseArtist = () => {
                         <div className="relative w-full" ref={latestRef}>
                             <button
                                 type="button"
-                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                className="bg-[#201F1F] relative text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
                                 onClick={() => setOpenLatest(!openLatest)}
                             >
                                 {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7"/>
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-7" />
                                 )}
 
-                                <span className="w-28 text-white md:text-lg   ">
-                                    {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
+                                <span className="w-28 text-white md:text-lg">
+                                    {selectLatest ? `Selected ${selectLatest}` : "Latest"}
                                 </span>
                             </button>
 
                             <AnimatePresence>
                                 {openLatest && (
                                     <motion.div
-                                        initial={{opacity: 0, y: -10}}
-                                        animate={{opacity: 1, y: 0}}
-                                        exit={{opacity: 0, y: -10}}
-                                        transition={{duration: 0.4, ease: "easeInOut"}}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
                                         className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{top: "calc(100% + 0.5rem)"}}
+                                        style={{ top: "calc(100% + 0.5rem)" }}
                                     >
-                                        {
-                                            latest.map((item) => (
-                                                <label
-                                                    key={item}
-                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                                >
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectLatest.includes(item)}
-                                                        onChange={(e) => {
-                                                            toggleLatest(item);
-                                                            handleFilterChange('latest', e.target.checked ? item : '');
-                                                        }}
-                                                        className="mr-3 accent-indigo-500 w-5 h-5"
-                                                    />
-                                                    <span className="text-white md:text-lg  ">{item}</span>
-                                                </label>
-                                            ))
-                                        }
+                                        {latest.map((item) => (
+                                            <label
+                                                key={item}
+                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    name="latest"
+                                                    checked={selectLatest === item}
+                                                    onChange={() => {
+                                                        toggleLatest(item); // একটাই value রাখবে
+                                                        handleFilterChange("latest", item);
+                                                    }}
+                                                    className="mr-3 accent-indigo-500 w-5 h-5"
+                                                />
+                                                <span className="text-white md:text-lg">{item}</span>
+                                            </label>
+                                        ))}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
@@ -399,9 +408,9 @@ const BrowseArtist = () => {
 
 
                     <div className="mt-6 lg:mt-14 grid lg:grid-cols-3 sm:grid-cols-2 gap-x-10 grid-cols-1 gap-12">
-                        {artistList.slice(0, visibleCount).map((singer) => (
+                        {filteredArtists.slice(0, limit).map((singer) => (
                             <div key={singer.id}
-                                 className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
+                                className="transition-transform duration-300 hover:-translate-y-1 mx-auto">
                                 <Link href={`/singer-profile/${singer.id}`}>
                                     <div className="w-full max-w-[300px] rounded-md gap-x-12 p-5 bg-[#222222]">
                                         <Image
@@ -469,4 +478,5 @@ const BrowseArtist = () => {
 };
 
 export default BrowseArtist;
+
 

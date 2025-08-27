@@ -1,18 +1,17 @@
 "use client";
 
-import React, {useState} from "react";
-import {MdEmail, MdLock} from "react-icons/md";
-import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
+import React, { useState } from "react";
+import { MdEmail, MdLock } from "react-icons/md";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
-import {LoginPayload} from "@/utility/api-type/auth-api-type";
-import {useLoginUserMutation} from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useUserLoginMutation } from "@/app/api/authApi/authApi";
 
 
 const LoginForm: React.FC = () => {
-    const [loginUser, {isLoading}] = useLoginUserMutation();
-    const [formData, setFormData] = useState<LoginPayload>({
+    const [userLogin, { isLoading }] = useUserLoginMutation();
+    const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
@@ -22,7 +21,7 @@ const LoginForm: React.FC = () => {
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
-        const {name, value, type, checked} = e.target;
+        const { name, value, type, checked } = e.target;
         setFormData((prev) => ({
             ...prev,
             [name]: type === "checkbox" ? checked : value,
@@ -30,24 +29,25 @@ const LoginForm: React.FC = () => {
     };
 
 
-    const {email, password} = formData;
+    const { email, password } = formData;
     const payload = {
         email,
         password,
     }
 
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
-            const res = await loginUser(payload).unwrap();
+            const res = await userLogin(payload).unwrap();
 
             if (res.success) {
                 // Save token before navigation
                 localStorage.setItem("token", res.data.token);
 
                 Swal.fire({
-                    position: "top-center",
+                    position: "top",
                     icon: "success",
                     title: res.message,
                     showConfirmButton: false,
@@ -67,13 +67,10 @@ const LoginForm: React.FC = () => {
             }
 
         } catch (err) {
-            const error = err as FetchBaseQueryError & {
-                data?: { message?: string };
-            };
-
+            const error = err as FetchBaseQueryError & { data?: { message?: string } };
 
             Swal.fire({
-                position: "top-center",
+                position: "top",
                 icon: "error",
                 title: error?.data?.message || "Something went wrong",
                 showConfirmButton: false,
@@ -107,8 +104,8 @@ const LoginForm: React.FC = () => {
                                     Email
                                 </label>
                                 <span className="absolute left-3 top-[44px]">
-                  <MdEmail className="text-white mt-0.5 text-xl"/>
-                </span>
+                                    <MdEmail className="text-white mt-0.5 text-xl" />
+                                </span>
                                 <input
                                     type="email"
                                     id="email"
@@ -130,8 +127,8 @@ const LoginForm: React.FC = () => {
                                     Password
                                 </label>
                                 <span className="absolute left-3 top-[43px]">
-                  <MdLock className="text-white mt-1 text-xl"/>
-                </span>
+                                    <MdLock className="text-white mt-1 text-xl" />
+                                </span>
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     id="password"
@@ -147,9 +144,9 @@ const LoginForm: React.FC = () => {
                                     onClick={() => setShowPassword((prev) => !prev)}
                                 >
                                     {showPassword ? (
-                                        <AiOutlineEyeInvisible className="mt-9 text-lg text-white"/>
+                                        <AiOutlineEyeInvisible className="mt-9 text-lg text-white" />
                                     ) : (
-                                        <AiOutlineEye className="mt-9 text-lg text-white"/>
+                                        <AiOutlineEye className="mt-9 text-lg text-white" />
                                     )}
                                 </div>
                             </div>
@@ -165,8 +162,8 @@ const LoginForm: React.FC = () => {
                                         className="w-4 h-4 appearance-none mt-1.5 bg-black checked:bg-white border border-gray-300 rounded-sm cursor-pointer"
                                     />
                                     <span className="text-[#fff] mt-1.5 text-sm font-thin">
-                    Remember me
-                  </span>
+                                        Remember me
+                                    </span>
                                 </label>
                                 <Link href="/verify-email" className="text-[#fff] text-sm font-bold">
                                     Forget password?
@@ -191,28 +188,20 @@ const LoginForm: React.FC = () => {
                             </button>
                         </form>
 
-                        {/* Register Link */}
-                        {/*<div>*/}
-                        {/*    <p className="text-center mt-6 text-white text-sm">*/}
-                        {/*        Don’t have an account?{" "}*/}
-                        {/*        <span className="font-bold underline text-white" >*/}
-                        {/*            Register*/}
-                        {/*        </span>*/}
-                        {/*    </p>*/}
-                        {/*</div>*/}
+
                     </div>
                 </div>
             </div>
 
             {/* Terms Text */}
             <div className="max-w-[384px] mt-4 px-4">
-        <span className="text-white text-[15px] font-thin">
-          By joining you confirm that you accept TuneM’s{" "}
-            <Link href="/term&condiction" className="text-[#05377D]">
-            Terms & Conditions
-          </Link>{" "}
-            and agree to receive occasional Emails.
-        </span>
+                <span className="text-white text-[15px] font-thin">
+                    By joining you confirm that you accept TuneM’s{" "}
+                    <Link href="/term&condiction" className="text-[#05377D]">
+                        Terms & Conditions
+                    </Link>{" "}
+                    and agree to receive occasional Emails.
+                </span>
             </div>
         </div>
     );

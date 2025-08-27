@@ -9,7 +9,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -38,11 +38,19 @@ export default function CheckoutForm({ clientSecret }: CheckoutFormProps) {
         const cartData = localStorage.getItem("cart");
         if (cartData) {
             try {
-                const parsedCart: Track[] = JSON.parse(cartData).map((item: any) => ({
-                    ...item,
-                    price: Number(item.price),
-                }));
-                setCart(parsedCart);
+                const parsed: unknown = JSON.parse(cartData);
+
+                if (Array.isArray(parsed)) {
+                    const parsedCart: Track[] = parsed.map((item: unknown) => {
+                        if (typeof item === "object" && item !== null) {
+                            const t = item as Track;
+                            return { ...t, price: Number(t.price) }; // ensure price is number
+                        }
+                        throw new Error("Invalid item in cart");
+                    });
+
+                    setCart(parsedCart);
+                }
             } catch (error) {
                 console.error("Failed to parse cart:", error);
             }
@@ -89,7 +97,6 @@ export default function CheckoutForm({ clientSecret }: CheckoutFormProps) {
             );
 
             const orderId = orderRes.data.order_id;
-            console.log("Order created:", orderId);
 
             // 2️⃣ Confirm Stripe payment
             const result = await stripe.confirmCardPayment(clientSecret, {
@@ -119,9 +126,9 @@ export default function CheckoutForm({ clientSecret }: CheckoutFormProps) {
                 router.push('/');
             }
 
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(err);
-            toast.error(err.message || 'Something went wrong');
+            // toast.error(err.message || 'Something went wrong');
         }
 
         setLoading(false);

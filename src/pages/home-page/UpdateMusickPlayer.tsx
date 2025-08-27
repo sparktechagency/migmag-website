@@ -3,38 +3,73 @@
 import { useEffect, useRef, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import Image from 'next/image';
-import { FiPlay, FiHeart } from 'react-icons/fi';
+import { FiPlay } from 'react-icons/fi';
 import { CiPause1 } from 'react-icons/ci';
 import { AnimatePresence, motion } from 'framer-motion';
 import MaxWidth from '@/components/max-width/MaxWidth';
 import { imgUrl } from '@/utility/img/imgUrl';
-import { useSongDetailsQuery } from '@/redux/api/home-api/homeApi';
-
+import axios from 'axios';
+import { SongDetails } from '@/utility/type/websiteApiType';
+import Swal from "sweetalert2";
+import { useAddWishListMutation, useRemoveWishMutation } from '@/app/api/authApi/authApi';
+import { useRouter } from 'next/navigation';
+import { Heart } from 'lucide-react';
+import { FaHeart } from 'react-icons/fa';
 type UpdateMusickPlayerProps = {
     show: boolean;
     onClose: () => void;
     currentIndex: number;
 };
 
-export function UpdateMusickPlayer({
-                                       show,
-                                       onClose,
-                                       currentIndex,
-                                   }: UpdateMusickPlayerProps) {
+const UpdateMusickPlayer = ({
+    show,
+    onClose,
+    currentIndex,
+}: UpdateMusickPlayerProps) => {
     const waveformRef = useRef<HTMLDivElement>(null);
     const wavesurferRef = useRef<WaveSurfer | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState('00:00');
     const [timeLeft, setTimeLeft] = useState('00:00');
+    const [musicData, setMusicData] = useState<SongDetails | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const { data, isLoading } = useSongDetailsQuery({ songId: currentIndex });
-    const musicData = data?.data;
+    const router = useRouter()
+
+    const songId = Number(currentIndex)
+    const url = process.env.NEXT_PUBLIC_API_BASE_URL
+
+    useEffect(() => {
+        if (!currentIndex) return; // if no songId, skip
+
+        const fetchSongDetails = async () => {
+            try {
+                setIsLoading(true);
+                // const token = localStorage.getItem("token"); // get token
+
+                const response = await axios.get(`${url}/song-details/${currentIndex}`);
+
+                console.log(response)
+
+                setMusicData(response.data?.data ?? null);
+            } catch (err) {
+                console.error("Failed to fetch song details:", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchSongDetails();
+    }, [currentIndex, url]);
 
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
         return `${mins}:${secs}`;
     };
+
+
+    console.log("musick data is ", musicData)
 
     useEffect(() => {
         if (!waveformRef.current || !musicData?.song) return;
@@ -100,6 +135,87 @@ export function UpdateMusickPlayer({
         }
     };
 
+    const [addWishList] = useAddWishListMutation();
+    const [removeWish] = useRemoveWishMutation()
+
+
+
+
+
+
+    const handleAddToWishlist = async () => {
+        try {
+            const res = await addWishList({ songId }).unwrap();
+
+            if (res) {
+                // refetch();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: res?.message,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        } catch (err: unknown) {
+            console.log(err)
+            // Define ApiError type for error handling
+            type ApiError = {
+                status?: number;
+                data?: {
+                    message?: string;
+                };
+            };
+            const error = err as ApiError;
+
+            // Example: If your API sends 401 for unauthenticated users
+            if (error.status === 401) {
+                router.push("/login");
+                window.location.reload();
+            }
+
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: error?.data?.message || "This song already exists in wishlist",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    };
+
+
+
+    const removeFromWishlist = async () => {
+        try {
+            const res = await removeWish({ songId }).unwrap(); // ✅ pass object
+            if (res) {
+                // refetch();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: res?.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            router.push("/login");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Something went wrong",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    };
+
+
+
+
+
     return (
         <MaxWidth>
             <AnimatePresence>
@@ -163,10 +279,20 @@ export function UpdateMusickPlayer({
 
                                     {/* Like Icon */}
                                     <div className="min-w-[30px]">
-                                        <FiHeart
-                                            size={20}
-                                            className="text-white cursor-pointer hover:text-[#E7F056]"
-                                        />
+                                        {musicData?.is_wishlisted == 1 && (
+                                            <span>
+                                                <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500  cursor-pointer " />
+
+                                            </span>
+                                        )}
+
+
+                                        {musicData?.is_wishlisted == 0 && (
+                                            <Heart
+                                                onClick={() => handleAddToWishlist()}
+                                                className="cursor-pointer  hover:text-red-500 transition"
+                                            />
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -177,3 +303,7 @@ export function UpdateMusickPlayer({
         </MaxWidth>
     );
 }
+
+
+export default UpdateMusickPlayer;
+

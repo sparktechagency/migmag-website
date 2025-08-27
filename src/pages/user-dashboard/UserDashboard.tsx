@@ -1,14 +1,18 @@
-import React from 'react'
-import DashboardBanner from './DashboardBanner'
-import Hero from './Hero'
+'use client';
+import React from 'react';
+import DashboardBanner from './DashboardBanner';
+import dynamic from 'next/dynamic';
 
-const UserDashboard : React.FC = () => {
+// Hero কে client-only বানানো, SSR বন্ধ
+const Hero = dynamic(() => import('./Hero'), { ssr: false });
+
+const UserDashboard: React.FC = () => {
   return (
-    <div>
-        <DashboardBanner></DashboardBanner>
-        <Hero></Hero>
-    </div>
-  )
-}
+    <>
+      <DashboardBanner />
+      <Hero />
+    </>
+  );
+};
 
-export default UserDashboard
+export default UserDashboard;

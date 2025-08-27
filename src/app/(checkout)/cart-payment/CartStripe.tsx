@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { useCreatePaymentIntentMutation } from "@/redux/api/authApi/authApi";
 import CartCheckout from './CartCheckout';
 import { useSearchParams } from 'next/navigation';
+import { useCreatePaymentIntentMutation } from '@/app/api/paymentApi/paymentApi';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -38,7 +38,7 @@ export default function CartStripe() {
         createIntent();
     }, [price, createPaymentIntent]);
 
-    const appearance = { theme: 'stripe' };
+    const appearance = { theme: 'stripe' as const }; // ✅ fix type
     const options = clientSecret ? { clientSecret, appearance } : undefined;
 
     return (

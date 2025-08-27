@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe, Appearance, StripeElementsOptions } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
-import { useCreatePaymentIntentMutation } from "@/redux/api/authApi/authApi";
 import { useSearchParams } from "next/navigation";
+import { useCreatePaymentIntentMutation } from '@/app/api/paymentApi/paymentApi';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -14,17 +14,16 @@ export default function StripeForm() {
     const [createPaymentIntent] = useCreatePaymentIntentMutation();
     const searchParams = useSearchParams();
 
-    const priceParam = searchParams?.get('price') || null;
-    const songIdParam = searchParams?.get('songId') || null;
+    // Extract price and songId from query params
+    const priceParam = searchParams?.get('price');
+    const songIdParam = searchParams?.get('songId');
 
-    const price = priceParam ? parseFloat(priceParam) : null;
-    const songId = songIdParam ? parseInt(songIdParam) : null;
-
-    console.log(`songId ${typeof songId} `);
+    const price: number | null = priceParam ? parseFloat(priceParam) : null;
+    const songId: number | null = songIdParam ? parseInt(songIdParam) : null;
 
     useEffect(() => {
         const createIntent = async () => {
-            if (!price) return; // wait until price exists
+            if (price === null) return; // wait until price exists
 
             try {
                 const payload = {
@@ -32,8 +31,8 @@ export default function StripeForm() {
                     payment_method: "pm_card_visa"
                 };
 
-                const res = await createPaymentIntent(payload);
-                const secret = res?.data?.data?.client_secret;
+                const res = await createPaymentIntent(payload).unwrap();
+                const secret = res?.data?.client_secret;
                 if (secret) setClientSecret(secret);
 
             } catch (err) {
@@ -44,8 +43,16 @@ export default function StripeForm() {
         createIntent();
     }, [createPaymentIntent, price]);
 
-    const appearance = { theme: 'stripe' };
-    const options = clientSecret ? { clientSecret, appearance } : undefined;
+    // Properly typed appearance for Stripe
+    const appearance: Appearance = { theme: "stripe" };
+    const options: StripeElementsOptions | undefined = clientSecret
+        ? { clientSecret, appearance }
+        : undefined;
+
+    // If price or songId is missing, we can't render checkout
+    if (!price || !songId) {
+        return <p>Invalid payment parameters.</p>;
+    }
 
     return (
         <div className="">
@@ -59,3 +66,5 @@ export default function StripeForm() {
         </div>
     );
 }
+
+

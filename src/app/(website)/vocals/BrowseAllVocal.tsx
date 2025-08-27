@@ -9,46 +9,40 @@ import Link from 'next/link';
 import { FaPlay } from "react-icons/fa6";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import CtaSection from '@/components/cta/CtaSection';
-import {
-    useAllGenreQuery,
-    useAllKeyQuery,
-    useAllLicenseQuery,
-    useAllTypeQuery,
-    useBrowseCoverVocalApiQuery
-} from "@/redux/api/home-api/homeApi";
-import { imgUrl } from "@/utility/img/imgUrl";
-import { UpdateMusickPlayer } from "@/pages/home-page/UpdateMusickPlayer";
+import { useAllGenreQuery, useAllKeyQuery, useBrowseCoverVocalApiQuery } from '@/app/api/websiteApi/websiteApi';
+import { Song } from '@/utility/type/websiteApiType';
+import { imgUrl } from '@/utility/img/imgUrl';
+import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 
-type VocalItem = {
-    id: number;
-    artist: string;
-    genre: string;
-    bpm: string;
-    key: string;
-    gender: string;
-    license: string;
-    price: string;
-    type: string;
-    image: string;
-};
 
-type FilterType = {
-    genre: string;
-    bpm: string;
-    key: string;
-    gender: string;
-    license: string;
-    type: string;
-    latest: string
-};
+
+
+
+
+
+
+
+
+
+
 
 const BrowseAllVocal = () => {
+
+
+
+
+
+
+
+
+
+
+
+
     const genreRef = useRef<HTMLDivElement>(null);
     const bpmRef = useRef<HTMLDivElement>(null);
     const keyRef = useRef<HTMLDivElement>(null);
     const genderRef = useRef<HTMLDivElement>(null);
-    const licenseRef = useRef<HTMLDivElement>(null);
-    const typeRef = useRef<HTMLDivElement>(null);
     const latestRef = useRef<HTMLDivElement>(null);
 
 
@@ -87,10 +81,10 @@ const BrowseAllVocal = () => {
     const bpm: number[] | string[] = [60, 80, 100, 120, 140, 160];
 
 
-    const [selectedBPM, setSelectedBPM] = useState<string[]>([]);
+    const [selectedBPM, setSelectedBPM] = useState<number[]>([]);
     const [openBPM, setOpenBPM] = useState<boolean>(false);
 
-    console.log(selectedBPM)
+
 
 
 
@@ -102,7 +96,7 @@ const BrowseAllVocal = () => {
 
     const rangeWidth = 100; // in percent
 
-    const getPercent = (value) =>
+    const getPercent = (value: number) =>
         ((value - minBPM) / (maxBPM - minBPM)) * rangeWidth;
 
     const getTrackBackground = () => {
@@ -180,75 +174,10 @@ const BrowseAllVocal = () => {
     // Gender end
 
 
-    // License  start
 
 
-    const { data: license } = useAllLicenseQuery(undefined);
-
-    const licenseData = license?.data || [];
 
 
-    const [selectedLicense, setSelectedLicense] = useState<string[]>([]);
-    const [openLicense, setOpenLicense] = useState<boolean>(false);
-
-    function toggleLicense(licenseValue: string): void {
-        // If already selected, deselect it
-        if (selectedLicense.includes(licenseValue)) {
-            setSelectedLicense([]);
-        } else {
-            setSelectedLicense([licenseValue]); // Only one item allowed
-        }
-        setOpenLicense(false); // Close dropdown
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (licenseRef.current && !licenseRef.current.contains(event.target as Node)) {
-                setOpenLicense(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-
-    // License end
-
-
-    // Type  start
-
-
-    const { data: typeData } = useAllTypeQuery(undefined);
-
-    const allTypeData = typeData?.data || [];
-
-
-    const [selectedType, setSelectedType] = useState<string[]>([]);
-    const [openType, setOpenType] = useState<boolean>(false);
-
-    function toggleType(type: string): void {
-        const newType = selectedType.includes(type)
-            ? selectedType.filter((t) => t !== type)
-            : [type]; // if you want only one at a time
-
-        setSelectedType(newType);
-        setOpenType(false); // Close dropdown
-    }
-
-    useEffect(() => {
-        function handleClickOutside(event: MouseEvent): void {
-            if (typeRef.current && !typeRef.current.contains(event.target as Node)) {
-                setOpenType(false);
-            }
-        }
-
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
-
-    // Type end
 
 
     // Latest  start
@@ -259,16 +188,18 @@ const BrowseAllVocal = () => {
     const [openLatest, setOpenLatest] = useState<boolean>(false);
 
     function toggleLatest(latestValue: number): void {
-        // If the value is already selected, deselect it
         if (selectLatest.includes(latestValue)) {
+            // Deselect
             setselectLatest([]);
+            handleFilterChange("latest", ""); // Reset filter to empty
         } else {
-            // Only allow one selection
+            // Select single value
             setselectLatest([latestValue]);
+            handleFilterChange("latest", latestValue); // Set filter as number
         }
 
         setOpenLatest(false);
-        setOpenKey(false); // Close dropdown
+        setOpenKey(false); // Close other dropdown if needed
     }
 
     useEffect(() => {
@@ -285,23 +216,47 @@ const BrowseAllVocal = () => {
     // Latest end
 
 
-    const [searchTerm, setSearchTerm] = useState<string>('');
-
-    const [filter, setFilter] = useState<FilterType>({
-        genre: '',
-        bpm: '',
-        key: '',
-        gender: '',
-        license: '',
-        type: '',
-        latest: "",
+    const [filter, setFilter] = useState<FilterState>({
+        gender: "",
+        language: "",
+        latest: "",  // empty initially
+        bpm: [],
+        key: "",
+        genre: "",
+        license: "",
+        type: ""
     });
 
-    console.log(`filter is ${searchTerm}`)
     const [globalSearch, setGlobalSearch] = useState<string>('');
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
-    const { data: browseVocalData } = useBrowseCoverVocalApiQuery({ filter, globalSearch });
-    const [tracks, setTracks] = useState<VocalItem[]>([]);
+    console.log(searchTerm, selectedBPM)
+
+
+
+    const { data: browseVocalData } = useBrowseCoverVocalApiQuery({
+        filter: {
+            gender: filter.gender,
+            language: filter.language,
+            latest: filter.latest,
+            bpm: filter.bpm,
+            key: filter.key,
+            genre: filter.genre,
+            license: filter.license,
+            type: filter.type,
+        },
+        globalSearch,
+    });
+
+
+
+
+
+
+
+
+
+    const [tracks, setTracks] = useState<Song[]>([]);
 
     // Log API response (raw)
 
@@ -309,29 +264,46 @@ const BrowseAllVocal = () => {
     // Update `data` state only when API data changes
     useEffect(() => {
         if (browseVocalData?.data?.data) {
-            setTracks(browseVocalData.data.data); // assuming data.data is an array of VocalItem
+            setTracks(browseVocalData.data.data as Song[]);
         }
     }, [browseVocalData]);
 
+    console.log('browseVocalData:', JSON.stringify(browseVocalData?.data?.data, null, 2));
+
+    console.log(`track is ${tracks}`)
 
 
-    console.log(globalSearch);
 
 
 
 
 
-    // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     setSearchTerm(e.target.value);
-    // };
 
-    const handleFilterChange = (key: keyof FilterType, value: number) => {
-        console.log(typeof value);
 
-        setFilter((prev) => ({ ...prev, [key]: value }));
+
+    interface FilterState {
+        gender: string;
+        language: string;
+        latest: number | ""; // ✅ number or empty string for unselected
+        bpm: number[];       // range
+        key: string;
+        genre: string;
+        license: string;
+        type: string;
+    }
+
+
+    const handleFilterChange = (
+        key: keyof FilterState,
+        value: string | number | number[]
+    ) => {
+        console.log("filter change:", key, value);
+
+        setFilter((prev) => ({
+            ...prev,
+            [key]: value,
+        }));
     };
-
-
 
 
 
@@ -340,38 +312,62 @@ const BrowseAllVocal = () => {
 
     const [visibleData, setVisibleData] = useState(10)
 
+
+
+
+    const initialFilter: FilterState = {
+        gender: "",
+        language: "",
+        latest: "",
+        bpm: [],
+        key: "",
+        genre: "",
+        license: "",
+        type: ""
+    };
+
+
+
+    // Clear Search
     const clearSearch = () => {
-        setFilter("");
-        setSelectedGender("");
-        setSelectedLicense("");
+        // Reset filter object
+        setFilter(initialFilter);
+
+        // Reset selection states
+        setSelectedGender([]);
+        setSelectGenre([]);
+        setSelectedKey([]);
+        setSelectedBPM([]);
+        setselectLatest([]);
+
+        // Reset search inputs
         setSearchTerm("");
-        setSelectedType("");
-        setSelectGenre("");
-        setSelectedKey("");
-        setSelectedBPM("");
-        setselectLatest("");
         setGlobalSearch("");
+    };
+
+    interface Track {
+        id: number;
+        title: string;
+        artist: { name: string };
+        price: string;
+        song: string;
+        song_poster: string;
     }
 
 
+
     const [showModal, setShowModal] = useState(false);
-    const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+    const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
 
 
-    console.log("current index is", currentIndex);
-
-    const handleOpenModal = (index: number) => {
-        console.log("handleOpen modal", index);
-        if (currentIndex === index && showModal) {
-            // Pause if already playing
-            setShowModal(false);
-            setCurrentIndex(null);
-        } else {
-            // Play the selected item
-            setCurrentIndex(index);
-            setShowModal(true);
-        }
+    const handleOpenModal = (track: Track) => {
+        setCurrentTrack(track);
+        setShowModal(true);
     };
+
+
+
+
 
 
     return (
@@ -381,7 +377,7 @@ const BrowseAllVocal = () => {
                     <div className=' mt-12 mb-6 '>
                         <div className=' border border-white '></div>
                     </div>
-                    <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center mb-11 gap-14'>
+                    <div className='flex flex-col md:flex-row lg:flex-row justify-between items-center lg:mb-11 mb-4 lg:gap-14'>
                         {/* Title Section */}
                         <div className='flex-1 w-full'>
                             <h1 className='lg:text-3xl md:text-2xl text-xl font-bold leading-9 text-white'>
@@ -404,7 +400,7 @@ const BrowseAllVocal = () => {
                             <input
                                 className="w-full border border-white focus:outline-0 py-2.5 rounded-2xl text-white pl-10 pr-6 bg-transparent placeholder-gray-400 placeholder:text-[16px]"
                                 placeholder="SEARCH"
-                                value={globalSearch} // ✅ Controlled input value
+                                value={globalSearch}
                                 onChange={(e) => setGlobalSearch(e.target.value)} // ✅ Update state
                             />
                             <Search className="absolute top-1/2 left-3 transform -translate-y-1/2 text-white w-5 h-5" />
@@ -514,7 +510,7 @@ const BrowseAllVocal = () => {
                                                     <div className="flex justify-center items-center gap-4 w-full">
                                                         <button
                                                             onClick={() => {
-                                                                setSelectedBPM(0); // or default value
+                                                                setSelectedBPM([]); // or default value
                                                                 handleFilterChange("bpm", "");
                                                                 setOpenBPM(false)
                                                             }}
@@ -525,9 +521,9 @@ const BrowseAllVocal = () => {
 
                                                         <button
                                                             onClick={() => {
-                                                                handleFilterChange("bpm", [minValue, maxValue]); // ⬅ send the selected range
-                                                                setSelectedBPM([minValue, maxValue]);           // ⬅ store the selection
-                                                                setOpenBPM(false);                              // ⬅ close the modal
+                                                                handleFilterChange("bpm", [minValue, maxValue]); // ✅ now valid
+                                                                setSelectedBPM([minValue, maxValue]);
+                                                                setOpenBPM(false);
                                                             }}
                                                             className="bg-[#E7F056] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
                                                         >
@@ -585,7 +581,7 @@ const BrowseAllVocal = () => {
                                                         checked={selectedKey.includes(key?.name)}
                                                         onChange={(e) => {
                                                             toggleKey(key?.name);
-                                                            handleFilterChange('key', e.target.checked ? key?.id : '');
+                                                            handleFilterChange("key", e.target.checked ? key?.id : "");
                                                         }}
                                                         className="mr-3 accent-indigo-500 w-5 h-5"
                                                     />
@@ -638,7 +634,7 @@ const BrowseAllVocal = () => {
                                                     checked={selectGenre.includes(genre?.name)}
                                                     onChange={(e) => {
                                                         toggleGenre(genre?.name);
-                                                        handleFilterChange('genre', e.target.checked ? genre?.id : '');
+                                                        handleFilterChange('genre', e.target.checked ? genre?.name : '');
                                                     }}
                                                     className="mr-3 accent-indigo-500 w-5 h-5"
                                                 />
@@ -701,12 +697,6 @@ const BrowseAllVocal = () => {
                                 )}
                             </AnimatePresence>
                         </div>
-                        {/* License */}
-
-
-
-
-                        {/* Type  */}
 
 
 
@@ -766,457 +756,14 @@ const BrowseAllVocal = () => {
                             </AnimatePresence>
                         </div>
 
-                        {/*key */}
+
 
                     </div>
 
                     {/*small device */}
 
 
-                    <div
-                        className=" lg:hidden  grid grid-cols-3 gap-6  max-w-[1539px]  mx-auto   mb-6  ">
 
-
-                        <div className="relative w-full " ref={keyRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white md:px-5 px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenKey(!openKey)}
-                            >
-                                {/* Icon on RIGHT side */}
-                                {openKey ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                {/* Only show selected count */}
-                                <span className="w-28 text-white md:text-lg ">
-                                    {selectGenre.length > 0 ? <>Selected {selectedKey.length}</> : "Key"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openKey && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
-                                    >
-                                        {keyData.map((key, index) => (
-                                            <label
-                                                key={index}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectGenre.includes(key?.name)}
-                                                    onChange={(e) => {
-                                                        toggleKey(key?.name);
-                                                        handleFilterChange('key', e.target.checked ? key?.id : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg   ">{key?.name}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        {/* BPM */}
-
-                        <div className="relative w-full " ref={bpmRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenBPM(!openBPM)}
-                            >
-                                {openBPM ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                <span className="w-28 text-white  text-sm   ">
-                                    BPM
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openBPM && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.9 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                                        className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50"
-                                    >
-                                        <div
-                                            ref={bpmRef}
-                                            className="bg-[#201F1F] rounded-2xl p-6 w-[90%] max-w-md max-h-[80vh] overflow-auto"
-                                        >
-                                            <div className="flex justify-between items-center mb-4">
-                                                <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
-                                                <button onClick={() => setOpenBPM(false)}
-                                                    className="cursor-pointer text-white text-2xl">×
-                                                </button>
-                                            </div>
-
-                                            <div className="flex flex-col   gap-6">
-
-
-                                                <div className="flex flex-col items-center gap-4">
-                                                    {/* Selected BPM and Range Input */}
-                                                    <div className="relative w-full pt-8">
-                                                        {/* Number Labels */}
-                                                        <div
-                                                            className="absolute  -top-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                            style={{ left: `calc(${getPercent(minValue)}% - 20px)` }}
-                                                        >
-                                                            {minValue.toFixed(2)}
-                                                        </div>
-                                                        <div
-                                                            className="absolute  -top-4  -ml-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
-                                                            style={{ left: `calc(${getPercent(maxValue)}% - 20px)` }}
-                                                        >
-                                                            {maxValue.toFixed(2)}
-                                                        </div>
-
-                                                        {/* Track */}
-                                                        <div
-                                                            className="w-full h-2 rounded-full"
-                                                            style={{ background: getTrackBackground() }}
-                                                        />
-
-                                                        {/* Left Thumb */}
-                                                        <input
-                                                            type="range"
-                                                            min={minBPM}
-                                                            max={maxBPM}
-                                                            value={minValue}
-                                                            onChange={(e) => {
-                                                                const val = Math.min(Number(e.target.value), maxValue - 1);
-                                                                setMinValue(val);
-                                                            }}
-                                                            className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
-                                                        />
-
-                                                        {/* Right Thumb */}
-                                                        <input
-                                                            type="range"
-                                                            min={minBPM}
-                                                            max={maxBPM}
-                                                            value={maxValue}
-                                                            onChange={(e) => {
-                                                                const val = Math.max(Number(e.target.value), minValue + 1);
-                                                                setMaxValue(val);
-                                                            }}
-                                                            className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
-                                                        />
-                                                    </div>
-
-                                                    {/* Buttons */}
-                                                    <div className="flex justify-center items-center gap-4 w-full">
-                                                        <button
-                                                            onClick={() => {
-                                                                setSelectedBPM(0); // or default value
-                                                                handleFilterChange("bpm", "");
-                                                                setOpenBPM(false)
-                                                            }}
-                                                            className="bg-gray-700 cursor-pointer text-white px-4 py-1 rounded-lg hover:bg-gray-600 transition"
-                                                        >
-                                                            Reset
-                                                        </button>
-
-                                                        <button
-                                                            onClick={() => {
-                                                                handleFilterChange("bpm", [minValue, maxValue]); // ⬅ send the selected range
-                                                                setSelectedBPM([minValue, maxValue]);           // ⬅ store the selection
-                                                                setOpenBPM(false);                              // ⬅ close the modal
-                                                            }}
-                                                            className="bg-[#E7F056] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
-                                                        >
-                                                            Filter
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        <div className="relative w-full " ref={genreRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F] text-white md:px-5 px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpen(!open)}
-                            >
-                                {/* Icon on RIGHT side */}
-                                {open ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                {/* Only show selected count */}
-                                <span className="w-28 text-white md:text-lg ">
-                                    {selectGenre.length > 0 ? <>Selected {selectGenre.length}</> : "Genre"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {open && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
-                                    >
-                                        {genreData.map((genre) => (
-                                            <label
-                                                key={genre?.id}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectGenre.includes(genre?.name)}
-                                                    onChange={(e) => {
-                                                        toggleGenre(genre?.name);
-                                                        handleFilterChange('genre', e.target.checked ? genre?.id : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg   ">{genre?.name}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        {/* Gender */}
-
-                        <div className="relative w-full " ref={genderRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenGender(!openGender)}
-                            >
-                                {openGender ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                <span className="w-28 text-white md:text-lg  ">
-                                    {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openGender && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
-                                    >
-                                        {gender.map((gender) => (
-                                            <label
-                                                key={gender}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedGender.includes(gender)}
-                                                    onChange={(e) => {
-                                                        toggleGender(gender);
-                                                        handleFilterChange('gender', e.target.checked ? gender : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg ">{gender}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                        {/* License */}
-
-                        <div className="relative w-full " ref={licenseRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenLicense(!openLicense)}
-                            >
-                                {openLicense ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                <span className="w-28 text-white md:text-lg   ">
-                                    {selectedLicense.length > 0 ? <>Selected {selectedLicense.length}</> : "License"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openLicense && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
-                                    >
-                                        {licenseData.map((license) => (
-                                            <label
-                                                key={license?.id}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedLicense.includes(license?.name)}
-                                                    onChange={(e) => {
-                                                        toggleLicense(license?.name);
-                                                        handleFilterChange('license', e.target.checked ? license?.id : '');
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg  ">{license?.name}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        {/* Type  */}
-
-
-                        <div className="relative w-full " ref={typeRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenType(!openType)}
-                            >
-                                {openType ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                <span className="w-28 text-white md:text-lg   ">
-                                    {selectedType.length > 0 ? <>Selected {selectedType.length}</> : "Type"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openType && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
-                                    >
-                                        {allTypeData.map((item) => (
-                                            <label
-                                                key={item?.id}
-                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                            >
-                                                <input
-                                                    type="checkbox"
-                                                    checked={selectedType.includes(item?.name)}
-                                                    onChange={(e) => {
-                                                        toggleType(item?.name); // ✅ Efficient toggle
-                                                        handleFilterChange("type", e.target.checked ? item?.id : "");
-                                                    }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
-                                                />
-                                                <span className="text-white md:text-lg  ">{item?.name}</span>
-                                            </label>
-                                        ))}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                        {/* latest  */}
-
-
-                        <div className="relative w-full " ref={latestRef}>
-                            <button
-                                type="button"
-                                className="bg-[#201F1F]  relative  text-white px-5 py-3 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
-                                onClick={() => setOpenLatest(!openLatest)}
-                            >
-                                {openLatest ? (
-                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                ) : (
-                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
-                                )}
-
-                                <span className="w-28 text-white md:text-lg   ">
-                                    {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
-                                </span>
-                            </button>
-
-                            <AnimatePresence>
-                                {openLatest && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: -10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -10 }}
-                                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
-                                        style={{ top: "calc(100% + 0.5rem)" }}
-                                    >
-                                        {
-                                            latest.map((item) => (
-                                                <label
-                                                    key={item}
-                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
-                                                >
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectedType.includes(item)}
-                                                        onChange={(e) => {
-                                                            toggleLatest(item);
-                                                            handleFilterChange('latest', e.target.checked ? item : '');
-                                                        }}
-                                                        className="mr-3 accent-indigo-500 w-5 h-5"
-                                                    />
-                                                    <span className="text-white md:text-lg  ">{item}</span>
-                                                </label>
-                                            ))
-                                        }
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-
-
-                    </div>
 
 
                     {/* wrapper — keeps the old horizontal-scroll safety net */}
@@ -1234,15 +781,24 @@ const BrowseAllVocal = () => {
                                             <Link href={`/music-details/${item?.id}`}>
                                                 <Image
                                                     src={`${imgUrl}/${item?.song_poster}`}
-                                                    alt={item?.title}
+                                                    alt={"fdsfsdadf"}
                                                     fill
-                                                    className="object-cover rounded"
+                                                    className="rounded"
                                                 />
                                             </Link>
                                         </div>
                                         <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
                                             <FaPlay
-                                                onClick={() => handleOpenModal(item.id)}
+                                                onClick={() =>
+                                                    handleOpenModal({
+                                                        id: item?.id,
+                                                        title: item?.title,
+                                                        artist: { name: item?.artist?.name },
+                                                        price: item?.price,
+                                                        song: item?.song,
+                                                        song_poster: item?.song_poster,
+                                                    } as Track)
+                                                }
                                                 size={28}
                                                 className="text-white cursor-pointer"
                                             />
@@ -1260,8 +816,8 @@ const BrowseAllVocal = () => {
 
                                     {/* Center: Genre and License */}
                                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-10 w-full md:w-[400px] text-sm textColor">
-                                        <p>{item?.genre?.name || 'N/A'}</p>
-                                        <p>{item?.license?.name || 'N/A'}</p>
+                                        <p>{item?.genre.name || 'N/A'}</p>
+                                        <p>{item?.license.name || 'N/A'}</p>
                                     </div>
 
                                     {/* Right: Price and Button */}
@@ -1300,14 +856,22 @@ const BrowseAllVocal = () => {
                 </div>
 
 
+                <div  >
+                    {showModal && currentTrack && (
+                        <MusickPlayer
+                            show={showModal}
+                            onClose={() => setShowModal(false)}
+                            currentTrack={{
+                                id: currentTrack.id,
+                                title: currentTrack.title,
+                                name: currentTrack.artist.name,
+                                song_poster: currentTrack.song_poster,
+                                song: `${imgUrl}/${currentTrack.song}`,
+                            }}
+                        />
+                    )}
+                </div>
 
-                {showModal && currentIndex !== null && (
-                    <UpdateMusickPlayer
-                        show={showModal}
-                        onClose={() => setShowModal(false)}
-                        currentIndex={currentIndex}
-                    />
-                )}
             </MaxWidth>
             <CtaSection />
         </>
@@ -1315,4 +879,6 @@ const BrowseAllVocal = () => {
 };
 
 export default BrowseAllVocal;
+
+
 

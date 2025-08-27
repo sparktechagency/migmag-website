@@ -1,12 +1,14 @@
-import React from 'react'
-import AccountFromPage from './AccountFromPage'
+'use client';
 
-const page : React.FC = () => {
+import React from 'react';
+import AccountFormPage from './AccountFromPage';
+
+const AccountFormWrapper: React.FC = () => {
   return (
     <div>
-      <AccountFromPage></AccountFromPage>
+      <AccountFormPage />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default AccountFormWrapper;

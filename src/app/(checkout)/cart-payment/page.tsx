@@ -1,3 +1,4 @@
+"use client"
 import CartStripe from "./CartStripe";
 
 const Page = () => {
