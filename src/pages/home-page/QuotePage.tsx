@@ -34,7 +34,7 @@ const QuotePage: React.FC = () => {
                     {/* Premium */}
                     <div className="border border-gray-300 rounded-xl p-6 shadow-md">
                         <h3 className="lg:text-2xl text-xl font-semibold headerColor flex flex-row items-center   mb-2">
-                            Premium Vocals<Image src={"/update-image/home-page/quote/exclusiveLogo.png"} height={30} width={30} className={"object-cover  "} alt={"..."} />  <span className="text-sm">(5 Copies Only)</span>
+                            Premium Vocals<Image src={"/update-image/home-page/quote/exclusiveLogo.png"} height={30} width={30} className={"object-cover  "} alt={"..."} />  <span className="text-sm">(5 Copies)</span>
                         </h3>
                         <p className="textColor lg:text-xl text-sm mb-3">
                             Limited to just 5 producers. High-quality, rare vocals with minimal competition.
@@ -45,7 +45,7 @@ const QuotePage: React.FC = () => {
                     {/* Limited */}
                     <div className="border border-gray-300 rounded-xl p-6 shadow-md">
                         <h3 className="lg:text-2xl text-xl font-semibold headerColor mb-2 flex flex-row items-center  ">
-                            Limited Vocals <Image src={"/update-image/home-page/quote/limitedLogo.png"} height={30} width={30} className={"object-cover  "} alt={"..."} /> <span className="text-sm">(20 Copies Only)</span>
+                            Limited Vocals <Image src={"/update-image/home-page/quote/limitedLogo.png"} height={30} width={30} className={"object-cover  "} alt={"..."} /> <span className="text-sm">(20 Copies)</span>
                         </h3>
                         <p className="textColor lg:text-xl text-sm mb-3">
                             Budget-friendly and unique. Capped at 20 downloads to keep your sound original.

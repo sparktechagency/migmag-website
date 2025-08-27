@@ -136,12 +136,13 @@ export default function MusicSlider() {
                                     key={item.id}
                                     className="min-w-[220px] max-w-[220px] flex-shrink-0 cursor-pointer"
                                 >
-                                    <div className="relative w-full h-[260px] overflow-hidden ">
+                                    <div className="relative w-full h-[215px] overflow-hidden ">
                                         <Image
                                             src={`${imgUrl}/${item.song_poster}`}
                                             alt={item.title}
-                                            fill
-                                            className="object-cover "
+                                              width = {500}
+                                                                   height = {500}
+                                            className="  w-[300px] h-[300px]  "
                                         />
                                         <button
                                             onClick={() => handleOpenModal(index)}

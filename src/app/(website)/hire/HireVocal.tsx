@@ -31,7 +31,7 @@ const HireVocal: React.FC = () => {
                     </div>
                     <div className="w-full sm:w-auto flex justify-center">
                         <Image
-                            src="/update-image/sponser-logo/sponser-2.png"
+                            src="/update-image/sponser-logo/sponser-3.png"
                             alt="logo"
                             width={175}
                             height={85}
@@ -40,13 +40,14 @@ const HireVocal: React.FC = () => {
                     </div>
                     <div className="w-full sm:w-auto flex justify-center">
                         <Image
-                            src="/update-image/sponser-logo/sponser-3.png"
+                            src="/update-image/sponser-logo/sponser-2.png"
                             alt="logo"
                             width={175}
                             height={85}
                             className="object-cover"
                         />
                     </div>
+                    
                     <div className="w-full sm:w-auto flex justify-center">
                         <Image
                             src="/update-image/sponser-logo/sponser-4.png"
@@ -88,7 +89,7 @@ const HireVocal: React.FC = () => {
                                 <div className=' flex flex-row gap-5 mt-2  items-start  '>
                                     <div className=' lg:w-[107px] lg:h-[107px]  '>
                                         <Image src={"/update-image/hire/icon/man.png"} alt={"logo1"} width={200}
-                                               height={200} className={`object-cover w-16 h-16  `} />
+                                               height={200} className={`object-cover w-20 h-20  `} />
                                     </div>
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">1. Choose a Singer</p>
@@ -103,7 +104,7 @@ const HireVocal: React.FC = () => {
                                 <div className=' flex flex-row gap-5   items-start  '>
                                     <div className=' lg:w-[107px] lg:h-[107px]  '>
                                         <Image src={"/update-image/hire/icon/man-2.png"} alt={"logo1"} width={200}
-                                               height={200} className={`object-cover  w-16 h-16 `}/>
+                                               height={200} className={`object-cover  w-20 h-20 `}/>
                                     </div>
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">2. Share Your Idea</p>
@@ -118,7 +119,7 @@ const HireVocal: React.FC = () => {
                                 <div className=' flex flex-row gap-5  items-start  '>
                                     <div className=' lg:w-[107px] lg:h-[107px]  '>
                                         <Image src={"/update-image/hire/icon/man-3.png"} alt={"logo1"} width={200}
-                                               height={200} className={`object-cover w-16 h-16 `}/>
+                                               height={200} className={`object-cover w-20 h-20 `}/>
                                     </div>
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">3. We Deliver the Vocal</p>

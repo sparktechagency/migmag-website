@@ -134,16 +134,6 @@ const VocalPublish: React.FC = () => {
             </p>
 
             <div className="flex flex-col md:flex-row justify-center items-center gap-6 my-10">
-              {/* img 1 */}
-              <div className="flex justify-center">
-                <Image
-                    src="/update-image/home-page/spotify/spotify1.png"
-                    alt="logo"
-                    width={400}
-                    height={400}
-                    className=""
-                />
-              </div>
               {/* img 2 */}
               <div className="flex justify-center">
                 <Image
@@ -154,6 +144,17 @@ const VocalPublish: React.FC = () => {
                     className=""
                 />
               </div>
+              {/* img 1 */}
+              <div className="flex justify-center">
+                <Image
+                    src="/update-image/home-page/spotify/spotify1.png"
+                    alt="logo"
+                    width={400}
+                    height={400}
+                    className=""
+                />
+              </div>
+              
               {/* img 3 */}
               <div className="flex justify-center">
                 <Image

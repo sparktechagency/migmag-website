@@ -58,8 +58,8 @@ const UpdateFooter: React.FC = () => {
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
                         <span>
-                            <Image src={"/update-image/footer/footer-logo.svg"} alt={"logo"} width={200} height={200}
-                                className={" object-cover "} />
+                             <Image src={"/client-demo/TuneM-Asset2.svg"} alt={"logo"} width={500} height={500}
+                                    className={" object-cover w-[200px] h-[50px] "} />
                         </span>
                     </div>
 

@@ -13,21 +13,24 @@ const reviews: Review[] = [
     {
         name: "Jessica",
         role: "Singer & Songwriter at TuneM",
-        image: "/update-image/tuneM-Artist/review/jessica.png",
+        // image: "/update-image/tuneM-Artist/review/jessica.png",
+        image: "/client-demo/artist-1.jpeg",
         review:
             "I don’t have to chase gigs anymore. TuneM brings the work to me, and I just focus on doing what I love — recording vocals. Everything is super clear and easy.",
     },
     {
         name: "Kimberly",
         role: "Vocalist at TuneM",
-        image: "/update-image/tuneM-Artist/review/kimberly.webp",
+        // image: "/update-image/tuneM-Artist/review/kimberly.webp",
+        image : "/client-demo/formal-1.jpg",
         review:
             "Working with TuneM for over five years has been a steady part of my growth as an artist. It’s opened up a lot of opportunities, and over time, it’s helped me build a career where I can support myself through music",
     },
     {
         name: "Sophianne",
         role: "Songwriter at TuneM",
-        image: "/update-image/tuneM-Artist/review/sophianne.png",
+        // image: "/update-image/tuneM-Artist/review/sophianne.png",
+        image : "/client-demo/formal-1.jpg",
         review:
             "TuneM has helped me grow as a songwriter by giving me real opportunities to collaborate with vocalists and producers. It’s been one of the most reliable platforms I’ve worked with, and I’ve been able to steadily build a catalogue that actually gets used.",
     },
@@ -59,7 +62,7 @@ const ArtistSlider: React.FC = () => {
                                             src={review.image}
                                             alt={review.name}
                                             width={300}
-                                            height={500}
+                                            height={300}
                                             className={` rounded-full  w-20 h-20  `}
                                         />
                                     )}
@@ -85,7 +88,7 @@ const ArtistSlider: React.FC = () => {
                                             src={review.image}
                                             alt={review.name}
                                             width={300}
-                                            height={500}
+                                            height={300}
                                             className=" object-bottom rounded-full  w-20 h-20  "
                                         />
                                     )}
