@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import {
     Info,
@@ -12,14 +12,47 @@ import {
     X, Facebook, Twitter
 } from 'lucide-react'
 
-import { useSongDetailsQuery } from "@/redux/api/home-api/homeApi";
 import { imgUrl } from "@/utility/img/imgUrl";
-import { useAddWishListMutation, useRemoveWishMutation } from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 import AudioPlay from "@/app/(website)/music-details/[id]/AudioPlay";
 import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { ApiError } from "@/utility/api-type/homeApiType";
+import { useSongDetailsQuery } from '@/app/api/websiteApi/websiteApi';
+import { useAddWishListMutation, useRemoveWishMutation } from '@/app/api/authApi/authApi';
+
+interface Artist {
+    name?: string;
+    gender?: string;
+}
+
+interface Genre {
+    name?: string;
+}
+
+interface Key {
+    name?: string;
+}
+
+interface License {
+    name?: string;
+}
+
+interface SongData {
+    id: number;
+    title: string;
+    artist?: Artist;
+    bpm?: number;
+    genre?: Genre;
+    key?: Key;
+    license?: License;
+    price: number | string;
+    song_poster?: string;
+}
+
+interface DataWrapper {
+    data: SongData;
+}
+
 
 
 
@@ -39,7 +72,7 @@ const MusickDetails = ({ id }: { id: string }) => {
 
     const handleAddToWishlist = async () => {
         try {
-            const res = await addWishList(songId).unwrap();
+            const res = await addWishList({ songId }).unwrap();
 
             if (res) {
                 refetch();
@@ -52,6 +85,13 @@ const MusickDetails = ({ id }: { id: string }) => {
                 });
             }
         } catch (err: unknown) {
+            // Define ApiError type for error handling
+            type ApiError = {
+                status?: number;
+                data?: {
+                    message?: string;
+                };
+            };
             const error = err as ApiError;
 
             // Example: If your API sends 401 for unauthenticated users
@@ -72,7 +112,7 @@ const MusickDetails = ({ id }: { id: string }) => {
 
     const removeFromWishlist = async () => {
         try {
-            const res = await removeWish(songId).unwrap();
+            const res = await removeWish( {songId} ).unwrap(); // ✅ pass object
             if (res) {
                 refetch();
                 Swal.fire({
@@ -84,20 +124,17 @@ const MusickDetails = ({ id }: { id: string }) => {
                 });
             }
         } catch (e) {
-            console.log(e)
+            console.log(e);
             router.push("/login");
-            // console.error(e);
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-
                 title: "Something went wrong",
                 showConfirmButton: false,
                 timer: 1500
             });
         }
-    }
-
+    };
 
 
 
@@ -114,80 +151,88 @@ const MusickDetails = ({ id }: { id: string }) => {
 
 
 
-interface CartItem {
-  id: number;
-  title: string;
-  name: string; // artist name
-  gender?: string;
-  bpm?: string;
-  genre?: string;
-  key?: string;
-  license?: string;
-  price: number;
-  image?: string;
-}
-
-const [cart, setCart] = useState<CartItem[]>([]);
-
-// Load cart from localStorage once
-useEffect(() => {
-  const cartData = localStorage.getItem("cart");
-  if (cartData) {
-    try {
-      const parsedCart: CartItem[] = JSON.parse(cartData).map((item: any) => ({
-        ...item,
-        price: Number(item.price),
-      }));
-      setCart(parsedCart);
-    } catch (error) {
-      console.error("Failed to parse cart:", error);
+    interface CartItem {
+        id: number;
+        title: string;
+        name: string; // artist name
+        gender?: string;
+        bpm?: string | number;
+        genre?: string;
+        key?: string;
+        license?: string;
+        price: number;
+        image?: string;
     }
-  }
-}, []);
 
-const handleAddToCart = (data: any) => {
-  if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
-    return alert("Invalid song data");
-  }
+    const [cart, setCart] = useState<CartItem[]>([]);
 
-  const cartItem: CartItem = {
-    id: data.data.id,
-    title: data.data.title,
-    name: data.data.artist?.name || "",
-    gender: data.data.artist?.gender,
-    bpm: data.data.bpm,
-    genre: data.data.genre?.name,
-    key: data.data.key?.name,
-    license: data.data.license?.name,
-    price: Number(data.data.price),
-    image: data.data.song_poster
-  };
+    // Load cart from localStorage once
+    useEffect(() => {
+        const cartData = localStorage.getItem("cart");
+        if (cartData) {
+            try {
+                const parsed: unknown = JSON.parse(cartData);
 
-  // Prevent duplicates
-  const alreadyInCart = cart.some(item => item.id === cartItem.id);
+                if (Array.isArray(parsed)) {
+                    const parsedCart: CartItem[] = parsed.map((item: unknown) => {
+                        if (typeof item === "object" && item !== null) {
+                            const cartItem = item as CartItem;
+                            return { ...cartItem, price: Number(cartItem.price) }; // ensure price is number
+                        }
+                        throw new Error("Invalid item in cart");
+                    });
 
-  if (!alreadyInCart) {
-    const updatedCart = [...cart, cartItem];
-    setCart(updatedCart); // ✅ update React state
-    localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
+                    setCart(parsedCart);
+                }
+            } catch (error) {
+                console.error("Failed to parse cart:", error);
+            }
+        }
+    }, []);
 
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Song added to cart successfully",
-      showConfirmButton: false,
-      timer: 1500
-    });
-  } else {
-    Swal.fire({
-      position: "top-end",
-      icon: "warning",
-      title: "Song already added to cart",
-      showConfirmButton: false,
-      timer: 1500
-    });
-  }
-};
+    const handleAddToCart = (data: DataWrapper) => {
+        if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
+            return alert("Invalid song data");
+        }
+
+        const cartItem: CartItem = {
+            id: data.data.id,
+            title: data.data.title,
+            name: data.data.artist?.name || "",
+            gender: data.data.artist?.gender,
+            bpm: data.data.bpm,
+            genre: data.data.genre?.name,
+            key: data.data.key?.name,
+            license: data.data.license?.name,
+            price: Number(data.data.price),
+            image: data.data.song_poster
+        };
+
+        // Prevent duplicates
+        const alreadyInCart = cart.some(item => item.id === cartItem.id);
+
+        if (!alreadyInCart) {
+            const updatedCart = [...cart, cartItem];
+            setCart(updatedCart); // ✅ update React state
+            localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
+
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Song added to cart successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } else {
+            Swal.fire({
+                position: "top-end",
+                icon: "warning",
+                title: "Song already added to cart",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    };
 
 
 
@@ -256,7 +301,7 @@ const handleAddToCart = (data: any) => {
                         {/*<div className="my-4">*/}
                         {/*    <FaPlay size={30} className="cursor-pointer text-gray-700 hover:text-black transition"/>*/}
                         {/*</div>*/}
-                        <AudioPlay data={data}  ></AudioPlay>
+                        {data && <AudioPlay data={data} />}
 
                         {/* Info Text */}
                         <div className="text-sm text-gray-500 flex items-center gap-1">
@@ -280,13 +325,14 @@ const handleAddToCart = (data: any) => {
 
                         {/* Buttons */}
                         <div className="mt-4 flex gap-4">
-
-                            <button onClick={() => { handleAddToCart(data) }}
-                                className="border border-blue-600 text-blue-600 px-4 py-2 cursor-pointer text-sm rounded hover:bg-blue-50">
-
-                                Add To Cart
-
-                            </button>
+                            {data && (
+                                <button
+                                    onClick={() => handleAddToCart(data)}
+                                    className="border border-blue-600 text-blue-600 px-4 py-2 cursor-pointer text-sm rounded hover:bg-blue-50"
+                                >
+                                    Add To Cart
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -359,3 +405,4 @@ const handleAddToCart = (data: any) => {
 }
 
 export default MusickDetails
+

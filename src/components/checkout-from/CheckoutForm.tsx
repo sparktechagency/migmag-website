@@ -1,6 +1,6 @@
-// components/CheckoutForm.tsx
 'use client';
 
+import { usePaymentSuccessApiMutation } from '@/app/api/paymentApi/paymentApi';
 import {
     useStripe,
     useElements,
@@ -11,14 +11,28 @@ import {
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { usePaymentSuccessApiMutation } from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
 
 type CheckoutFormProps = {
     clientSecret: string;
-    songId?: number; // optional
-    price?: number;  // optional
+    songId?: number;
+    price?: number;
 };
+
+// Payload type for API
+
+
+
+
+// API response type
+interface PaymentResponse {
+    success: boolean;
+    data?: {
+        message: string;
+        orderId?: string;
+    };
+    message?: string;
+}
 
 export default function CheckoutForm({ clientSecret, songId, price }: CheckoutFormProps) {
     const stripe = useStripe();
@@ -39,7 +53,7 @@ export default function CheckoutForm({ clientSecret, songId, price }: CheckoutFo
 
         if (!stripe || !elements || !clientSecret) {
             setLoading(false);
-            return;
+            return toast.error('Stripe is not ready');
         }
 
         if (!songId || !price) {
@@ -61,21 +75,15 @@ export default function CheckoutForm({ clientSecret, songId, price }: CheckoutFo
 
             if (result.error) {
                 setErrorMessage(result.error.message ?? 'Payment failed');
+                toast.error(result.error.message ?? 'Payment failed');
             } else if (result.paymentIntent?.status === 'succeeded') {
                 // 2️⃣ Call backend API to record order
-                const res = await paymentSuccessApi({
-                    songs: [
-                        {
-                            song_id: songId,
-                            price: price,
-                        }
-                    ],
+                const res: PaymentResponse = await paymentSuccessApi({
+                    songs: [{ song_id: songId, price }],
                     payment_method: "card"
-                });
+                }).unwrap(); // unwrap RTK query result
 
-                console.log(res);
-
-                if (!res) throw new Error(res.message || 'Failed to record payment');
+                if (!res.success) throw new Error(res.message || 'Failed to record payment');
 
                 Swal.fire({
                     position: "top-end",
@@ -88,9 +96,16 @@ export default function CheckoutForm({ clientSecret, songId, price }: CheckoutFo
                 router.push('/');
             }
 
-        } catch (err: any) {
-            console.error(err);
-            toast.error(err.message || 'Something went wrong');
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.error(err);
+                toast.error(err.message);
+                setErrorMessage(err.message);
+            } else {
+                console.error(err);
+                toast.error('Something went wrong');
+                setErrorMessage('Something went wrong');
+            }
         }
 
         setLoading(false);

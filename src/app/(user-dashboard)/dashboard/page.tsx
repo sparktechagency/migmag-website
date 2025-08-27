@@ -1,22 +1,28 @@
-"use client"
-import UserDashboard from '@/pages/user-dashboard/UserDashboard'
-import React, {useEffect} from 'react'
-import {useRouter} from "next/navigation";
+'use client';
 
-const Page: React.FC = () => {
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import UserDashboard from '@/pages/user-dashboard/UserDashboard';
+
+const UserDashboardPage: React.FC = () => {
     const router = useRouter();
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            router.push("/login");
-        }
-    }, [router]);
-    return (
-        <div>
-            <UserDashboard></UserDashboard>
-            
-        </div>
-    )
-}
+    const [tokenChecked, setTokenChecked] = useState(false);
+    const [hasToken, setHasToken] = useState(false);
 
-export default Page
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            router.push('/login');
+            setHasToken(false);
+        } else {
+            setHasToken(true);
+        }
+        setTokenChecked(true);
+    }, [router]);
+
+    if (!tokenChecked) return null; // loading spinner optionally
+
+    return <>{hasToken && <UserDashboard />}</>;
+};
+
+export default UserDashboardPage;

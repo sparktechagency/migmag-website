@@ -3,11 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 import Image from "next/image";
-import { FiPlay, FiHeart } from "react-icons/fi";
+import { FiPlay } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { AnimatePresence, motion } from "framer-motion";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import { imgUrl } from "@/utility/img/imgUrl";
+import Swal from "sweetalert2";
+import { Heart } from 'lucide-react';
+import { FaHeart } from 'react-icons/fa';
+import { useAddWishListMutation, useRemoveWishMutation } from "@/app/api/authApi/authApi";
+import { useSongDetailsQuery } from "@/app/api/websiteApi/websiteApi";
+import { useRouter } from "next/navigation";
 
 export function MusickPlayer({
     show,
@@ -21,6 +27,7 @@ export function MusickPlayer({
         name: string;
         song_poster: string;
         song: string;
+        id : number
     };
 }) {
     const waveformRef = useRef<HTMLDivElement>(null);
@@ -65,7 +72,6 @@ export function MusickPlayer({
             /^\//,
             ""
         )}`;
-        console.log("Loading audio from:", audioSrc);
 
         ws.load(audioSrc);
 
@@ -120,9 +126,87 @@ export function MusickPlayer({
         }
     };
 
+    const songId = Number(currentTrack?.id);
+    const router = useRouter()
+
+    const [addWishList] = useAddWishListMutation();
+    const [removeWish] = useRemoveWishMutation ()
+    const { data, refetch } = useSongDetailsQuery ({ songId });
+
+    const handleAddToWishlist = async () => {
+        try {
+            const res = await addWishList({ songId }).unwrap();
+
+            if (res) {
+                refetch();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: res?.message,
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        } catch (err: unknown) {
+            console.log(err)
+            // Define ApiError type for error handling
+            type ApiError = {
+                status?: number;
+                data?: {
+                    message?: string;
+                };
+            };
+            const error = err as ApiError;
+
+            // Example: If your API sends 401 for unauthenticated users
+            if (error.status === 401) {
+                router.push("/login");
+                window.location.reload();
+            }
+
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: error?.data?.message || "This song already exists in wishlist",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
+    };
+
+
+
+    const removeFromWishlist = async () => {
+        try {
+            const res = await removeWish({ songId }).unwrap(); // ✅ pass object
+            if (res) {
+                refetch();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: res?.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } catch (e) {
+            console.log(e);
+            // router.push("/login");
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Something went wrong",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    };
+
+
     return (
-        <MaxWidth>
-            <AnimatePresence>
+        
+                <div className = {'max-w-3xl mx-auto  '} >
+                                <AnimatePresence>
                 {show && (
                     <>
                         {/* Backdrop */}
@@ -131,7 +215,7 @@ export function MusickPlayer({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="fixed inset-0 bg-black/40 z-40"
+                            className="fixed inset-0 bg-black/40 z-40   "
                             onClick={onClose}
                         />
 
@@ -141,7 +225,7 @@ export function MusickPlayer({
                             animate={{ y: 0 }}
                             exit={{ y: "100%" }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className="fixed max-w-[1539px] mx-auto bottom-0 left-0 right-0 z-50 bg-[#1b1b1b] px-4 py-2 shadow-xl border-t-2 border-[#E7F056]"
+                            className="fixed max-w-6xl mx-auto bottom-0 left-0 right-0 z-50 bg-[#1b1b1b] px-4 py-2 shadow-xl border-t-2 border-[#E7F056]"
                         >
                             <div className="flex items-center justify-between gap-4 text-white">
                                 {/* Track Info */}
@@ -180,16 +264,27 @@ export function MusickPlayer({
 
                                 {/* Like Icon */}
                                 <div className="min-w-[30px]">
-                                    <FiHeart
-                                        size={20}
-                                        className="text-white cursor-pointer hover:text-[#E7F056]"
-                                    />
+                                    {data?.data?.is_wishlisted == 1 && (
+                                        <span>
+                                            <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500  cursor-pointer " />
+
+                                        </span>
+                                    )}
+
+
+                                    {data?.data?.is_wishlisted == 0 && (
+                                        <Heart
+                                            onClick={() => handleAddToWishlist()}
+                                            className="cursor-pointer  hover:text-red-500 transition"
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </motion.div>
                     </>
                 )}
             </AnimatePresence>
-        </MaxWidth>
+                </div>
+       
     );
 }

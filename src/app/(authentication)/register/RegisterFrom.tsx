@@ -33,7 +33,7 @@ const RegisterFrom: React.FC = () => {
             alert("Passwords do not match.");
             return;
         }
-        console.log("Form Data Submitted:", formData);
+        
     };
     return (
         <div  className=' max-w-[1539px] mx-auto px-4 pb-10 lg:pb-[200px] ' >

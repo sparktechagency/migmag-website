@@ -1,41 +1,34 @@
-"use client";
+"use client"
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import MaxWidth from "@/components/max-width/MaxWidth";
-import { useSearchParams } from "next/navigation";
 
-
-import Swal, { SweetAlertIcon } from "sweetalert2";
-import { ResendOtpPayload } from "@/utility/type/authType";
+import Swal, { SweetAlertIcon, SweetAlertPosition } from "sweetalert2";
 import { useResendOtpMutation, useUserOtpVerifyMutation } from "@/app/api/authApi/authApi";
 
-const OtpVerifyPage: React.FC = () => {
+const ForgetOtpVerify: React.FC = () => {
     const [resendOtp] = useResendOtpMutation();
     const [registerOtpVerify, { isLoading }] = useUserOtpVerifyMutation();
     const [otp, setOtp] = useState<string[]>(new Array(6).fill(""));
     const router = useRouter();
 
     const searchParams = useSearchParams();
-    const email = searchParams?.get("email") || "";
+    const email = searchParams?.get("email") ?? "";
 
     const handleChange = (element: HTMLInputElement, index: number) => {
-        if (!/^[0-9]?$/.test(element.value)) return; // only digits allowed
+        if (!/^[0-9]?$/.test(element.value)) return; // only digits
         const newOtp = [...otp];
         newOtp[index] = element.value;
         setOtp(newOtp);
 
-        // Move to next input if current is filled
         if (element.value && element.nextSibling) {
             (element.nextSibling as HTMLInputElement).focus();
         }
     };
 
-    const handleKeyDown = (
-        e: React.KeyboardEvent<HTMLInputElement>,
-        index: number
-    ) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
         if (e.key === "Backspace" && !otp[index] && index > 0) {
             const prev = e.currentTarget.previousSibling as HTMLInputElement;
             prev?.focus();
@@ -49,25 +42,21 @@ const OtpVerifyPage: React.FC = () => {
         setOtp([...newOtp, ...new Array(6 - newOtp.length).fill("")].slice(0, 6));
     };
 
-    const payload = {
-        email,
-        otp: otp.join(""),
-    };
+    const payload = { email, otp: otp.join("") };
 
-    // Send OTP again
-    const sendOtp = async () => {
+    // ✅ Resend OTP
+    const sendOtp = async (e: React.FormEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         if (!email) {
-            console.warn("Email is null or undefined. Cannot send OTP.");
+            console.warn("Email is missing, cannot resend OTP.");
             return;
         }
 
         try {
-            const resendPayload: ResendOtpPayload = { email }; // ensure proper type
-            const res = await resendOtp(resendPayload).unwrap();
-
+            const res = await resendOtp({ email }).unwrap(); // ensure payload matches API type
             if (res.success) {
                 Swal.fire({
-                    position: "top",
+                    position: "top" as SweetAlertPosition,
                     icon: "success" as SweetAlertIcon,
                     title: res.message,
                     showConfirmButton: false,
@@ -81,7 +70,7 @@ const OtpVerifyPage: React.FC = () => {
                 errorMessage = String((error as { message: string }).message);
             }
             Swal.fire({
-                position: "top",
+                position: "top" as SweetAlertPosition,
                 icon: "error" as SweetAlertIcon,
                 title: errorMessage,
                 showConfirmButton: false,
@@ -90,26 +79,33 @@ const OtpVerifyPage: React.FC = () => {
         }
     };
 
-    // Submit OTP verification
+    // ✅ Verify OTP
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!email) {
+            Swal.fire({
+                position: "top" as SweetAlertPosition,
+                icon: "error" as SweetAlertIcon,
+                title: "Email is missing.",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+            return;
+        }
 
         try {
             const res = await registerOtpVerify(payload).unwrap();
-
             if (res.success) {
-                localStorage.setItem("token", res.data.token);
-
+                localStorage.setItem("forget-token", res.data.token);
                 Swal.fire({
-                    position: "top",
+                    position: "top" as SweetAlertPosition,
                     icon: "success" as SweetAlertIcon,
                     title: res.message,
                     showConfirmButton: false,
                     timer: 1500,
                 });
-
+                router.push("/set-new-password");
                 setOtp(["", "", "", "", "", ""]);
-                router.push("/dashboard");
             }
         } catch (error: unknown) {
             let errorMessage = "OTP verification failed.";
@@ -117,7 +113,7 @@ const OtpVerifyPage: React.FC = () => {
                 errorMessage = String((error as { message: string }).message);
             }
             Swal.fire({
-                position: "top",
+                position: "top" as SweetAlertPosition,
                 icon: "error" as SweetAlertIcon,
                 title: errorMessage,
                 showConfirmButton: false,
@@ -136,10 +132,11 @@ const OtpVerifyPage: React.FC = () => {
                                 Verify OTP
                             </h1>
                             <p className="text-center mt-2 textColor font-thin text-sm md:text-base">
-                                We have sent a 6 digit code to your email
+                                We have sent 6 digit code to {email || "your email"}
                             </p>
                         </div>
-                        <form  onSubmit={handleSubmit} >
+
+                        <form onSubmit={handleSubmit} >
                             <div className="flex justify-between items-center mt-[10%] space-x-1 md:space-x-2">
                                 {otp.map((digit, index) => (
                                     <input
@@ -154,15 +151,16 @@ const OtpVerifyPage: React.FC = () => {
                                     />
                                 ))}
                             </div>
-                            <div className="flex justify-end mt-2">
+
+                            <div className="flex justify-end mt-2 my-2 ">
                                 <button
-                                    type="button"
                                     onClick={sendOtp}
                                     className="headerColor cursor-pointer text-sm font-semibold"
                                 >
                                     Send again
                                 </button>
                             </div>
+
                             <button
                                 type="submit"
                                 disabled={isLoading}
@@ -172,12 +170,13 @@ const OtpVerifyPage: React.FC = () => {
                             </button>
                         </form>
                     </div>
+
                     <div className="w-full md:w-auto lg:w-[717px] lg:h-[478px] flex justify-center items-center">
                         <Image
                             src="/images/home-page/otpVerifyImg.png"
                             width={717}
                             height={478}
-                            alt="OTP Illustration"
+                            alt="OTP Verification"
                             className="max-w-full h-auto"
                         />
                     </div>
@@ -187,4 +186,4 @@ const OtpVerifyPage: React.FC = () => {
     );
 };
 
-export default OtpVerifyPage;
+export default ForgetOtpVerify;

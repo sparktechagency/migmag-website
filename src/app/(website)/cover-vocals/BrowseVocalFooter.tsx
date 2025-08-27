@@ -9,45 +9,50 @@ import { BsDiscord } from "react-icons/bs";
 import { ArrowRight } from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Image from "next/image";
-import { useSubscriberApiMutation } from "@/redux/api/home-api/homeApi";
-import { SubscriberApiPayload } from "@/utility/api-type/homeApiType";
+import axios, { AxiosError } from 'axios';
+
 import Swal from "sweetalert2";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { SubcriberApiPayload, SubscriptionApiResponse } from '@/utility/type/websiteApiType';
 
 const BrowseVocalFooter: React.FC = () => {
-    const [email, setEmail] = useState("");
-    const [subscriberApi, { isLoading }] = useSubscriberApiMutation();
+
+    const [loading, setIsloging] = useState<boolean>(false)
+    const [email, setEmail] = useState<string>("");
+    const url = process.env.NEXT_PUBLIC_API_BASE_URL;
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const payload: SubscriberApiPayload = { email };
+        const payload: SubcriberApiPayload = { email };
 
         try {
-            const res = await subscriberApi(payload).unwrap();
-            if (res) {
-                setEmail('');
+            setIsloging(true)
+            const res = await axios.post<SubscriptionApiResponse>(`${url}/subscription`, payload);
+            setIsloging(false)
+
+            if (res.data.success) {
+                setEmail("");
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: res?.message,
+                    title: res.data.message,
                     showConfirmButton: false,
                     timer: 1500,
                 });
             }
         } catch (err) {
-            const error = err as FetchBaseQueryError & {
-                data?: { message?: string };
-            };
-
+            const error = err as AxiosError<{ message: string }>;
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: error?.data?.message || "Something went wrong",
+                title: error.response?.data?.message || "Something went wrong",
                 showConfirmButton: false,
                 timer: 1500,
             });
         }
     };
+
+
+
 
     return (
         <div className="lg:mt-1">
@@ -157,7 +162,7 @@ const BrowseVocalFooter: React.FC = () => {
                                         className="bg-yellow-400 cursor-pointer px-4 py-2  lg:px-6 lg:py-3 hover:bg-yellow-500 transition-colors duration-200"
                                     >
                                         {
-                                            isLoading ? <>
+                                            loading ? <>
                                                 <div role="status">
                                                     <svg aria-hidden="true"
                                                         className="w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -263,3 +268,4 @@ const BrowseVocalFooter: React.FC = () => {
 }
 
 export default BrowseVocalFooter;
+

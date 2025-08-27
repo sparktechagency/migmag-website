@@ -1,15 +1,17 @@
+"use client"
 import Navbar from '@/components/navbar/Navbar'
 import React from 'react'
 import HomeBanner from './HomeBanner'
 import MusickSlider from './MusickSlider'
 import TopTenVocal from './TopTenVocal'
-import ArtistList from './ArtistList'
 import VocalPublish from './VocalPublish'
 import Coverd from './Coverd'
 import CookieConsent from '@/components/cookie/cookie-consent'
 import UseSound from "@/pages/home-page/UseSound";
 import UpdateFooter from "@/components/footer/UpdateFooter";
 import VocalPublishLogo from "@/pages/home-page/VocalPublishLogo";
+import ArtistList from './ArtistList'
+
 
 const HomePage: React.FC = () => {
     return (
@@ -47,3 +49,4 @@ const HomePage: React.FC = () => {
 }
 
 export default HomePage
+

@@ -48,17 +48,7 @@ const initialPurchases: Purchase[] = [
 ];
 
 const PurchasesTable = () => {
-    // const [purchases, setPurchases] = useState(initialPurchases);
 
-    // const toggleDownload = (index: number) => {
-    //     const updated = [...purchases];
-    //     updated[index].downloadable = !updated[index].downloadable;
-    //     setPurchases(updated);
-
-    //     if (updated[index].downloadable) {
-    //         downloadContract(updated[index].contractUrl, updated[index].contract);
-    //     }
-    // };
 
     const downloadContract = (url: string, filename: string) => {
         const link = document.createElement('a');

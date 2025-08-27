@@ -4,8 +4,9 @@
 import {useEffect} from 'react';
 import Image from 'next/image';
 import {useRouter} from "next/navigation";
-import {useFollowListQuery} from "@/redux/api/authApi/authApi";
 import {imgUrl} from "@/utility/img/imgUrl";
+import { useAllFollowingArtistQuery } from '@/app/api/authApi/authApi';
+import { FollowedArtist } from '@/utility/type/authType';
 
 
 const FollowingPage: React.FC = () => {
@@ -23,14 +24,15 @@ const FollowingPage: React.FC = () => {
 
     }, [router]);
 
-    const {data} = useFollowListQuery();
+    const {data} = useAllFollowingArtistQuery(undefined);
+
+    console.log(`data is ${data} `)
 
 
 
 
-    const artistList = data?.data?.data || [];
-    console.log(artistList)
-
+    const artistList : FollowedArtist[] = data?.data?.data || [];
+   
     return (
 
         <main>

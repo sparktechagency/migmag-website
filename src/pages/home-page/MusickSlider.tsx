@@ -32,11 +32,11 @@ export default function MusicSlider() {
     const sliderRef = useRef<HTMLDivElement>(null);
     const [cardsPerView, setCardsPerView] = useState(5);
     const [currentSlide, setCurrentSlide] = useState(0);
-
+    const url = process.env.NEXT_PUBLIC_API_BASE_URL
     useEffect(() => {
         const fetchTrendingVocals = async () => {
             try {
-                const res = await fetch('http://103.186.20.110:8002/api/latest-trending');
+                const res = await fetch(`${url}/latest-trending`);
                 const json = await res.json();
 
                 if (json.success) {
@@ -53,7 +53,7 @@ export default function MusicSlider() {
         };
 
         fetchTrendingVocals();
-    }, []);
+    }, [url]);
 
     // Responsive cards per view
     useEffect(() => {
@@ -118,9 +118,8 @@ export default function MusicSlider() {
                         onClick={prevSlide}
                         disabled={currentSlide === 0}
                         aria-label="Previous"
-                        className={`absolute left-0 top-[42%] cursor-pointer -translate-y-1/2 z-20 p-2 bg-white bg-opacity-60 rounded-full text-black hover:bg-opacity-90 transition ${
-                            currentSlide === 0 ? 'opacity-30 cursor-not-allowed' : ''
-                        }`}
+                        className={`absolute left-0 cursor-pointer top-[42%]  -translate-y-1/2 z-20 p-2 bg-white bg-opacity-60 rounded-full text-black hover:bg-opacity-90 transition ${currentSlide === 0 ? 'opacity-30 cursor-not-allowed' : ''
+                            }`}
                     >
                         <FiChevronLeft size={28} />
                     </button>
@@ -168,9 +167,8 @@ export default function MusicSlider() {
                         onClick={nextSlide}
                         disabled={currentSlide === maxSlide}
                         aria-label="Next"
-                        className={`absolute right-0 cursor-pointer top-[42%]  -translate-y-1/2 z-20 p-2 bg-white bg-opacity-60 rounded-full text-black hover:bg-opacity-90 transition ${
-                            currentSlide === maxSlide ? 'opacity-30 cursor-not-allowed' : ''
-                        }`}
+                        className={`absolute right-0 cursor-pointer top-[42%]  -translate-y-1/2 z-20 p-2 bg-white bg-opacity-60 rounded-full text-black hover:bg-opacity-90 transition ${currentSlide === maxSlide ? 'opacity-30 cursor-not-allowed' : ''
+                            }`}
                     >
                         <FiChevronRight size={28} />
                     </button>
@@ -197,6 +195,7 @@ export default function MusicSlider() {
                     show={showModal}
                     onClose={() => setShowModal(false)}
                     currentTrack={{
+                        id : tracks[currentIndex].id,
                         title: tracks[currentIndex].title,
                         name: tracks[currentIndex].artist.name,
                         song_poster: tracks[currentIndex].song_poster,

@@ -2,8 +2,8 @@
 import React, {useState} from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Swal from "sweetalert2";
-import {useApplyForArtistRequestMutation} from "@/redux/api/home-api/homeApi";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import { useApplayArtistMutation } from '@/app/api/websiteApi/websiteApi';
 
 
 const ApplayVocalistFrom: React.FC = () => {
@@ -34,7 +34,7 @@ const ApplayVocalistFrom: React.FC = () => {
         }
     };
 
-    const [applyForArtistRequest, {isLoading}] = useApplyForArtistRequestMutation()
+    const [applayArtist, {isLoading}] = useApplayArtistMutation()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -56,8 +56,7 @@ const ApplayVocalistFrom: React.FC = () => {
         }
 
         try {
-            const res = await applyForArtistRequest(formData).unwrap();
-            console.log(res);
+            const res = await applayArtist(formData).unwrap();
             if (res) {
                 setName('');
                 setEmail('');
@@ -152,6 +151,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                         onChange={(e) => setName(e.target.value)}
                                         className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
                                         type="text"
+                                        required
                                     />
                                 </div>
 
@@ -165,6 +165,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                         onChange={(e) => setEmail(e.target.value)}
                                         className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
                                         type="email"
+                                        required
                                     />
                                 </div>
 
@@ -179,6 +180,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                         onChange={(e) => setSocialLink(e.target.value)}
                                         className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
                                         type="text"
+                                        required
                                     />
                                 </div>
 
@@ -193,6 +195,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                         placeholder='What makes you a great fit for TUNEM?'
                                         className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium resize-none'
                                         rows={4}
+                                        required
                                     />
                                 </div>
 
@@ -243,6 +246,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                     <input
                                         id='fileUpload'
                                         type='file'
+                                        required
                                         accept='audio/*'
                                         onChange={(e) => {
                                             if (e.target.files && e.target.files[0]) {

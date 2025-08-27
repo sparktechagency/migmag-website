@@ -1,15 +1,13 @@
-import HomePage from '@/pages/home-page/HomePage'
-import React from 'react'
 
-const page = () => {
+import React from 'react';
+import HomePage from '@/pages/home-page/HomePage';
+
+const HomePageWrapper: React.FC = () => {
   return (
-    <div>
-      <div className="  ">
-        <HomePage></HomePage>
-      </div>
-
+    <div className="">
+      <HomePage />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default HomePageWrapper;

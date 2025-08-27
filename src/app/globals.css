@@ -173,29 +173,7 @@ input[type="range"]::-moz-range-thumb {
 
 
 
-/*@layer utilities {*/
-/*  !* Custom yellow scrollbar *!*/
-/*  .scrollbar-yellow::-webkit-scrollbar {*/
-/*    width: 6px;*/
-/*    height: 12px;*/
-/*  }*/
 
-/*  .scrollbar-yellow::-webkit-scrollbar-track {*/
-/*    background: #f0f0f0;*/
-/*  }*/
-
-/*  .scrollbar-yellow::-webkit-scrollbar-thumb {*/
-/*    background-color: yellow;*/
-/*    border-radius: 10px;*/
-/*    border: 2px solid #f0f0f0;*/
-/*  }*/
-
-/*  !* Firefox *!*/
-/*  .scrollbar-yellow {*/
-/*    scrollbar-width: thin;*/
-/*    scrollbar-color: yellow #f0f0f0;*/
-/*  }*/
-/*}*/
 
 .headerColor{
   color:black;
@@ -218,21 +196,6 @@ input[type="range"]::-moz-range-thumb {
 
 
 
-/*input[type='range']::-webkit-slider-thumb {*/
-/*  height: 14px;*/
-/*  width: 14px;*/
-/*  border-radius: 50%;*/
-/*  background: #2563eb; !* blue-600 *!*/
-/*  cursor: pointer;*/
-/*  -webkit-appearance: none;*/
-/*  margin-top: -6px;*/
-/*}*/
-
-/*input[type='range']::-webkit-slider-runnable-track {*/
-/*  height: 4px;*/
-/*  border-radius: 2px;*/
-/*  background: #e5e7eb; !* gray-200 *!*/
-/*}*/
 
 
 

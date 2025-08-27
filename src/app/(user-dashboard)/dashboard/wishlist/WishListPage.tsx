@@ -4,29 +4,60 @@ import { useEffect, useState } from 'react';
 import { FaPlay, FaDownload } from 'react-icons/fa';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useWishListQuery } from '@/redux/api/authApi/authApi';
 import { imgUrl } from '@/utility/img/imgUrl';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
+import { useTotalWishListQuery } from '@/app/api/authApi/authApi';
+
+// License types
+type LicenseType = 'PREMIUM' | 'NON-EXCLUSIVE' | 'EXCLUSIVE' | string;
+
+interface Song {
+    id :number;
+    title: string;
+    song: string;
+    song_poster: string;
+    bpm: string;
+    gender: string;
+    license: {
+        name: LicenseType;
+    };
+    key?: {
+        name: string;
+    };
+    genre?: {
+        name: string;
+    };
+    artist?: {
+        name: string;
+    };
+}
+
+interface Track {
+    song: Song;
+}
 
 // License Badge Component
-const LicenseBadge = ({ type }: { type: string }) => {
-    const colorMap = {
+const LicenseBadge = ({ type }: { type: LicenseType }) => {
+    const colorMap: Record<Exclude<LicenseType, string>, string> = {
         PREMIUM: 'bg-cyan-500 text-white px-6 py-2',
         'NON-EXCLUSIVE': 'bg-gray-600 text-white px-6 py-2',
         EXCLUSIVE: 'bg-lime-500 text-black px-6 py-2',
     };
 
     return (
-        <span className={`text-xs rounded-full font-semibold ${colorMap[type] || 'bg-gray-400 text-white px-6 py-2'}`}>
-      {type}
-    </span>
+        <span
+            className={`text-xs rounded-full font-semibold ${colorMap[type as keyof typeof colorMap] || 'bg-gray-400 text-white px-6 py-2'
+                }`}
+        >
+            {type}
+        </span>
     );
 };
 
 const WishListPage: React.FC = () => {
     const router = useRouter();
-    const { data } = useWishListQuery(undefined);
-    const [tracks, setTracks] = useState([]);
+    const { data } = useTotalWishListQuery(undefined);
+    const [tracks, setTracks] = useState<Track[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
     const [showModal, setShowModal] = useState(false);
 
@@ -74,9 +105,8 @@ const WishListPage: React.FC = () => {
                     {tracks.map((track, index) => (
                         <div
                             key={index}
-                            className={`grid grid-cols-12 items-center gap-4 p-4 rounded-md shadow ${
-                                index % 2 === 0 ? 'bg-black' : 'bg-gray-800'
-                            }`}
+                            className={`grid grid-cols-12 items-center gap-4 p-4 rounded-md shadow ${index % 2 === 0 ? 'bg-black' : 'bg-gray-800'
+                                }`}
                         >
                             {/* Image + Play */}
                             <div className="relative col-span-1 mt-6 w-[93px] h-[91px]">
@@ -102,14 +132,6 @@ const WishListPage: React.FC = () => {
                             <div className="text-left col-span-1 text-base">{track?.song?.bpm} BPM</div>
                             <div className="text-left col-span-1 text-base">{track?.song?.key?.name}</div>
                             <div className="text-left col-span-1 text-base">{track?.song?.gender}</div>
-                            <div className="text-left col-span-1 text-base">
-                                <svg width="20" height="19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M10 19.0004L8.55 17.7004C6.86667 16.1837 5.475 14.8754 4.375 13.7754C3.275 12.6754 2.4 11.6879 1.75 10.8129C1.1 9.93789 0.645833 9.13372 0.3875 8.40039C0.129167 7.66706 0 6.91706 0 6.15039C0 4.58372 0.525 3.27539 1.575 2.22539C2.625 1.17539 3.93333 0.650391 5.5 0.650391C6.36667 0.650391 7.19167 0.833724 7.975 1.20039C8.75833 1.56706 9.43333 2.08372 10 2.75039C10.5667 2.08372 11.2417 1.56706 12.025 1.20039C12.8083 0.833724 13.6333 0.650391 14.5 0.650391C16.0667 0.650391 17.375 1.17539 18.425 2.22539C19.475 3.27539 20 4.58372 20 6.15039C20 6.91706 19.8708 7.66706 19.6125 8.40039C19.3542 9.13372 18.9 9.93789 18.25 10.8129C17.6 11.6879 16.725 12.6754 15.625 13.7754C14.525 14.8754 13.1333 16.1837 11.45 17.7004L10 19.0004Z"
-                                        fill="#80BC02"
-                                    />
-                                </svg>
-                            </div>
 
                             {/* License */}
                             <div className="col-span-2 text-left">
@@ -184,6 +206,7 @@ const WishListPage: React.FC = () => {
                     show={showModal}
                     onClose={() => setShowModal(false)}
                     currentTrack={{
+                        id: tracks[currentIndex]?.song?.id,
                         title: tracks[currentIndex]?.song?.title,
                         name: tracks[currentIndex]?.song?.title,
                         song_poster: tracks[currentIndex]?.song?.song_poster,

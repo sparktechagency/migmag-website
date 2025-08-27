@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import {imgUrl} from "@/utility/img/imgUrl";
 import React from "react";
-import {useArtistDetailsQuery} from "@/redux/api/artistApi/artistApi";
+import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
 
 
 
@@ -15,7 +15,6 @@ const MoreVocals = ({id}:{id:string}) => {
     const {data} = useArtistDetailsQuery({id});
 
     const songs = data?.data?.songs ?? [];
-    console.log(songs.length);
     return (
         <MaxWidth>
             <div className="w-full max-w-4xl mx-auto mt-2 flex flex-col gap-4">
@@ -75,3 +74,4 @@ const MoreVocals = ({id}:{id:string}) => {
 };
 
 export default MoreVocals;
+

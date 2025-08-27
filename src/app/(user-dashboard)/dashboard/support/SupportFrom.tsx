@@ -1,44 +1,57 @@
 "use client"
 import React from 'react';
-import {useSupportMutation} from "@/redux/api/authApi/authApi";
 import Swal from "sweetalert2";
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { useSupportMessageMutation } from '@/app/api/authApi/authApi';
 
 const SupportForm: React.FC = () => {
     const [email, setEmail] = React.useState<string>('');
     const [message, setMessage] = React.useState<string>('');
-    const [support, {isLoading}] = useSupportMutation()
+    const [supportMessage, { isLoading }] = useSupportMessageMutation()
 
-    const handleSubmit = async (e: React.FormEvent) => {
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         const payload = {
             email,
             message,
-        }
-
-        e.preventDefault();
+        };
 
         try {
-            const res = await support(payload);
+            const res = await supportMessage(payload).unwrap(); // RTK Query returns a promise with unwrap
             if (res) {
                 setMessage("");
                 setEmail("");
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: res?.data?.message,
+                    title: res.message, // RTK Query unwrap returns the data directly
                     showConfirmButton: false,
                     timer: 1500
                 });
             }
-        } catch (e) {
+        } catch (error) {
+            let errorMessage = "Something went wrong";
+
+            // Type narrowing for RTK Query errors
+            if ((error as FetchBaseQueryError)?.status) {
+                const err = error as FetchBaseQueryError;
+                if ('data' in err && err.data && typeof err.data === 'object' && 'message' in err.data) {
+                    errorMessage = (err.data as { message: string }).message;
+                } else if (typeof err.data === 'string') {
+                    errorMessage = err.data;
+                }
+            }
+
             Swal.fire({
                 position: "top-end",
                 icon: "error",
-                title: e.response?.data?.message,
+                title: errorMessage,
                 showConfirmButton: false,
                 timer: 1500
             });
         }
-
     };
 
     return (
@@ -84,3 +97,4 @@ const SupportForm: React.FC = () => {
 };
 
 export default SupportForm;
+

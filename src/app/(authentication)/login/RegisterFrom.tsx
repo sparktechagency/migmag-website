@@ -4,24 +4,24 @@ import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdEmail, MdLock } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-import { useRegisterUserMutation } from "@/redux/api/authApi/authApi";
-import { RegisterPayload } from "@/utility/api-type/auth-api-type";
+import { RegisterUserPayload } from "@/utility/type/authType";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useUserRegistrationMutation } from "@/app/api/authApi/authApi";
 
 const RegisterForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const router = useRouter();
-    const [formData, setFormData] = useState<RegisterPayload>({
+    const [formData, setFormData] = useState<RegisterUserPayload>({
         full_name: "",
         email: "",
         password: "",
         password_confirmation: "",
     });
 
-    const [registerUser, { isLoading, reset }] = useRegisterUserMutation();
+    const [userRegistration, { isLoading, reset }] = useUserRegistrationMutation();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value, type, checked } = e.target;
@@ -39,7 +39,7 @@ const RegisterForm = () => {
         password_confirmation,
     } = formData;
 
-    console.log(`formData is ${formData}`)
+
 
 
     const payload = {
@@ -49,15 +49,14 @@ const RegisterForm = () => {
         password_confirmation,
     }
 
-    console.log(payload)
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-
         if (password !== password_confirmation) {
             Swal.fire({
-                position: "top-center",
+                position: "top",
                 icon: "warning",
                 title: "Passwords do not match",
                 showConfirmButton: false,
@@ -66,38 +65,37 @@ const RegisterForm = () => {
             return;
         }
 
-
         try {
-            const res = await registerUser(payload).unwrap();
-            console.log(res)
+            const res = await userRegistration(payload).unwrap();
 
             if (res.success) {
                 Swal.fire({
-                    position: "top-center",
+                    position: "top",
                     icon: "success",
                     title: res.message,
                     showConfirmButton: false,
                     timer: 1500
                 });
+
                 reset();
+
                 router.push(`/otp-verify?email=${encodeURIComponent(email)}`);
+
                 setFormData({
                     full_name: "",
                     email: "",
                     password: "",
                     password_confirmation: "",
-                })
+                });
             }
 
         } catch (err) {
-
-
             const error = err as FetchBaseQueryError & {
                 data?: { message?: string };
             };
 
             Swal.fire({
-                position: "top-center",
+                position: "top",
                 icon: "error",
                 title: error?.data?.message || "Something went wrong",
                 showConfirmButton: false,
@@ -233,7 +231,7 @@ const RegisterForm = () => {
                 {/* Submit */}
                 <button
                     type="submit"
-                    disabled={isLoading}
+                    // disabled={isLoading}
                     className="w-full cursor-pointer font-bold flex justify-center items-center gap-2 text-[#3A3A3A] bg-[#E7F056] text-xl py-3 px-9 rounded-2xl transition hover:opacity-90 disabled:opacity-60"
                 >
                     {isLoading ? (
