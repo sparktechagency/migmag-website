@@ -1,19 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import WaveSurfer from "wavesurfer.js";
 import Image from "next/image";
 import { FiPlay } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { AnimatePresence, motion } from "framer-motion";
-import MaxWidth from "@/components/max-width/MaxWidth";
-import { imgUrl } from "@/utility/img/imgUrl";
+import { Heart } from "lucide-react";
+import { FaHeart } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { Heart } from 'lucide-react';
-import { FaHeart } from 'react-icons/fa';
+import { useRouter } from "next/navigation";
+import { imgUrl } from "@/utility/img/imgUrl";
 import { useAddWishListMutation, useRemoveWishMutation } from "@/app/api/authApi/authApi";
 import { useSongDetailsQuery } from "@/app/api/websiteApi/websiteApi";
-import { useRouter } from "next/navigation";
 
 export function MusickPlayer({
     show,
@@ -27,186 +25,152 @@ export function MusickPlayer({
         name: string;
         song_poster: string;
         song: string;
-        id : number
+        id: number;
     };
 }) {
-    const waveformRef = useRef<HTMLDivElement>(null);
-    const wavesurferRef = useRef<WaveSurfer | null>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
+    const progressRef = useRef<HTMLDivElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState("00:00");
-    const [timeLeft, setTimeLeft] = useState("00:00");
-    const [isReady, setIsReady] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [waveform, setWaveform] = useState<number[]>([]);
+    const [isDragging, setIsDragging] = useState(false);
 
-    /** Format time helper */
-    const formatTime = (seconds: number) => {
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60)
-            .toString()
-            .padStart(2, "0");
+    const songId = Number(currentTrack?.id);
+    const router = useRouter();
+
+    const [addWishList] = useAddWishListMutation();
+    const [removeWish] = useRemoveWishMutation();
+    const { data, refetch } = useSongDetailsQuery({ songId });
+
+    /** Initialize waveform bars */
+    useEffect(() => {
+        const barsCount = 107;
+        const newBars = Array.from({ length: barsCount }, () => Math.random() * 0.8 + 0.2);
+        setWaveform(newBars);
+    }, [currentTrack]);
+
+    /** Update audio time & duration */
+    useEffect(() => {
+        if (!audioRef.current) return;
+        const audio = audioRef.current;
+
+        const updateTime = () => {
+            if (!isDragging) setCurrentTime(audio.currentTime);
+        };
+        const setAudioDuration = () => setDuration(audio.duration || 0);
+        const handleEnded = () => setIsPlaying(false);
+
+        audio.addEventListener("timeupdate", updateTime);
+        audio.addEventListener("loadedmetadata", setAudioDuration);
+        audio.addEventListener("ended", handleEnded);
+
+        return () => {
+            audio.removeEventListener("timeupdate", updateTime);
+            audio.removeEventListener("loadedmetadata", setAudioDuration);
+            audio.removeEventListener("ended", handleEnded);
+        };
+    }, [currentTrack, isDragging]);
+
+    /** Animate waveform bars smoothly */
+    useEffect(() => {
+        if (!isPlaying) return;
+
+        const interval = setInterval(() => {
+            setWaveform((prev) =>
+                prev.map((h) => {
+                    const change = (Math.random() - 0.5) * 0.1;
+                    let newHeight = h + change;
+                    newHeight = Math.max(0.2, Math.min(1, newHeight));
+                    return newHeight;
+                })
+            );
+        }, 150);
+
+        return () => clearInterval(interval);
+    }, [isPlaying]);
+
+    const togglePlay = () => {
+        if (!audioRef.current) return;
+        if (isPlaying) audioRef.current.pause();
+        else audioRef.current.play();
+        setIsPlaying(!isPlaying);
+    };
+
+    const formatTime = (time: number) => {
+        const mins = Math.floor(time / 60);
+        const secs = Math.floor(time % 60).toString().padStart(2, "0");
         return `${mins}:${secs}`;
     };
 
-    /** Create or recreate wavesurfer when track changes */
-    useEffect(() => {
-        if (!waveformRef.current) return;
-
-        // Destroy old instance if exists
-        if (wavesurferRef.current) {
-            wavesurferRef.current.destroy();
-            wavesurferRef.current = null;
-        }
-
-        const ws = WaveSurfer.create({
-            container: waveformRef.current,
-            waveColor: "#ccc",
-            progressColor: "#E7F056",
-            height: 40,
-            barWidth: 2,
-            cursorColor: "#E7F056",
-        });
-
-        wavesurferRef.current = ws;
-
-        // Fix possible double slash in URL
-        const audioSrc = `${currentTrack.song.replace(
-            /^\//,
-            ""
-        )}`;
-
-        ws.load(audioSrc);
-
-        ws.on("ready", () => {
-            const duration = ws.getDuration() || 0;
-            setTimeLeft(`-${formatTime(duration)}`);
-            setIsReady(true);
-        });
-
-        ws.on("audioprocess", () => {
-            if (ws.isPlaying()) {
-                const duration = ws.getDuration();
-                const current = ws.getCurrentTime();
-                setCurrentTime(formatTime(current));
-                setTimeLeft(`-${formatTime(duration - current)}`);
-            }
-        });
-
-        ws.on("finish", () => {
-            setIsPlaying(false);
-            setIsReady(false);
-        });
-
-        ws.on("error", (err) => {
-            if (err.name !== "AbortError") {
-                console.error("WaveSurfer error:", err);
-            }
-        });
-
-        // Cleanup
-        return () => {
-            try {
-                ws.destroy();
-            } catch (e) {
-                console.warn("Error destroying wavesurfer:", e);
-            }
-            wavesurferRef.current = null;
-            setIsReady(false);
-        };
-    }, [currentTrack]);
-
-    /** Play/Pause Toggle */
-    const togglePlay = () => {
-        const ws = wavesurferRef.current;
-        if (!ws || !isReady) return;
-        try {
-            const isCurrentlyPlaying = ws.isPlaying();
-            ws.playPause();
-            setIsPlaying(!isCurrentlyPlaying);
-        } catch (error) {
-            console.warn("Playback error:", error);
-        }
+    /** Click on slider to jump */
+    const handleSeek = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (!audioRef.current || !progressRef.current) return;
+        const rect = progressRef.current.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const newTime = (clickX / rect.width) * duration;
+        audioRef.current.currentTime = newTime;
+        setCurrentTime(newTime);
     };
 
-    const songId = Number(currentTrack?.id);
-    const router = useRouter()
-
-    const [addWishList] = useAddWishListMutation();
-    const [removeWish] = useRemoveWishMutation ()
-    const { data, refetch } = useSongDetailsQuery ({ songId });
-
+    /** Wishlist handlers */
     const handleAddToWishlist = async () => {
         try {
             const res = await addWishList({ songId }).unwrap();
-
             if (res) {
                 refetch();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: res?.message,
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
             }
-        } catch (err: unknown) {
-            console.log(err)
-            // Define ApiError type for error handling
-            type ApiError = {
-                status?: number;
-                data?: {
-                    message?: string;
-                };
-            };
-            const error = err as ApiError;
-
-            // Example: If your API sends 401 for unauthenticated users
-            if (error.status === 401) {
+        } catch (err: any) {
+            if (err.status === 401) {
                 router.push("/login");
                 window.location.reload();
             }
-
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: error?.data?.message || "This song already exists in wishlist",
-                showConfirmButton: false,
-                timer: 1500,
-            });
+            Swal.fire({ position: "top-end", icon: "error", title: err?.data?.message || "Already in wishlist", showConfirmButton: false, timer: 1500 });
         }
     };
-
-
 
     const removeFromWishlist = async () => {
         try {
-            const res = await removeWish({ songId }).unwrap(); // ✅ pass object
+            const res = await removeWish({ songId }).unwrap();
             if (res) {
                 refetch();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: res?.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+                Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
             }
         } catch (e) {
-            console.log(e);
-            // router.push("/login");
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "Something went wrong",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            Swal.fire({ position: "top-end", icon: "error", title: "Something went wrong", showConfirmButton: false, timer: 1500 });
         }
     };
 
+    const progress = duration ? (currentTime / duration) * 100 : 0;
+
+    /** Fully free draggable slider using pointer events */
+    const startDrag = (e: React.PointerEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+        document.addEventListener("pointermove", onDrag);
+        document.addEventListener("pointerup", stopDrag);
+    };
+
+    const onDrag = (e: PointerEvent) => {
+        if (!progressRef.current) return;
+        const rect = progressRef.current.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        x = Math.max(0, Math.min(rect.width, x));
+        const newTime = (x / rect.width) * duration;
+        setCurrentTime(newTime);
+    };
+
+    const stopDrag = () => {
+        if (audioRef.current) audioRef.current.currentTime = currentTime;
+        setIsDragging(false);
+        document.removeEventListener("pointermove", onDrag);
+        document.removeEventListener("pointerup", stopDrag);
+    };
 
     return (
-        
-                <div className = {'max-w-3xl mx-auto  '} >
-                                <AnimatePresence>
+        <div className="max-w-3xl h-44 mx-auto">
+            <AnimatePresence>
                 {show && (
                     <>
                         {/* Backdrop */}
@@ -215,28 +179,28 @@ export function MusickPlayer({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="fixed inset-0 bg-black/40 z-40   "
+                            className="fixed inset-0 bg-black/50 z-40"
                             onClick={onClose}
                         />
 
-                        {/* Modal */}
+                        {/* Player */}
                         <motion.div
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             exit={{ y: "100%" }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className="fixed max-w-6xl mx-auto bottom-0 left-0 right-0 z-50 bg-[#1b1b1b] px-4 py-2 shadow-xl border-t-2 border-[#E7F056]"
+                            className="fixed bottom-0 left-0 right-0 mx-auto max-w-6xl z-50 bg-[#1b1b1b] px-4 py-4 shadow-xl border-t-2 border-[#E7F056] rounded-t-xl"
                         >
                             <div className="flex items-center justify-between gap-4 text-white">
                                 {/* Track Info */}
                                 <div className="flex items-center gap-3 min-w-[200px]">
-                                    <div className="w-14 h-14 relative rounded overflow-hidden">
+                                    <div className="w-14 h-14 relative rounded-full overflow-hidden">
                                         <Image
                                             src={`${imgUrl}/${currentTrack.song_poster}`}
                                             alt={currentTrack.title}
-                                            width={93}
-                                            height={91}
-                                            className="object-cover"
+                                            width={56}
+                                            height={56}
+                                            className="object-cover w-full h-full"
                                         />
                                     </div>
                                     <div>
@@ -245,38 +209,57 @@ export function MusickPlayer({
                                     </div>
                                 </div>
 
-                                {/* Controls + Waveform */}
-                                <div className="flex-1 flex items-center gap-3">
-                                    <button
-                                        onClick={togglePlay}
-                                        disabled={!isReady}
-                                        className={`text-[#E7F056] hover:scale-110 cursor-pointer transition ${!isReady ? "opacity-50 cursor-not-allowed" : ""
-                                            }`}
-                                    >
-                                        {isPlaying ? <CiPause1 size={24} /> : <FiPlay size={24} />}
-                                    </button>
-                                    <span className="text-xs w-10 text-right">{currentTime}</span>
-                                    <div className="w-full">
-                                        <div ref={waveformRef} className="w-full h-10" />
+                                {/* Waveform + Slider */}
+                                <div className="flex-1 flex flex-col gap-2">
+                                    {/* Waveform */}
+                                    <div className="flex items-end gap-1 cursor-pointer w-full">
+                                        {waveform.map((height, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="bg-[#E7F056] rounded-sm transition-[height] duration-150 ease-linear flex-1"
+                                                style={{ height: `${height * 40}px` }}
+                                            />
+                                        ))}
                                     </div>
-                                    <span className="text-xs w-12 text-left">{timeLeft}</span>
+
+                                    {/* Progress Slider */}
+                                    <div
+                                        ref={progressRef}
+                                        className="relative w-full h-2 bg-gray-700 rounded cursor-pointer"
+                                        onPointerDown={startDrag}
+                                        onClick={handleSeek}
+                                    >
+                                        <div
+                                            className="h-2 bg-[#E7F056] rounded"
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                        <div
+                                            className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#E7F056] rounded-full cursor-grab shadow-lg"
+                                            style={{ left: `calc(${progress}% - 8px)` }}
+                                            onPointerDown={(e) => e.stopPropagation() || startDrag(e)}
+                                        />
+                                    </div>
+
+                                    {/* Controls */}
+                                    <div className="flex items-center gap-3 mt-1">
+                                        <button
+                                            onClick={togglePlay}
+                                            className="text-[#E7F056] hover:scale-110 transition cursor-pointer "
+                                        >
+                                            {isPlaying ? <CiPause1 size={24} /> : <FiPlay size={24} />}
+                                        </button>
+                                        <span className="text-xs w-10 text-right">{formatTime(currentTime)}</span>
+                                        <span className="text-xs w-12 text-left">{formatTime(duration - currentTime)}</span>
+                                        <audio ref={audioRef} src={currentTrack.song} />
+                                    </div>
                                 </div>
 
-                                {/* Like Icon */}
+                                {/* Wishlist */}
                                 <div className="min-w-[30px]">
-                                    {data?.data?.is_wishlisted == 1 && (
-                                        <span>
-                                            <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500  cursor-pointer " />
-
-                                        </span>
-                                    )}
-
-
-                                    {data?.data?.is_wishlisted == 0 && (
-                                        <Heart
-                                            onClick={() => handleAddToWishlist()}
-                                            className="cursor-pointer  hover:text-red-500 transition"
-                                        />
+                                    {data?.data?.is_wishlisted == 1 ? (
+                                        <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer" />
+                                    ) : (
+                                        <Heart onClick={handleAddToWishlist} className="cursor-pointer hover:text-red-500 transition" />
                                     )}
                                 </div>
                             </div>
@@ -284,7 +267,6 @@ export function MusickPlayer({
                     </>
                 )}
             </AnimatePresence>
-                </div>
-       
+        </div>
     );
 }

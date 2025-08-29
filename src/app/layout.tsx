@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
 import ProviderWrapper from "@/components/ProviderWrapper/ProviderWrapper";
+import { Poppins } from "next/font/google";
 
 
-
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // কোন কোন font weight দরকার সেটা লিখবেন
+  display: "swap", // reload এ flicker বন্ধ করবে
+});
 
 export const metadata: Metadata = {
     title: "Migmag",
@@ -17,7 +22,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className={poppins.className} >
             <body
                 suppressHydrationWarning
                 className={` antialiased`}

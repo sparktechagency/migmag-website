@@ -190,50 +190,57 @@ const MusickDetails = ({ id }: { id: string }) => {
         }
     }, []);
 
-    const handleAddToCart = (data: DataWrapper) => {
-        if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
-            return alert("Invalid song data");
-        }
+const handleAddToCart = (data: DataWrapper) => {
+    // ✅ Check token
+    const token = localStorage.getItem("token");
+    if (!token) {
+        // Redirect to login if no token
+        window.location.href = "/login";
+        return;
+    }
 
-        const cartItem: CartItem = {
-            id: data.data.id,
-            title: data.data.title,
-            name: data.data.artist?.name || "",
-            gender: data.data.artist?.gender,
-            bpm: data.data.bpm,
-            genre: data.data.genre?.name,
-            key: data.data.key?.name,
-            license: data.data.license?.name,
-            price: Number(data.data.price),
-            image: data.data.song_poster
-        };
+    if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
+        return alert("Invalid song data");
+    }
 
-        // Prevent duplicates
-        const alreadyInCart = cart.some(item => item.id === cartItem.id);
-
-        if (!alreadyInCart) {
-            const updatedCart = [...cart, cartItem];
-            setCart(updatedCart); // ✅ update React state
-            localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
-
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Song added to cart successfully",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        } else {
-            Swal.fire({
-                position: "top-end",
-                icon: "warning",
-                title: "Song already added to cart",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
+    const cartItem: CartItem = {
+        id: data.data.id,
+        title: data.data.title,
+        name: data.data.artist?.name || "",
+        gender: data.data.artist?.gender,
+        bpm: data.data.bpm,
+        genre: data.data.genre?.name,
+        key: data.data.key?.name,
+        license: data.data.license?.name,
+        price: Number(data.data.price),
+        image: data.data.song_poster,
     };
 
+    // Prevent duplicates
+    const alreadyInCart = cart.some((item) => item.id === cartItem.id);
+
+    if (!alreadyInCart) {
+        const updatedCart = [...cart, cartItem];
+        setCart(updatedCart); // ✅ update React state
+        localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Song added to cart successfully",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    } else {
+        Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: "Song already added to cart",
+            showConfirmButton: false,
+            timer: 1500,
+        });
+    }
+};
 
 
 
