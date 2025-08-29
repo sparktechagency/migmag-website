@@ -142,7 +142,7 @@ export default function MusicSlider() {
                                             alt={item.title}
                                               width = {500}
                                                                    height = {500}
-                                            className="  w-[300px] h-[300px]  "
+                                            className=" object-cover w-[300px] h-[300px]  "
                                         />
                                         <button
                                             onClick={() => handleOpenModal(index)}
@@ -151,9 +151,9 @@ export default function MusicSlider() {
                                             <FiPlay className="text-[#E7F056]" size={24} />
                                         </button>
                                     </div>
-                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title}</h3>
+                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title.slice(0,20)}...</h3>
                                     <div className="flex gap-x-6">
-                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name}</p>
+                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0,10)}...</p>
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
                                             <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">{item.price}</p>
                                         </Link>

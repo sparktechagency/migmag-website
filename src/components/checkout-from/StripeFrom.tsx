@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe, Appearance, StripeElementsOptions } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCreatePaymentIntentMutation } from '@/app/api/paymentApi/paymentApi';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -13,6 +13,16 @@ export default function StripeForm() {
     const [clientSecret, setClientSecret] = useState<string | null>(null);
     const [createPaymentIntent] = useCreatePaymentIntentMutation();
     const searchParams = useSearchParams();
+    const router = useRouter()
+
+      useEffect(() => {
+    const token = localStorage.getItem('token');  // Get token from localStorage
+
+    if (!token) {
+      // If no token, redirect to the login page
+      router.push('/login');
+    }
+  }, [router]);
 
     // Extract price and songId from query params
     const priceParam = searchParams?.get('price');

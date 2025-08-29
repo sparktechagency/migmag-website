@@ -13,11 +13,12 @@ const HomeBanner: React.FC = () => {
                         {/* Left Side */}
                         <div className="  text-center lg:text-left flex-1 lg:w-[20%] w-full ">
                             <h1
-                                className={`text-[40px] font-semibold headerColor uppercase   `}>
-                                Royalty-Free Vocals Ready for Release
+                                className={`text-[40px] font-bold headerColor uppercase   `}>
+                                ROYALTY-FREE VOCALS READY FOR RELEASE
+                                {/* Royalty-Free Vocals Ready for Release */}
                             </h1>
                             <p
-                                className="textColor lg:text-2xl text-lg  mt-4 md:mt-8 leading-6">
+                                className="textColor lg:text-2xl text-lg  mt-4 md:mt-8 ">
                                 Used by producers. Trusted by labels.
                             </p>
 

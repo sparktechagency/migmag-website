@@ -58,6 +58,8 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
 
 
+
+
     const handleFollow = async () => {
         try {
             const res = await addFollow({ id }).unwrap(); // ✅ pass as object
@@ -185,15 +187,18 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                     <div>
                         <div className=' flex flex-col lg:flex-row items-center lg:gap-x-10 '>
                             {/* image  */}
-                            <div className={` `}>
-                                <Image src={`${imgUrl}/${artistData?.profile}`}
-
-                                    className='   mx-auto rounded-full w-40 h-40  ' width={520} height={520}
-                                    alt='Singer Image' />
-                            </div>
+                           <div className="w-40 h-40">
+    <Image
+        src={`${imgUrl}/${artistData?.profile}`}
+        className="mx-auto rounded-full w-36 h-36 "
+        width={160} // should match w-40 (40*4)
+        height={160} // should match h-40
+        alt="Singer Image"
+    />
+</div>
                             {/* description  */}
                             <div>
-                                <h1 className=' text-xl mt-3 lg:mt-0 lg:text-2xl headerColor leading-9 '>Ethan</h1>
+                                <h1 className=' text-xl mt-3 lg:mt-0 lg:text-2xl headerColor leading-9 '>{artistData?.name}</h1>
                                 <div className='lg:mt-3 mt-1.5 text-white text-xl lg:space-x-4 space-x-3 '>
                                     <button
                                         className=' bg-[#E7F0FB] font-bold textColor cursor-pointer px-3 py-1 rounded-2xl text-sm '>
@@ -208,7 +213,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                         {/* {
                                             artistData?.singer_writer
                                         } */}
-                                        <p>Singer writer</p>
+                                        <p>Songwriter</p>
 
                                     </button>
                                 </div>
