@@ -9,7 +9,8 @@ import {
 
     MessageCircle,
     Copy,
-    X, Facebook, Twitter
+    X, Facebook, Twitter,
+    BadgeCheck
 } from 'lucide-react'
 
 import { imgUrl } from "@/utility/img/imgUrl";
@@ -112,7 +113,7 @@ const MusickDetails = ({ id }: { id: string }) => {
 
     const removeFromWishlist = async () => {
         try {
-            const res = await removeWish( {songId} ).unwrap(); // ✅ pass object
+            const res = await removeWish({ songId }).unwrap(); // ✅ pass object
             if (res) {
                 refetch();
                 Swal.fire({
@@ -190,60 +191,67 @@ const MusickDetails = ({ id }: { id: string }) => {
         }
     }, []);
 
-const handleAddToCart = (data: DataWrapper) => {
-    // ✅ Check token
-    const token = localStorage.getItem("token");
-    if (!token) {
-        // Redirect to login if no token
-        window.location.href = "/login";
-        return;
-    }
+    const handleAddToCart = (data: DataWrapper) => {
+        // ✅ Check token
+        const token = localStorage.getItem("token");
+        if (!token) {
+            // Redirect to login if no token
+            window.location.href = "/login";
+            return;
+        }
 
-    if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
-        return alert("Invalid song data");
-    }
+        if (!data?.data?.id || !data?.data?.title || !data?.data?.price) {
+            return alert("Invalid song data");
+        }
 
-    const cartItem: CartItem = {
-        id: data.data.id,
-        title: data.data.title,
-        name: data.data.artist?.name || "",
-        gender: data.data.artist?.gender,
-        bpm: data.data.bpm,
-        genre: data.data.genre?.name,
-        key: data.data.key?.name,
-        license: data.data.license?.name,
-        price: Number(data.data.price),
-        image: data.data.song_poster,
+        const cartItem: CartItem = {
+            id: data.data.id,
+            title: data.data.title,
+            name: data.data.artist?.name || "",
+            gender: data.data.artist?.gender,
+            bpm: data.data.bpm,
+            genre: data.data.genre?.name,
+            key: data.data.key?.name,
+            license: data.data.license?.name,
+            price: Number(data.data.price),
+            image: data.data.song_poster,
+        };
+
+        // Prevent duplicates
+        const alreadyInCart = cart.some((item) => item.id === cartItem.id);
+
+        if (!alreadyInCart) {
+            const updatedCart = [...cart, cartItem];
+            setCart(updatedCart); // ✅ update React state
+            localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
+
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Song added to cart successfully",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        } else {
+            Swal.fire({
+                position: "top-end",
+                icon: "warning",
+                title: "Song already added to cart",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        }
     };
 
-    // Prevent duplicates
-    const alreadyInCart = cart.some((item) => item.id === cartItem.id);
+    const [isChecked, setIsChecked] = useState(false);
 
-    if (!alreadyInCart) {
-        const updatedCart = [...cart, cartItem];
-        setCart(updatedCart); // ✅ update React state
-        localStorage.setItem("cart", JSON.stringify(updatedCart)); // persist in localStorage
-
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Song added to cart successfully",
-            showConfirmButton: false,
-            timer: 1500,
-        });
-    } else {
-        Swal.fire({
-            position: "top-end",
-            icon: "warning",
-            title: "Song already added to cart",
-            showConfirmButton: false,
-            timer: 1500,
-        });
-    }
-};
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(e.target.checked);
+    };
 
 
-
+    const basePrice = Number(data?.data?.price) || 0;
+    const finalPrice = isChecked ? basePrice + 15 : basePrice;
 
 
     return (
@@ -302,16 +310,37 @@ const handleAddToCart = (data: DataWrapper) => {
                             <span className="bg-blue-100 text-blue-600 px-2 py-0.5 rounded text-xs">
                                 {data?.data?.type?.name}
                             </span>
+                            <span className=' bg-blue-100 text-blue-600 px-1 py-0.5 rounded text-xs flex gap-x-1 item-center ' > <span> <BadgeCheck size={14} className={"text-xs"} /> </span>  Human-Made</span>
                         </div>
 
                         {/* Play Button */}
                         {/*<div className="my-4">*/}
                         {/*    <FaPlay size={30} className="cursor-pointer text-gray-700 hover:text-black transition"/>*/}
                         {/*</div>*/}
+
                         {data && <AudioPlay data={data} />}
 
+                        <div className="space-y-2">
+                            {/* Checkbox */}
+                            <div className="flex items-center gap-2">
+                                <input
+                                    type="checkbox"
+                                    id="stems"
+                                    checked={isChecked}
+                                    onChange={handleCheckboxChange}
+                                    className="w-4 h-4 cursor-pointer "
+                                />
+                                <label htmlFor="stems" className="cursor-pointer">
+                                    Add stems & midi files +$15
+                                </label>
+                            </div>
+
+                            {/* Price */}
+                            <p className="text-lg font-semibold">{finalPrice}$</p>
+                        </div>
+
                         {/* Info Text */}
-                        <div className="text-sm text-gray-500 flex items-center gap-1">
+                        <div className="text-sm text-gray-500 flex items-center gap-1 my-2 ">
                             <Info className="w-4 h-4" />
                             <span>Only available to subscribed users</span>
                         </div>
@@ -332,14 +361,16 @@ const handleAddToCart = (data: DataWrapper) => {
 
                         {/* Buttons */}
                         <div className="mt-4 flex gap-4">
-                            {data && (
-                                <button
-                                    onClick={() => handleAddToCart(data)}
-                                    className="border border-blue-600 text-blue-600 px-4 py-2 cursor-pointer text-sm rounded hover:bg-blue-50"
-                                >
-                                    Add To Cart
-                                </button>
-                            )}
+                            {
+                                isChecked && data && (
+                                    <button
+                                        onClick={() => handleAddToCart(data)}
+                                        className="border border-blue-600 text-blue-600 px-4 py-2 cursor-pointer text-sm rounded hover:bg-blue-50"
+                                    >
+                                        Add To Cart
+                                    </button>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

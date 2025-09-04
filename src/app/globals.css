@@ -54,10 +54,8 @@
   }
 } */
 
-
-
 body {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -170,48 +168,46 @@ input[type="range"]::-moz-range-thumb {
   background: black;
 }
 
-
-
-
-
-
-.headerColor{
-  color:black;
+.headerColor {
+  color: black;
 }
-.textColor{
-  color:#818080;
+.textColor {
+  color: #818080;
 }
-
-
-
 
 /*affilite bg color */
 
 .affiliationBgColor {
-  background: #008AFF;
-  background: linear-gradient(90deg,rgba(0, 138, 255, 1) 0%, rgba(0, 192, 255, 1) 50%, rgba(0, 139, 255, 1) 100%);
+  background: #008aff;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 138, 255, 1) 0%,
+    rgba(0, 192, 255, 1) 50%,
+    rgba(0, 139, 255, 1) 100%
+  );
 }
 
+.rhap_container.rhap_loop--off.rhap_play-status--paused.shadow-none.bg-black.text-white.p-2.rounded-md.h-12 {
+  background-color: "red";
+}
 
+.rhap_container {
+  background-color: black !important;
+  color: white !important;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
 
+.rhap_progress-bar {
+  background-color: #333 !important;
+  height: 10px !important ;
+}
 
+.rhap_progress-indicator {
+  margin-top: 3px;
+  background-color: #3b82f6 !important; /* Tailwind blue-500 */
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.rhap_time {
+  color: #ddd !important;
+}
