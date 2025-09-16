@@ -1,3 +1,4 @@
+import CtaSection from "@/components/cta/CtaSection";
 import ArtistLibraryBanner from "../artist-library/ArtistLibraryBanner";
 import BrowseVocalFooter from "../cover-vocals/BrowseVocalFooter";
 import BrowseVocalNavbar from "../cover-vocals/BrowseVocalNavbar";
@@ -21,6 +22,7 @@ const Page = () => {
                         </div>
                         <ArtistList />
 
+                        <CtaSection></CtaSection>
 
                         {/* footer  */}
                         <BrowseVocalFooter></BrowseVocalFooter>

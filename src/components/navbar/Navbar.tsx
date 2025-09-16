@@ -98,33 +98,33 @@ const Navbar: React.FC = () => {
   const [userData, setUserData] = useState<UserProfile | null>(null);
   const url = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-useEffect(() => {
-  const fetchUserProfile = async () => {
-    try {
-      const storedToken = localStorage.getItem("token");
-      if (!storedToken) return; // token না থাকলে কল করো না
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const storedToken = localStorage.getItem("token");
+        if (!storedToken) return; // token না থাকলে কল করো না
 
-      const res = await axios.get<{ success: boolean; data: UserProfile; message: string }>(
-        `${url}/profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${storedToken}`,
-          },
+        const res = await axios.get<{ success: boolean; data: UserProfile; message: string }>(
+          `${url}/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${storedToken}`,
+            },
+          }
+        );
+
+        if (res.data.success) {
+          setUserData(res.data.data);
         }
-      );
-
-      if (res.data.success) {
-        setUserData(res.data.data);
+      } catch (err) {
+        console.log(err);
+        const error = err as AxiosError<{ message: string }>;
+        console.log(error)
       }
-    } catch (err) {
-      console.log(err);
-      const error = err as AxiosError<{ message: string }>;
-      console.log(error)
-    }
-  };
+    };
 
-  fetchUserProfile();
-}, [url]);
+    fetchUserProfile();
+  }, [url]);
 
 
 
@@ -216,9 +216,11 @@ useEffect(() => {
                     </li>
                   </ul>
                 </li>
-                <li><Link
-                  className={` ${pathname === "/artist-library" ? "text-[#E7F056]" : "text-black"} `}
-                  href="/artist-library">Artists</Link></li>
+                <li>
+                  <Link
+                  className={` ${pathname === "/artist-list" ? "text-[#E7F056]" : "text-black"} `}
+                  href="/artist-list">Artists
+                  </Link></li>
                 <li><Link className={` ${pathname === "/hire" ? "text-[#E7F056]" : "text-black"} `}
                   href="/hire">Hire</Link></li>
               </ul>
@@ -338,8 +340,8 @@ useEffect(() => {
 
               <li>
                 <Link
-                  className={`${pathname === "/artist-library" ? "text-[#E7F056]" : " text-black "}`}
-                  href="/artist-library">Artists</Link></li>
+                  className={`${pathname === "/artist-list" ? "text-[#E7F056]" : " text-black "}`}
+                  href="/artist-list">Artists</Link></li>
               <li><Link className={`${pathname === "/hire" ? "text-[#E7F056]" : " text-black "}`}
                 href="/hire">Hire</Link></li>
               <li><Link className={` ${pathname === "/cart" ? "text-[#E7F056]  " : "text-black"}`}
