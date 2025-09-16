@@ -17,7 +17,7 @@ import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
 import { useAddFollowMutation, useUnFollowMutation } from '@/app/api/authApi/authApi';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 
 
@@ -160,8 +160,8 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
     };
 
 
-  const [showModal, setShowModal] = useState(false);
-  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
+    const [showModal, setShowModal] = useState(false);
+    const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
 
     // ✅ Open modal with correct track
     const handleOpenModal = (track: Track) => {
@@ -187,15 +187,15 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                     <div>
                         <div className=' flex flex-col lg:flex-row items-center lg:gap-x-10 '>
                             {/* image  */}
-                           <div className="w-40 h-40">
-    <Image
-        src={`${imgUrl}/${artistData?.profile}`}
-        className="mx-auto rounded-full w-36 h-36 "
-        width={160} // should match w-40 (40*4)
-        height={160} // should match h-40
-        alt="Singer Image"
-    />
-</div>
+                            <div className="w-40 h-40">
+                                <Image
+                                    src={`${imgUrl}/${artistData?.profile}`}
+                                    className="mx-auto rounded-full w-36 h-36 "
+                                    width={160} // should match w-40 (40*4)
+                                    height={160} // should match h-40
+                                    alt="Singer Image"
+                                />
+                            </div>
                             {/* description  */}
                             <div>
                                 <h1 className=' text-xl mt-3 lg:mt-0 lg:text-2xl headerColor leading-9 '>{artistData?.name}</h1>

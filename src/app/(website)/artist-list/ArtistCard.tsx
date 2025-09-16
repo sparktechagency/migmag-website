@@ -54,10 +54,10 @@ const ArtistCard: React.FC<ArtistCardProps> = ({ id, name, role, price, image, a
         <span className="bg-green-50 text-green-600 text-sm px-3 py-1 rounded-full font-medium border border-green-200">
           ${price}
         </span>
-        <Link href = {`/hire-from`}>
-        <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer ">
-          Hire Now
-        </button>
+        <Link href={`/hire-from`}>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer ">
+            Hire Now
+          </button>
         </Link>
       </div>
     </div>

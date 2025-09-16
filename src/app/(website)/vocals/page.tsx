@@ -180,7 +180,7 @@ const Page: React.FC = () => {
                                         {/* ▼ smooth dropdown */}
                                         <ul
                                             className="
-                                                absolute left-0 top-full w-36 rounded-lg bg-white shadow-lg border border-gray-300 z-50
+                                                absolute left-0 top-full w-44 rounded-lg bg-white shadow-lg border border-gray-300 z-50
                                                 overflow-hidden                        /* keeps content clipped during scale */
                                                 opacity-0 translate-y-2 pointer-events-none
                                                 group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
@@ -200,8 +200,8 @@ const Page: React.FC = () => {
                                         </ul>
                                     </li>
                                     <li><Link
-                                        className={`${pathname === "/artist-library" ? "text-[#E7F056]" : "text-white"}`}
-                                        href="/artist-library">Artist</Link></li>
+                                        className={`${pathname === "/artist-list" ? "text-[#E7F056]" : "text-white"}`}
+                                        href="/artist-list">Artist</Link></li>
                                     <li>
                                         <Link
                                             className={`${pathname === "/hire" ? "text-[#E7F056]" : "text-white"}`}
@@ -330,8 +330,8 @@ const Page: React.FC = () => {
                                     </Link>
                                 </li>
                                 <li><Link
-                                    className={` ${pathname === "/artist-library" ? "text-[#E7F056]  " : "text-white"}`}
-                                    href="/artist-library">Artist</Link></li>
+                                    className={` ${pathname === "/artist-list" ? "text-[#E7F056]  " : "text-white"}`}
+                                    href="/artist-list">Artist</Link></li>
                                 <li><Link className={` ${pathname === "/hire" ? "text-[#E7F056]  " : "text-white"}`}
                                     href="/hire">Hire</Link></li>
                                 <li><Link className={` ${pathname === "/cart" ? "text-[#E7F056]  " : "text-white"}`}

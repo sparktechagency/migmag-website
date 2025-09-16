@@ -203,8 +203,8 @@ const BrowseVocalNavbar: React.FC = () => {
                                     </ul>
                                 </li>
                                 <li><Link
-                                    className={`${pathname === "/artist-library" ? "text-[#E7F056]" : "text-white"}`}
-                                    href="/artist-library">Artists</Link></li>
+                                    className={`${pathname === "/artist-list" ? "text-[#E7F056]" : "text-white"}`}
+                                    href="/artist-list">Artists</Link></li>
                                 <li><Link className="text-white" href="/hire">Hire</Link></li>
                             </ul>
 
@@ -313,8 +313,8 @@ const BrowseVocalNavbar: React.FC = () => {
                                 href="/vocals">Vocals</Link></li>
                             <li><Link className={`${pathname === "/cover-vocals" ? "text-[#E7F056]" : 'text-black'}`}
                                 href="/cover-vocals">Cover Vocals</Link></li>
-                            <li><Link className={`${pathname === "/artist-library" ? "text-[#E7F056]" : 'text-black'}`}
-                                href="/artist-library">Artists</Link></li>
+                            <li><Link className={`${pathname === "/artist-list" ? "text-[#E7F056]" : 'text-black'}`}
+                                href="/artist-list">Artists</Link></li>
                             <li><Link className={`${pathname === "/hire" ? "text-[#E7F056]" : 'text-black'}`}
                                 href="/hire">Hire</Link></li>
                             <li><Link className={`${pathname === "/cart" ? "text-[#E7F056]" : 'text-black'}`}

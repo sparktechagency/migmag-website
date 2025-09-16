@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { imgUrl } from "@/utility/img/imgUrl";
 import { useAddWishListMutation, useRemoveWishMutation } from "@/app/api/authApi/authApi";
 import { useSongDetailsQuery } from "@/app/api/websiteApi/websiteApi";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 export function MusickPlayer({
     show,
@@ -121,13 +122,24 @@ export function MusickPlayer({
                 refetch();
                 Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
             }
-        } catch (err: any) {
-            if (err.status === 401) {
+        } catch (err) {
+            const error = err as FetchBaseQueryError & { data?: { message?: string } };
+            if (error.status === 401) {
                 router.push("/login");
                 window.location.reload();
             }
-            Swal.fire({ position: "top-end", icon: "error", title: err?.data?.message || "Already in wishlist", showConfirmButton: false, timer: 1500 });
+            Swal.fire({
+                position: "top",
+                icon: "error",
+                title: error?.data?.message || "Something went wrong",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+
+            // Swal.fire({ position: "top-end", icon: "error", title: err?.data?.message || "Already in wishlist", showConfirmButton: false, timer: 1500 });
         }
+
+
     };
 
     const removeFromWishlist = async () => {
@@ -137,136 +149,143 @@ export function MusickPlayer({
                 refetch();
                 Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
             }
-        } catch (e) {
-            Swal.fire({ position: "top-end", icon: "error", title: "Something went wrong", showConfirmButton: false, timer: 1500 });
-        }
-    };
+        } catch (err) {
+            const error = err as FetchBaseQueryError & { data?: { message?: string } };
+            Swal.fire({
+                position: "top",
+                icon: "error",
+                title: error?.data?.message || "Something went wrong",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        };
+    }
 
-    const progress = duration ? (currentTime / duration) * 100 : 0;
+        const progress = duration ? (currentTime / duration) * 100 : 0;
 
-    /** Fully free draggable slider using pointer events */
-    const startDrag = (e: React.PointerEvent) => {
-        e.preventDefault();
-        setIsDragging(true);
-        document.addEventListener("pointermove", onDrag);
-        document.addEventListener("pointerup", stopDrag);
-    };
+        /** Fully free draggable slider using pointer events */
+        const startDrag = (e: React.PointerEvent) => {
+            e.preventDefault();
+            setIsDragging(true);
+            document.addEventListener("pointermove", onDrag);
+            document.addEventListener("pointerup", stopDrag);
+        };
 
-    const onDrag = (e: PointerEvent) => {
-        if (!progressRef.current) return;
-        const rect = progressRef.current.getBoundingClientRect();
-        let x = e.clientX - rect.left;
-        x = Math.max(0, Math.min(rect.width, x));
-        const newTime = (x / rect.width) * duration;
-        setCurrentTime(newTime);
-    };
+        const onDrag = (e: PointerEvent) => {
+            if (!progressRef.current) return;
+            const rect = progressRef.current.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            x = Math.max(0, Math.min(rect.width, x));
+            const newTime = (x / rect.width) * duration;
+            setCurrentTime(newTime);
+        };
 
-    const stopDrag = () => {
-        if (audioRef.current) audioRef.current.currentTime = currentTime;
-        setIsDragging(false);
-        document.removeEventListener("pointermove", onDrag);
-        document.removeEventListener("pointerup", stopDrag);
-    };
+        const stopDrag = () => {
+            if (audioRef.current) audioRef.current.currentTime = currentTime;
+            setIsDragging(false);
+            document.removeEventListener("pointermove", onDrag);
+            document.removeEventListener("pointerup", stopDrag);
+        };
 
-    return (
-        <div className="max-w-3xl h-44 mx-auto">
-            <AnimatePresence>
-                {show && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="fixed inset-0 bg-black/50 z-40"
-                            onClick={onClose}
-                        />
+        return (
+            <div className="max-w-3xl h-44 mx-auto">
+                <AnimatePresence>
+                    {show && (
+                        <>
+                            {/* Backdrop */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="fixed inset-0 bg-black/50 z-40"
+                                onClick={onClose}
+                            />
 
-                        {/* Player */}
-                        <motion.div
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "100%" }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className="fixed bottom-0 left-0 right-0 mx-auto max-w-6xl z-50 bg-[#1b1b1b] px-4 py-4 shadow-xl border-t-2 border-[#E7F056] rounded-t-xl"
-                        >
-                            <div className="flex items-center justify-between gap-4 text-white">
-                                {/* Track Info */}
-                                <div className="flex items-center gap-3 min-w-[200px]">
-                                    <div className="w-14 h-14 relative rounded-full overflow-hidden">
-                                        <Image
-                                            src={`${imgUrl}/${currentTrack.song_poster}`}
-                                            alt={currentTrack.title}
-                                            width={56}
-                                            height={56}
-                                            className="object-cover w-full h-full"
-                                        />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-sm">{currentTrack.title}</h3>
-                                        <p className="text-xs text-gray-400">{currentTrack.name}</p>
-                                    </div>
-                                </div>
-
-                                {/* Waveform + Slider */}
-                                <div className="flex-1 flex flex-col gap-2">
-                                    {/* Waveform */}
-                                    <div className="flex items-end gap-1 cursor-pointer w-full">
-                                        {waveform.map((height, idx) => (
-                                            <div
-                                                key={idx}
-                                                className="bg-[#E7F056] rounded-sm transition-[height] duration-150 ease-linear flex-1"
-                                                style={{ height: `${height * 40}px` }}
+                            {/* Player */}
+                            <motion.div
+                                initial={{ y: "100%" }}
+                                animate={{ y: 0 }}
+                                exit={{ y: "100%" }}
+                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                className="fixed bottom-0 left-0 right-0 mx-auto max-w-6xl z-50 bg-[#1b1b1b] px-4 py-4 shadow-xl border-t-2 border-[#E7F056] rounded-t-xl"
+                            >
+                                <div className="flex items-center justify-between gap-4 text-white">
+                                    {/* Track Info */}
+                                    <div className="flex items-center gap-3 min-w-[200px]">
+                                        <div className="w-14 h-14 relative rounded-full overflow-hidden">
+                                            <Image
+                                                src={`${imgUrl}/${currentTrack.song_poster}`}
+                                                alt={currentTrack.title}
+                                                width={56}
+                                                height={56}
+                                                className="object-cover w-full h-full"
                                             />
-                                        ))}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold text-sm">{currentTrack.title}</h3>
+                                            <p className="text-xs text-gray-400">{currentTrack.name}</p>
+                                        </div>
                                     </div>
 
-                                    {/* Progress Slider */}
-                                    <div
-                                        ref={progressRef}
-                                        className="relative w-full h-2 bg-gray-700 rounded cursor-pointer"
-                                        onPointerDown={startDrag}
-                                        onClick={handleSeek}
-                                    >
-                                        <div
-                                            className="h-2 bg-[#E7F056] rounded"
-                                            style={{ width: `${progress}%` }}
-                                        />
-                                        <div
-                                            className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#E7F056] rounded-full cursor-grab shadow-lg"
-                                            style={{ left: `calc(${progress}% - 8px)` }}
-                                            onPointerDown={(e) => e.stopPropagation() || startDrag(e)}
-                                        />
-                                    </div>
+                                    {/* Waveform + Slider */}
+                                    <div className="flex-1 flex flex-col gap-2">
+                                        {/* Waveform */}
+                                        <div className="flex items-end gap-1 cursor-pointer w-full">
+                                            {waveform.map((height, idx) => (
+                                                <div
+                                                    key={idx}
+                                                    className="bg-[#E7F056] rounded-sm transition-[height] duration-150 ease-linear flex-1"
+                                                    style={{ height: `${height * 40}px` }}
+                                                />
+                                            ))}
+                                        </div>
 
-                                    {/* Controls */}
-                                    <div className="flex items-center gap-3 mt-1">
-                                        <button
-                                            onClick={togglePlay}
-                                            className="text-[#E7F056] hover:scale-110 transition cursor-pointer "
+                                        {/* Progress Slider */}
+                                        <div
+                                            ref={progressRef}
+                                            className="relative w-full h-2 bg-gray-700 rounded cursor-pointer"
+                                            onPointerDown={startDrag}
+                                            onClick={handleSeek}
                                         >
-                                            {isPlaying ? <CiPause1 size={24} /> : <FiPlay size={24} />}
-                                        </button>
-                                        <span className="text-xs w-10 text-right">{formatTime(currentTime)}</span>
-                                        <span className="text-xs w-12 text-left">{formatTime(duration - currentTime)}</span>
-                                        <audio ref={audioRef} src={currentTrack.song} />
+                                            <div
+                                                className="h-2 bg-[#E7F056] rounded"
+                                                style={{ width: `${progress}%` }}
+                                            />
+                                            <div
+                                                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#E7F056] rounded-full cursor-grab shadow-lg"
+                                                style={{ left: `calc(${progress}% - 8px)` }}
+                                            // onPointerDown={(e) => e.stopPropagation() || startDrag(e)}
+                                            />
+                                        </div>
+
+                                        {/* Controls */}
+                                        <div className="flex items-center gap-3 mt-1">
+                                            <button
+                                                onClick={togglePlay}
+                                                className="text-[#E7F056] hover:scale-110 transition cursor-pointer "
+                                            >
+                                                {isPlaying ? <CiPause1 size={24} /> : <FiPlay size={24} />}
+                                            </button>
+                                            <span className="text-xs w-10 text-right">{formatTime(currentTime)}</span>
+                                            <span className="text-xs w-12 text-left">{formatTime(duration - currentTime)}</span>
+                                            <audio ref={audioRef} src={currentTrack.song} />
+                                        </div>
+                                    </div>
+
+                                    {/* Wishlist */}
+                                    <div className="min-w-[30px]">
+                                        {data?.data?.is_wishlisted == 1 ? (
+                                            <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer" />
+                                        ) : (
+                                            <Heart onClick={handleAddToWishlist} className="cursor-pointer hover:text-red-500 transition" />
+                                        )}
                                     </div>
                                 </div>
-
-                                {/* Wishlist */}
-                                <div className="min-w-[30px]">
-                                    {data?.data?.is_wishlisted == 1 ? (
-                                        <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer" />
-                                    ) : (
-                                        <Heart onClick={handleAddToWishlist} className="cursor-pointer hover:text-red-500 transition" />
-                                    )}
-                                </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
-        </div>
-    );
-}
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
+            </div>
+        );
+    }
