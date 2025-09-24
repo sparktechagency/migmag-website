@@ -5,11 +5,12 @@ const TunemBanner = () => {
 
   return (
     <div className=" mx-auto  ">
-      <MaxWidth>
-        <div
-          className={`bg-[linear-gradient(90deg,rgba(233,244,254,1)_0%,rgba(249,253,255,1)_50%,rgba(238,248,255,1)_100%)]`}
-        >
 
+      <div
+        className={`bg-[linear-gradient(90deg,rgba(233,244,254,1)_0%,rgba(249,253,255,1)_50%,rgba(238,248,255,1)_100%)]`}
+      >
+
+        <MaxWidth>
           <div className="flex flex-col lg:flex-row items-stretch">
             {/* Left side */}
             <div className="lg:w-[50%] lg:mt-14 space-y-4">
@@ -71,10 +72,11 @@ const TunemBanner = () => {
               />
             </div>
           </div>
+        </MaxWidth>
 
-        </div>
+      </div>
 
-      </MaxWidth>
+
 
     </div>
   )
