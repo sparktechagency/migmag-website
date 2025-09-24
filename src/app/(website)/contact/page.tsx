@@ -8,7 +8,7 @@ const page: React.FC = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className=' max-w-[1539px] mx-auto ' >
+            <div className=' ' >
                 <ContactFrom></ContactFrom>
             </div>
             <UpdateFooter></UpdateFooter>

@@ -1,8 +1,8 @@
 "use client"
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
 import Swal from "sweetalert2";
-import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useApplayArtistMutation } from '@/app/api/websiteApi/websiteApi';
 
 
@@ -21,6 +21,7 @@ const ApplayVocalistFrom: React.FC = () => {
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [socialLink, setSocialLink] = useState<string>('');
+    const [referral, setReferral] = useState<string>('');
     const [about, setAbout] = useState<string>('');
     const [genree, setGenre] = useState<string[]>([]);
     const [other_genre, setOther_genre] = useState<string>('');
@@ -34,7 +35,7 @@ const ApplayVocalistFrom: React.FC = () => {
         }
     };
 
-    const [applayArtist, {isLoading}] = useApplayArtistMutation()
+    const [applayArtist, { isLoading }] = useApplayArtistMutation()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -43,6 +44,7 @@ const ApplayVocalistFrom: React.FC = () => {
         formData.append('name', name);
         formData.append('email', email);
         formData.append('social_link', socialLink);
+        formData.append('referral', referral);
         formData.append('about', about);
 
         genree.forEach((genre) => {
@@ -144,7 +146,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                 {/* Name */}
                                 <div className='flex flex-col'>
                                     <label htmlFor="name"
-                                           className='text-white text-lg font-bold leading-6'>Name</label>
+                                        className='text-white text-lg font-bold leading-6'>Name</label>
                                     <input
                                         id='name'
                                         value={name}
@@ -158,7 +160,7 @@ const ApplayVocalistFrom: React.FC = () => {
                                 {/* Email */}
                                 <div className='flex flex-col mt-5'>
                                     <label htmlFor="email"
-                                           className='text-white text-lg font-bold leading-6'>Email</label>
+                                        className='text-white text-lg font-bold leading-6'>Email</label>
                                     <input
                                         id='email'
                                         value={email}
@@ -178,6 +180,20 @@ const ApplayVocalistFrom: React.FC = () => {
                                         placeholder="Instagram or TikTok"
                                         value={socialLink}
                                         onChange={(e) => setSocialLink(e.target.value)}
+                                        className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
+                                        type="text"
+                                        required
+                                    />
+                                </div>
+
+                                {/* Social Link */}
+                                <div className='flex flex-col mt-5'>
+                                    <label htmlFor="Referral" className='text-white text-lg font-bold leading-6'>Referral</label>
+                                    <input
+                                        id='Referral'
+                                        placeholder="Referral"
+                                        value={referral}
+                                        onChange={(e) => setReferral(e.target.value)}
                                         className='hover:outline-0 focus:outline-0 border-b border-[#818080] bg-black text-white py-1 text-lg font-medium'
                                         type="text"
                                         required
