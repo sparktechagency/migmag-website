@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { usePathname } from 'next/navigation'
 import BrowseVocalBanner from './BrowseVocalBanner'
-import BrowseVocalMarque from './BrowseVocalMarque'
 import BrowseMusickVocalSlider from './BrowseMusickVocalSlider';
 import BrowseAllVocal from './BrowseAllVocal'
 import { FaCartArrowDown } from "react-icons/fa";
@@ -376,9 +375,7 @@ const Page: React.FC = () => {
             <div className='  '>
                 <BrowseVocalBanner />
             </div>
-            <div>
-                <BrowseVocalMarque />
-            </div>
+
 
             <div>
                 <BrowseMusickVocalSlider />

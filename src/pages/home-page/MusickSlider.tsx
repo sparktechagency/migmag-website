@@ -103,7 +103,7 @@ export default function MusicSlider() {
 
 
     return (
-        <main className="mt-8">
+        <main className="mt-8 lg:mt-20 ">
             <MaxWidth>
                 <h1 className="headerColor text-2xl lg:text-4xl font-semibold mx-auto mb-6">
                     Latest Trending Vocals
@@ -140,8 +140,8 @@ export default function MusicSlider() {
                                         <Image
                                             src={`${imgUrl}/${item.song_poster}`}
                                             alt={item.title}
-                                              width = {500}
-                                                                   height = {500}
+                                            width={500}
+                                            height={500}
                                             className=" object-cover w-[300px] h-[300px]  "
                                         />
                                         <button
@@ -151,9 +151,9 @@ export default function MusicSlider() {
                                             <FiPlay className="text-[#E7F056]" size={24} />
                                         </button>
                                     </div>
-                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title.slice(0,20)}...</h3>
+                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title.slice(0, 20)}...</h3>
                                     <div className="flex gap-x-6">
-                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0,10)}...</p>
+                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0, 10)}...</p>
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
                                             <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">{item.price}</p>
                                         </Link>
@@ -184,7 +184,7 @@ export default function MusicSlider() {
 
                 <div className="mt-4 md:mt-12">
                     <Link href="/vocals">
-                        <button className="cursor-pointer block mx-auto border bg-black text-white rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]">
+                        <button className="cursor-pointer block mx-auto border bg-yellow-400 text-black rounded-2xl px-3 md:px-3 py-1.5 md:py-2 text-[15px]">
                             BROWSE VOCALS
                         </button>
                     </Link>
@@ -196,7 +196,7 @@ export default function MusicSlider() {
                     show={showModal}
                     onClose={() => setShowModal(false)}
                     currentTrack={{
-                        id : tracks[currentIndex].id,
+                        id: tracks[currentIndex].id,
                         title: tracks[currentIndex].title,
                         name: tracks[currentIndex].artist.name,
                         song_poster: tracks[currentIndex].song_poster,

@@ -218,8 +218,8 @@ const Navbar: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                  className={` ${pathname === "/artist-list" ? "text-[#E7F056]" : "text-black"} `}
-                  href="/artist-list">Artists
+                    className={` ${pathname === "/artist-list" ? "text-[#E7F056]" : "text-black"} `}
+                    href="/artist-list">Artists
                   </Link></li>
                 <li><Link className={` ${pathname === "/hire" ? "text-[#E7F056]" : "text-black"} `}
                   href="/hire">Hire</Link></li>

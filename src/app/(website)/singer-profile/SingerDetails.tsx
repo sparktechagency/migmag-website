@@ -369,9 +369,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                 {/* More Singers */}
 
 
-                <Suspense fallback={<h1>Loading.... </h1>}>
-                    <MoreSinger></MoreSinger>
-                </Suspense>
+
 
 
                 {/* contact us browse vocal section  */}
@@ -522,6 +520,10 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                         </div>
                     </div>
                 </div>
+
+                <Suspense fallback={<h1>Loading.... </h1>}>
+                    <MoreSinger></MoreSinger>
+                </Suspense>
 
 
             </MaxWidth>
