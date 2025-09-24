@@ -5,7 +5,10 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
-const HireFrom: React.FC = () => {
+const HireFrom: React.FC = ({ id }) => {
+
+    console.log(`------ id is-------- `, id);
+
     const [lyricsChecked, setLyricsChecked] = useState(false);
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
     const [lyricsText, setLyricsText] = useState<string | undefined>("")

@@ -69,7 +69,7 @@ const ArtistList: React.FC = () => {
                     </div>
 
                     <div className="flex flex-row justify-center items-center space-y-4 mb-10">
-                        <Link href="/artist-library">
+                        <Link href="/artist-list">
                             <button className="border border-white font-thin mt-3 w-[194px] text-white py-2 rounded-2xl lg:text-lg cursor-pointer">
                                 SEE MORE
                             </button>

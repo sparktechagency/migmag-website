@@ -1,4 +1,4 @@
-import { ArtistDetailsResponse,  GenreResponse, KeyResponse, LicenseApiResponse, SongDetailsApiResponse, SubcriberApiPayload, SubscriptionApiResponse, TopArtistListApiResponse, TypeApiResponse } from '@/utility/type/websiteApiType';
+import { ArtistDetailsResponse, GenreResponse, KeyResponse, LicenseApiResponse, SongDetailsApiResponse, SubcriberApiPayload, SubscriptionApiResponse, TopArtistListApiResponse, TypeApiResponse } from '@/utility/type/websiteApiType';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 
@@ -136,6 +136,14 @@ export const websiteApi = createApi({
             }),
         }),
 
+        contactApi: builder.mutation({
+            query: (payload) => ({
+                url: `/contact`,
+                method: "POST",
+                body: payload
+            })
+        })
+
 
 
 
@@ -165,6 +173,7 @@ export const {
     useTopArtistListQuery,
     useApplayArtistMutation,
     useArtistDetailsQuery,
-    useSongDetailsQuery
+    useSongDetailsQuery,
+    useContactApiMutation
 
 } = websiteApi;
