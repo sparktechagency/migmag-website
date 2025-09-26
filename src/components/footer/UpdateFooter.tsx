@@ -199,7 +199,7 @@ const UpdateFooter: React.FC = () => {
                     </div>
                     <div className="max-w-6xl mx-auto bg-white ">
                         <Image
-                            src="/update-image/footer/payment-3.jpeg"
+                            src="/images/logo/update-footer-logo.jpg"
                             alt="payment-logo"
                             width={600}
                             height={400}

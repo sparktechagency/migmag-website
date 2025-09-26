@@ -3,7 +3,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const TermPage: React.FC = () => {
     return (
-        <div  className="  lg:py-10    ">
+        <div className="  lg:py-10    ">
             <MaxWidth>
                 <div className=" mx-auto bg-white  rounded-lg ">
                     <h1 className="headerColor lg:text-4xl text-2xl font-bold mb-6 text-center">TuneM Terms and Conditions</h1>
@@ -11,7 +11,7 @@ const TermPage: React.FC = () => {
                     <p className=" text-lg textColor lg:text-xl mb-4">
                         Welcome to TuneM! These terms and conditions outline the rules and regulations for the use of
                         the TuneM website,
-                        located at <a href="https://www.tunem.ai" className="text-blue-600 underline">www.tunem.ai</a>.
+                        located at <a href="www.tunem.com" className="text-blue-600 underline">www.tunem.com</a>.
                     </p>
                     <p className="mb-6 text-lg textColor lg:text-xl ">
                         By accessing this website we assume you accept these terms and conditions in full.
