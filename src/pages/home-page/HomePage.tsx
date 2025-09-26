@@ -11,6 +11,7 @@ import UseSound from "@/pages/home-page/UseSound";
 import UpdateFooter from "@/components/footer/UpdateFooter";
 import VocalPublishLogo from "@/pages/home-page/VocalPublishLogo";
 import ArtistList from './ArtistList'
+import MemberShip from './membership/MemberShip'
 
 
 const HomePage: React.FC = () => {
@@ -33,6 +34,10 @@ const HomePage: React.FC = () => {
                 </div>
 
                 <div>
+                    <MemberShip></MemberShip>
+                </div>
+
+                <div>
                     <VocalPublish></VocalPublish>
                 </div>
                 <UseSound></UseSound>
@@ -42,7 +47,7 @@ const HomePage: React.FC = () => {
 
 
                 <UpdateFooter></UpdateFooter>
-                <CookieConsent/>
+                <CookieConsent />
             </div>
         </div>
     )
