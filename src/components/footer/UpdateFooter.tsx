@@ -55,8 +55,8 @@ const UpdateFooter: React.FC = () => {
                     {/* Logo */}
                     <div className="mx-auto flex justify-center">
                         <span>
-                            <Image src={"/client-demo/TuneM-Asset2.svg"} alt={"logo"} width={500} height={500}
-                                className={" object-cover w-[200px] h-[50px] "} />
+                            <Image src={"/update-image/logo/footer-logo-2.png"} alt={"logo"} width={100} height={100}
+                                className={" object-cover   "} />
                         </span>
                     </div>
 
@@ -133,7 +133,7 @@ const UpdateFooter: React.FC = () => {
 
                             <div>
                                 <p className=" mt-5 textColor text-lg mb-2">
-                                    Sign up for our mailing list to get latest updates and offers
+                                    support@tunem.com
                                 </p>
 
 

@@ -125,22 +125,16 @@ const PrivacyPage: React.FC = () => {
                     </p>
                 </section>
 
-                <section className="mb-8">
-                    <h2 className="text-2xl lg:text-3xl headerColor font-semibold mb-2">9. CHILDREN&apos;S PRIVACY</h2>
-                    <p className={"lg:text-xl text-lg textColor"}>
-                        Our services are not intended for children under 13. We do not knowingly collect data from
-                        minors. If we become aware that such data has been collected, we will delete it immediately.
-                    </p>
-                </section>
+
 
                 <section>
-                    <h2 className="text-2xl lg:text-3xl headerColor  font-semibold mb-2">10. CONTACT US</h2>
-                    <p className={"lg:text-xl text-lg textColor"} >If you have any questions or requests regarding this Privacy Policy, please contact us at:</p>
+                    <h2 className="text-2xl lg:text-3xl headerColor  font-semibold mb-2">9. CONTACT US</h2>
+                    <p className={"lg:text-xl text-lg textColor"} >Our services are not intended for children under 13. We do not knowingly collect data from minors. If we become aware that such data has been collected, we will delete it immediately.</p>
                     <ul className="list-none mt-2">
-                        <li className={"headerColor lg:text-xl text-lg "} ><strong>TuneM Ltd.</strong></li>
-                        <li className={`lg:text-xl text-lg headerColor `} >Email: <a href="mailto:support@tunem.ai"
-                                      className="textColor underline">support@tunem.ai</a></li>
-                        <li className={` lg:text-xl text-lg textColor `} >Registered Office: [Insert Registered Address in Malta]</li>
+                        <li className={"headerColor lg:text-xl text-lg "} ><strong>TuneM Studios.</strong></li>
+                        <li className={`lg:text-xl text-lg headerColor `} >Email: <a href="support@tunem..com"
+                            className="textColor underline">support@tunem.ai</a></li>
+                        <li className={` lg:text-xl text-lg textColor `} >Registered Office: T5F Tigne Point Malta SLM3190</li>
                     </ul>
                 </section>
             </div>

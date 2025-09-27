@@ -11,7 +11,7 @@ const ExclusiveLicense = () => {
                 className="space-y-6 "
             >
                 <h2 className="lg:text-4xl text-2xl headerColor font-bold">TuneM Exclusive Vocal License</h2>
-                <p className=" lg:text-xl text-lg textColor ">Price: From $199</p>
+                {/* <p className=" lg:text-xl text-lg textColor ">Price: From $199</p> */}
                 <p className=" lg:text-xl text-lg textColor ">Edition Limit: 1 copy only (sold once, then removed)</p>
 
                 <section>

@@ -67,7 +67,7 @@ const Review: React.FC = () => {
                 setVisibleSlides(2);
             } else if (width >= 768 && width < 1024) {
                 // Medium devices (tablets)
-                setVisibleSlides(3);
+                setVisibleSlides(2);
             } else if (width >= 1024 && width < 1280) {
                 // Large devices (small laptops)
                 setVisibleSlides(3);

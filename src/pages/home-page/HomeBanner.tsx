@@ -35,7 +35,7 @@ const HomeBanner: React.FC = () => {
                         {/* Right Side */}
                         <div className="flex justify-center lg:justify-end flex-1 lg:w-[90%] w-full ">
                             <Image
-                                src="/update-image/home-page/banner/UpdateBannerImage.png"
+                                src="/images/logo/update-hero.svg"
                                 alt="banner-image"
                                 width={2000}
                                 height={530}
