@@ -1,9 +1,9 @@
 
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import {GrNext, GrPrevious} from "react-icons/gr";
+import { GrNext, GrPrevious } from "react-icons/gr";
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 type Review = {
@@ -86,7 +86,7 @@ const UseSound: React.FC = () => {
 
     return (
         <MaxWidth>
-            <div  className="relative mx-auto py-12 ">
+            <div className="relative mx-auto py-12 ">
                 <div className="mb-8 ">
                     <h1 className="text-2xl lg:text-4xl headerColor font-bold">Who uses our vocals</h1>
                 </div>
@@ -95,15 +95,15 @@ const UseSound: React.FC = () => {
                 <div className="overflow-hidden">
                     <div
                         className="flex transition-transform duration-500"
-                        style={{transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)`}}
+                        style={{ transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)` }}
                     >
                         {reviews.map((item, i) => (
                             <div
                                 key={i}
                                 className="px-3"
-                                style={{minWidth: `${100 / visibleSlides}%`}}
+                                style={{ minWidth: `${100 / visibleSlides}%` }}
                             >
-                                <div className="p-6 h-full flex flex-col items-center gap-4">
+                                <div className="lg:p-6 h-full flex flex-col items-center lg:gap-4">
                                     <Image
                                         src={item.avatar}
                                         alt={item.name}
@@ -126,7 +126,7 @@ const UseSound: React.FC = () => {
                     aria-label="Previous"
                     className="absolute cursor-pointer left-0 top-[45%] -translate-y-1/2  p-2 disabled:opacity-50"
                 >
-                    <GrPrevious size={30} className={`font-bold`}/>
+                    <GrPrevious size={30} className={`font-bold`} />
                 </button>
                 <button
                     onClick={nextSlide}
@@ -134,19 +134,18 @@ const UseSound: React.FC = () => {
                     aria-label="Next"
                     className="absolute right-0 top-[45%] cursor-pointer -translate-y-1/2  p-2 disabled:opacity-50"
                 >
-                    <GrNext size={30} className={`font-bold`}/>
+                    <GrNext size={30} className={`font-bold`} />
                 </button>
 
                 {/* bullets */}
                 <div className="flex justify-center mt-6 space-x-3">
-                    {Array.from({length: totalBullets}).map((_, i) => (
+                    {Array.from({ length: totalBullets }).map((_, i) => (
                         <button
                             key={i}
                             onClick={() => setCurrentIndex(i)}
                             aria-label={`Go to slide ${i + 1}`}
-                            className={`w-3 h-3 cursor-pointer rounded-full transition-colors ${
-                                i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
-                            }`}
+                            className={`w-3 h-3 cursor-pointer rounded-full transition-colors ${i === currentIndex ? "bg-yellow-400" : "bg-gray-300"
+                                }`}
                         />
                     ))}
                 </div>
