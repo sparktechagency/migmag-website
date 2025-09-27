@@ -13,7 +13,7 @@ const DownloadSection = () => {
             Downloads
           </h2>
           <p className="lg:text-xl text-lg textColor ">
-            Use the logos in your videos, blog posts and social media.
+            Access and use official TuneM logos in your videos, articles, and social posts.
           </p>
         </div>
 

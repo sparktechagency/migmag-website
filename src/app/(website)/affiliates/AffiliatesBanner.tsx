@@ -9,8 +9,8 @@ const AffiliatesBanner: React.FC = () => {
             <div className=" mx-auto   ">
                 <div>
                     <h1 className={`text-center font-bold text-2xl lg:text-4xl `}>
-                        Promote Vocalfy
-                        <span className={`text-[#0088ff]`}>& Earn Money</span>
+                        Promote TuneM
+                        <span className={`text-[#0088ff]`}>& Get Paid</span>
                     </h1>
                 </div>
                 <div
@@ -43,7 +43,7 @@ const AffiliatesBanner: React.FC = () => {
                                     width={50}
                                     height={50}
                                     alt={platform.name}
-                                    className="rounded-[4px] w-14 h-14 object-cover"
+                                    className="rounded-[4px] lg:w-14 lg:h-14 object-cover"
                                 />
                                 <h1 className="text-xl font-semibold">{platform.name}</h1>
                             </div>
