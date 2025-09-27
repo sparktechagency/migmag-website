@@ -1,5 +1,5 @@
 import React from 'react';
-import {Check} from "lucide-react";
+import { Check } from "lucide-react";
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 const VocalPartner: React.FC = () => {
@@ -8,8 +8,7 @@ const VocalPartner: React.FC = () => {
             <MaxWidth>
                 <div className="max-w-4xl  mx-auto ">
                     <div>
-                        <h1 className={`text-center headerColor lg:text-4xl text-2xl font-semibold  `}>Become a Vocalfy partner
-                            now</h1>
+                        <h1 className={`text-center headerColor lg:text-4xl text-2xl font-semibold  `}>Join the TuneM Affiliate Program</h1>
                     </div>
                     <div className=" mt-5">
                         <button
@@ -18,9 +17,9 @@ const VocalPartner: React.FC = () => {
                         </button>
                     </div>
                     <div className={`flex md:flex-row flex-col items-center gap-x-3 justify-center mt-7 `}>
-                        <span className={`flex items-center gap-x-2 `}> <Check/> <h1 className={`lg:text-xl text-lg`}>Fast Payouts</h1> </span>
-                        <span className={`flex items-center gap-x-2 `}> <Check/> <h1 className={`lg:text-xl text-lg`}>High Conversion Rates</h1> </span>
-                        <span className={`flex items-center gap-x-2 `}> <Check/> <h1 className={`lg:text-xl text-lg`}>Trusted Brand</h1> </span>
+                        <span className={`flex items-center gap-x-2 `}> <Check /> <h1 className={`lg:text-xl text-lg`}>Fast Payments </h1> </span>
+                        <span className={`flex items-center gap-x-2 `}> <Check /> <h1 className={`lg:text-xl text-lg`}>High Earning Potential</h1> </span>
+                        <span className={`flex items-center gap-x-2 `}> <Check /> <h1 className={`lg:text-xl text-lg`}>Trusted Worldwide</h1> </span>
                     </div>
                 </div>
             </MaxWidth>

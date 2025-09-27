@@ -4,30 +4,33 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 const benefits = [
     {
-        title: "Get 20% Commission",
-        description: "You’ll get a coupon code for your audience to track your sales",
+        title: "Earn 20% Commission",
+        description: "Receive a personalized coupon code so your audience’s purchases are tracked and credited to you.",
         icon: "/images/affiliates/benefit/benefit-1.png",
     },
     {
         title: "Dashboard",
-        description: "See referrals, payouts and download promotional assets",
+        description: "Track referrals, earnings, and access promo assets",
         icon: "/images/affiliates/benefit/benefit-2.png",
     },
     {
-        title: "Access to 100+ vocals",
-        description: "Get access to our non-exclusive vocals and use them for promotion",
+        title: "Full TuneM Library Access",
+        description: "Use our complete collection of vocals for your content and marketing.",
         icon: "/images/affiliates/benefit/benefit-3.png",
     },
 ];
 
 const Benefits: React.FC = () => {
     return (
+
+
+
         <section className="bg-[#f9f9f9] py-12">
             <MaxWidth>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                     {/* Left Section */}
                     <div className="flex-1 w-full">
-                        <h2 className="lg:text-4xl text-2xl headerColor font-bold mb-6">Benefits</h2>
+                        <h2 className="lg:text-4xl text-2xl headerColor font-bold mb-6">Affiliate Rewards</h2>
                         <div className="space-y-6">
                             {benefits.map((item, index) => (
                                 <div key={index} className="flex items-center space-x-4">
@@ -37,7 +40,7 @@ const Benefits: React.FC = () => {
                                             alt={item.title}
                                             width={50}
                                             height={50}
-                                            className="invert"
+                                            className="invert "
                                         />
                                     </div>
                                     <div>

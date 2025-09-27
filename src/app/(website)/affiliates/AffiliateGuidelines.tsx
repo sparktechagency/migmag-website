@@ -1,21 +1,21 @@
 import React from 'react';
-import {CheckCircle, XCircle} from 'lucide-react';
+import { CheckCircle, XCircle } from 'lucide-react';
 import MaxWidth from "@/components/max-width/MaxWidth";
 
 const doList = [
-    'Promote Vocalfy on social media',
-    'Write about Vocalfy in blogs and articles',
-    'Create educational content where you use our products',
-    "Use Vocalfy's Logo and present the website",
-    'Share Vocalfy with your email subscribers',
+    'Share TuneM across your social channels.',
+    'Feature TuneM in your blogs, reviews, and write-ups.',
+    'Create tutorials or educational content showcasing our products',
+    "Use the official TuneM logo and link to our website when promoting",
+    'Mention TuneM in your newsletters or email campaigns',
 ];
 
 const dontList = [
-    "Don't use your affiliate link in any misleading manner",
-    "Don't change our logos or trademarks",
-    "Don't offer unofficial discounts",
-    "Don't falsely advertise Vocalfy in any manner",
-    "Don't use your affiliate link for your own purchases",
+    "Always use your affiliate link honestly — no misleading placements",
+    "Do not alter our logo, branding, or trademarks",
+    "Do not promote unofficial or unapproved discounts",
+    "Never misrepresent TuneM or make false claims",
+    "Affiliate links cannot be used for your own purchases",
 ];
 
 const AffiliateGuidelines: React.FC = () => {
@@ -24,7 +24,7 @@ const AffiliateGuidelines: React.FC = () => {
             <section className="bg-gray-50 lg:py-20 py-7 px-4">
                 <div className="max-w-6xl mx-auto text-center mb-4 lg:mb-12">
                     <h2 className="text-2xl md:text-4xl font-bold headerColor  inline-block px-4 py-1 rounded">
-                        Guidelines
+                        Affiliate Guidelines
                     </h2>
                 </div>
 
@@ -33,7 +33,7 @@ const AffiliateGuidelines: React.FC = () => {
                     <ul className="space-y-4 text-left">
                         {doList.map((item, idx) => (
                             <li key={idx} className="flex items-start space-x-2 ">
-                                <CheckCircle className="text-green-500 w-5 h-5 mt-1"/>
+                                <CheckCircle className="text-green-500 w-5 h-5 mt-1" />
                                 <span className={` lg:text-xl text-lg textColor `} >{item}</span>
                             </li>
                         ))}
@@ -43,7 +43,7 @@ const AffiliateGuidelines: React.FC = () => {
                     <ul className="space-y-4 text-left">
                         {dontList.map((item, idx) => (
                             <li key={idx} className="flex items-start space-x-2 text-gray-800">
-                                <XCircle className="text-red-600 w-5 h-5 mt-1"/>
+                                <XCircle className="text-red-600 w-5 h-5 mt-1" />
                                 <span className={`lg:text-xl text-lg textColor `} >{item}</span>
                             </li>
                         ))}

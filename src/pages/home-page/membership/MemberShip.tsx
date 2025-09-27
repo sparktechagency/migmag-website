@@ -12,8 +12,8 @@ export default function Pricing() {
     return (
         <MaxWidth>
             <div className=" mt-10 ">
-                <div className={"flex justify-between "} >
-                    <div className=" max-w-[40%] " >
+                <div className={"flex flex-col md:flex-row justify-between "} >
+                    <div className=" w-full md:max-w-[40%]  " >
                         <h2 className="text-2xl font-semibold text-gray-800">Choose your plan</h2>
                         <p className="text-gray-500 mt-2 ">
                             Try for free and upgrade to access our subscription-only voices and more features. Cancel anytime.
@@ -22,7 +22,7 @@ export default function Pricing() {
                     </div>
 
                     {/* Tabs */}
-                    <div className="mt-6 flex items-center bg-gray-100 rounded-full px-4 relative">
+                    <div className="mt-6 md:mt-0 flex items-center h-10 bg-gray-100 rounded-full w-[50%]   md:w-[15%] relative">
                         <div>
                             <button
                                 onClick={() => setActiveTab("monthly")}
@@ -40,7 +40,7 @@ export default function Pricing() {
                             >
                                 Yearly
                                 {activeTab === "yearly" && (
-                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full">
+                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white w-full  text-[10px] px-2 py-0.5 rounded-full">
                                         2 MONTHS FREE
                                     </span>
                                 )}
@@ -51,7 +51,7 @@ export default function Pricing() {
 
                 </div>
                 {/* Content */}
-                <div className="mt-10  ">
+                <div className="mt-10   ">
                     {activeTab === "monthly" ? <MonthlyPlans /> : <YearlyPlans />}
                 </div>
             </div>

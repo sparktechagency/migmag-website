@@ -6,65 +6,58 @@ const AffiliateQuestions: React.FC = () => {
         < MaxWidth >
             <section className="  bg-white lg:my-14 mt-6 " >
                 <div className="max-w-6xl mx-auto text-center mb-12">
-                    <h2 className=" lg:text-4xl text-2xl headerColor  font-bold">Questions and Answers</h2>
+                    <h2 className=" lg:text-4xl text-2xl headerColor  font-bold">Frequently Asked Questions</h2>
                 </div>
 
                 <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:gap-12 text-left text-gray-900">
                     {/* Left Column */}
                     <div className="space-y-6">
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How do I get paid out?</h3>
-                            <p className={ ` lg:text-xl text-lg textColor  ` }>You will get paid out via bank transfer or PayPal. Note that PayPal usually has higher
-                                fees.</p>
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How will I receive my commissions?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>Payments are made via PayPal or bank transfer. Please note PayPal may include additional fees.</p>
                         </div>
 
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How fast will I get paid out?</h3>
-                            <p className={ ` lg:text-xl text-lg textColor  ` }>Usually after 30 days when the refund period is over.</p>
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">When do payouts happen?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>After the 30-day refund period has passed.</p>
                         </div>
 
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How do I sign up to become an affiliate?</h3>
-                            <p className={ ` lg:text-xl text-lg textColor  ` }>
-                                Use the button “APPLY NOW” and fill in your details. We then review your application and
-                                get back to you
-                                within 24 – 48 hours.
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How do I apply to become an affiliate?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>
+                                Click the <span className={"font-bold"} >“Apply Now”</span> button and complete the form. We’ll review your submission and respond within 24–48 hours.
                             </p>
                         </div>
 
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How long is my referral code active?</h3>
-                            <p  className={ ` lg:text-xl text-lg textColor  ` }>There is no limit.</p>
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How long does my referral link stay active?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>Your referral link remains valid indefinitely.</p>
                         </div>
                     </div>
 
                     {/* Right Column */}
                     <div className="space-y-6">
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How does my affiliate link work?</h3>
-                            <p className={ ` lg:text-xl text-lg textColor  ` }>
-                                You’ll get a coupon code which is usually 10%, redeemable for your customers up to 3
-                                times. We use highly
-                                effective tracking technology to make sure you’ll get the commission you deserve.
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How does my affiliate code work?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>
+                                You’ll receive a unique coupon code (usually 10%), redeemable up to 3 times per customer. Our advanced tracking ensures you get credited fairly for your referrals.
                             </p>
                         </div>
 
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">Is there a minimum payout?</h3>
-                            <p>Yes, you need at least $50 to apply for a payout.</p>
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">Is there a minimum payout threshold?</h3>
+                            <p>Yes, you must reach at least $50 before requesting a payout.</p>
                         </div>
 
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">When will my application be accepted?</h3>
-                            <p className={ ` lg:text-xl text-lg textColor  ` }>Usually within 24 hours but it can take up to 5 working days to get accepted.</p>
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">How long does approval take?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>Typically within 24 hours, but in some cases up to 5 business days.</p>
                         </div>
 
                         <div>
-                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">Can you provide vocals for my YouTube videos?</h3>
-                            <p className={ ` lg:text-xl text-lg textColor  ` }>
-                                Yes, you can use our vocals in your video tutorials and promote Vocalfy. We will send
-                                you the vocals you
-                                need – free of charge.
+                            <h3 className=" lg:text-2xl text-xl font-semibold headerColor   ">Can I use TuneM vocals in my YouTube videos?</h3>
+                            <p className={` lg:text-xl text-lg textColor  `}>
+                                Yes! You can include our vocals in tutorials or demo videos to showcase TuneM. We’ll provide you with the vocals you need at no cost.
                             </p>
                         </div>
                     </div>
