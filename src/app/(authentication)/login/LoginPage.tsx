@@ -20,8 +20,10 @@ const LoginPage: React.FC = () => {
 
                     <div className="lg:w-1/2 px-4">
                         <div>
-                            <Image src={"/update-image/logo/logo.png"} alt={"logo"} width={200} height={400}
-                                className={` mb-10 `} />
+                            <Link href={"/"}>
+                                <Image src={"/update-image/logo/logo.png"} alt={"logo"} width={200} height={400}
+                                    className={` mb-10 `} />
+                            </Link>
                         </div>
                         <h1 className="text-5xl font-bold leading-tight">
                             Get <span className="text-yellow-400">Vocals</span>
@@ -40,8 +42,8 @@ const LoginPage: React.FC = () => {
                             <button
                                 onClick={() => setActiveForm("login")}
                                 className={`w-1/2 cursor-pointer py-2 font-semibold transition-all duration-300 ${activeForm === "login"
-                                        ? "bg-yellow-400 text-black"
-                                        : "bg-gray-800 text-white hover:bg-gray-700"
+                                    ? "bg-yellow-400 text-black"
+                                    : "bg-gray-800 text-white hover:bg-gray-700"
                                     }`}
                             >
                                 Login
@@ -49,8 +51,8 @@ const LoginPage: React.FC = () => {
                             <button
                                 onClick={() => setActiveForm("register")}
                                 className={`w-1/2 cursor-pointer py-2 font-semibold transition-all duration-300 ${activeForm === "register"
-                                        ? "bg-yellow-400 text-black"
-                                        : "bg-gray-800 text-white hover:bg-gray-700"
+                                    ? "bg-yellow-400 text-black"
+                                    : "bg-gray-800 text-white hover:bg-gray-700"
                                     }`}
                             >
                                 Register
