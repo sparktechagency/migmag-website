@@ -87,8 +87,8 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
           />
         </Link>
         <div className="truncate">
-          <h3 className="font-semibold text-white truncate">{name}</h3>
-          <p className="text-sm text-white truncate">{singer}</p>
+          <h3 className="font-semibold md:text-lg text-xs text-white truncate">{name}</h3>
+          <p className="md:text-sm text-xs text-white truncate">{singer}</p>
         </div>
       </div>
 
@@ -111,7 +111,7 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
         <div className="flex-1 flex flex-col">
           {/* Progress bar */}
           <div
-            className="h-2 w-full bg-gray-700 rounded-full cursor-pointer relative"
+            className="h-2 w-full bg-gray-700 rounded-full cursor-pointer relative md:block hidden "
             onClick={handleSeek}
           >
             <div
@@ -133,9 +133,9 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
 
       {/* Right */}
       <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
-        <h1 className="text-white font-semibold text-xl">23$</h1>
+        <h1 className="text-white md:font-semibold text-xs md:text-xl">23$</h1>
         <Link href={`/hire-from/${id}`}>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-2 py-1 md:text-[16px] text-xs px-2 rounded-md cursor-pointer">
             Hire Now
           </button>
         </Link>
