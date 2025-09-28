@@ -67,9 +67,7 @@ const AccountFromPage: React.FC = () => {
         formData.append("contact", formdata.contact);
         formData.append("location", formdata.location);
 
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}:`, value);
-        }
+
 
         if (imageFile) {
             formData.append("avatar", imageFile);

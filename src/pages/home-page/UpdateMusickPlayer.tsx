@@ -49,7 +49,7 @@
 
 //                 const response = await axios.get(`${url}/song-details/${currentIndex}`);
 
-//                 console.log(response)
+//                 
 
 //                 setMusicData(response.data?.data ?? null);
 //             } catch (err) {
@@ -69,7 +69,7 @@
 //     };
 
 
-//     console.log("musick data is ", musicData)
+
 
 //     useEffect(() => {
 //         if (!waveformRef.current || !musicData?.song) return;
@@ -158,7 +158,6 @@
 //                 });
 //             }
 //         } catch (err: unknown) {
-//             console.log(err)
 //             // Define ApiError type for error handling
 //             type ApiError = {
 //                 status?: number;
@@ -200,7 +199,6 @@
 //                 });
 //             }
 //         } catch (e) {
-//             console.log(e);
 //             router.push("/login");
 //             Swal.fire({
 //                 position: "top-end",

@@ -82,7 +82,7 @@ const BrowseAllVocal = () => {
     const [selectedBPM, setSelectedBPM] = useState<number[]>([]);
     const [openBPM, setOpenBPM] = useState<boolean>(false);
 
-
+    console.log(selectedBPM)
 
 
 
@@ -289,9 +289,9 @@ const BrowseAllVocal = () => {
     });
 
     const [globalSearch, setGlobalSearch] = useState<string>('');
-    const [searchTerm, setSearchTerm] = useState<string>('');
 
-    console.log(searchTerm, selectedBPM)
+
+
 
 
 
@@ -325,7 +325,6 @@ const BrowseAllVocal = () => {
         }
     }, [browseVocalData]);
 
-    console.log('browseVocalData:', JSON.stringify(browseVocalData?.data?.data, null, 2));
 
 
 
@@ -353,7 +352,7 @@ const BrowseAllVocal = () => {
         key: keyof FilterState,
         value: string | number | number[]
     ) => {
-        console.log("filter change:", key, value);
+
 
         setFilter((prev) => ({
             ...prev,
@@ -394,7 +393,6 @@ const BrowseAllVocal = () => {
         setselectLatest([]);
 
         // Reset search terms
-        setSearchTerm("");
         setGlobalSearch("");
 
         // Optionally reset visible data for pagination
@@ -481,7 +479,7 @@ const BrowseAllVocal = () => {
 
 
 
-                    
+
 
 
                     <div
@@ -641,14 +639,14 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto  scrollbar-custom shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {
                                             keyData.map((key, index) => (
                                                 <label
                                                     key={index}
-                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 scrollbar-custom cursor-pointer"
                                                 >
                                                     <input
                                                         type="checkbox"
@@ -797,7 +795,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-[300px] max-h-44 overflow-auto scrollbar-custom shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {licenseData.map((license) => (
@@ -850,7 +848,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full scrollbar-custom max-h-44 overflow-auto  shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {allTypeData.map((item) => (
@@ -903,7 +901,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto scrollbar-custom  shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {

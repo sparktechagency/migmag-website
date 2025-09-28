@@ -152,7 +152,7 @@ const BrowseArtist = () => {
         latest: "",
     });
 
-    console.log(JSON.stringify(filter));
+
 
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -160,16 +160,16 @@ const BrowseArtist = () => {
     };
 
     const handleFilterChange = (key: keyof FilterType, value: number | string) => {
-        console.log(value)
+
 
         setFilter((prev) => ({ ...prev, [key]: value }));
     };
 
-    
+
 
 
     const filteredArtists = artistList.filter((artist) => {
-        console.log(`artist is ${artist}`)
+
         const matchGender =
             !filter.gender || artist.gender?.toLowerCase() === filter.gender.toLowerCase();
 

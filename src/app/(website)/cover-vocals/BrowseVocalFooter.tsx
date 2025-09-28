@@ -106,7 +106,7 @@ const BrowseVocalFooter: React.FC = () => {
 
                             <div>
                                 <p className=" mt-5 text-white text-lg mb-2">
-                                    Sign up for our mailing list to get latest updates and offers
+                                    support@tunem.com
                                 </p>
 
 
@@ -172,11 +172,11 @@ const BrowseVocalFooter: React.FC = () => {
                     </div>
                     <div className="max-w-6xl mx-auto ">
                         <Image
-                            src="/update-image/footer/payment-2.jpeg"
+                            src="/images/logo/update-footer-logo.jpg"
                             alt="payment-logo"
                             width={600}
                             height={400}
-                            className="mx-auto object-cover bg-gray-400  " // center the image horizontally
+                            className="mx-auto object-cover  " // center the image horizontally
                             priority // optional: preload if this image is above the fold
                         />
                     </div>

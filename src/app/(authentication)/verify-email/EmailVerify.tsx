@@ -25,7 +25,7 @@ const EmailVerify: React.FC = () => {
 
     const { email } = formData;
 
-    console.log(`payload is ${email}`)
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

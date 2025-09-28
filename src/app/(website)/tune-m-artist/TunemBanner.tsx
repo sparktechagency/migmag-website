@@ -13,7 +13,7 @@ const TunemBanner = () => {
         <MaxWidth>
           <div className="flex flex-col lg:flex-row items-stretch">
             {/* Left side */}
-            <div className="lg:w-[50%] lg:mt-14 space-y-4">
+            <div className="lg:w-[60%] lg:mt-14 space-y-4">
               <div className="ml-[21%]">
                 <span>
                   <svg width="174" height="22" viewBox="0 0 174 22" fill="none"

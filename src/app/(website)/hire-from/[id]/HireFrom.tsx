@@ -8,8 +8,7 @@ interface HireFromProps {
     id: string | number; // adjust type as needed
 }
 const HireFrom: React.FC<HireFromProps> = ({ id }) => {
-
-    console.log(`------ id is-------- `, id);
+    console.log(id)
 
     const [lyricsChecked, setLyricsChecked] = useState(false);
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
