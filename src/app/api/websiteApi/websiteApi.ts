@@ -68,7 +68,6 @@ export const websiteApi = createApi({
 
         browseCoverVocalApi: builder.query({
             query: ({ filter, globalSearch }) => {
-                console.log(` filter is ${filter} `)
                 const params = new URLSearchParams();
 
                 if (globalSearch) {
@@ -142,7 +141,8 @@ export const websiteApi = createApi({
                 method: "POST",
                 body: payload
             })
-        })
+        }),
+
 
 
 

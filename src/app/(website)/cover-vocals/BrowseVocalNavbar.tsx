@@ -106,7 +106,7 @@ const BrowseVocalNavbar: React.FC = () => {
                     setUserData(res.data.data);
                 }
             } catch (err) {
-                console.log(err);
+                
                 const error = err as AxiosError<{ message: string }>;
                 console.log(error)
             }
@@ -308,7 +308,7 @@ const BrowseVocalNavbar: React.FC = () => {
                                 <FiX size={24} className=' cursor-pointer ' />
                             </button>
                         </div>
-                        <ul style={{ fontFamily: "Favorit" }} className="flex flex-col p-4 gap-4">
+                        <ul className="flex flex-col p-4 gap-4">
                             <li><Link className={`${pathname === "/vocals" ? "text-[#E7F056]" : 'text-black'}`}
                                 href="/vocals">Vocals</Link></li>
                             <li><Link className={`${pathname === "/cover-vocals" ? "text-[#E7F056]" : 'text-black'}`}

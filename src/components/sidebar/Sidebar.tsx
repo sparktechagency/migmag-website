@@ -49,11 +49,10 @@ const Sidebar: React.FC = () => {
     // user profile
 
     const { data: userProfile } = useUserProfileQuery(undefined);
-    console.log(`userProfile ${userProfile} `)
 
     const userData = userProfile?.data;
 
-    console.log(userData)
+   
 
 
 

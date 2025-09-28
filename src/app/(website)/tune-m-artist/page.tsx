@@ -332,7 +332,7 @@ const Page: React.FC = () => {
 
         {/* website content  */}
 
-      <TunemBanner></TunemBanner>
+        <TunemBanner></TunemBanner>
 
 
       </div>
@@ -345,7 +345,7 @@ const Page: React.FC = () => {
       <ApplayTune></ApplayTune>
       <ApplayVocalistFrom></ApplayVocalistFrom>
       <FeatureSection></FeatureSection>
-      {/* <CoreValue></CoreValue> */}
+
       <CtaSection></CtaSection>
 
 

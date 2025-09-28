@@ -84,7 +84,7 @@ const BrowseAllVocal = () => {
     const [selectedBPM, setSelectedBPM] = useState<number[]>([]);
     const [openBPM, setOpenBPM] = useState<boolean>(false);
 
-
+    console.log(selectedBPM)
 
 
 
@@ -228,9 +228,6 @@ const BrowseAllVocal = () => {
     });
 
     const [globalSearch, setGlobalSearch] = useState<string>('');
-    const [searchTerm, setSearchTerm] = useState<string>('');
-
-    console.log(searchTerm, selectedBPM)
 
 
 
@@ -268,9 +265,7 @@ const BrowseAllVocal = () => {
         }
     }, [browseVocalData]);
 
-    console.log('browseVocalData:', JSON.stringify(browseVocalData?.data?.data, null, 2));
 
-    console.log(`track is ${tracks}`)
 
 
 
@@ -297,7 +292,7 @@ const BrowseAllVocal = () => {
         key: keyof FilterState,
         value: string | number | number[]
     ) => {
-        console.log("filter change:", key, value);
+
 
         setFilter((prev) => ({
             ...prev,
@@ -341,7 +336,6 @@ const BrowseAllVocal = () => {
         setselectLatest([]);
 
         // Reset search inputs
-        setSearchTerm("");
         setGlobalSearch("");
     };
 

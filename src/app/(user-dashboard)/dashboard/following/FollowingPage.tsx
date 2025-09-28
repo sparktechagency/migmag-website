@@ -1,10 +1,10 @@
 "use client";
 
 
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
-import {useRouter} from "next/navigation";
-import {imgUrl} from "@/utility/img/imgUrl";
+import { useRouter } from "next/navigation";
+import { imgUrl } from "@/utility/img/imgUrl";
 import { useAllFollowingArtistQuery } from '@/app/api/authApi/authApi';
 import { FollowedArtist } from '@/utility/type/authType';
 
@@ -24,15 +24,15 @@ const FollowingPage: React.FC = () => {
 
     }, [router]);
 
-    const {data} = useAllFollowingArtistQuery(undefined);
-
-    console.log(`data is ${data} `)
+    const { data } = useAllFollowingArtistQuery(undefined);
 
 
 
 
-    const artistList : FollowedArtist[] = data?.data?.data || [];
-   
+
+
+    const artistList: FollowedArtist[] = data?.data?.data || [];
+
     return (
 
         <main>

@@ -20,14 +20,14 @@ const reviews: Review[] = [
     {
         name: "Kimberly",
         role: "Vocalist at TuneM",
-        image: "/client-demo/jessica-update-1.png",
+        image: "/client-demo/kimberly-1.png",
         review:
             "Working with TuneM for over five years has been a steady part of my growth as an artist. It’s opened up a lot of opportunities, and over time, it’s helped me build a career where I can support myself through music",
     },
     {
         name: "Sophianne",
         role: "Songwriter at TuneM",
-        image: "/client-demo/jessica-update-1.png",
+        image: "/client-demo/sophianne.png",
         review:
             "TuneM has helped me grow as a songwriter by giving me real opportunities to collaborate with vocalists and producers. It’s been one of the most reliable platforms I’ve worked with, and I’ve been able to steadily build a catalogue that actually gets used.",
     },
@@ -59,7 +59,7 @@ const ArtistSlider: React.FC = () => {
                                             alt={review.name}
                                             width={96} // pixel perfect 24*4 (Tailwind w-24)
                                             height={96}
-                                            className="rounded-full object-cover w-20 h-20"
+                                            className="rounded-full    w-24 h-24"
                                         />
                                     </div>
                                 )}
@@ -83,7 +83,7 @@ const ArtistSlider: React.FC = () => {
                                             alt={review.name}
                                             width={96} // pixel perfect 20*4 (Tailwind w-20)
                                             height={96}
-                                            className="rounded-full object-cover w-20 h-20"
+                                            className="rounded-full  w-24 h-24"
                                         />
                                     </div>
                                 )}

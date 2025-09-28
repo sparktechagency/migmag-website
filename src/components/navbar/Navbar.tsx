@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
           setUserData(res.data.data);
         }
       } catch (err) {
-        console.log(err);
+        
         const error = err as AxiosError<{ message: string }>;
         console.log(error)
       }
