@@ -41,24 +41,7 @@ const faqs: FaqType[] = [
 
 ];
 
-const techDetails: FaqType[] = [
-    {
-        question: "What are wet vocals?",
-        answer: "Vocals processed with effects (e.g., reverb/delay). Ready to use."
-    },
-    {
-        question: "What are dry vocals?",
-        answer: "Raw, unprocessed vocals for your own mixing and FX."
-    },
-    {
-        question: "How many vocal takes are included?",
-        answer: "You’ll receive at least 3 lead takes. Harmonies and ad-libs may also be included."
-    },
-    {
-        question: "Are these vocals exclusive to TuneM?",
-        answer: "Yes. All vocals are produced for and sold only via TuneM."
-    }
-]
+
 
 
 const Faq = () => {

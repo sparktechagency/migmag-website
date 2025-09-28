@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useArtistListApiQuery } from "@/app/api/websiteApi/websiteApi";
 import ArtistCard from "./ArtistCard";

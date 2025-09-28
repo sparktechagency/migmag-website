@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
-import { useAddFollowMutation, useUnFollowMutation } from '@/app/api/authApi/authApi';
+import { useAddFollowMutation } from '@/app/api/authApi/authApi';
 // import dynamic from 'next/dynamic';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 
@@ -51,7 +51,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
     const [addFollow] = useAddFollowMutation()
 
-    const [unFollow] = useUnFollowMutation()
+    // const [unFollow] = useUnFollowMutation()
 
     const artistData = data?.data?.artist;
     const songs = data?.data?.songs ?? [];
@@ -110,54 +110,54 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
             }
         }
     };
-    const handleUnFollow = async () => {
-        try {
-            const res = await unFollow({ id }).unwrap(); // ✅ pass id as object
+    // const handleUnFollow = async () => {
+    //     try {
+    //         const res = await unFollow({ id }).unwrap(); // ✅ pass id as object
 
-            if (res?.success) {
-                refetch();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: res.message,
-                    showConfirmButton: true,
-                    timer: 1500,
-                });
-            }
-        } catch (err) {
-            const error = err as FetchBaseQueryError | SerializedError;
+    //         if (res?.success) {
+    //             refetch();
+    //             Swal.fire({
+    //                 position: "top-end",
+    //                 icon: "success",
+    //                 title: res.message,
+    //                 showConfirmButton: true,
+    //                 timer: 1500,
+    //             });
+    //         }
+    //     } catch (err) {
+    //         const error = err as FetchBaseQueryError | SerializedError;
 
-            if ('status' in error) {
-                const data = error.data as { message?: string; statusCode?: number } | undefined;
+    //         if ('status' in error) {
+    //             const data = error.data as { message?: string; statusCode?: number } | undefined;
 
-                if (error.status === 400) {
-                    Swal.fire({
-                        icon: "warning",
-                        text: data?.message || "Something went wrong.",
-                        showConfirmButton: true,
-                        position: "top-end",
-                    });
-                }
+    //             if (error.status === 400) {
+    //                 Swal.fire({
+    //                     icon: "warning",
+    //                     text: data?.message || "Something went wrong.",
+    //                     showConfirmButton: true,
+    //                     position: "top-end",
+    //                 });
+    //             }
 
-                if (error.status === 401) {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Unauthorized",
-                        text: data?.message || "Please log in to follow.",
-                        confirmButtonText: "Login",
-                    }).then(() => {
-                        router.push("/login");
-                    });
-                }
+    //             if (error.status === 401) {
+    //                 Swal.fire({
+    //                     icon: "warning",
+    //                     title: "Unauthorized",
+    //                     text: data?.message || "Please log in to follow.",
+    //                     confirmButtonText: "Login",
+    //                 }).then(() => {
+    //                     router.push("/login");
+    //                 });
+    //             }
 
-                if (error.status === 500 || data?.statusCode === 500) {
-                    router.push("/login");
-                }
-            } else {
-                console.error("Unexpected error:", error);
-            }
-        }
-    };
+    //             if (error.status === 500 || data?.statusCode === 500) {
+    //                 router.push("/login");
+    //             }
+    //         } else {
+    //             console.error("Unexpected error:", error);
+    //         }
+    //     }
+    // };
 
 
     const [showModal, setShowModal] = useState(false);

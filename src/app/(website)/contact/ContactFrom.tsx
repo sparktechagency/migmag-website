@@ -28,8 +28,8 @@ const ContactFrom = () => {
         </MaxWidth>
       </div>
       <MaxWidth>
-        <div className="my-6 flex flex-col lg:flex-row    " >
-          <div className=' max-w-[50%] lg:w-[50%] w-full  ' >
+        <div className="my-6 flex flex-col lg:flex-row  space-y-5   " >
+          <div className='  md:w-[50%] w-full  ' >
             {/* email  */}
             <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
               <span>
@@ -127,7 +127,7 @@ const ContactFrom = () => {
               Our dedicated team will help you as soon as possible with your inquiry. Get a reply within 24 hours.
             </div>
           </div>
-          <div className=' max-w-[50%] lg:w-[50%]  w-full   '  >
+          <div className=' md:w-[50%]  w-full   '  >
             <Image src={"/images/contact/contact-img.webp"} width={700} height={7000} alt='' className='' />
           </div>
         </div>

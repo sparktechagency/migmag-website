@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-
-const HireFrom: React.FC = ({ id }) => {
+interface HireFromProps {
+    id: string | number; // adjust type as needed
+}
+const HireFrom: React.FC<HireFromProps> = ({ id }) => {
 
     console.log(`------ id is-------- `, id);
 

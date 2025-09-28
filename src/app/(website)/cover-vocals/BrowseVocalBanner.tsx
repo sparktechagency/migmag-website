@@ -18,20 +18,20 @@ const BrowseVocalBanner: React.FC = () => {
             </p>
 
             {/* Logos Row */}
-            <div className="flex items-center -ml-2 ">
+            <div className="flex items-center ">
               <Image
                 src="/update-image/cover-vocal/banner/logo-3.png"
                 width={200}
                 height={200}
                 alt="Logo 3"
-                className="bg-contain w-40 h-40 "
+                className="bg-contain md:w-40 md:h-40 w-28 h-28  "
               />
               <Image
                 src="/update-image/cover-vocal/banner/logo-2.png"
                 width={200}
                 height={200}
                 alt="Logo 2"
-                className="bg-contain w-40 h-40 "
+                className="bg-contain lg:w-40 lg:h-40 w-28 h-28 "
               />
 
               <Image
@@ -39,7 +39,7 @@ const BrowseVocalBanner: React.FC = () => {
                 width={200}
                 height={200}
                 alt="Logo 1"
-                className="bg-contain w-40 h-40  "
+                className="bg-contain lg:w-40 lg:h-40 w-28 h-28  "
               />
             </div>
           </div>

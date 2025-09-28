@@ -72,6 +72,7 @@ const SingerCard: React.FC<ArtistCardProps> = ({
         if (audioRef.current) {
             const handlePause = () => setIsPlaying(false);
             audioRef.current.addEventListener("pause", handlePause);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             return () => audioRef.current?.removeEventListener("pause", handlePause);
         }
     }, []);

@@ -89,7 +89,7 @@ const LoginForm: React.FC = () => {
                             Welcome!
                         </h1>
                         <p className="mt-2 text-white text-lg text-center">
-                            Please register with valid information for create account.
+                            Please login with valid information for create account.
                         </p>
                     </div>
 
