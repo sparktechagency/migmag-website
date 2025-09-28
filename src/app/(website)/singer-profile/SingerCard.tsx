@@ -3,6 +3,9 @@ import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { imgUrl } from "@/utility/img/imgUrl";
+import { FaPlay } from "react-icons/fa6";
+import { IoIosPause } from "react-icons/io";
+
 
 interface ArtistCardProps {
     id: number;
@@ -74,7 +77,7 @@ const SingerCard: React.FC<ArtistCardProps> = ({
     }, []);
 
     return (
-        <div className="flex items-center justify-between p-4 border-b py-6  transition-colors duration-200 gap-4">
+        <div className="flex items-center justify-between p-4 border-b py-6  transition-colors duration-200 gap-1 md:gap-4">
             {/* Left */}
             <div className="flex items-center gap-3 flex-1 min-w-0">
                 <Link href={`/singer-profile/${id}`}>
@@ -83,12 +86,12 @@ const SingerCard: React.FC<ArtistCardProps> = ({
                         alt={name}
                         width={50}
                         height={50}
-                        className="rounded-full w-16 h-16"
+                        className="rounded-full w-10 h-10  md:w-16 md:h-16"
                     />
                 </Link>
                 <div className="truncate">
-                    <h3 className="font-semibold  text-black  truncate">{name}</h3>
-                    <p className="text-sm  text-black  truncate">{singer}</p>
+                    <h3 className="font-semibold md:text-[16px] text-xs  text-black  truncate">{name}</h3>
+                    <p className="md:text-sm text-xs  text-black  truncate">{singer}</p>
                 </div>
             </div>
 
@@ -104,18 +107,18 @@ const SingerCard: React.FC<ArtistCardProps> = ({
                 />
                 <button
                     onClick={togglePlay}
-                    className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white"
+                    className="md:w-10 md:h-10 w-7 h-7 cursor-pointer flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 text-white"
                 >
-                    {isPlaying ? "❚❚" : "▶"}
+                    {isPlaying ? <span><IoIosPause /></span> : <span><FaPlay /></span>}
                 </button>
-                <div className="flex-1 flex flex-col">
+                <div className="flex-1 flex flex-col  ">
                     {/* Progress bar */}
                     <div
-                        className="h-2 w-full bg-gray-700 rounded-full cursor-pointer relative"
+                        className="h-2 w-full bg-gray-700 rounded-full cursor-pointer relative hidden md:block  "
                         onClick={handleSeek}
                     >
                         <div
-                            className="h-2 bg-blue-500 rounded-full"
+                            className="h-2 bg-blue-500 rounded-full  "
                             style={{ width: `${progress}%` }}
                         />
                         {/* Thumb */}
@@ -126,16 +129,16 @@ const SingerCard: React.FC<ArtistCardProps> = ({
                     </div>
                     <div className="flex justify-between text-xs text-black mt-1">
                         <span>{formatTime(currentTime)}</span>
-                        <span>{formatTime(duration)}</span>
+                        <span className={" md:block hidden "} >{formatTime(duration)}</span>
                     </div>
                 </div>
             </div>
 
             {/* Right */}
             <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
-                <h1 className="text-white font-semibold text-xl">23$</h1>
+                <h1 className="text-black text-sm  font-semibold md:text-xl">23$</h1>
                 <Link href={`/hire-from/${id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md cursor-pointer">
+                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-2  lg:px-4 lg:py-2 py-1 md:text-[16px] text-xs rounded-md cursor-pointer">
                         Hire Now
                     </button>
                 </Link>

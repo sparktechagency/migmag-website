@@ -22,25 +22,30 @@ export default function Pricing() {
                     </div>
 
                     {/* Tabs */}
-                    <div className="mt-6 md:mt-0 flex items-center h-10 bg-gray-100 rounded-full w-[50%]   md:w-[15%] relative">
+                    <div className="mt-6 md:mt-0 flex items-center h-12 bg-gray-100 rounded-full  justify-end  px-6 gap-x-5 relative">
                         <div>
                             <button
                                 onClick={() => setActiveTab("monthly")}
-                                className={` cursor-pointer px-4 py-2 text-sm font-medium rounded-full ${activeTab === "monthly" ? "bg-white shadow text-black" : "text-gray-500"
+                                className={` cursor-pointer px-6 py-2 text-sm font-medium rounded-full ${activeTab === "monthly" ? "bg-white shadow text-black" : "text-gray-500"
                                     }`}
                             >
                                 Monthly
+                                {activeTab === "monthly" && (
+                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full border  ">
+                                        2 MONTHS FREE
+                                    </span>
+                                )}
                             </button>
                         </div>
                         <div>
                             <button
                                 onClick={() => setActiveTab("yearly")}
-                                className={` cursor-pointer px-4 py-2 text-sm font-medium rounded-full relative ${activeTab === "yearly" ? "bg-white shadow text-black" : "text-gray-500"
+                                className={` cursor-pointer px-6 py-2 text-sm font-medium rounded-full relative ${activeTab === "yearly" ? "bg-white shadow text-black" : "text-gray-500"
                                     }`}
                             >
                                 Yearly
                                 {activeTab === "yearly" && (
-                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white w-full  text-[10px] px-2 py-0.5 rounded-full">
+                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full">
                                         2 MONTHS FREE
                                     </span>
                                 )}

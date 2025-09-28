@@ -381,7 +381,7 @@ const BrowseAllVocal = () => {
                         {/* Title Section */}
                         <div className='flex-1 w-full'>
                             <h1 className='lg:text-3xl md:text-2xl text-xl font-bold leading-9 text-white'>
-                                 <span className='text-[#818080]'>Vocals</span>
+                                <span className='text-[#818080]'>Vocals</span>
                             </h1>
                         </div>
 
@@ -411,7 +411,7 @@ const BrowseAllVocal = () => {
 
 
                     <div
-                        className=" hidden lg:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
+                        className=" hidden md:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
 
 
                         {/* BPM */}
@@ -567,7 +567,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 scrollbar-custom bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto  shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {
@@ -594,7 +594,11 @@ const BrowseAllVocal = () => {
                             </AnimatePresence>
                         </div>
 
+
                         {/*genre start */}
+
+
+
                         <div className="relative w-full " ref={genreRef}>
                             <button
                                 type="button"
@@ -621,7 +625,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 scrollbar-custom rounded-2xl w-full max-h-44 overflow-auto  shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
                                     >
                                         {genreData.map((genre) => (
@@ -673,7 +677,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 scrollbar-custom rounded-2xl w-full max-h-44 overflow-auto  shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {gender.map((gender) => (
@@ -729,7 +733,7 @@ const BrowseAllVocal = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
                                         transition={{ duration: 0.4, ease: "easeInOut" }}
-                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl scrollbar-custom w-full max-h-44 overflow-auto  shadow-lg"
                                         style={{ top: "calc(100% + 0.5rem)" }}
                                     >
                                         {
@@ -761,6 +765,362 @@ const BrowseAllVocal = () => {
                     </div>
 
                     {/*small device */}
+
+
+
+
+
+                    <div className={"flex flex-wrap gap-x-2 gap-y-4 md:hidden  "} >
+                        {/* BPM */}
+
+                        <div className="relative w-[30%]   " ref={bpmRef}>
+                            <button
+                                type="button"
+                                className="bg-[#201F1F]  relative  text-white px-5 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                onClick={() => setOpenBPM(!openBPM)}
+                            >
+                                {openBPM ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                ) : (
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                )}
+
+                                <span className="w-28 text-white md:text-lg   ">
+                                    BPM
+                                </span>
+                            </button>
+
+                            <AnimatePresence>
+                                {openBPM && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        className="fixed inset-0  bg-opacity-50 flex items-center justify-center z-50  "
+                                    >
+                                        <div
+                                            ref={bpmRef}
+                                            className="bg-[#201F1F]  rounded-2xl p-6  w-full overflow-auto"
+                                        >
+                                            <div className="flex justify-between items-center mb-4">
+                                                <h2 className="text-white text-xl font-semibold">Filter By BPM</h2>
+                                                <button onClick={() => setOpenBPM(false)}
+                                                    className="cursor-pointer text-white text-2xl">×
+                                                </button>
+                                            </div>
+
+                                            <div className="flex flex-col   gap-6">
+
+
+                                                <div className="flex flex-col items-center gap-4 w-full  ">
+                                                    {/* Selected BPM and Range Input */}
+                                                    <div className="relative w-[80%] pt-8">
+                                                        {/* Number Labels */}
+                                                        <div
+                                                            className="absolute  -top-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
+                                                            style={{ left: `calc(${getPercent(minValue)}% - 20px)` }}
+                                                        >
+                                                            {minValue.toFixed(2)}
+                                                        </div>
+                                                        <div
+                                                            className="absolute  -top-4  -ml-4 text-sm font-semibold text-white bg-black px-2 py-1 rounded"
+                                                            style={{ left: `calc(${getPercent(maxValue)}% - 20px)` }}
+                                                        >
+                                                            {maxValue.toFixed(2)}
+                                                        </div>
+
+                                                        {/* Track */}
+                                                        <div
+                                                            className="w-full h-2 rounded-full"
+                                                            style={{ background: getTrackBackground() }}
+                                                        />
+
+                                                        {/* Left Thumb */}
+                                                        <input
+                                                            type="range"
+                                                            min={minBPM}
+                                                            max={maxBPM}
+                                                            value={minValue}
+                                                            onChange={(e) => {
+                                                                const val = Math.min(Number(e.target.value), maxValue - 1);
+                                                                setMinValue(val);
+                                                            }}
+                                                            className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
+                                                        />
+
+                                                        {/* Right Thumb */}
+                                                        <input
+                                                            type="range"
+                                                            min={minBPM}
+                                                            max={maxBPM}
+                                                            value={maxValue}
+                                                            onChange={(e) => {
+                                                                const val = Math.max(Number(e.target.value), minValue + 1);
+                                                                setMaxValue(val);
+                                                            }}
+                                                            className="absolute top-8 w-full h-4 appearance-none bg-transparent pointer-events-auto"
+                                                        />
+                                                    </div>
+
+                                                    {/* Buttons */}
+                                                    <div className="flex justify-center items-center gap-4 w-full">
+                                                        <button
+                                                            onClick={() => {
+                                                                setSelectedBPM([]); // or default value
+                                                                handleFilterChange("bpm", "");
+                                                                setOpenBPM(false)
+                                                            }}
+                                                            className="bg-gray-700 cursor-pointer text-white px-4 py-1 rounded-lg hover:bg-gray-600 transition"
+                                                        >
+                                                            Reset
+                                                        </button>
+
+                                                        <button
+                                                            onClick={() => {
+                                                                handleFilterChange("bpm", [minValue, maxValue]); // ✅ now valid
+                                                                setSelectedBPM([minValue, maxValue]);
+                                                                setOpenBPM(false);
+                                                            }}
+                                                            className="bg-[#E7F056] cursor-pointer text-black px-4 py-1 font-semibold rounded-lg transition"
+                                                        >
+                                                            Filter
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        {/*key start */}
+
+
+                        <div className="relative w-[30%]  " ref={keyRef}>
+                            <button
+                                type="button"
+                                className="bg-[#201F1F] text-white md:px-5 px-5 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                onClick={() => setOpenKey(!openKey)}
+                            >
+                                {/* Icon on RIGHT side */}
+                                {openKey ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                ) : (
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                )}
+
+                                {/* Only show selected count */}
+                                <span className="w-28 text-white md:text-lg ">
+                                    {selectedKey.length > 0 ? <>Selected {selectedKey.length}</> : "Key"}
+                                </span>
+                            </button>
+
+                            <AnimatePresence>
+                                {openKey && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-[100%]  max-h-44 overflow-auto scrollbar-custom border border-gray-700 shadow-lg"
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
+                                    >
+                                        {
+                                            keyData.map((key, index) => (
+                                                <label
+                                                    key={index}
+                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectedKey.includes(key?.name)}
+                                                        onChange={(e) => {
+                                                            toggleKey(key?.name);
+                                                            handleFilterChange("key", e.target.checked ? key?.id : "");
+                                                        }}
+                                                        className="mr-3 accent-indigo-500 md:w-5 md:h-5 w-4 h-4"
+                                                    />
+                                                    <span className="text-white md:text-lg">{key.name}</span>
+                                                </label>
+                                            ))
+                                        }
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+
+                        {/*genre start */}
+
+
+
+                        <div className="relative w-[35%] " ref={genreRef}>
+                            <button
+                                type="button"
+                                className="bg-[#201F1F] text-white md:px-5 px-5 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                onClick={() => setOpen(!open)}
+                            >
+                                {/* Icon on RIGHT side */}
+                                {open ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                ) : (
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                )}
+
+                                {/* Only show selected count */}
+                                <span className="w-28 text-white md:text-lg ">
+                                    {selectGenre.length > 0 ? <>Selected {selectGenre.length}</> : "Genre"}
+                                </span>
+                            </button>
+
+                            <AnimatePresence>
+                                {open && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 scrollbar-custom  overflow-auto border border-gray-700 shadow-lg"
+                                        style={{ top: "calc(100% + 0.5rem)" }} // better margin than mt-20
+                                    >
+                                        {genreData.map((genre) => (
+                                            <label
+                                                key={genre.id}
+                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectGenre.includes(genre?.name)}
+                                                    onChange={(e) => {
+                                                        toggleGenre(genre?.name);
+                                                        handleFilterChange('genre', e.target.checked ? genre?.name : '');
+                                                    }}
+                                                    className="mr-3 accent-indigo-500 md:w-5 md:h-5 w-4 h-4"
+                                                />
+                                                <span className="text-white md:text-lg   ">{genre?.name}</span>
+                                            </label>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+
+                        {/* Gender */}
+
+                        <div className="relative w-[35%] " ref={genderRef}>
+                            <button
+                                type="button"
+                                className="bg-[#201F1F]  relative  text-white px-5 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                onClick={() => setOpenGender(!openGender)}
+                            >
+                                {openGender ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                ) : (
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                )}
+
+                                <span className="w-28 text-white md:text-lg  ">
+                                    {selectedGender.length > 0 ? <>Selected {selectedGender.length}</> : "Gender"}
+                                </span>
+                            </button>
+
+                            <AnimatePresence>
+                                {openGender && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl w-full max-h-44 overflow-auto border border-gray-700 shadow-lg"
+                                        style={{ top: "calc(100% + 0.5rem)" }}
+                                    >
+                                        {gender.map((gender) => (
+                                            <label
+                                                key={gender}
+                                                className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedGender.includes(gender)}
+                                                    onChange={(e) => {
+                                                        toggleGender(gender);
+                                                        handleFilterChange('gender', e.target.checked ? gender : '');
+                                                    }}
+                                                    className="mr-3 accent-indigo-500 w-5 h-5"
+                                                />
+                                                <span className="text-white md:text-lg ">{gender}</span>
+                                            </label>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+
+                        {/* latest  */}
+
+
+                        <div className="relative w-[35%]  " ref={latestRef}>
+                            <button
+                                type="button"
+                                className="bg-[#201F1F]  relative  text-white px-5 py-2 rounded-2xl w-full text-left cursor-pointer flex items-center gap-2"
+                                onClick={() => setOpenLatest(!openLatest)}
+                            >
+                                {openLatest ? (
+                                    <HiChevronUp className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                ) : (
+                                    <HiChevronDown className="text-white w-5 h-5 absolute right-2 md:right-4" />
+                                )}
+
+                                <span className="w-28 text-white md:text-lg   ">
+                                    {selectLatest.length > 0 ? <>Selected {selectLatest.length}</> : "Latest"}
+                                </span>
+                            </button>
+
+                            <AnimatePresence>
+                                {openLatest && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                        className="absolute z-10 mt-2 bg-gray-800 rounded-2xl  w-[100%]  max-h-44 overflow-auto scrollbar-custom  shadow-lg"
+                                        style={{ top: "calc(100% + 0.5rem)" }}
+                                    >
+                                        {
+                                            latest.map((item) => (
+                                                <label
+                                                    key={item}
+                                                    className="flex items-center px-4 py-3 hover:bg-gray-700 cursor-pointer"
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={selectLatest.includes(item)}
+                                                        onChange={(e) => {
+                                                            toggleLatest(item);
+                                                            handleFilterChange('latest', e.target.checked ? item : '');
+                                                        }}
+                                                        className="mr-3 accent-indigo-500 w-5 h-5"
+                                                    />
+                                                    <span className="text-white md:text-lg  ">{item}</span>
+                                                </label>
+                                            ))
+                                        }
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
 
 
 

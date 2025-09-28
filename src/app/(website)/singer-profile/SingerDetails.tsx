@@ -178,7 +178,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
 
     return (
-        <div className=' mt-20   '>
+        <div className=' md:mt-20 mt-8   '>
             <MaxWidth>
                 {/* profile image  */}
                 <div
@@ -222,49 +222,25 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                         </div>
                     </div>
                     {/* right section  */}
-                    <div className={``}>
+                    <div className={` mt-4 md:mt-0 `}>
 
                         <div
                             className=' textColor   flex  justify-center gap-x-3.5 space-y-3 lg:space-y-6  '>
                             <div>
 
-                                {
-                                    data?.data?.artist?.is_followed === 1 ?
-
-                                        <div
-                                            className=' textColor  flex justify-center gap-x-3.5 space-y-3 lg:space-y-6 '>
-                                            <button
-                                                onClick={handleUnFollow}
-                                                className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
-                                                <span>
-                                                    <svg width="27" height="25" viewBox="0 0 27 27" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fillRule="evenodd" clipRule="evenodd"
-                                                            d="M18 15.75C19.4918 15.75 20.9226 16.3426 21.9775 17.3975C23.0324 18.4524 23.625 19.8832 23.625 21.375V23.625C23.625 23.9234 23.5065 24.2095 23.2955 24.4205C23.0845 24.6315 22.7984 24.75 22.5 24.75C22.2016 24.75 21.9155 24.6315 21.7045 24.4205C21.4935 24.2095 21.375 23.9234 21.375 23.625V21.375C21.375 20.4799 21.0194 19.6214 20.3865 18.9885C19.7536 18.3556 18.8951 18 18 18H9C8.10489 18 7.24645 18.3556 6.61351 18.9885C5.98058 19.6214 5.625 20.4799 5.625 21.375V23.625C5.625 23.9234 5.50647 24.2095 5.29549 24.4205C5.08452 24.6315 4.79837 24.75 4.5 24.75C4.20163 24.75 3.91548 24.6315 3.7045 24.4205C3.49353 24.2095 3.375 23.9234 3.375 23.625V21.375C3.375 19.8832 3.96763 18.4524 5.02252 17.3975C6.07742 16.3426 7.50816 15.75 9 15.75H18ZM24.0907 10.2161C24.2927 10.0122 24.565 9.89321 24.8519 9.88348C25.1387 9.87375 25.4184 9.97402 25.6338 10.1638C25.8491 10.3535 25.9838 10.6184 26.0102 10.9042C26.0367 11.19 25.9529 11.4751 25.776 11.7011L25.6815 11.808L22.5 14.9895C22.3063 15.1832 22.0485 15.2996 21.7751 15.3168C21.5017 15.3339 21.2315 15.2508 21.015 15.0829L20.9093 14.9895L19.3185 13.3988C19.1146 13.1968 18.9956 12.9245 18.9859 12.6376C18.9761 12.3508 19.0764 12.0711 19.2661 11.8557C19.4559 11.6404 19.7208 11.5057 20.0066 11.4793C20.2924 11.4528 20.5775 11.5366 20.8035 11.7135L20.9093 11.8069L21.7046 12.6034L24.0907 10.2161ZM13.5 2.25C14.9918 2.25 16.4226 2.84263 17.4775 3.89752C18.5324 4.95242 19.125 6.38316 19.125 7.875C19.125 9.36684 18.5324 10.7976 17.4775 11.8525C16.4226 12.9074 14.9918 13.5 13.5 13.5C12.0082 13.5 10.5774 12.9074 9.52252 11.8525C8.46763 10.7976 7.875 9.36684 7.875 7.875C7.875 6.38316 8.46763 4.95242 9.52252 3.89752C10.5774 2.84263 12.0082 2.25 13.5 2.25ZM13.5 4.5C13.0568 4.5 12.6179 4.5873 12.2084 4.75691C11.799 4.92652 11.4269 5.17512 11.1135 5.48851C10.8001 5.80191 10.5515 6.17397 10.3819 6.58344C10.2123 6.99292 10.125 7.43179 10.125 7.875C10.125 8.31821 10.2123 8.75708 10.3819 9.16656C10.5515 9.57603 10.8001 9.94809 11.1135 10.2615C11.4269 10.5749 11.799 10.8235 12.2084 10.9931C12.6179 11.1627 13.0568 11.25 13.5 11.25C14.3951 11.25 15.2536 10.8944 15.8865 10.2615C16.5194 9.62855 16.875 8.77011 16.875 7.875C16.875 6.97989 16.5194 6.12145 15.8865 5.48851C15.2536 4.85558 14.3951 4.5 13.5 4.5Z"
-                                                            fill="#222222" />
-                                                    </svg>
-                                                </span>
-                                                Unfollow
-                                            </button>
-                                        </div>
-
-                                        :
-
-                                        <button
-                                            onClick={handleFollow}
-                                            className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
-                                            <span>
-                                                <svg width="27" height="25" viewBox="0 0 27 27" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fillRule="evenodd" clipRule="evenodd"
-                                                        d="M18 15.75C19.4918 15.75 20.9226 16.3426 21.9775 17.3975C23.0324 18.4524 23.625 19.8832 23.625 21.375V23.625C23.625 23.9234 23.5065 24.2095 23.2955 24.4205C23.0845 24.6315 22.7984 24.75 22.5 24.75C22.2016 24.75 21.9155 24.6315 21.7045 24.4205C21.4935 24.2095 21.375 23.9234 21.375 23.625V21.375C21.375 20.4799 21.0194 19.6214 20.3865 18.9885C19.7536 18.3556 18.8951 18 18 18H9C8.10489 18 7.24645 18.3556 6.61351 18.9885C5.98058 19.6214 5.625 20.4799 5.625 21.375V23.625C5.625 23.9234 5.50647 24.2095 5.29549 24.4205C5.08452 24.6315 4.79837 24.75 4.5 24.75C4.20163 24.75 3.91548 24.6315 3.7045 24.4205C3.49353 24.2095 3.375 23.9234 3.375 23.625V21.375C3.375 19.8832 3.96763 18.4524 5.02252 17.3975C6.07742 16.3426 7.50816 15.75 9 15.75H18ZM24.0907 10.2161C24.2927 10.0122 24.565 9.89321 24.8519 9.88348C25.1387 9.87375 25.4184 9.97402 25.6338 10.1638C25.8491 10.3535 25.9838 10.6184 26.0102 10.9042C26.0367 11.19 25.9529 11.4751 25.776 11.7011L25.6815 11.808L22.5 14.9895C22.3063 15.1832 22.0485 15.2996 21.7751 15.3168C21.5017 15.3339 21.2315 15.2508 21.015 15.0829L20.9093 14.9895L19.3185 13.3988C19.1146 13.1968 18.9956 12.9245 18.9859 12.6376C18.9761 12.3508 19.0764 12.0711 19.2661 11.8557C19.4559 11.6404 19.7208 11.5057 20.0066 11.4793C20.2924 11.4528 20.5775 11.5366 20.8035 11.7135L20.9093 11.8069L21.7046 12.6034L24.0907 10.2161ZM13.5 2.25C14.9918 2.25 16.4226 2.84263 17.4775 3.89752C18.5324 4.95242 19.125 6.38316 19.125 7.875C19.125 9.36684 18.5324 10.7976 17.4775 11.8525C16.4226 12.9074 14.9918 13.5 13.5 13.5C12.0082 13.5 10.5774 12.9074 9.52252 11.8525C8.46763 10.7976 7.875 9.36684 7.875 7.875C7.875 6.38316 8.46763 4.95242 9.52252 3.89752C10.5774 2.84263 12.0082 2.25 13.5 2.25ZM13.5 4.5C13.0568 4.5 12.6179 4.5873 12.2084 4.75691C11.799 4.92652 11.4269 5.17512 11.1135 5.48851C10.8001 5.80191 10.5515 6.17397 10.3819 6.58344C10.2123 6.99292 10.125 7.43179 10.125 7.875C10.125 8.31821 10.2123 8.75708 10.3819 9.16656C10.5515 9.57603 10.8001 9.94809 11.1135 10.2615C11.4269 10.5749 11.799 10.8235 12.2084 10.9931C12.6179 11.1627 13.0568 11.25 13.5 11.25C14.3951 11.25 15.2536 10.8944 15.8865 10.2615C16.5194 9.62855 16.875 8.77011 16.875 7.875C16.875 6.97989 16.5194 6.12145 15.8865 5.48851C15.2536 4.85558 14.3951 4.5 13.5 4.5Z"
-                                                        fill="#222222" />
-                                                </svg>
-                                            </span>
-                                            Follow
-                                        </button>
-
-                                }
+                                <button
+                                    onClick={handleFollow}
+                                    className=' flex cursor-pointer  items-center gap-x-1  text-sm    px-2   border border-black rounded-2xl '>
+                                    <span>
+                                        <svg width="27" height="25" viewBox="0 0 27 27" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fillRule="evenodd" clipRule="evenodd"
+                                                d="M18 15.75C19.4918 15.75 20.9226 16.3426 21.9775 17.3975C23.0324 18.4524 23.625 19.8832 23.625 21.375V23.625C23.625 23.9234 23.5065 24.2095 23.2955 24.4205C23.0845 24.6315 22.7984 24.75 22.5 24.75C22.2016 24.75 21.9155 24.6315 21.7045 24.4205C21.4935 24.2095 21.375 23.9234 21.375 23.625V21.375C21.375 20.4799 21.0194 19.6214 20.3865 18.9885C19.7536 18.3556 18.8951 18 18 18H9C8.10489 18 7.24645 18.3556 6.61351 18.9885C5.98058 19.6214 5.625 20.4799 5.625 21.375V23.625C5.625 23.9234 5.50647 24.2095 5.29549 24.4205C5.08452 24.6315 4.79837 24.75 4.5 24.75C4.20163 24.75 3.91548 24.6315 3.7045 24.4205C3.49353 24.2095 3.375 23.9234 3.375 23.625V21.375C3.375 19.8832 3.96763 18.4524 5.02252 17.3975C6.07742 16.3426 7.50816 15.75 9 15.75H18ZM24.0907 10.2161C24.2927 10.0122 24.565 9.89321 24.8519 9.88348C25.1387 9.87375 25.4184 9.97402 25.6338 10.1638C25.8491 10.3535 25.9838 10.6184 26.0102 10.9042C26.0367 11.19 25.9529 11.4751 25.776 11.7011L25.6815 11.808L22.5 14.9895C22.3063 15.1832 22.0485 15.2996 21.7751 15.3168C21.5017 15.3339 21.2315 15.2508 21.015 15.0829L20.9093 14.9895L19.3185 13.3988C19.1146 13.1968 18.9956 12.9245 18.9859 12.6376C18.9761 12.3508 19.0764 12.0711 19.2661 11.8557C19.4559 11.6404 19.7208 11.5057 20.0066 11.4793C20.2924 11.4528 20.5775 11.5366 20.8035 11.7135L20.9093 11.8069L21.7046 12.6034L24.0907 10.2161ZM13.5 2.25C14.9918 2.25 16.4226 2.84263 17.4775 3.89752C18.5324 4.95242 19.125 6.38316 19.125 7.875C19.125 9.36684 18.5324 10.7976 17.4775 11.8525C16.4226 12.9074 14.9918 13.5 13.5 13.5C12.0082 13.5 10.5774 12.9074 9.52252 11.8525C8.46763 10.7976 7.875 9.36684 7.875 7.875C7.875 6.38316 8.46763 4.95242 9.52252 3.89752C10.5774 2.84263 12.0082 2.25 13.5 2.25ZM13.5 4.5C13.0568 4.5 12.6179 4.5873 12.2084 4.75691C11.799 4.92652 11.4269 5.17512 11.1135 5.48851C10.8001 5.80191 10.5515 6.17397 10.3819 6.58344C10.2123 6.99292 10.125 7.43179 10.125 7.875C10.125 8.31821 10.2123 8.75708 10.3819 9.16656C10.5515 9.57603 10.8001 9.94809 11.1135 10.2615C11.4269 10.5749 11.799 10.8235 12.2084 10.9931C12.6179 11.1627 13.0568 11.25 13.5 11.25C14.3951 11.25 15.2536 10.8944 15.8865 10.2615C16.5194 9.62855 16.875 8.77011 16.875 7.875C16.875 6.97989 16.5194 6.12145 15.8865 5.48851C15.2536 4.85558 14.3951 4.5 13.5 4.5Z"
+                                                fill="#222222" />
+                                        </svg>
+                                    </span>
+                                    Follow
+                                </button>
                             </div>
 
                             <div>
@@ -375,7 +351,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                 {/* contact us browse vocal section  */}
 
                 <div
-                    className=' flex flex-col lg:flex-row justify-between items-center px-4 lg:space-y-0 space-y-4 lg:gap-x-11 mt-[66px] '>
+                    className=' flex flex-col lg:flex-row justify-between items-center px-4 lg:space-y-0 space-y-4 lg:gap-x-11 mt-6 lg:mt-[66px] '>
                 </div>
 
 
@@ -406,20 +382,21 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
 
                             <div className="max-w-[700px] mx-auto">
-
-
-                                <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
-                                    <div className="w-full lg:w-[120px] lg:h-[130px] ">
+                                {/* Item 1 */}
+                                <div className="flex flex-col lg:flex-row items-center lg:items-start text-center md:text-start">
+                                    <div className="w-full lg:w-[100px] lg:h-[110px] flex justify-center lg:justify-start">
                                         <Image
                                             src="/update-image/singer-details/icon/mic-1.png"
                                             alt="Mic Icon"
                                             width={150}
                                             height={157}
-                                            className="w-full h-full object-cover"
+                                            className="h-20 w-20 object-cover"
                                         />
                                     </div>
                                     <div className="w-full transition duration-300">
-                                        <p className="headerColor font-bold text-lg lg:text-xl">1. WET + DRY Vocals</p>
+                                        <p className="headerColor font-bold text-lg lg:text-xl">
+                                            1. WET + DRY Vocals
+                                        </p>
                                         <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
                                             A fully mixed version (with FX) plus 3 raw takes ready to drop into any
                                             project.
@@ -427,45 +404,51 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                                     </div>
                                 </div>
 
-                                <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
-                                    <div className="w-full lg:w-[120px] lg:h-[130px]  ">
+                                {/* Item 2 */}
+                                <div className="flex flex-col lg:flex-row items-center lg:items-start text-center md:text-start mt-6">
+                                    <div className="w-full lg:w-[100px] lg:h-[110px] flex justify-center lg:justify-start">
                                         <Image
                                             src="/update-image/singer-details/icon/mic-3.png"
                                             alt="Mic Icon"
                                             width={150}
                                             height={157}
-                                            className="h-20 w-20 ml-2 mt-3 object-cover"
+                                            className="h-20 w-20 object-cover"
                                         />
                                     </div>
                                     <div className="w-full transition duration-300">
-                                        <p className="headerColor font-bold text-lg lg:text-xl">2. Lyrics + License</p>
+                                        <p className="headerColor font-bold text-lg lg:text-xl">
+                                            2. Lyrics + License
+                                        </p>
                                         <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
-                                            Includes a lyrics PDF and a <span
-                                                className={`font-bold`}>secure agreement</span> confirming your rights and
+                                            Includes a lyrics PDF and a <span className="font-bold">secure agreement</span> confirming your rights and
                                             ownership.
                                         </p>
                                     </div>
                                 </div>
 
-
-                                <div className="  flex flex-col lg:flex-row items-start lg:items-center ">
-                                    <div className="w-full lg:w-[120px] lg:h-[130px]  ">
+                                {/* Item 3 */}
+                                <div className="flex flex-col lg:flex-row items-center lg:items-start text-center md:text-start mt-6">
+                                    <div className="w-full lg:w-[100px] lg:h-[110px] flex justify-center lg:justify-start">
                                         <Image
                                             src="/update-image/singer-details/icon/mic-2.png"
                                             alt="Mic Icon"
                                             width={150}
                                             height={157}
-                                            className="h-24 w-24 mt-2 ml-1  object-cover"
+                                            className="h-20 w-20 object-cover"
                                         />
                                     </div>
                                     <div className="w-full transition duration-300">
-                                        <p className="headerColor font-bold text-lg lg:text-xl">3. 24bit WAV Files</p>
+                                        <p className="headerColor font-bold text-lg lg:text-xl">
+                                            3. 24bit WAV Files
+                                        </p>
                                         <p className="textColor font-light mt-2 lg:mt-4 text-base lg:text-lg leading-7">
-                                            Top-quality audio in professional format clean, clear, and production-ready.
+                                            Top-quality audio in professional format clean, clear, and
+                                            production-ready.
                                         </p>
                                     </div>
                                 </div>
                             </div>
+
 
 
                         </div>
@@ -477,49 +460,78 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
 
                 {/* Card Section */}
-                <div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20 ">
-                    <div className=" p-5   rounded-md text-[#000000] border  shadow ">
-                        <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
-                            <Image src={"/update-image/singer-details/icon/free.png"} alt={".."} width={150}
-                                height={150} />
-                        </div>
 
-                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold text-center  ">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6 md:mt-8 lg:mt-[59px] mb-6 md:mb-10 lg:mb-20">
+                    {/* Card 1 */}
+                    <div className="p-5 rounded-md text-[#000000] border shadow">
+                        <div className="flex justify-center">
+                            <div className="lg:w-[100px] lg:h-[100px] mx-auto rounded-full">
+                                <Image
+                                    src="/update-image/singer-details/icon/free.png"
+                                    alt="Royalty Free"
+                                    width={100}
+                                    height={100}
+                                    className="object-contain"
+                                />
+                            </div>
+                        </div>
+                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold text-center mt-4">
                             100% Royalty-Free
                         </h1>
                         <div className="mt-4 textColor lg:text-lg text-center leading-6">
-                            <p>Use your vocal anywhere release-ready and yours to keep, with full royalty rights.</p>
+                            <p>
+                                Use your vocal anywhere release-ready and yours to keep, with full royalty rights.
+                            </p>
                         </div>
                     </div>
-                    <div className=" p-5   rounded-md text-[#000000] border  shadow ">
-                        <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
-                            <Image src={"/update-image/singer-details/icon/wave.png"} alt={".."} width={150}
-                                height={150} />
-                        </div>
 
-                        <h1 className="text-xl headerColor lg:text-3xl leading-9 font-bold text-center  ">
+                    {/* Card 2 */}
+                    <div className="p-5 rounded-md text-[#000000] border shadow">
+                        <div className="flex justify-center">
+                            <div className="lg:w-[100px] lg:h-[100px] mx-auto rounded-full">
+                                <Image
+                                    src="/update-image/singer-details/icon/wave.png"
+                                    alt="Everything You Need"
+                                    width={100}
+                                    height={100}
+                                    className="object-contain"
+                                />
+                            </div>
+                        </div>
+                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold text-center mt-4">
                             Everything You Need
                         </h1>
-                        <div className=" text-center mt-4 textColor lg:text-lg leading-6">
-                            <p>Includes dry & wet stems, secure license, and invoice delivered instantly. MIDI available
-                                separately. </p>
+                        <div className="mt-4 textColor lg:text-lg text-center leading-6">
+                            <p>
+                                Includes dry & wet stems, secure license, and invoice delivered instantly. MIDI
+                                available separately.
+                            </p>
                         </div>
                     </div>
-                    <div className=" p-5   rounded-md text-[#000000] border  shadow ">
-                        <div className=' lg:w-[100px] lg:h-[100px]  mx-auto  rounded-full '>
-                            <Image src={"/update-image/singer-details/icon/love.png"} alt={".."} width={150}
-                                height={150} />
-                        </div>
 
-                        <h1 className="text-xl headerColor  text-center lg:text-3xl leading-9 font-bold ">
+                    {/* Card 3 */}
+                    <div className="p-5 rounded-md text-[#000000] border shadow">
+                        <div className="flex justify-center">
+                            <div className="lg:w-[100px] lg:h-[100px] mx-auto rounded-full">
+                                <Image
+                                    src="/update-image/singer-details/icon/love.png"
+                                    alt="Trusted Quality"
+                                    width={100}
+                                    height={100}
+                                    className="object-contain"
+                                />
+                            </div>
+                        </div>
+                        <h1 className="text-xl lg:text-3xl headerColor leading-9 font-bold text-center mt-4">
                             Trusted Quality, No Surprises
                         </h1>
-                        <div className="mt-4 textColor text-center lg:text-lg leading-6">
+                        <div className="mt-4 textColor lg:text-lg text-center leading-6">
                             <p>Every vocal is reviewed for clarity, tone, and performance</p>
                         </div>
                     </div>
                 </div>
+
+
 
                 <Suspense fallback={<h1>Loading.... </h1>}>
                     <MoreSinger></MoreSinger>
