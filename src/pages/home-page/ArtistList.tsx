@@ -74,7 +74,7 @@ const ArtistList: React.FC = () => {
                                 key={artist.id}
                                 className="bg-[#c5c1bf] p-2 rounded-lg h-64"
                             >
-                                <Link href="/artist-library">
+                                <Link href="/artist-list">
                                     <Image
                                         src={
                                             artist.profile.startsWith("http")
@@ -119,7 +119,7 @@ const ArtistList: React.FC = () => {
                                                         ? artist.profile
                                                         : `${imgUrl}/${artist.profile}`
                                                 }
-                                                width={213}
+                                                width={2000}
                                                 height={163}
                                                 alt={artist.name}
                                                 className="h-40 mx-auto w-full object-cover rounded-md"

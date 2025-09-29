@@ -1,62 +1,171 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import MaxWidth from "@/components/max-width/MaxWidth";
+import { GrNext, GrPrevious } from 'react-icons/gr';
 
 const HireVocal: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = React.useState(0);
+
+    // Hard-coded 5 images
+    const totalImages = 5;
+
+    // Auto slide every 3 seconds
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) =>
+                prev + 2 >= totalImages ? 0 : prev + 2
+            );
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 2 < 0 ? totalImages - 2 : prev - 2));
+    };
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 2 >= totalImages ? 0 : prev + 2));
+    };
+
 
     return (
         <div className=' '>
             <MaxWidth>
                 <h1 className=' text-center lg:mt-14 md:mt-7 mt-4 headerColor lg:text-3xl text-lg  font-bold  '>Our
                     Artists Recorded for</h1>
-                <div className="flex flex-col  sm:flex-row justify-between items-center gap-4 mx-auto mt-4">
-                    <div className="w-full sm:w-auto flex justify-center">
-                        <Image
-                            src="/update-image/sponser-logo/logo-1.png"
-                            alt="logo"
-                            width={145}
-                            height={70}
-                            className="object-cover"
-                        />
+                <div className={" hidden md:block "} >
+                    <div className="flex flex-col  sm:flex-row justify-between items-center gap-4 mx-auto mt-4">
+                        <div className="w-full sm:w-auto flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/logo-1.png"
+                                alt="logo"
+                                width={145}
+                                height={70}
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="w-full sm:w-auto flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-1.png"
+                                alt="logo"
+                                width={200}
+                                height={90}
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="w-full sm:w-auto flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-3.png"
+                                alt="logo"
+                                width={175}
+                                height={85}
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="w-full sm:w-auto flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-2.png"
+                                alt="logo"
+                                width={175}
+                                height={85}
+                                className="object-cover"
+                            />
+                        </div>
+
+                        <div className="w-full sm:w-auto flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-4.png"
+                                alt="logo"
+                                width={120}
+                                height={70}
+                                className="object-cover"
+                            />
+                        </div>
                     </div>
-                    <div className="w-full sm:w-auto flex justify-center">
-                        <Image
-                            src="/update-image/sponser-logo/sponser-1.png"
-                            alt="logo"
-                            width={200}
-                            height={90}
-                            className="object-cover"
-                        />
+                </div>
+
+
+                <div className="relative w-full block md:hidden my-6 overflow-hidden">
+                    {/* Slider Track */}
+                    <div
+                        className="flex transition-transform duration-500"
+                        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        {/* Slide 1 */}
+                        <div className="flex-shrink-0 w-full flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/logo-1.png"
+                                alt="logo-1"
+                                width={130}
+                                height={30}
+                                className="object-cover w-36"
+                            />
+                        </div>
+
+                        {/* Slide 2 */}
+                        <div className="flex-shrink-0 w-full flex justify-center">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-1.png"
+                                alt="logo-2"
+                                width={200}
+                                height={90}
+                                className="object-cover w-36"
+                            />
+                        </div>
+
+                        {/* Slide 3 */}
+                        <div className="flex-shrink-0 w-full flex justify-center  ">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-3.png"
+                                alt="logo-3"
+                                width={2000}
+                                height={85}
+                                className="object-cover w-64"
+                            />
+                        </div>
+
+                        {/* Slide 4 */}
+                        <div className="flex-shrink-0 w-full flex justify-center  ">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-2.png"
+                                alt="logo-4"
+                                width={2000}
+                                height={85}
+                                className="object-cover w-64"
+                            />
+                        </div>
+
+                        {/* Slide 5 */}
+                        <div className="flex-shrink-0 w-full flex justify-center  ">
+                            <Image
+                                src="/update-image/sponser-logo/sponser-4.png"
+                                alt="logo-5"
+                                width={2000}
+                                height={70}
+                                className="object-cover w-52   "
+                            />
+                        </div>
                     </div>
-                    <div className="w-full sm:w-auto flex justify-center">
-                        <Image
-                            src="/update-image/sponser-logo/sponser-3.png"
-                            alt="logo"
-                            width={175}
-                            height={85}
-                            className="object-cover"
-                        />
-                    </div>
-                    <div className="w-full sm:w-auto flex justify-center">
-                        <Image
-                            src="/update-image/sponser-logo/sponser-2.png"
-                            alt="logo"
-                            width={175}
-                            height={85}
-                            className="object-cover"
-                        />
-                    </div>
-                    
-                    <div className="w-full sm:w-auto flex justify-center">
-                        <Image
-                            src="/update-image/sponser-logo/sponser-4.png"
-                            alt="logo"
-                            width={120}
-                            height={70}
-                            className="object-cover"
-                        />
-                    </div>
+
+                    {/* Prev Button */}
+                    <button
+                        onClick={prevSlide}
+                        aria-label="Previous"
+                        className="absolute left-2 cursor-pointer top-1/2 -translate-y-1/2 p-2 bg-white/80 rounded-full shadow hover:bg-white"
+                    >
+                        <GrPrevious size={20} />
+                    </button>
+
+                    {/* Next Button */}
+                    <button
+                        onClick={nextSlide}
+                        aria-label="Next"
+                        className="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 p-2 bg-white/80 rounded-full shadow hover:bg-white"
+                    >
+                        <GrNext size={20} />
+                    </button>
                 </div>
 
                 <div className=' max-w-[1449px] mx-auto my-1 '>
@@ -69,8 +178,8 @@ const HireVocal: React.FC = () => {
                         {/* left side  */}
                         <div>
                             <Image src={"/update-image/hire/banner/banner2.png"}
-                                   className=' object-cover rounded-lg block mx-auto my-1  ' width={652} height={754}
-                                   alt='....'/>
+                                className=' object-cover rounded-lg block mx-auto my-1  ' width={652} height={754}
+                                alt='....' />
                         </div>
                         {/* right side  */}
                         <div>
@@ -89,7 +198,7 @@ const HireVocal: React.FC = () => {
                                 <div className=' flex flex-row gap-5 mt-2  items-start  '>
                                     <div className=' lg:w-[107px] lg:h-[107px]  '>
                                         <Image src={"/update-image/hire/icon/man.png"} alt={"logo1"} width={200}
-                                               height={200} className={`object-cover w-20 h-20  `} />
+                                            height={200} className={`object-cover w-20 h-20  `} />
                                     </div>
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">1. Choose a Singer</p>
@@ -104,7 +213,7 @@ const HireVocal: React.FC = () => {
                                 <div className=' flex flex-row gap-5   items-start  '>
                                     <div className=' lg:w-[107px] lg:h-[107px]  '>
                                         <Image src={"/update-image/hire/icon/man-2.png"} alt={"logo1"} width={200}
-                                               height={200} className={`object-cover  w-20 h-20 `}/>
+                                            height={200} className={`object-cover  w-20 h-20 `} />
                                     </div>
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">2. Share Your Idea</p>
@@ -119,7 +228,7 @@ const HireVocal: React.FC = () => {
                                 <div className=' flex flex-row gap-5  items-start  '>
                                     <div className=' lg:w-[107px] lg:h-[107px]  '>
                                         <Image src={"/update-image/hire/icon/man-3.png"} alt={"logo1"} width={200}
-                                               height={200} className={`object-cover w-20 h-20 `}/>
+                                            height={200} className={`object-cover w-20 h-20 `} />
                                     </div>
                                     <div className=" transition duration-300 w-full ">
                                         <p className="headerColor font-bold lg:text-xl ">3. We Deliver the Vocal</p>
