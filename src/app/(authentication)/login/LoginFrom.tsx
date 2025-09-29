@@ -67,6 +67,7 @@ const LoginForm: React.FC = () => {
             }
 
         } catch (err) {
+            console.log(err)
             const error = err as FetchBaseQueryError & { data?: { message?: string } };
 
             Swal.fire({

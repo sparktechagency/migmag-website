@@ -112,7 +112,7 @@ export const websiteApi = createApi({
         }),
 
 
-        artistDetails: builder.query<ArtistDetailsResponse, { id: string }>({
+        artistDetails: builder.query<ArtistDetailsResponse, { id: string | number }>({
             query: ({ id }) => ({
                 url: `/artist-detail/${id}`,
                 method: 'GET',

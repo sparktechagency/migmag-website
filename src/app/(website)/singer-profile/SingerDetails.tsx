@@ -467,7 +467,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                         <div className="flex justify-center">
                             <div className="lg:w-[100px] lg:h-[100px] mx-auto rounded-full">
                                 <Image
-                                    src="/update-image/singer-details/icon/free.png"
+                                    src="/images/singer/royalty.png"
                                     alt="Royalty Free"
                                     width={100}
                                     height={100}
@@ -490,7 +490,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                         <div className="flex justify-center">
                             <div className="lg:w-[100px] lg:h-[100px] mx-auto rounded-full">
                                 <Image
-                                    src="/update-image/singer-details/icon/wave.png"
+                                    src="/images/singer/3.png"
                                     alt="Everything You Need"
                                     width={100}
                                     height={100}
@@ -514,7 +514,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
                         <div className="flex justify-center">
                             <div className="lg:w-[100px] lg:h-[100px] mx-auto rounded-full">
                                 <Image
-                                    src="/update-image/singer-details/icon/love.png"
+                                    src="/images/singer/2.png"
                                     alt="Trusted Quality"
                                     width={100}
                                     height={100}

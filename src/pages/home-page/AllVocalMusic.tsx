@@ -99,7 +99,7 @@ const AllVocalMusic: React.FC = () => {
                 >
                     <Image
                         src={item.img}
-                        width={265}
+                        width={2000}
                         height={260}
                         alt={item.title}
                         className="object-cover w-full  rounded-xl"

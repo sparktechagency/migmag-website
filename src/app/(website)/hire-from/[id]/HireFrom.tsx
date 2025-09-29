@@ -4,11 +4,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useArtistDetailsQuery } from "@/app/api/websiteApi/websiteApi";
+import { imgUrl } from "@/utility/img/imgUrl";
 interface HireFromProps {
     id: string | number; // adjust type as needed
 }
 const HireFrom: React.FC<HireFromProps> = ({ id }) => {
-    console.log(id)
+
+    console.log("id is ", id)
+
 
     const [lyricsChecked, setLyricsChecked] = useState(false);
     const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -17,6 +21,13 @@ const HireFrom: React.FC<HireFromProps> = ({ id }) => {
     const toggleFAQ = (index: number) => {
         setOpenFAQ(openFAQ === index ? null : index);
     };
+
+
+    const { data } = useArtistDetailsQuery({ id });
+
+    console.log(" artist is ", data?.data?.artist);
+
+
 
     return (
         <div className="min-h-screen bg-white flex justify-center py-10">
@@ -65,21 +76,23 @@ const HireFrom: React.FC<HireFromProps> = ({ id }) => {
 
 
                     <span className={"flex flex-row gap-x-2 my-8 "} >
-                        <h1 className="text-xl font-semibold">Rayne</h1>
+                        <h1 className="text-xl font-semibold">{data?.data?.artist?.name}</h1>
                         <p className={"mt-1 text-gray-500 "} >&lt; Confirm & Pay &gt; Submit requirements</p>
                     </span>
 
                     {/* Artist Info */}
                     <div className="flex items-center gap-3 mb-6">
-                        <Image
-                            src="/musick/rayno.webp"
-                            alt="Rayne"
-                            width={60}
-                            height={60}
-                            className="rounded-full object-cover"
-                        />
+                        <div className={" w-24 h-24 rounded-full flex item-center justify-center "} >
+                            <Image
+                                src={`${imgUrl}/${data?.data?.artist?.profile}`}
+                                alt="Rayne"
+                                width={2000}
+                                height={2000}
+                                className="rounded-full  w-24 h-24 "
+                            />
+                        </div>
                         <div>
-                            <p className="font-semibold">Rayne <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Available</span></p>
+                            <p className="font-semibold">{data?.data?.artist?.name} <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Available</span></p>
                             <p className="text-sm text-gray-500">Singer • Songwriter</p>
                         </div>
                     </div>
@@ -97,7 +110,7 @@ const HireFrom: React.FC<HireFromProps> = ({ id }) => {
                             <div className="flex-1">
                                 <div className="flex justify-between items-center">
                                     <span className="font-medium">Lyrics</span>
-                                    <span className="font-semibold">+ $99</span>
+                                    <span className="font-semibold">+ ${data?.data?.artist?.price}</span>
                                 </div>
                                 <p className="text-gray-500 text-sm mt-1">
                                     The vocalist will write lyrics and a vocal melody for your song.
@@ -195,13 +208,13 @@ const HireFrom: React.FC<HireFromProps> = ({ id }) => {
                             </div>
                             <p className="text-sm">Vocals recording</p>
                         </div>
-                        <span className="font-semibold">$249</span>
+                        <span className="font-semibold">${data?.data?.artist?.price}</span>
                     </div>
 
                     <div className="flex justify-between text-sm mb-1">
                         <p>Total</p>
                         <p className="font-semibold">
-                            ${lyricsChecked ? 249 + 99 : 249}
+                            ${data?.data?.artist?.price}
                         </p>
                     </div>
                     <p className="text-xs text-gray-500 mb-6">Delivery time: 3–10 days</p>

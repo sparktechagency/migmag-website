@@ -410,6 +410,7 @@ export interface ArtistDetailsResponse {
 
 
 export interface Artist {
+    price: string
     id: number;
     name: string;
     singer: string;
@@ -527,27 +528,27 @@ export interface SongDetailsApiResponse {
 }
 
 export interface SongDetails {
-      
-        id: number;
-        title: string;
-        song_poster: string;
-        song: string;
-        artist_id: number;
-        genre_id: number;
-        key_id: number;
-        license_id: number;
-        type_id: number;
-        gender: string;
-        bpm: number;
-        price: string;
-        is_published: number;
-        created_at: string;
-        updated_at: string;
-        artist: Artist;
-        genre: Genre;
-        key: Key;
-        license: License;
-        type: Type;
-        is_wishlisted: number;
-    
+
+    id: number;
+    title: string;
+    song_poster: string;
+    song: string;
+    artist_id: number;
+    genre_id: number;
+    key_id: number;
+    license_id: number;
+    type_id: number;
+    gender: string;
+    bpm: number;
+    price: string;
+    is_published: number;
+    created_at: string;
+    updated_at: string;
+    artist: Artist;
+    genre: Genre;
+    key: Key;
+    license: License;
+    type: Type;
+    is_wishlisted: number;
+
 }
