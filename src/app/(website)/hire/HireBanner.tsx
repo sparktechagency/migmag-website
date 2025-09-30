@@ -28,7 +28,7 @@ const HireBanner = () => {
                             </button>
 
                             <div className="my-6">
-                                <Link className={'cursor-pointer'} href="/artist-library">
+                                <Link className={'cursor-pointer'} href="/artist-list">
                                     <button
                                         className="text-xl cursor-pointer font-medium bg-[#82B6DA] text-white shadow-md px-5 py-3 rounded-md">
                                         Browse Artists
@@ -70,7 +70,7 @@ const HireBanner = () => {
                             </button>
 
                             <div className="my-6">
-                                <Link className={'cursor-pointer'} href="/artist-library">
+                                <Link className={'cursor-pointer'} href="/artist-list">
                                     <button
                                         className="text-xl cursor-pointer font-medium bg-[#82B6DA] text-white shadow-md px-5 py-3 rounded-md">
                                         Browse Artists

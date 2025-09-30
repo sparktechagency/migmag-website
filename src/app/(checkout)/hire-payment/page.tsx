@@ -1,8 +1,11 @@
 import React from 'react'
+import HireStripeFrom from './HireStripeFrom'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <HireStripeFrom />
+    </div>
   )
 }
 

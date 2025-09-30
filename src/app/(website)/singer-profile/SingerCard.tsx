@@ -8,6 +8,8 @@ import { IoIosPause } from "react-icons/io";
 
 
 interface ArtistCardProps {
+    price: string,
+    slug: string,
     id: number;
     name: string;
     singer?: string;
@@ -17,6 +19,8 @@ interface ArtistCardProps {
 }
 
 const SingerCard: React.FC<ArtistCardProps> = ({
+    price,
+    slug,
     id,
     name,
     profile,
@@ -81,7 +85,7 @@ const SingerCard: React.FC<ArtistCardProps> = ({
         <div className="flex items-center justify-between p-4 border-b py-6  transition-colors duration-200 gap-1 md:gap-4">
             {/* Left */}
             <div className="flex items-center gap-3 flex-1 min-w-0">
-                <Link href={`/singer-profile/${id}`}>
+                <Link href={`/singer-profile/${slug}`}>
                     <Image
                         src={`${imgUrl}/${profile}`}
                         alt={name}
@@ -137,8 +141,8 @@ const SingerCard: React.FC<ArtistCardProps> = ({
 
             {/* Right */}
             <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
-                <h1 className="text-black text-sm  font-semibold md:text-xl">23$</h1>
-                <Link href={`/hire-from/${id}`}>
+                <h1 className="text-black text-sm  font-semibold md:text-xl">{price}$</h1>
+                <Link href={`/hire-from/${slug}`}>
                     <button className="bg-blue-500 hover:bg-blue-600 text-white px-2  lg:px-4 lg:py-2 py-1 md:text-[16px] text-xs rounded-md cursor-pointer">
                         Hire Now
                     </button>

@@ -7,11 +7,11 @@ import Link from "next/link";
 import { useArtistDetailsQuery } from "@/app/api/websiteApi/websiteApi";
 import { imgUrl } from "@/utility/img/imgUrl";
 interface HireFromProps {
-    id: string | number; // adjust type as needed
+    slug: string | number; // adjust type as needed
 }
-const HireFrom: React.FC<HireFromProps> = ({ id }) => {
+const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
 
-    console.log("id is ", id)
+    console.log("id is ", slug)
 
 
     const [lyricsChecked, setLyricsChecked] = useState(false);
@@ -23,7 +23,7 @@ const HireFrom: React.FC<HireFromProps> = ({ id }) => {
     };
 
 
-    const { data } = useArtistDetailsQuery({ id });
+    const { data } = useArtistDetailsQuery({ slug });
 
     console.log(" artist is ", data?.data?.artist);
 
@@ -234,9 +234,12 @@ const HireFrom: React.FC<HireFromProps> = ({ id }) => {
                     </div>
 
                     {/* Continue Button */}
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-semibold py-3 rounded-lg mb-6">
-                        Continue
-                    </button>
+
+                    <Link href={`/hire-payment?artistId=${data?.data?.artist?.id}&price=${data?.data?.artist?.price}&slug=${data?.data?.artist?.slug}`}>
+                        <button className="w-full bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-semibold py-3 rounded-lg mb-6">
+                            Continue
+                        </button>
+                    </Link>
 
                     {/* Payment Methods */}
                     <div className="flex gap-3 justify-center">

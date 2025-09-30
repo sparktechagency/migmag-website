@@ -6,19 +6,23 @@ import { imgUrl } from "@/utility/img/imgUrl";
 
 interface ArtistCardProps {
   id: number;
+  slug: string;
   name: string;
   singer?: string;
   cover_song?: string;
   profile?: string;
+  price?: string
   onPlay: (id: number, audioEl: HTMLAudioElement) => void;
 }
 
 const ArtistCard: React.FC<ArtistCardProps> = ({
   id,
+  slug,
   name,
   profile,
   singer,
   cover_song,
+  price,
   onPlay,
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -78,7 +82,7 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
     <div className="flex items-center justify-between p-4 border-b py-6 hover:bg-gray-900 transition-colors duration-200 gap-4">
       {/* Left */}
       <div className="flex items-center gap-3 flex-1 min-w-0">
-        <Link href={`/singer-profile/${id}`}>
+        <Link href={`/singer-profile/${slug}`}>
           <Image
             src={`${imgUrl}/${profile}`}
             alt={name}
@@ -134,8 +138,8 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
 
       {/* Right */}
       <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
-        <h1 className="text-white md:font-semibold text-xs md:text-xl">23$</h1>
-        <Link href={`/hire-from/${id}`}>
+        <h1 className="text-white md:font-semibold text-xs md:text-xl">{price}$</h1>
+        <Link href={`/hire-from/${slug}`}>
           <button className="bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-2 py-1 md:text-[16px] text-xs px-2 rounded-md cursor-pointer">
             Hire Now
           </button>

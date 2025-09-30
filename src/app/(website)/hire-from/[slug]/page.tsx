@@ -7,14 +7,14 @@ import HireFrom from './HireFrom'
 const Page = async ({
     params,
 }: {
-    params: Promise<{ id: string }>
+    params: Promise<{ slug: string }>
 }) => {
-    const { id } = await params;
+    const { slug } = await params;
 
     return (
         <div>
             <Navbar />
-            <HireFrom id={id} />
+            <HireFrom slug={slug} />
             <Footer />
         </div>
     );

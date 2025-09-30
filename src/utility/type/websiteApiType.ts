@@ -371,6 +371,7 @@ export interface Type {
 }
 
 export interface Song {
+    slug: string;
     id: number;
     title: string;
     song_poster: string;
@@ -410,6 +411,7 @@ export interface ArtistDetailsResponse {
 
 
 export interface Artist {
+    slug: string;
     price: string
     id: number;
     name: string;

@@ -12,14 +12,14 @@ import SingerDetails from "../SingerDetails";
 const Page = async ({
   params,
 }: {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
 }) => {
-  const { id } = await params;
+  const { slug } = await params;
 
   return (
     <div>
       <Navbar />
-      <SingerDetails id={id} />
+      <SingerDetails slug={slug} />
       <UpdateFooter />
     </div>
   );
