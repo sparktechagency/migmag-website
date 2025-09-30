@@ -1,5 +1,8 @@
 'use client';
 
+import { useCustomOrderApiMutation } from '@/app/api/paymentApi/paymentApi';
+import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
+import { imgUrl } from '@/utility/img/imgUrl';
 import {
     useStripe,
     useElements,
@@ -17,11 +20,12 @@ import Swal from "sweetalert2";
 
 type CheckoutFormProps = {
     clientSecret: string;
-    songId?: number;
-    price?: number;
+    artistId: number | null;
+    slug: string | null
 };
 
-export default function HireCheckout({ clientSecret, songId, price }: CheckoutFormProps) {
+export default function HireCheckout({ clientSecret, artistId, slug }: CheckoutFormProps) {
+    console.log(slug)
     const stripe = useStripe();
     const elements = useElements();
     const router = useRouter();
@@ -34,8 +38,17 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [lyricsChecked, setLyricsChecked] = useState<boolean>(false)
-    const [lyricsText, setLyricsText] = useState<string>("")
+
+
+
+    const [customOrderApi] = useCustomOrderApiMutation()
+
+    const id = artistId;
+
+    const payload = {
+        order_type: "Custom",
+        payment_method: "card"
+    }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,13 +60,10 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
             return toast.error('Stripe is not ready');
         }
 
-        if (!songId || !price) {
-            setLoading(false);
-            return toast.error('Invalid song or price');
-        }
+
 
         try {
-            // ✅ Confirm Stripe payment
+            // 1️⃣ Confirm Stripe payment
             const result = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: {
                     card: elements.getElement(CardNumberElement)!,
@@ -68,15 +78,26 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
                 setErrorMessage(result.error.message ?? 'Payment failed');
                 toast.error(result.error.message ?? 'Payment failed');
             } else if (result.paymentIntent?.status === 'succeeded') {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: 'Payment Successful!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
 
-                router.push('/');
+                const res = await customOrderApi({ id, payload }).unwrap();;
+
+                if (res) {
+
+                    Swal.fire({
+
+                        position: "top-end",
+                        icon: "success",
+                        title: res?.message || 'Payment Successful!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    router.push('/');
+                }
+
+
+
+
+
             }
 
         } catch (err: unknown) {
@@ -105,10 +126,20 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
         },
     };
 
+
+    const { data } = useArtistDetailsQuery({ slug });
+
+    console.log(" artist is ", data?.data?.artist);
+
+
+
+
+
+
     return (
-        <div className="min-h-screen  flex items-center justify-center max-w-6xl  ">
+        <div className="min-h-screen flex flex-col gap-x-6 md:space-y-0 space-y-6  md:flex-row items-center justify-center max-w-6xl mx-auto   ">
             {/* left side  */}
-            <div>
+            <div className=' w-full ' >
                 <div>
 
                     <div>
@@ -152,29 +183,32 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
 
 
                     <span className={"flex flex-row gap-x-2 my-8 "} >
-                        <h1 className="text-xl font-semibold">Rayne</h1>
+                        <h1 className="text-xl font-semibold">{data?.data?.artist?.name}</h1>
                         <p className={"mt-1 text-gray-500 "} >&lt; Confirm & Pay &gt; Submit requirements</p>
                     </span>
 
                     {/* Artist Info */}
+
+                    {/* Artist Info */}
                     <div className="flex items-center gap-3 mb-6">
-                        <Image
-                            src="/musick/rayno.webp"
-                            alt="Rayne"
-                            width={60}
-                            height={60}
-                            className="rounded-full object-cover"
-                        />
+                        <div className={" w-24 h-24 rounded-full flex item-center justify-center "} >
+                            <Image
+                                src={`${imgUrl}/${data?.data?.artist?.profile}`}
+                                alt="Rayne"
+                                width={2000}
+                                height={2000}
+                                className="rounded-full  w-24 h-24 "
+                            />
+                        </div>
                         <div>
-                            <p className="font-semibold">Rayne <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Available</span></p>
+                            <p className="font-semibold">{data?.data?.artist?.name} <span className="ml-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Available</span></p>
                             <p className="text-sm text-gray-500">Singer • Songwriter</p>
                         </div>
                     </div>
-
                     {/* Upgrade */}
-                    <h2 className="font-semibold mb-2">Upgrade</h2>
-                    <div className="border rounded-lg p-4 flex flex-col gap-3">
-                        <div className="flex items-start gap-3">
+                    {/* <h2 className="font-semibold mb-2">Upgrade</h2> */}
+                    {/* <div className="border rounded-lg p-4 flex flex-col gap-3"> */}
+                    {/* <div className="flex items-start gap-3">
                             <input
                                 type="checkbox"
                                 className="w-5 h-5 mt-1 cursor-pointer"
@@ -190,10 +224,10 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
                                     The vocalist will write lyrics and a vocal melody for your song.
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
 
-                        {/* Textarea appears only when checkbox is checked */}
-                        {lyricsChecked && (
+                    {/* Textarea appears only when checkbox is checked */}
+                    {/* {lyricsChecked && (
                             <textarea
                                 className="w-full border rounded-md p-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 placeholder="Add any notes or ideas for the lyrics..."
@@ -201,8 +235,8 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
                                 onChange={(e) => setLyricsText(e.target.value)}
                                 rows={4}
                             />
-                        )}
-                    </div>
+                        )} */}
+                    {/* </div> */}
 
                     {/* FAQ Accordion */}
                     <div className="mt-6 space-y-2">
@@ -242,7 +276,7 @@ export default function HireCheckout({ clientSecret, songId, price }: CheckoutFo
 
             </div>
             {/* right side  */}
-            <div>
+            <div className=' w-full ' >
                 <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
                     <h2 className="text-2xl font-semibold text-center mb-6">Secure Payment</h2>
                     <form onSubmit={handleSubmit} className="flex flex-col gap-4">

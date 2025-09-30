@@ -23,7 +23,7 @@ import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 
 
 type SingerDetailsProps = {
-    id: string;
+    slug: string;
 };
 
 interface Track {
@@ -36,7 +36,7 @@ interface Track {
 }
 
 
-const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
+const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
 
 
     const router = useRouter();
@@ -46,7 +46,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
     const toggleModal = () => setChatOpen(!chatOpen);
 
 
-    const { data, refetch } = useArtistDetailsQuery({ id });
+    const { data, refetch } = useArtistDetailsQuery({ slug });
 
 
     const [addFollow] = useAddFollowMutation()
@@ -62,7 +62,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ id }) => {
 
     const handleFollow = async () => {
         try {
-            const res = await addFollow({ id }).unwrap(); // ✅ pass as object
+            const res = await addFollow({ slug }).unwrap(); // ✅ pass as object
 
             if (res?.success) {
                 refetch();

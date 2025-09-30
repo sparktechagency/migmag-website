@@ -49,6 +49,15 @@ export const paymentApi = createApi({
     }),
 
 
+    customOrderApi: builder.mutation({
+      query: ({ id, payload }) => ({
+        url: `/custom-order/${id}`,
+        method: "POST",
+        body: payload
+      })
+    })
+
+
 
 
 
@@ -63,4 +72,4 @@ export const paymentApi = createApi({
 });
 
 // Export the auto-generated hooks for usage in functional components
-export const { useCreatePaymentIntentMutation, usePaymentSuccessApiMutation } = paymentApi;
+export const { useCreatePaymentIntentMutation, usePaymentSuccessApiMutation,useCustomOrderApiMutation } = paymentApi;
