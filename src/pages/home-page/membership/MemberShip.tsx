@@ -7,7 +7,7 @@ import MaxWidth from "@/components/max-width/MaxWidth";
 
 
 export default function Pricing() {
-    const [activeTab, setActiveTab] = useState<"monthly" | "yearly">("yearly");
+    const [activeTab, setActiveTab] = useState<"monthly" | "yearly">("monthly");
 
     return (
         <MaxWidth>
@@ -22,36 +22,80 @@ export default function Pricing() {
                     </div>
 
                     {/* Tabs */}
-                    <div className="mt-6 md:mt-0 flex items-center h-12 bg-gray-100 rounded-full  justify-end  px-6 gap-x-5 relative">
-                        <div>
+                    <div className={` md:block hidden `} >
+                        <div className="mt-6 md:mt-0 flex items-center h-12 bg-gray-100 rounded-full  justify-end  px-6 gap-x-5 relative   ">
+                            <div>
+                                <button
+                                    onClick={() => setActiveTab("monthly")}
+                                    className={` cursor-pointer px-6 py-2 text-sm font-medium rounded-full ${activeTab === "monthly" ? "bg-white shadow text-black" : "text-gray-500"
+                                        }`}
+                                >
+                                    Monthly
+                                    {activeTab === "monthly" && (
+                                        <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full border  ">
+                                            2 MONTHS FREE
+                                        </span>
+                                    )}
+                                </button>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={() => setActiveTab("yearly")}
+                                    className={` cursor-pointer px-6 py-2 text-sm font-medium rounded-full relative ${activeTab === "yearly" ? "bg-white shadow text-black" : "text-gray-500"
+                                        }`}
+                                >
+                                    Yearly
+                                    {activeTab === "yearly" && (
+                                        <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full">
+                                            2 MONTHS FREE
+                                        </span>
+                                    )}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {/* small device  */}
+
+
+                    {/* Tabs */}
+                    <div className="md:hidden block w-fit flex justify-end">
+                        <div className="mt-6 md:mt-0 flex items-center h-12 bg-gray-100 rounded-full justify-end px-2 gap-x-2 relative">
+                            {/* Monthly Tab */}
                             <button
                                 onClick={() => setActiveTab("monthly")}
-                                className={` cursor-pointer px-6 py-2 text-sm font-medium rounded-full ${activeTab === "monthly" ? "bg-white shadow text-black" : "text-gray-500"
+                                className={`relative cursor-pointer px-6 py-2 text-sm font-medium rounded-full transition ${activeTab === "monthly"
+                                        ? "bg-white shadow text-black"
+                                        : "text-gray-500"
                                     }`}
                             >
                                 Monthly
                                 {activeTab === "monthly" && (
-                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full border  ">
+                                    <span className="absolute -top-6 right-2 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full border">
                                         2 MONTHS FREE
                                     </span>
                                 )}
                             </button>
-                        </div>
-                        <div>
+
+                            {/* Yearly Tab */}
                             <button
                                 onClick={() => setActiveTab("yearly")}
-                                className={` cursor-pointer px-6 py-2 text-sm font-medium rounded-full relative ${activeTab === "yearly" ? "bg-white shadow text-black" : "text-gray-500"
+                                className={`relative cursor-pointer px-6 py-2 text-sm font-medium rounded-full transition ${activeTab === "yearly"
+                                        ? "bg-white shadow text-black"
+                                        : "text-gray-500"
                                     }`}
                             >
                                 Yearly
                                 {activeTab === "yearly" && (
-                                    <span className="absolute -top-6 right-0 bg-blue-500 text-white   text-[10px] px-2 py-0.5 rounded-full">
+                                    <span className="absolute -top-6 right-2 bg-blue-500 text-white text-[10px] px-2 py-0.5 rounded-full border">
                                         2 MONTHS FREE
                                     </span>
                                 )}
                             </button>
                         </div>
                     </div>
+
 
 
                 </div>
