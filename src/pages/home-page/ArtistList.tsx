@@ -63,7 +63,7 @@ const ArtistList: React.FC = () => {
         <div className="bg-[url('/images/home-page/artist/artistBgImg.png')] bg-no-repeat bg-cover bg-center px-4 w-full">
             <MaxWidth>
                 <div className="pb-2 mx-auto">
-                    <h1 className="text-white text-2xl lg:text-4xl font-semibold lg:pt-9 pt-3 mx-auto">
+                    <h1 className="text-black text-2xl lg:text-4xl font-semibold lg:pt-9 pt-3 mx-auto">
                         Top Artists
                     </h1>
 

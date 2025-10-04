@@ -7,6 +7,7 @@ import { FiPlay, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 import MaxWidth from '@/components/max-width/MaxWidth';
 import { imgUrl } from '@/utility/img/imgUrl';
+import axios from 'axios';
 
 interface Artist {
   name: string;
@@ -33,28 +34,34 @@ export default function BrowseMusickVocalSlider() {
   const [cardsPerView, setCardsPerView] = useState(5);
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const imgUrl = process.env.NEXT_PUBLIC_IMG_URL;
+  const url = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   // Fetch tracks
   useEffect(() => {
     const fetchTrendingVocals = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/latest-trending`);
-        const json = await res.json();
+        const res = await axios.get(`${url}/song`);
 
-        if (json.success) {
-          setTracks(json.data);
+
+        setTracks(res.data?.data?.data);
+
+      } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+          console.error(err.response?.data || err.message);
+          setError(err.response?.data?.message || err.message);
         } else {
-          setError('Failed to load data');
+          console.error(err);
+          setError("Something went wrong");
         }
-      } catch {
-        setError('Something went wrong');
       } finally {
         setLoading(false);
       }
     };
 
     fetchTrendingVocals();
-  }, []);
+  }, [url]);
+
 
   // Responsive cards per view
   useEffect(() => {
@@ -150,10 +157,10 @@ export default function BrowseMusickVocalSlider() {
                   </div>
                   <h3 className="lg:text-lg text-white  font-bold mt-3">{item?.title.slice(0, 20)}...</h3>
                   <div className="flex gap-x-6">
-                    <p className="text-[#E7F056] lg:text-lg font-bold">{item.artist?.name.slice(0, 10)}...</p>
+                    <p className="text-[#E7F056] lg:text-lg font-bold">{item.artist?.name.slice(0, 5)}...</p>
                     <Link href="/checkout">
                       <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
-                        <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">{item.price}</p>
+                        <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">${item.price}</p>
                       </Link>
                     </Link>
                   </div>

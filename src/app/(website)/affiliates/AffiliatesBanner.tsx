@@ -10,7 +10,7 @@ const AffiliatesBanner: React.FC = () => {
                 <div>
                     <h1 className={`text-center font-bold text-2xl lg:text-4xl `}>
                         Promote TuneM
-                        <span className={`text-[#0088ff]`}>& Get Paid</span>
+                        <span className={`text-[#E7F056]`}> & Get Paid</span>
                     </h1>
                 </div>
                 <div

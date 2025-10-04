@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import Link from "next/link";
 import MaxWidth from "@/components/max-width/MaxWidth";
+import axios from "axios";
 
 interface Artist {
   id: number;
@@ -34,19 +35,24 @@ const TopTenVocal: React.FC = () => {
   useEffect(() => {
     const fetchTrendingVocals = async () => {
       try {
-        const res = await fetch(`${url}/latest-trending`);
-        const json = await res.json();
-        if (json.success) {
-          setTracks(json.data.slice(0, 10));
+        const res = await axios.get(`${url}/song`);
+        console.log("top ten vocal is", res.data?.data?.data);
+        if (res.data.success) {
+          setTracks(res.data?.data?.data.slice(0, 10));
         } else {
           setError("Failed to load data");
         }
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : "Something went wrong");
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data?.message || err.message);
+        } else {
+          setError("Something went wrong");
+        }
       } finally {
         setLoading(false);
       }
     };
+
     if (url) {
       fetchTrendingVocals();
     }
@@ -84,7 +90,7 @@ const TopTenVocal: React.FC = () => {
               width={100}
               height={100}
               className={` ${index === 6 ? "-ml-2" : ""} ${index === 1 ? "-ml-1.5" : ""}   ${index === 5 ? "-ml-2.5" : ""} ${index === 8 ? "-ml-1.5" : ""
-                } ${index % 2 === 0 ? "bg-red-400" : "bg-red-900"} w-20 h-20 rounded-xl`}
+                } ${index % 2 === 0 ? "" : ""} w-20 h-20 rounded-xl`}
             />
           </Link>
 

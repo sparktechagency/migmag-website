@@ -33,8 +33,10 @@ const AffiliateGuidelines: React.FC = () => {
                     <ul className="space-y-4 text-left">
                         {doList.map((item, idx) => (
                             <li key={idx} className="flex items-start space-x-2 ">
-                                <CheckCircle className="text-green-500 w-5 h-5 mt-1" />
-                                <span className={` lg:text-xl text-lg textColor `} >{item}</span>
+                                <div>
+                                    <CheckCircle className="text-green-500 w-5 h-5 mt-1" />
+                                </div>
+                                <span className={` lg:text-xl text-lg textColor ml-3 `} >{item}</span>
                             </li>
                         ))}
                     </ul>
@@ -43,8 +45,10 @@ const AffiliateGuidelines: React.FC = () => {
                     <ul className="space-y-4 text-left">
                         {dontList.map((item, idx) => (
                             <li key={idx} className="flex items-start space-x-2 text-gray-800">
-                                <XCircle className="text-red-600 w-5 h-5 mt-1" />
-                                <span className={`lg:text-xl text-lg textColor `} >{item}</span>
+                                <div>
+                                    <XCircle className="text-red-600 w-5 h-5 mt-1" />
+                                </div>
+                                <span className={`lg:text-xl text-lg textColor ml-3 `} >{item}</span>
                             </li>
                         ))}
                     </ul>

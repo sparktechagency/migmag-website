@@ -7,6 +7,7 @@ import { FiPlay, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 import MaxWidth from '@/components/max-width/MaxWidth';
 import { imgUrl } from '@/utility/img/imgUrl';
+import axios from "axios";
 
 interface Artist {
     name: string;
@@ -33,27 +34,29 @@ export default function MusicSlider() {
     const [cardsPerView, setCardsPerView] = useState(5);
     const [currentSlide, setCurrentSlide] = useState(0);
     const url = process.env.NEXT_PUBLIC_API_BASE_URL
-    useEffect(() => {
-        const fetchTrendingVocals = async () => {
-            try {
-                const res = await fetch(`${url}/latest-trending`);
-                const json = await res.json();
+useEffect(() => {
+  const fetchTrendingVocals = async () => {
+    try {
+      const res = await axios.get(`${url}/song`);
 
-                if (json.success) {
-                    setTracks(json.data);
-                } else {
-                    setError('Failed to load data');
-                }
-            } catch (err) {
-                console.error(err);
-                setError('Something went wrong');
-            } finally {
-                setLoading(false);
-            }
-        };
+      
+        setTracks(res.data?.data?.data);
+      
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.error(err.response?.data || err.message);
+        setError(err.response?.data?.message || err.message);
+      } else {
+        console.error(err);
+        setError("Something went wrong");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        fetchTrendingVocals();
-    }, [url]);
+  fetchTrendingVocals();
+}, [url]);
 
     // Responsive cards per view
     useEffect(() => {
@@ -153,9 +156,9 @@ export default function MusicSlider() {
                                     </div>
                                     <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title.slice(0, 20)}...</h3>
                                     <div className="flex gap-x-6">
-                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0, 10)}...</p>
+                                        <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0, 5)}...</p>
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
-                                            <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">{item.price}</p>
+                                            <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">${item.price}</p>
                                         </Link>
                                     </div>
                                 </div>
