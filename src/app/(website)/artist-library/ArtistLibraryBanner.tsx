@@ -45,11 +45,11 @@ const ArtistLibraryBanner = () => {
                         <div className={`mt-4
                         `} >
                             <Image
-                                src="/update-image/artist/banner/artist-library-banner.jpg"
+                                src="/images/artist/artist-banner.png"
                                 width={772}
                                 height={478}
                                 alt="Browse Vocal Banner"
-                                className=' object-cover rounded  '
+                                className='  rounded  '
                             />
 
                         </div>

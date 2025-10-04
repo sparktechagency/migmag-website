@@ -114,7 +114,7 @@ export default function ArtistList() {
               className="flex cursor-pointer justify-between items-center w-full border border-gray-300 rounded-md px-3 py-2 bg-gray-800 text-white  "
             >
               {gender === "all"
-                ? "All Genders"
+                ? "Gender"
                 : gender.charAt(0).toUpperCase() + gender.slice(1)}
               {showGenderDropdown ? (
                 <ChevronUp size={16} />
@@ -154,7 +154,7 @@ export default function ArtistList() {
               className="flex cursor-pointer  justify-between items-center w-full border border-gray-300 rounded-md px-3 py-2 bg-gray-800 text-white"
             >
               {language === "all"
-                ? "All Languages"
+                ? "Languages"
                 : language.charAt(0).toUpperCase() + language.slice(1)}
               {showLanguageDropdown ? (
                 <ChevronUp size={16} />
@@ -175,7 +175,7 @@ export default function ArtistList() {
                     }}
                   >
                     {lang === "all"
-                      ? "All Languages"
+                      ? "Languages"
                       : lang.charAt(0).toUpperCase() + lang.slice(1)}
                   </li>
                 ))}
