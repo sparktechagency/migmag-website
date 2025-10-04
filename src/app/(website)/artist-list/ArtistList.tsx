@@ -195,7 +195,7 @@ export default function ArtistList() {
       </div>
 
       {/* Artist List */}
-      <div className="divide-y">
+      <div className=" divide-y space-y-4 px-4 md:px-0 ">
         {filteredArtists.length > 0 ? (
           filteredArtists.map((artist: any) => (
             <ArtistCard key={artist.id} {...artist} onPlay={handlePlay} />

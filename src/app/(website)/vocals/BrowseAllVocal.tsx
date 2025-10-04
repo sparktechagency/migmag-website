@@ -1194,9 +1194,9 @@ const BrowseAllVocal = () => {
                                 className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
                                     }`}
                             >
-                                <div className="flex items-center justify-between w-full max-w-md p-3 border-b">
+                                <div className="flex items-center justify-between w-full max-w-md p-2 border-b">
                                     {/* Left Section */}
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-1">
                                         <span className="text-lg font-medium text-white ">{i+1}</span>
                                         <Link href={`/music-details/${item?.id}`}>
                                                 <Image
@@ -1204,7 +1204,7 @@ const BrowseAllVocal = () => {
                                                     alt={"fdsfsdadf"}
                                                     width = {2000}
                                                     height = {2000}
-                                                    className="rounded w-16 h-16 "
+                                                    className="rounded w-12 h-12 "
                                                 />
                                         </Link>
                                         <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
@@ -1219,7 +1219,7 @@ const BrowseAllVocal = () => {
                                                         song_poster: item?.song_poster,
                                                     } as Track)
                                                 }
-                                                size={28}
+                                                size={20}
                                                 className="text-white cursor-pointer"
                                             />
                                         </button>

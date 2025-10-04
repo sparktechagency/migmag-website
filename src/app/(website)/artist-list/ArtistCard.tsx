@@ -79,7 +79,9 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
   }, []);
 
   return (
-    <div className="flex items-center justify-between p-4 border-b py-6 hover:bg-gray-900 transition-colors duration-200 gap-4">
+    <div>
+      <div className ={"md:block hidden "} >
+        <div className="flex items-center justify-between p-4  border-b py-6 hover:bg-gray-900 transition-colors duration-200 gap-4    ">
       {/* Left */}
       <div className="flex items-center gap-3 flex-1 min-w-0">
         <Link href={`/singer-profile/${slug}`}>
@@ -145,6 +147,53 @@ const ArtistCard: React.FC<ArtistCardProps> = ({
           </button>
         </Link>
       </div>
+    </div>
+      </div>
+
+
+
+      <div className = {"md:hidden block   "} >
+        <div className="flex items-center justify-between p-4  rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+  <div className="flex items-center space-x-4">
+    <div className="w-12 h-12 rounded-full overflow-hidden">
+      <Link className = {` w-20 h-20 rounded-full `} href={`/singer-profile/${slug}`}>
+          <Image
+            src={`${imgUrl}/${profile}`}
+            alt={name}
+            width={2000}
+            height={2000}
+            className="rounded-full w-16 h-16"
+          />
+        </Link>
+    </div>
+    <audio
+          ref={audioRef}
+          src={`${imgUrl}/${cover_song}`}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={() => {
+            if (audioRef.current) setDuration(audioRef.current.duration);
+          }}
+        />
+        <button
+          onClick={togglePlay}
+          className="w-10 h-10 cursor-pointer flex items-center justify-center rounded-full  text-white"
+        >
+          {isPlaying ? "❚❚" : "▶"}
+        </button>
+    <div>
+      <h3 className="text-white font-medium">{name}</h3>
+      <p className="text-white text-sm">{singer}</p>
+    </div>
+  </div>
+  <Link href={`/hire-from/${slug}`}  > <svg className="text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+  </svg>
+  </Link>
+</div>
+      </div>
+
+      
+      
     </div>
   );
 };

@@ -21,7 +21,7 @@ export default function SingerList() {
     };
 
     return (
-        <div className="w-full max-w-6xl mx-auto my-14 rounded-lg shadow-sm divide-y">
+        <div className="w-full max-w-6xl mx-auto my-14 space-y-6     ">
             {artistData.slice(0, 3).map((artist: any) => (
                 <SingerCard
                     key={artist.id}
