@@ -145,6 +145,15 @@ export const websiteApi = createApi({
 
 
 
+        viewSong: builder.query({
+            query: (songId) => ({
+                url: `/latest-trending/${songId}`,
+                method: "GET"
+            })
+        })
+
+
+
 
 
 
@@ -174,6 +183,7 @@ export const {
     useApplayArtistMutation,
     useArtistDetailsQuery,
     useSongDetailsQuery,
-    useContactApiMutation
+    useContactApiMutation,
+    useLazyViewSongQuery
 
 } = websiteApi;
