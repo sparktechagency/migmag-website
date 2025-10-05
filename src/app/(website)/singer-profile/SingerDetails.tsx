@@ -55,14 +55,14 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
 
     const artistData = data?.data?.artist;
     const songs = data?.data?.songs ?? [];
-
+    const id: number | undefined = artistData?.id
 
 
 
 
     const handleFollow = async () => {
         try {
-            const res = await addFollow({ slug }).unwrap(); // ✅ pass as object
+            const res = await addFollow({ id }).unwrap(); // ✅ pass as object
 
             if (res?.success) {
                 refetch();

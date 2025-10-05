@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useArtistDetailsQuery } from "@/app/api/websiteApi/websiteApi";
 import { imgUrl } from "@/utility/img/imgUrl";
 interface HireFromProps {
-    slug: string | number; // adjust type as needed
+    slug: string | null; // adjust type as needed
 }
 const HireFrom: React.FC<HireFromProps> = ({ slug }) => {
 
