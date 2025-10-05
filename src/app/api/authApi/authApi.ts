@@ -37,10 +37,10 @@ export const authApi = createApi({
     endpoints: (builder) => ({
         // User registration
         userRegistration: builder.mutation<UserRegistrationResponseType, RegisterUserPayload>({
-            query: (body) => ({
+            query: (payload) => ({
                 url: 'register',
                 method: 'POST',
-                body,
+                body: payload
             }),
         }),
 
@@ -184,10 +184,10 @@ export const authApi = createApi({
             })
         }),
 
-        orderDetails : builder.query({
-            query : (id)=>({
-                url : `/order-details/${id}`,
-                method : "GET"
+        orderDetails: builder.query({
+            query: (id) => ({
+                url: `/order-details/${id}`,
+                method: "GET"
             })
         })
 

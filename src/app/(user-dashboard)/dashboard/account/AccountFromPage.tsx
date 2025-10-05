@@ -163,7 +163,6 @@ const AccountFromPage: React.FC = () => {
                             name="email"
                             placeholder="Enter your email"
                             value={formdata.email}
-                            readOnly
                             className="w-full pl-8 pr-4 py-2 bg-gray-100 cursor-not-allowed border border-[#E7E7E9] placeholder:text-[#60606A] rounded-[8px] focus:outline-none"
                         />
                     </div>
