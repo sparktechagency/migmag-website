@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { FiPlay, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
 import MaxWidth from '@/components/max-width/MaxWidth';
-import { imgUrl } from '@/utility/img/imgUrl';
 import axios from 'axios';
 
 interface Artist {

@@ -93,7 +93,7 @@ export const authApi = createApi({
         // add follow api 
 
 
-        addFollow: builder.mutation<FollowApiResponse, { id: string }>({
+        addFollow: builder.mutation<FollowApiResponse, { id: number | undefined }>({
             query: ({ id }) => ({
                 url: `/follow/${Number(id)}`,
                 method: "POST",

@@ -3,7 +3,7 @@
 import MaxWidth from '@/components/max-width/MaxWidth';
 import Image from 'next/image';
 import Link from "next/link";
-import {imgUrl} from "@/utility/img/imgUrl";
+import { imgUrl } from "@/utility/img/imgUrl";
 import React from "react";
 import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
 
@@ -11,8 +11,9 @@ import { useArtistDetailsQuery } from '@/app/api/websiteApi/websiteApi';
 
 
 
-const MoreVocals = ({id}:{id:string}) => {
-    const {data} = useArtistDetailsQuery({id});
+const MoreVocals = ({ id }: { id: string }) => {
+    const slug = id;
+    const { data } = useArtistDetailsQuery({ slug });
 
     const songs = data?.data?.songs ?? [];
     return (
@@ -36,7 +37,7 @@ const MoreVocals = ({id}:{id:string}) => {
                                     />
                                 </Link>
                                 <button
-                                    className="w-0 h-0 border-l-[10px] cursor-pointer border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent"/>
+                                    className="w-0 h-0 border-l-[10px] cursor-pointer border-l-black border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent" />
                                 <div>
                                     <p className="font-semibold text-sm">{item.title || "Untitled"}</p>
                                     <p className="text-xs textColor">
