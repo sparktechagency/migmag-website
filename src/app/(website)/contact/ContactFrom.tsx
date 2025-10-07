@@ -1,7 +1,7 @@
 import MaxWidth from '@/components/max-width/MaxWidth'
 import Image from 'next/image'
 import React from 'react'
-import { FaArrowUp, FaHeadphonesAlt, FaInstagramSquare } from 'react-icons/fa'
+import { FaArrowUp, FaHeadphonesAlt } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 
 const ContactFrom = () => {
@@ -32,15 +32,13 @@ const ContactFrom = () => {
           <div className='  md:w-[50%] w-full  ' >
             {/* email  */}
             <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
-              <span>
-                <MdEmail />
-              </span>
+
               <p>
-                Email Support (Ellie)</p>
+                TUNEM STUDIOS</p>
             </div>
             <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
               <p>
-                support@vocalfy.com
+                Head Office - Malta
               </p>
 
               <span>
@@ -49,7 +47,7 @@ const ContactFrom = () => {
 
 
             </div>
-            <div className=' h-0.5 w-[22%] bg-black ' />
+            <div className=' h-0.5 w-[40%] bg-black ' />
 
 
             {/* Business Inquiries to Paulo */}
@@ -57,23 +55,28 @@ const ContactFrom = () => {
 
             <div className=' my-6 ' >
               <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
+
+                <p>TuneM Headquarters</p>
+              </div>
+              <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
+
+                <p>📍Tigne Point Sliema - Malta SLM3190</p>
+              </div>
+              <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
                 <span>
                   <MdEmail />
                 </span>
-                <p>Business Inquiries to Paulo</p>
+                <p>support@tunem.com</p>
               </div>
-              <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
-                <p>
-                  support@vocalfy.com
-                </p>
+              {/* <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
 
                 <span>
                   <FaArrowUp className=' rotate-45 ' />
                 </span>
 
 
-              </div>
-              <div className=' h-0.5 w-[22%] bg-black ' />
+              </div> */}
+              <div className=' h-0.5 w-[44%] bg-black ' />
             </div>
 
             {/* Artist Inquiries to Ben */}
@@ -81,29 +84,39 @@ const ContactFrom = () => {
 
 
             <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
+              <p>TuneM Production & Creative Division</p>
+            </div>
+
+
+
+
+
+
+
+
+
+
+            <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
+              <p>
+                📍8 Sienna Grobla - Gdańsk 80-760 Poland
+              </p>
+            </div>
+
+            <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
               <span>
                 <MdEmail />
               </span>
-              <p>Artist Inquiries to Ben</p>
+              <p>support@tunem.com</p>
             </div>
-            <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
-              <p>
-                support@vocalfy.com
-              </p>
-
-              <span>
-                <FaArrowUp className=' rotate-45 ' />
-              </span>
 
 
-            </div>
-            <div className=' h-0.5 w-[22%] bg-black ' />
+            <div className=' h-0.5 w-[43%] bg-black ' />
 
 
             {/* Instagram Support */}
 
 
-            <div className="my-6" >
+            {/* <div className="my-6" >
               <div className=' flex items-center text-xl font-semibold gap-x-2    ' >
                 <span>
                   <FaInstagramSquare />
@@ -122,8 +135,8 @@ const ContactFrom = () => {
 
               </div>
               <div className=' h-0.5 w-[22%] bg-black ' />
-            </div>
-            <div>
+            </div> */}
+            <div className=' mt-6 ' >
               Our dedicated team will help you as soon as possible with your inquiry. Get a reply within 24 hours.
             </div>
           </div>

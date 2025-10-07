@@ -146,7 +146,7 @@ const SingerCard: React.FC<ArtistCardProps> = ({
                     <div className="flex items-center gap-x-6 flex-1 justify-end min-w-0">
                         <h1 className="text-black text-sm  font-semibold md:text-xl">${price}</h1>
                         <Link href={`/hire-from/${slug}`}>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white px-2  lg:px-4 lg:py-2 py-1 md:text-[16px] text-xs rounded-md cursor-pointer">
+                            <button className="text-white bg-[#FDC700] px-2  lg:px-4 lg:py-2 py-1 md:text-[16px] text-xs rounded-md cursor-pointer">
                                 Hire Now
                             </button>
                         </Link>

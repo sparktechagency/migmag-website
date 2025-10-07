@@ -17,7 +17,7 @@ const VocalPublish: React.FC = () => {
           <div className=" w-full  ">
             <Image
               src={"/update-image/home-page/vocal-relase/vocal-relase.jpg"}
-              className=" object-cover  mx-auto w-full "
+              className=" object-cover md:w-full w-[50%]  mx-auto "
               width={961}
               height={991}
               alt="...."

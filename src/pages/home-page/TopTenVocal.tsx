@@ -118,7 +118,7 @@ const TopTenVocal: React.FC = () => {
             <FaPlay className="text-black text-2xl cursor-pointer " />
           </button>
 
-          <button className="w-[112px] rounded-2xl text-lg py-1 bg-black text-white">
+          <button className="w-[112px] rounded-2xl text-lg py-1 bg-[#FDC700] text-black ">
             <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
               {item.price}
             </Link>

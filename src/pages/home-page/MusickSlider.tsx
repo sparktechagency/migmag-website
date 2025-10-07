@@ -34,29 +34,29 @@ export default function MusicSlider() {
     const [cardsPerView, setCardsPerView] = useState(5);
     const [currentSlide, setCurrentSlide] = useState(0);
     const url = process.env.NEXT_PUBLIC_API_BASE_URL
-useEffect(() => {
-  const fetchTrendingVocals = async () => {
-    try {
-      const res = await axios.get(`${url}/song`);
+    useEffect(() => {
+        const fetchTrendingVocals = async () => {
+            try {
+                const res = await axios.get(`${url}/song`);
 
-      
-        setTracks(res.data?.data?.data);
-      
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        console.error(err.response?.data || err.message);
-        setError(err.response?.data?.message || err.message);
-      } else {
-        console.error(err);
-        setError("Something went wrong");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  fetchTrendingVocals();
-}, [url]);
+                setTracks(res.data?.data?.data);
+
+            } catch (err: unknown) {
+                if (axios.isAxiosError(err)) {
+                    console.error(err.response?.data || err.message);
+                    setError(err.response?.data?.message || err.message);
+                } else {
+                    console.error(err);
+                    setError("Something went wrong");
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTrendingVocals();
+    }, [url]);
 
     // Responsive cards per view
     useEffect(() => {
@@ -158,7 +158,7 @@ useEffect(() => {
                                     <div className="flex gap-x-6">
                                         <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0, 5)}...</p>
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
-                                            <p className=" px-1 rounded-lg bg-black text-white lg:text-lg font-bold">${item.price}</p>
+                                            <p className=" px-1 rounded-lg bg-[#FDC700] text-black lg:text-lg font-bold">${item.price}</p>
                                         </Link>
                                     </div>
                                 </div>
