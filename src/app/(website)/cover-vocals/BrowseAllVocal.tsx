@@ -1457,7 +1457,7 @@ const BrowseAllVocal = () => {
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
                                             <p className="text-sm text-white font-semibold">${item?.price}</p>
                                         </Link>
-                                        <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
+                                        <button className="px-4 py-1 text-white bg-[#FDC700] text-sm font-medium rounded">
                                             Get Vocal
                                         </button>
                                     </div>
@@ -1519,7 +1519,7 @@ const BrowseAllVocal = () => {
                                                         </div>
                     
                                                         {/* Right Section */}
-                                                        <button className="px-4 py-1 text-sm font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600">
+                                                        <button className="px-4 py-1 text-sm font-medium text-white text-white bg-[#FDC700] rounded-full ">
                                                             Get Vocal
                                                         </button>
                                                     </div>

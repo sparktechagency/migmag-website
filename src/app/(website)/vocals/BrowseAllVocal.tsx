@@ -819,7 +819,7 @@ const BrowseAllVocal = () => {
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>
                                             <p className="text-sm text-white font-semibold">${item?.price}</p>
                                         </Link>
-                                        <button className="px-4 py-1 text-white bg-blue-500 hover:bg-blue-600 text-sm font-medium rounded">
+                                        <button className="px-4 py-1 text-white bg-[#FDC700] cursor-pointer text-sm font-medium rounded">
                                             Get Vocal
                                         </button>
                                     </div>
@@ -1197,15 +1197,15 @@ const BrowseAllVocal = () => {
                                 <div className="flex items-center justify-between w-full max-w-md p-2 border-b">
                                     {/* Left Section */}
                                     <div className="flex items-center gap-1">
-                                        <span className="text-lg font-medium text-white ">{i+1}</span>
+                                        <span className="text-lg font-medium text-white ">{i + 1}</span>
                                         <Link href={`/music-details/${item?.id}`}>
-                                                <Image
-                                                    src={`${imgUrl}/${item?.song_poster}`}
-                                                    alt={"fdsfsdadf"}
-                                                    width = {2000}
-                                                    height = {2000}
-                                                    className="rounded w-12 h-12 "
-                                                />
+                                            <Image
+                                                src={`${imgUrl}/${item?.song_poster}`}
+                                                alt={"fdsfsdadf"}
+                                                width={2000}
+                                                height={2000}
+                                                className="rounded w-12 h-12 "
+                                            />
                                         </Link>
                                         <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
                                             <FaPlay
@@ -1224,7 +1224,7 @@ const BrowseAllVocal = () => {
                                             />
                                         </button>
                                         <div className="flex flex-col">
-                                            <h3 className="text-sm font-semibold text-white">{ item?.artist?.name }</h3>
+                                            <h3 className="text-sm font-semibold text-white">{item?.artist?.name}</h3>
                                             <p className="text-xs text-white">
                                                 {item?.artist?.gender} <span className="text-white font-medium">${item?.price}</span>
                                             </p>
@@ -1232,7 +1232,7 @@ const BrowseAllVocal = () => {
                                     </div>
 
                                     {/* Right Section */}
-                                    <button className="px-4 py-1 text-sm font-medium text-white bg-blue-500 rounded-full hover:bg-blue-600">
+                                    <button className="px-4 py-1 text-sm font-medium text-white bg-[#FDC700] rounded-full"  >
                                         Get Vocal
                                     </button>
                                 </div>
