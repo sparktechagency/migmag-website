@@ -577,9 +577,9 @@ const BrowseAllVocal = () => {
                                                             toggleKey(key?.name);
                                                             handleFilterChange("key", e.target.checked ? key?.id : "");
                                                         }}
-                                                        className="mr-3 accent-indigo-500 w-5 h-5"
+                                                        className="mr-3 accent-indigo-500 w-3 h-3"
                                                     />
-                                                    <span className="text-white md:text-lg">{key.name}</span>
+                                                    <span className="text-white md:text-sm">{key.name}</span>
                                                 </label>
                                             ))
                                         }
@@ -634,9 +634,9 @@ const BrowseAllVocal = () => {
                                                         toggleGenre(genre?.name);
                                                         handleFilterChange('genre', e.target.checked ? genre?.name : '');
                                                     }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
+                                                    className="mr-3 accent-indigo-500 w-3 h-3"
                                                 />
-                                                <span className="text-white md:text-lg   ">{genre?.name}</span>
+                                                <span className="text-white md:text-sm   ">{genre?.name}</span>
                                             </label>
                                         ))}
                                     </motion.div>
@@ -686,9 +686,9 @@ const BrowseAllVocal = () => {
                                                         toggleGender(gender);
                                                         handleFilterChange('gender', e.target.checked ? gender : '');
                                                     }}
-                                                    className="mr-3 accent-indigo-500 w-5 h-5"
+                                                    className="mr-3 accent-indigo-500 w-3 h-3"
                                                 />
-                                                <span className="text-white md:text-lg ">{gender}</span>
+                                                <span className="text-white md:text-sm ">{gender}</span>
                                             </label>
                                         ))}
                                     </motion.div>
@@ -743,9 +743,9 @@ const BrowseAllVocal = () => {
                                                             toggleLatest(item);
                                                             handleFilterChange('latest', e.target.checked ? item : '');
                                                         }}
-                                                        className="mr-3 accent-indigo-500 w-5 h-5"
+                                                        className="mr-3 accent-indigo-500 w-3 h-3"
                                                     />
-                                                    <span className="text-white md:text-lg  ">{item}</span>
+                                                    <span className="text-white md:text-sm  ">{item}</span>
                                                 </label>
                                             ))
                                         }

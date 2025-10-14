@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["103.186.20.110", "i.scdn.co"], // combine all domains in a single array
+    domains: ["api.tunem.com"], // combine all domains in a single array
   },
   async rewrites() {
     return [

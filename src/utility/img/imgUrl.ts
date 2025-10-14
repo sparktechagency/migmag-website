@@ -1,3 +1,3 @@
-export const imgUrl = "http://103.186.20.110:8002";
+export const imgUrl = process.env.NEXT_PUBLIC_IMG_URL;
 
 

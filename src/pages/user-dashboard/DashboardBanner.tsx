@@ -1,6 +1,8 @@
+import { useUserProfileQuery } from '@/app/api/authApi/authApi';
 import Image from 'next/image';
-
+import Link from 'next/link'
 export default function Banner() {
+    const { data } = useUserProfileQuery();
     return (
         <div className="flex flex-col 2xl:flex-row justify-between gap-6 2xl:gap-24">
             {/* Left Side - Banner */}
@@ -16,8 +18,8 @@ export default function Banner() {
 
                 {/* Overlay Content at Top-Left */}
                 <div className="absolute inset-0 text-white flex flex-col items-start justify-start p-4 md:p-6 bg-gradient-to-b from-black/70 via-black/30 to-transparent">
-                    <h1  className="text-lg md:text-xl lg:text-2xl text-[#E7F056] font-bold leading-snug">New artist entry</h1>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl leading-tight uppercase mt-1">chemical solo</h2>
+                    <h1 className="text-lg md:text-xl lg:text-2xl text-[#E7F056] font-bold leading-snug">New artist entry</h1>
+                    <h2 className="text-3xl md:text-4xl lg:text-3xl leading-tight uppercase mt-1">Welcom {data?.data?.full_name}</h2>
 
                     {/* Location */}
                     <div className="flex items-center gap-2 mt-3 md:mt-4">
@@ -57,15 +59,17 @@ export default function Banner() {
                 {/* Top Card */}
                 <div className="bg-[#333333] p-4 md:p-6 rounded-md max-h-[160px]">
                     <h1 className="text-white text-[18px] md:text-[22px] lg:text-[25px] leading-snug">
-                        Looking for tailor-made <br className="hidden md:block" /> audio production?
+                        Looking for custom vocal <br className="hidden md:block" />
                     </h1>
                     <p className="mt- text-[#818080] text-sm md:text-base lg:text-lg">
                         Collaborate with us
                     </p>
                     <div className="flex justify-end ">
                         <div className="flex gap-x-3 items-center">
-                            <p className="text-white text-sm">View Services</p>
-                            <div className="bg-[#E7F056] w-6 h-6 md:w-7 md:h-7 cursor-pointer rounded-full"></div>
+                            <Link href={`/artist-list`}><p className="text-white text-sm">View Services</p></Link>
+                            <Link href={`/artist-list`}>
+                                <div className="bg-[#E7F056] w-6 h-6 md:w-7 md:h-7 cursor-pointer rounded-full"></div>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -73,8 +77,10 @@ export default function Banner() {
                 {/* Bottom Card */}
                 <div className="bg-[#333333] p-4 rounded-md min-h-[70px]">
                     <div className="flex items-center justify-between">
-                        <p className="text-white text-sm md:text-lg">Contact our team</p>
-                    <div className="bg-[#E7F056] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
+                        <Link href={""}>
+                            <p className="text-white text-sm md:text-lg">Contact our team</p>
+                        </Link>
+                        <div className="bg-[#E7F056] cursor-pointer w-6 h-6 md:w-7 md:h-7 rounded-full"></div>
                     </div>
                 </div>
             </div>

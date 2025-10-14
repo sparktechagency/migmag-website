@@ -7,10 +7,23 @@ import Image from 'next/image';
 import { imgUrl } from '@/utility/img/imgUrl';
 import { ArtistRelation } from '@/utility/type/authType';
 import axios from 'axios';
+import { usePurchaseListQuery } from '@/app/api/authApi/authApi';
+interface Order {
+    id: number;
+    order_number: string;
+    status: string;
+    total_amount: string;
+    user: User;
+}
 
 const Hero: React.FC = () => {
     const [artistList, setArtistList] = useState<ArtistRelation[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+        const { data } = usePurchaseListQuery(undefined);
+        const orderData: Order[] = data?.data?.data || [];
+
+
 
     useEffect(() => {
         const fetchArtists = async () => {
@@ -67,7 +80,7 @@ const Hero: React.FC = () => {
                         <h1 className="text-[#222222] text-[23px] leading-6 font-bold">
                             All-time tracks downloaded by you.
                         </h1>
-                        <h1 className="text-[#222222] text-8xl mt-6 mb-14">15</h1>
+                        <h1 className="text-[#222222] text-8xl mt-6 mb-14">{data?.length > 0 ? <>{data?.length }</> : <>0</> }</h1>
                         <div className="flex justify-end">
                             <div className="flex gap-x-3 items-center">
                                 <p className="text-[#222222] text-sm">View Services</p>
