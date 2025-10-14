@@ -40,7 +40,7 @@ const PurchasePage: React.FC = () => {
     }, [showModal]);
 
     return (
-        <div className="w-full bg-gray-900 min-h-screen p-4">
+        <div className="w-full min-h-screen p-4">
             <h1 className="text-white text-3xl mb-6 font-bold">Purchase Details</h1>
 
             {/* Table for large screens */}
