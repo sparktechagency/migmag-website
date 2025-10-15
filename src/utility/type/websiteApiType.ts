@@ -204,7 +204,7 @@ export interface Song {
     is_wishlisted: number;
     created_at: string;
     updated_at: string;
-
+    slug : string;
     artist: Artist;
     genre: Genre;
     key: KeyItem;

@@ -226,3 +226,12 @@ input[type="range"]::-moz-range-thumb {
     background-color: #e5e7eb; /* Tailwind gray-200 */
   }
 }
+/* Hide Scrollbar but Keep Scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -75,6 +75,7 @@ const SingerDetails: React.FC<SingerDetailsProps> = ({ slug }) => {
                 });
             }
         } catch (err) {
+            console.log(err)
             const error = err as FetchBaseQueryError | SerializedError;
 
             // Check if it's a FetchBaseQueryError

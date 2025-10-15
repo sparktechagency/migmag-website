@@ -1,8 +1,41 @@
-import { useUserProfileQuery } from '@/app/api/authApi/authApi';
+'use client';
+
+import axios from 'axios';
 import Image from 'next/image';
-import Link from 'next/link'
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+interface UserProfile {
+    full_name: string;
+    location?: string;
+    role?: string;
+    // add other fields from your API if needed
+}
+
 export default function Banner() {
-    const { data } = useUserProfileQuery();
+    const url = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const [data, setData] = useState<UserProfile | null>(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token"); // get token
+        if (!token) return;
+
+        const fetchUserProfile = async () => {
+            try {
+                const response = await axios.get(`${url}/profile`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setData(response.data?.data); // save API data
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchUserProfile();
+    }, [url]);
+
     return (
         <div className="flex flex-col 2xl:flex-row justify-between gap-6 2xl:gap-24">
             {/* Left Side - Banner */}
@@ -18,8 +51,20 @@ export default function Banner() {
 
                 {/* Overlay Content at Top-Left */}
                 <div className="absolute inset-0 text-white flex flex-col items-start justify-start p-4 md:p-6 bg-gradient-to-b from-black/70 via-black/30 to-transparent">
-                    <h1 className="text-lg md:text-xl lg:text-2xl text-[#E7F056] font-bold leading-snug">New artist entry</h1>
-                    <h2 className="text-3xl md:text-4xl lg:text-3xl leading-tight uppercase mt-1">Welcom {data?.data?.full_name}</h2>
+                    <h1 className="text-lg md:text-xl lg:text-2xl text-[#E7F056] font-bold leading-snug">
+                        <Link href={"/"}>
+                            <Image
+                                src={"/update-image/logo/logo.png"}
+                                alt={"logo"}
+                                width={200}
+                                height={400}
+                                className="mb-10"
+                            />
+                        </Link>
+                    </h1>
+                    <h2 className="text-3xl md:text-4xl lg:text-3xl leading-tight uppercase mt-1">
+                        Welcome {data?.full_name}
+                    </h2>
 
                     {/* Location */}
                     <div className="flex items-center gap-2 mt-3 md:mt-4">
@@ -29,7 +74,7 @@ export default function Banner() {
                                 <circle cx="12" cy="12" r="3.5" stroke="white" />
                             </svg>
                         </span>
-                        <p className="text-sm md:text-base">ROME</p>
+                        <p className="text-sm md:text-base">{data?.location || "ROME"}</p>
                     </div>
 
                     {/* Role */}
@@ -43,19 +88,21 @@ export default function Banner() {
                                 <path d="M20 13C20 10.6131 19.1571 8.32387 17.6569 6.63604C16.1566 4.94821 14.1217 4 12 4C9.87827 4 7.84344 4.94821 6.34315 6.63604C4.84286 8.32387 4 10.6131 4 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </span>
-                        <p className="text-sm md:text-base leading-tight">Electronic Vocalist</p>
+                        <p className="text-sm md:text-base leading-tight">{data?.role || "Electronic Vocalist"}</p>
                     </div>
 
                     {/* Bottom Row */}
                     <div className="flex items-center justify-between w-full mt-3">
                         <p className="text-sm md:text-base ml-4">06 VOCAL</p>
-                        <button className="border border-white text-sm cursor-pointer md:text-lg rounded-2xl px-6 py-1">LISTEN</button>
+                        <button className="border border-white text-sm cursor-pointer md:text-lg rounded-2xl px-6 py-1">
+                            LISTEN
+                        </button>
                     </div>
                 </div>
             </div>
 
             {/* Right Side */}
-            <div className="w-full flex flex-col justify-between 2xl:space-y-6 space-y-6 ">
+            <div className="w-full flex flex-col justify-between 2xl:space-y-6 space-y-6">
                 {/* Top Card */}
                 <div className="bg-[#333333] p-4 md:p-6 rounded-md max-h-[160px]">
                     <h1 className="text-white text-[18px] md:text-[22px] lg:text-[25px] leading-snug">
@@ -64,7 +111,7 @@ export default function Banner() {
                     <p className="mt- text-[#818080] text-sm md:text-base lg:text-lg">
                         Collaborate with us
                     </p>
-                    <div className="flex justify-end ">
+                    <div className="flex justify-end">
                         <div className="flex gap-x-3 items-center">
                             <Link href={`/artist-list`}><p className="text-white text-sm">View Services</p></Link>
                             <Link href={`/artist-list`}>

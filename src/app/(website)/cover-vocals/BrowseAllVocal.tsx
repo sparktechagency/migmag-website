@@ -310,6 +310,8 @@ const BrowseAllVocal = () => {
     });
 
 
+    console.log("vocal data is",browseVocalData?.data?.data);
+
 
 
 
@@ -324,6 +326,9 @@ const BrowseAllVocal = () => {
             setTracks(browseVocalData.data.data);
         }
     }, [browseVocalData]);
+
+
+ 
 
 
 
@@ -464,7 +469,7 @@ const BrowseAllVocal = () => {
                         </div>
 
                         {/* Search Input Section */}
-                        <div className="relative w-full md:w-[300px] lg:w-[400px]">
+                        <div className="relative w-full md:w-[300px] lg:w-[300px]">
                             <input
                                 className="w-full border border-white focus:outline-0 py-2.5 rounded-2xl text-white pl-10 pr-6 bg-transparent placeholder-gray-400 placeholder:text-[16px]"
                                 placeholder="SEARCH"
@@ -483,7 +488,7 @@ const BrowseAllVocal = () => {
 
 
                     <div
-                        className=" hidden md:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
+                        className=" hidden md:grid lg:gap-4 md:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6 md:space-y-0 space-y-5    ">
 
 
                         {/* BPM */}
@@ -932,8 +937,6 @@ const BrowseAllVocal = () => {
 
                     </div>
 
-
-                    {/* small device  */}
 
 
                     <div
@@ -1399,11 +1402,21 @@ const BrowseAllVocal = () => {
 
 
                     {/* wrapper — keeps the old horizontal-scroll safety net */}
-                    <div className=" hidden md:block  space-y-4">
+
+
+                    <div
+                        className="hidden md:block max-h-[600px] overflow-y-scroll no-scrollbar space-y-4"
+                        onScroll={(e) => {
+                            const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+                            if (scrollTop + clientHeight >= scrollHeight - 50) {
+                                setVisibleData((prev) => prev + 5); // Load 5 more tracks
+                            }
+                        }}
+                    >
                         {tracks.slice(0, visibleData).map((item, i) => (
                             <motion.div
                                 key={item?.id}
-                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
+                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? "bg-[#201F1F]" : "bg-[#000000]"
                                     }`}
                             >
                                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
@@ -1413,9 +1426,9 @@ const BrowseAllVocal = () => {
                                             <Link href={`/music-details/${item?.id}`}>
                                                 <Image
                                                     src={`${imgUrl}/${item?.song_poster}`}
-                                                    alt={"fdsfsdadf"}
+                                                    alt={item?.title}
                                                     fill
-                                                    className="rounded w-12 h-12 "
+                                                    className="rounded w-12 h-12"
                                                 />
                                             </Link>
                                         </div>
@@ -1438,9 +1451,9 @@ const BrowseAllVocal = () => {
                                         <div className="flex flex-col">
                                             <h3 className="text-sm font-semibold text-white">{item?.title}</h3>
                                             <p className="text-xs textColor">
-                                                <Link href={`/singer-profile/${item?.id}`}>
+                                                <Link href={`/singer-profile/${item?.artist?.slug}`}>
                                                     {item?.artist?.name}
-                                                </Link>{' '}
+                                                </Link>{" "}
                                                 ・ {item?.bpm} ・ {item?.genre?.name}
                                             </p>
                                         </div>
@@ -1448,8 +1461,8 @@ const BrowseAllVocal = () => {
 
                                     {/* Center: Genre and License */}
                                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-10 w-full md:w-[400px] text-sm textColor">
-                                        <p>{item?.genre.name || 'N/A'}</p>
-                                        <p>{item?.license.name || 'N/A'}</p>
+                                        <p>{item?.genre?.name || "N/A"}</p>
+                                        <p>{item?.license?.name || "N/A"}</p>
                                     </div>
 
                                     {/* Right: Price and Button */}
@@ -1470,62 +1483,65 @@ const BrowseAllVocal = () => {
 
 
 
+
                     {/* small device  */}
 
 
 
-                                        <div className="    space-y-4 block md:hidden mt-8  ">
-                                            {tracks.slice(0, visibleData).map((item, i) => (
-                                                <motion.div
-                                                    key={item?.id}
-                                                    className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
-                                                        }`}
-                                                >
-                                                    <div className="flex items-center justify-between w-full max-w-md p-3 border-b">
-                                                        {/* Left Section */}
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="text-lg font-medium text-white ">{i+1}</span>
-                                                            <Link href={`/music-details/${item?.id}`}>
-                                                                    <Image
-                                                                        src={`${imgUrl}/${item?.song_poster}`}
-                                                                        alt={"fdsfsdadf"}
-                                                                        width = {2000}
-                                                                        height = {2000}
-                                                                        className="rounded w-16 h-16 "
-                                                                    />
-                                                            </Link>
-                                                            <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
-                                                                <FaPlay
-                                                                    onClick={() =>
-                                                                        handleOpenModal({
-                                                                            id: item?.id,
-                                                                            title: item?.title,
-                                                                            artist: { name: item?.artist?.name },
-                                                                            price: item?.price,
-                                                                            song: item?.song,
-                                                                            song_poster: item?.song_poster,
-                                                                        } as Track)
-                                                                    }
-                                                                    size={28}
-                                                                    className="text-white cursor-pointer"
-                                                                />
-                                                            </button>
-                                                            <div className="flex flex-col">
-                                                                <h3 className="text-sm font-semibold text-white">{ item?.artist?.name }</h3>
-                                                                <p className="text-xs text-white">
-                                                                    {item?.artist?.gender} <span className="text-white font-medium">${item?.price}</span>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                    
-                                                        {/* Right Section */}
-                                                        <button className="px-4 py-1 text-sm font-medium text-white text-white bg-[#FDC700] rounded-full ">
-                                                            Get Vocal
-                                                        </button>
-                                                    </div>
-                                                </motion.div>
-                                            ))}
+                    <div className="    space-y-4 block md:hidden mt-8  ">
+                        {tracks.slice(0, visibleData).map((item, i) => (
+                            <motion.div
+                                key={item?.id}
+                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
+                                    }`}
+                            >
+                                <div className="flex items-center justify-between w-full max-w-md p-3 border-b">
+                                    {/* Left Section */}
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-lg font-medium text-white ">{i + 1}</span>
+                                        <Link href={`/music-details/${item?.id}`}>
+                                            <Image
+                                                src={`${imgUrl}/${item?.song_poster}`}
+                                                alt={"fdsfsdadf"}
+                                                width={2000}
+                                                height={2000}
+                                                className="rounded w-16 h-16 "
+                                            />
+                                        </Link>
+                                        <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
+                                            <FaPlay
+                                                onClick={() =>
+                                                    handleOpenModal({
+                                                        id: item?.id,
+                                                        title: item?.title,
+                                                        artist: { name: item?.artist?.name },
+                                                        price: item?.price,
+                                                        song: item?.song,
+                                                        song_poster: item?.song_poster,
+                                                    } as Track)
+                                                }
+                                                size={28}
+                                                className="text-white cursor-pointer"
+                                            />
+                                        </button>
+                                        <div className="flex flex-col">
+                                            <Link href={`/singer-profile/${item?.artist?.slug}`}>
+                                                    {item?.artist?.name}
+                                                </Link>{" "}
+                                            <p className="text-xs text-white">
+                                                {item?.artist?.gender} <span className="text-white font-medium">${item?.price}</span>
+                                            </p>
                                         </div>
+                                    </div>
+
+                                    {/* Right Section */}
+                                    <button className="px-4 py-1 text-sm font-medium text-white text-white bg-[#FDC700] rounded-full ">
+                                        Get Vocal
+                                    </button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
 
 
 

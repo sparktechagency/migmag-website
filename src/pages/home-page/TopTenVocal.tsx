@@ -11,6 +11,7 @@ import axios from "axios";
 interface Artist {
   id: number;
   name: string;
+  slug : string;
 }
 
 interface Track {
@@ -20,6 +21,7 @@ interface Track {
   price: string;
   song: string;
   song_poster: string;
+  slug : string;
 }
 
 const TopTenVocal: React.FC = () => {
@@ -36,7 +38,6 @@ const TopTenVocal: React.FC = () => {
     const fetchTrendingVocals = async () => {
       try {
         const res = await axios.get(`${url}/song`);
-        console.log("top ten vocal is", res.data?.data?.data);
         if (res.data.success) {
           setTracks(res.data?.data?.data.slice(0, 10));
         } else {
@@ -95,14 +96,14 @@ const TopTenVocal: React.FC = () => {
           </Link>
 
           <div className="flex flex-col">
-            <Link href={`/singer-profile/${item.artist.id}`}>
+            <Link href={`/singer-profile/${item.artist.slug}`}>
               <h3 className="text-lg font-bold leading-6 hover:underline headerColor">
                 {item.title.length > 10 ? item.title.slice(0, 10) + "..." : item.title}
               </h3>
             </Link>
 
             <p className="text-lg font-bold flex flex-col gap-x-2.5 leading-6 textColor">
-              <Link href={`/singer-profile/${item.artist.id}`}>
+              <Link href={`/singer-profile/${item.artist.slug}`}>
                 {item.artist.name.length > 10
                   ? item.artist.name.slice(0, 10) + "..."
                   : item.artist.name}

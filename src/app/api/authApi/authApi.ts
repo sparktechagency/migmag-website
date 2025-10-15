@@ -104,7 +104,7 @@ export const authApi = createApi({
         // unfollow api 
 
 
-        unFollow: builder.mutation<UnfollowApiResponse, { id: string }>({
+        unFollow: builder.mutation<UnfollowApiResponse, { id: number }>({
             query: ({ id }) => ({
                 url: `/unfollow/${id}`,
                 method: "PATCH",
@@ -117,10 +117,13 @@ export const authApi = createApi({
             query: ({ songId }) => ({
                 url: `/create-wishlist/${songId}`,
                 method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
             }),
             invalidatesTags: ["User"],
         }),
-
         // remove wish api 
         removeWish: builder.mutation<wishRemoveApiResponse, { songId: number }>({
             query: ({ songId }) => ({

@@ -16,10 +16,9 @@ import {
 import { imgUrl } from "@/utility/img/imgUrl";
 import Swal from "sweetalert2";
 import AudioPlay from "@/app/(website)/music-details/[id]/AudioPlay";
-import { FaHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useSongDetailsQuery } from '@/app/api/websiteApi/websiteApi';
-import { useAddWishListMutation, useRemoveWishMutation } from '@/app/api/authApi/authApi';
+import { useAddWishListMutation } from '@/app/api/authApi/authApi';
 
 interface Artist {
     name?: string;
@@ -65,7 +64,6 @@ const MusickDetails = ({ id }: { id: string }) => {
     const router = useRouter()
     const { data, refetch } = useSongDetailsQuery({ songId });
     const [addWishList] = useAddWishListMutation();
-    const [removeWish] = useRemoveWishMutation()
 
 
 
@@ -98,7 +96,6 @@ const MusickDetails = ({ id }: { id: string }) => {
             // Example: If your API sends 401 for unauthenticated users
             if (error.status === 401) {
                 router.push("/login");
-                window.location.reload();
             }
 
             Swal.fire({
@@ -111,31 +108,31 @@ const MusickDetails = ({ id }: { id: string }) => {
         }
     };
 
-    const removeFromWishlist = async () => {
-        try {
-            const res = await removeWish({ songId }).unwrap(); // ✅ pass object
-            if (res) {
-                refetch();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: res?.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        } catch (e) {
-            console.log(e);
-            router.push("/login");
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "Something went wrong",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        }
-    };
+    // const removeFromWishlist = async () => {
+    //     try {
+    //         const res = await removeWish({ songId }).unwrap(); // ✅ pass object
+    //         if (res) {
+    //             refetch();
+    //             Swal.fire({
+    //                 position: "top-end",
+    //                 icon: "success",
+    //                 title: res?.message,
+    //                 showConfirmButton: false,
+    //                 timer: 1500
+    //             });
+    //         }
+    //     } catch (e) {
+    //         console.log(e);
+    //         router.push("/login");
+    //         Swal.fire({
+    //             position: "top-end",
+    //             icon: "error",
+    //             title: "Something went wrong",
+    //             showConfirmButton: false,
+    //             timer: 1500
+    //         });
+    //     }
+    // };
 
 
 
@@ -261,19 +258,11 @@ const MusickDetails = ({ id }: { id: string }) => {
                 {/* Top Right Icons */}
                 <div className="absolute top-4 right-4 flex gap-4 text-gray-400 z-10">
                     <>
-                        {data?.data?.is_wishlisted == 1 && (
-                            <span>
-                                <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer " />
-                            </span>
-                        )}
+                        <Heart
+                            onClick={() => handleAddToWishlist()}
+                            className="cursor-pointer hover:text-red-500 transition"
+                        />
 
-
-                        {data?.data?.is_wishlisted == 0 && (
-                            <Heart
-                                onClick={() => handleAddToWishlist()}
-                                className="cursor-pointer hover:text-red-500 transition"
-                            />
-                        )}
                     </>
 
                     <Share2

@@ -21,7 +21,6 @@ const languageList: string[] = [
 
 export default function ArtistList() {
   const { data } = useArtistListApiQuery(undefined);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const artistData = data?.data?.data || [];
 
   const lastAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -36,6 +35,9 @@ export default function ArtistList() {
   const genderRef = useRef<HTMLDivElement>(null);
   const languageRef = useRef<HTMLDivElement>(null);
 
+  // Infinite Scroll Count
+  const [visibleCount, setVisibleCount] = useState(5);
+
   const handlePlay = (id: number, audioEl: HTMLAudioElement) => {
     if (lastAudioRef.current && lastAudioRef.current !== audioEl) {
       lastAudioRef.current.pause();
@@ -43,13 +45,18 @@ export default function ArtistList() {
     lastAudioRef.current = audioEl;
   };
 
-  // Close dropdowns on outside click
+  // Scroll Handler to Load More Data
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+    if (scrollTop + clientHeight >= scrollHeight - 50) {
+      setVisibleCount((prev) => prev + 5);
+    }
+  };
+
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        genderRef.current &&
-        !genderRef.current.contains(event.target as Node)
-      ) {
+      if (genderRef.current && !genderRef.current.contains(event.target as Node)) {
         setShowGenderDropdown(false);
       }
       if (
@@ -65,14 +72,15 @@ export default function ArtistList() {
     };
   }, []);
 
-  // Clear filters
+  // Clear Filters
   const clearFilters = () => {
     setSearchTerm("");
     setGender("all");
     setLanguage("all");
+    setVisibleCount(5);
   };
 
-  // Filtered data
+  // Filtered Data
   const filteredArtists = useMemo(() => {
     return artistData.filter((artist: any) => {
       const matchesSearch = artist.name
@@ -103,7 +111,7 @@ export default function ArtistList() {
         />
 
         <div className="flex gap-4 w-full md:w-auto">
-          {/* Gender Custom Dropdown */}
+          {/* Gender Dropdown */}
           <div className="relative w-full md:w-40" ref={genderRef}>
             <button
               type="button"
@@ -131,6 +139,7 @@ export default function ArtistList() {
                       }`}
                     onClick={() => {
                       setGender(g);
+                      setVisibleCount(5);
                       setShowGenderDropdown(false);
                     }}
                   >
@@ -143,7 +152,7 @@ export default function ArtistList() {
             )}
           </div>
 
-          {/* Language Custom Dropdown */}
+          {/* Language Dropdown */}
           <div className="relative w-full md:w-40" ref={languageRef}>
             <button
               type="button"
@@ -171,6 +180,7 @@ export default function ArtistList() {
                       }`}
                     onClick={() => {
                       setLanguage(lang);
+                      setVisibleCount(5);
                       setShowLanguageDropdown(false);
                     }}
                   >
@@ -194,10 +204,13 @@ export default function ArtistList() {
         </div>
       </div>
 
-      {/* Artist List */}
-      <div className=" divide-y space-y-4 px-4 md:px-0 ">
-        {filteredArtists.length > 0 ? (
-          filteredArtists.map((artist: any) => (
+      {/* Artist List with Scroll Pagination */}
+      <div
+        className="max-h-[600px] overflow-y-scroll no-scrollbar divide-y space-y-4 px-4 md:px-0"
+        onScroll={handleScroll}
+      >
+        {filteredArtists.slice(0, visibleCount).length > 0 ? (
+          filteredArtists.slice(0, visibleCount).map((artist: any) => (
             <ArtistCard key={artist.id} {...artist} onPlay={handlePlay} />
           ))
         ) : (

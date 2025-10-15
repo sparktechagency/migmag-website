@@ -6,35 +6,14 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { imgUrl } from '@/utility/img/imgUrl';
 import { MusickPlayer } from '@/components/musick-player/MusickPlayer';
-import { useTotalWishListQuery } from '@/app/api/authApi/authApi';
+import { useRemoveWishMutation, useTotalWishListQuery } from '@/app/api/authApi/authApi';
+import Swal from 'sweetalert2';
+import { WishlistItem } from '@/utility/type/authType';
 
 // License types
 type LicenseType = 'PREMIUM' | 'NON-EXCLUSIVE' | 'EXCLUSIVE' | string;
 
-interface Song {
-    id :number;
-    title: string;
-    song: string;
-    song_poster: string;
-    bpm: string;
-    gender: string;
-    license: {
-        name: LicenseType;
-    };
-    key?: {
-        name: string;
-    };
-    genre?: {
-        name: string;
-    };
-    artist?: {
-        name: string;
-    };
-}
 
-interface Track {
-    song: Song;
-}
 
 // License Badge Component
 const LicenseBadge = ({ type }: { type: LicenseType }) => {
@@ -56,8 +35,8 @@ const LicenseBadge = ({ type }: { type: LicenseType }) => {
 
 const WishListPage: React.FC = () => {
     const router = useRouter();
-    const { data } = useTotalWishListQuery(undefined);
-    const [tracks, setTracks] = useState<Track[]>([]);
+    const { data, refetch } = useTotalWishListQuery(undefined);
+    const [tracks, setTracks] = useState<WishlistItem[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number | null>(null);
     const [showModal, setShowModal] = useState(false);
 
@@ -96,6 +75,24 @@ const WishListPage: React.FC = () => {
             console.error('Download failed:', error);
         }
     }
+
+
+    const [removeWish] = useRemoveWishMutation();
+
+    const handleRemoveWish = async (id: number) => {
+        const songId = id;
+        try {
+            const res = await removeWish({ songId }).unwrap();
+            console.log(res)
+            Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
+            refetch(); // Refresh list after deletion
+        } catch (error) {
+            console.error("Failed to unfollow artist:", error);
+        }
+    }
+
+
+    
 
     return (
         <div className="">
@@ -139,7 +136,7 @@ const WishListPage: React.FC = () => {
                             </div>
 
                             {/* Download */}
-                            <div className="col-span-1 flex justify-start">
+                            {/* <div className="col-span-1 flex justify-start">
                                 <button
                                     onClick={() =>
                                         downloadAudio(`${imgUrl}/${track?.song?.song}`, track?.song?.title)
@@ -147,6 +144,15 @@ const WishListPage: React.FC = () => {
                                     className="w-10 h-10 rounded-full bg-[#80BC02] flex justify-center items-center cursor-pointer"
                                 >
                                     <FaDownload />
+                                </button>
+                            </div> */}
+                            <div className="col-span-1 flex justify-start">
+                                <button
+                                    onClick={() => { handleRemoveWish(track?.song_id) }}
+
+                                    className="h-10 rounded-full bg-[#80BC02] flex justify-center items-center cursor-pointer px-4 "
+                                >
+                                    Remove
                                 </button>
                             </div>
                         </div>
