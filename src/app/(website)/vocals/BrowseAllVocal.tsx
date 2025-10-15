@@ -360,6 +360,15 @@ const BrowseAllVocal = () => {
     };
 
 
+    // Scroll handler to load more
+    const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+        if (scrollTop + clientHeight >= scrollHeight - 50) {
+            setVisibleData((prev) => prev + 5); // load next 5 tracks
+        }
+    };
+
+
 
 
 
@@ -405,7 +414,7 @@ const BrowseAllVocal = () => {
 
 
                     <div
-                        className=" hidden md:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto   mb-6  ">
+                        className=" hidden md:grid lg:gap-4 lg:grid-cols-4  xl:flex  2xl:flex items-center justify-between gap-x-4   max-w-[1539px]  mx-auto  space-y-5   mb-6  ">
 
 
                         {/* BPM */}
@@ -761,11 +770,14 @@ const BrowseAllVocal = () => {
 
 
                     {/* wrapper — keeps the old horizontal-scroll safety net */}
-                    <div className="    space-y-4 hidden md:block ">
+                    <div
+                        className="max-h-[600px] overflow-y-scroll no-scrollbar space-y-4 hidden md:block"
+                        onScroll={handleScroll}
+                    >
                         {tracks.slice(0, visibleData).map((item, i) => (
                             <motion.div
                                 key={item?.id}
-                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? 'bg-[#201F1F]' : 'bg-[#000000]'
+                                className={`cursor-pointer flex items-center rounded-md ${i % 2 === 0 ? "bg-[#201F1F]" : "bg-[#000000]"
                                     }`}
                             >
                                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4 px-4 py-3 rounded shadow-sm transition-all">
@@ -775,7 +787,7 @@ const BrowseAllVocal = () => {
                                             <Link href={`/music-details/${item?.id}`}>
                                                 <Image
                                                     src={`${imgUrl}/${item?.song_poster}`}
-                                                    alt={"fdsfsdadf"}
+                                                    alt={item?.title}
                                                     fill
                                                     className="rounded"
                                                 />
@@ -783,16 +795,7 @@ const BrowseAllVocal = () => {
                                         </div>
                                         <button className="w-6 h-6 flex items-center justify-center text-white hover:text-blue-500">
                                             <FaPlay
-                                                onClick={() =>
-                                                    handleOpenModal({
-                                                        id: item?.id,
-                                                        title: item?.title,
-                                                        artist: { name: item?.artist?.name },
-                                                        price: item?.price,
-                                                        song: item?.song,
-                                                        song_poster: item?.song_poster,
-                                                    } as Track)
-                                                }
+                                                onClick={() => handleOpenModal(item)}
                                                 size={28}
                                                 className="text-white cursor-pointer"
                                             />
@@ -800,9 +803,9 @@ const BrowseAllVocal = () => {
                                         <div className="flex flex-col">
                                             <h3 className="text-sm font-semibold text-white">{item?.title}</h3>
                                             <p className="text-xs textColor">
-                                                <Link href={`/singer-profile/${item?.id}`}>
+                                                <Link href={`/singer-profile/${item?.artist?.slug}`}>
                                                     {item?.artist?.name}
-                                                </Link>{' '}
+                                                </Link>
                                                 ・ {item?.bpm} ・ {item?.genre?.name}
                                             </p>
                                         </div>
@@ -810,8 +813,8 @@ const BrowseAllVocal = () => {
 
                                     {/* Center: Genre and License */}
                                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-10 w-full md:w-[400px] text-sm textColor">
-                                        <p>{item?.genre.name || 'N/A'}</p>
-                                        <p>{item?.license.name || 'N/A'}</p>
+                                        <p>{item?.genre?.name || "N/A"}</p>
+                                        <p>{item?.license?.name || "N/A"}</p>
                                     </div>
 
                                     {/* Right: Price and Button */}
@@ -1224,7 +1227,9 @@ const BrowseAllVocal = () => {
                                             />
                                         </button>
                                         <div className="flex flex-col">
-                                            <h3 className="text-sm font-semibold text-white">{item?.artist?.name}</h3>
+                                            <Link href={`/singer-profile/${item?.artist?.slug}`}>
+                                                                                                {item?.artist?.name}
+                                                                                            </Link>{" "}
                                             <p className="text-xs text-white">
                                                 {item?.artist?.gender} <span className="text-white font-medium">${item?.price}</span>
                                             </p>

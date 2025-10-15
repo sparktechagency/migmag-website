@@ -331,3 +331,84 @@ export interface ArtistRelation {
 
 
 
+export interface WishlistItem {
+  id: number;
+  user_id: number;
+  song_id: number;
+  is_wishlisted: number;
+  created_at: string;
+  updated_at: string;
+  song: Song;
+}
+
+export interface Song {
+  id: number;
+  title: string;
+  song_poster: string;
+  song: string;
+  artist_id: number;
+  genre_id: number;
+  key_id: number;
+  license_id: number;
+  type_id: number;
+  gender: string;
+  bpm: number;
+  price: string;
+  is_published: number;
+  is_wishlisted: number;
+  views: number;
+  created_at: string;
+  updated_at: string;
+  artist: Artist;
+  genre: Genre;
+  key: Key;
+  license: License;
+  type: SongType;
+}
+
+export interface Artist {
+  id: number;
+  name: string;
+  slug: string;
+  singer: string;
+  singer_writer: string;
+  cover_song: string;
+  location: string;
+  description: string;
+  profile: string;
+  gender: string;
+  language: string | null;
+  price: string;
+  is_wishlisted: number;
+  is_followed: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Key {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface License {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SongType {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}

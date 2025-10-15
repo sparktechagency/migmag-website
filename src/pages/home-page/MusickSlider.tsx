@@ -154,7 +154,7 @@ export default function MusicSlider() {
                                             <FiPlay className="text-[#E7F056]" size={24} />
                                         </button>
                                     </div>
-                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title.slice(0, 20)}...</h3>
+                                    <h3 className="lg:text-lg headerColor font-bold mt-3">{item.title.slice(0, 15)}...</h3>
                                     <div className="flex gap-x-6">
                                         <p className="textColor lg:text-lg font-bold">{item.artist?.name.slice(0, 5)}...</p>
                                         <Link href={`/checkout?price=${item.price}&songId=${item.id}`}>

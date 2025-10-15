@@ -6,12 +6,11 @@ import { FiPlay } from "react-icons/fi";
 import { CiPause1 } from "react-icons/ci";
 import { AnimatePresence, motion } from "framer-motion";
 import { Heart } from "lucide-react";
-import { FaHeart } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { imgUrl } from "@/utility/img/imgUrl";
-import { useAddWishListMutation, useRemoveWishMutation } from "@/app/api/authApi/authApi";
-import { useLazyViewSongQuery, useSongDetailsQuery } from "@/app/api/websiteApi/websiteApi";
+import { useAddWishListMutation, } from "@/app/api/authApi/authApi";
+import { useLazyViewSongQuery, } from "@/app/api/websiteApi/websiteApi";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 export function MusickPlayer({
@@ -41,8 +40,7 @@ export function MusickPlayer({
     const router = useRouter();
 
     const [addWishList] = useAddWishListMutation();
-    const [removeWish] = useRemoveWishMutation();
-    const { data, refetch } = useSongDetailsQuery({ songId });
+
 
     /** Initialize waveform bars */
     useEffect(() => {
@@ -139,14 +137,15 @@ export function MusickPlayer({
         try {
             const res = await addWishList({ songId }).unwrap();
             if (res) {
-                refetch();
+
                 Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
             }
         } catch (err) {
+            console.log(err)
             const error = err as FetchBaseQueryError & { data?: { message?: string } };
             if (error.status === 401) {
                 router.push("/login");
-                window.location.reload();
+                // window.location.reload();
             }
             Swal.fire({
                 position: "top",
@@ -162,24 +161,24 @@ export function MusickPlayer({
 
     };
 
-    const removeFromWishlist = async () => {
-        try {
-            const res = await removeWish({ songId }).unwrap();
-            if (res) {
-                refetch();
-                Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
-            }
-        } catch (err) {
-            const error = err as FetchBaseQueryError & { data?: { message?: string } };
-            Swal.fire({
-                position: "top",
-                icon: "error",
-                title: error?.data?.message || "Something went wrong",
-                showConfirmButton: false,
-                timer: 2000,
-            });
-        };
-    }
+    // const removeFromWishlist = async () => {
+    //     try {
+    //         const res = await removeWish({ songId }).unwrap();
+    //         if (res) {
+    //             refetch();
+    //             Swal.fire({ position: "top-end", icon: "success", title: res?.message, showConfirmButton: false, timer: 1500 });
+    //         }
+    //     } catch (err) {
+    //         const error = err as FetchBaseQueryError & { data?: { message?: string } };
+    //         Swal.fire({
+    //             position: "top",
+    //             icon: "error",
+    //             title: error?.data?.message || "Something went wrong",
+    //             showConfirmButton: false,
+    //             timer: 2000,
+    //         });
+    //     };
+    // }
 
     const progress = duration ? (currentTime / duration) * 100 : 0;
 
@@ -295,11 +294,7 @@ export function MusickPlayer({
 
                                 {/* Wishlist */}
                                 <div className="min-w-[30px]">
-                                    {data?.data?.is_wishlisted == 1 ? (
-                                        <FaHeart onClick={removeFromWishlist} className="text-2xl text-red-500 cursor-pointer" />
-                                    ) : (
-                                        <Heart onClick={handleAddToWishlist} className="cursor-pointer hover:text-red-500 transition" />
-                                    )}
+                                    <Heart onClick={handleAddToWishlist} className="cursor-pointer hover:text-red-500 transition" />
                                 </div>
                             </div>
                         </motion.div>
