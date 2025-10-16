@@ -92,6 +92,8 @@ const Hero: React.FC = () => {
                 </span>
             </div>
 
+            {/* comment  */}
+
             {/* Main Flex Section */}
             <div className="flex flex-col gap-6 2xl:flex-row justify-between">
                 {/* Left Section: Stats Cards */}
