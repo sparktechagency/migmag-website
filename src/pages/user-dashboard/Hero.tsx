@@ -35,8 +35,9 @@ const Hero: React.FC = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+                console.log("Order data is", response?.data?.data?.data);
                 // assuming the API returns { data: Order[] }
-                setOrders(response.data?.data || []);
+                setOrders(response.data?.data?.data || []);
             } catch (err) {
                 console.error(err);
             }

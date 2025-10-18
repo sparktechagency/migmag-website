@@ -15,14 +15,14 @@ export default function StripeForm() {
     const searchParams = useSearchParams();
     const router = useRouter()
 
-      useEffect(() => {
-    const token = localStorage.getItem('token');  // Get token from localStorage
+    useEffect(() => {
+        const token = localStorage.getItem('token');  // Get token from localStorage
 
-    if (!token) {
-      // If no token, redirect to the login page
-      router.push('/login');
-    }
-  }, [router]);
+        if (!token) {
+            // If no token, redirect to the login page
+            router.push('/login');
+        }
+    }, [router]);
 
     // Extract price and songId from query params
     const priceParam = searchParams?.get('price');
