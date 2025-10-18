@@ -34,26 +34,37 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
 
 
 
-  // ✅ Download handler
-  const handleDownload = async (url: string, filename: string) => {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    const blobUrl = URL.createObjectURL(blob);
+const handleDownload = async (url: string, filename: string) => {
+  try {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
 
     const link = document.createElement("a");
     link.href = blobUrl;
-    link.download = filename;
+    link.setAttribute("download", filename + ".mp3"); // Force save as file
     document.body.appendChild(link);
     link.click();
     link.remove();
-    URL.revokeObjectURL(blobUrl);
-  };
+  } catch (error) {
+    console.error("Download failed:", error);
+  }
+};
+
+
+
+
+
+
 
   // ✅ Open modal with correct track
   const handleOpenModal = (track: Track) => {
     setCurrentTrack(track);
     setShowModal(true);
   };
+
+
+
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching data</div>;
@@ -91,8 +102,8 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ orderId, onClose }) => {
                     <button
                       onClick={() =>
                         handleOpenModal({
-                        id: item.song?.id,
-                        title: item.song?.title,
+                          id: item.song?.id,
+                          title: item.song?.title,
                           artist: { name: item.song?.artist?.name },
                           price: item.song?.price,
                           song: item.song?.song,
